@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inclusive-design-tool.org/schema/metric.schema.json",
+  "title": "Inclusive Design Metric",
+  "type": "object",
+  "required": ["id", "factor_id", "name", "category", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^M-(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}-\\d{2}$|^M-RUL-\\d{3}-\\d{2}$",
+      "description": "指标唯一 ID：M-因素ID-两位序号"
+    },
+    "factor_id": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "关联的因素 ID"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "中文指标名称"
+    },
+    "name_en": {
+      "type": "string",
+      "minLength": 1,
+      "description": "英文指标名称（placeholder 可省略）"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["auto", "audit", "user-test", "TBD"],
+      "description": "测量分类：auto(自动可测) audit(人工审计) user-test(用户测试)"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "指标定义与测量对象说明（placeholder 可省略）"
+    },
+    "measurement_method": {
+      "type": "string",
+      "minLength": 1,
+      "description": "具体测量方法/公式/步骤（placeholder 可省略）"
+    },
+    "data_source": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "建议的数据获取方式（placeholder 可省略）"
+    },
+    "thresholds": {
+      "type": "object",
+      "required": ["minimum", "good", "excellent"],
+      "properties": {
+        "minimum": { "type": "string", "description": "最低合规阈值" },
+        "good": { "type": "string", "description": "良好阈值" },
+        "excellent": { "type": "string", "description": "优秀阈值" }
+      },
+      "description": "三档阈值：minimum/good/excellent（placeholder 可省略）"
+    },
+    "unit": {
+      "type": "string",
+      "description": "单位（百分比、秒、分贝、档位数等）（placeholder 可省略）"
+    },
+    "applicable_domains": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["digital", "industrial", "architecture", "fashion", "service", "universal"] },
+      "description": "适用设计领域"
+    },
+    "limitations": {
+      "type": "string",
+      "description": "适用条件、误差来源、不适用场景说明（placeholder 可省略）"
+    },
+    "related_standards": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^STD-[A-Z0-9-]+(:\\d+(\\.\\d+)*)?$" },
+      "description": "定义或推荐此指标的标准条款引用（placeholder 可省略）"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["placeholder", "draft", "review", "approved", "deprecated"],
+      "description": "指标状态"
+    },
+    "evidence_grade": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D"],
+      "description": "证据等级：A=标准强制条款 B=研究文献 C=专家共识 D=推理假设（placeholder 可省略）"
+    }
+  },
+  "additionalProperties": false,
+  "if": { "properties": { "status": { "const": "placeholder" } } },
+  "then": { "required": ["id", "factor_id", "name", "category", "status"] },
+  "else": { "required": ["id", "factor_id", "name", "name_en", "category", "description", "measurement_method", "data_source", "thresholds", "unit", "status", "evidence_grade"] }
+}

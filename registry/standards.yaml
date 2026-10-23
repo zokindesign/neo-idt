@@ -1,0 +1,228 @@
+# 标准注册表 - 约 15 项起步
+# 版本: v3.0
+# 条款引用格式: STD-ID:章节号 (如 STD-W3C-WCAG22:1.4.3)
+
+- id: STD-W3C-WCAG22
+  org: W3C
+  code: WCAG 2.2
+  title: "Web Content Accessibility Guidelines 2.2"
+  edition: "2023-10-05"
+  url: "https://www.w3.org/TR/WCAG22/"
+  scope: [digital, web, mobile]
+  status: active
+
+- id: STD-W3C-WCAG21
+  org: W3C
+  code: WCAG 2.1
+  title: "Web Content Accessibility Guidelines 2.1"
+  edition: "2018-06-05"
+  url: "https://www.w3.org/TR/WCAG21/"
+  scope: [digital, web, mobile]
+  status: superseded
+
+- id: STD-EN-301549
+  org: ETSI
+  code: EN 301 549
+  title: "Accessibility requirements for ICT products and services"
+  edition: "v3.2.1 (2021)"
+  url: "https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf"
+  scope: [digital, ict, eu-procurement]
+  status: active
+
+- id: STD-ISO-9241-110
+  org: ISO
+  code: ISO 9241-110
+  title: "Ergonomics of human-system interaction — Part 110: Interaction principles"
+  edition: "2020"
+  url: "https://www.iso.org/standard/75450.html"
+  scope: [digital, industrial, interaction]
+  status: active
+
+- id: STD-ISO-9241-210
+  org: ISO
+  code: ISO 9241-210
+  title: "Ergonomics of human-system interaction — Part 210: Human-centred design for interactive systems"
+  edition: "2019"
+  url: "https://www.iso.org/standard/77520.html"
+  scope: [digital, hcd, process]
+  status: active
+
+- id: STD-ISO-9241-11
+  org: ISO
+  code: ISO 9241-11
+  title: "Ergonomics of human-system interaction — Part 11: Usability: Definitions and concepts"
+  edition: "2018"
+  url: "https://www.iso.org/standard/63500.html"
+  scope: [digital, usability]
+  status: active
+
+- id: STD-ISO-21542
+  org: ISO
+  code: ISO 21542
+  title: "Building construction — Accessibility and usability of the built environment"
+  edition: "2021"
+  url: "https://www.iso.org/standard/72783.html"
+  scope: [architecture, built-environment]
+  status: active
+
+- id: STD-ISO-7250
+  org: ISO
+  code: ISO 7250
+  title: "Basic human body measurements for technological design"
+  edition: "2017"
+  url: "https://www.iso.org/standard/66770.html"
+  scope: [industrial, ergonomics, anthropometry]
+  status: active
+
+- id: STD-ISO-15223
+  org: ISO
+  code: ISO 15223-1
+  title: "Medical devices — Symbols to be used with medical device labels, labelling and information to be supplied"
+  edition: "2021"
+  url: "https://www.iso.org/standard/77324.html"
+  scope: [medical, symbols]
+  status: active
+
+- id: STD-GB-T-37668
+  org: MIIT
+  code: GB/T 37668-2019
+  title: "信息技术 互联网内容无障碍可访问性技术要求与测试方法"
+  edition: "2019"
+  url: "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=35ECC696805C1A67C93B74FB6D0D8EFB"
+  scope: [digital, web, mobile, china]
+  status: active
+
+- id: STD-GB-55019
+  org: MOHURD
+  code: GB 55019-2021
+  title: "建筑与市政工程无障碍通用规范（全文强制）"
+  edition: "2021（2022-04-01 实施）"
+  url: "https://openstd.samr.gov.cn/"
+  scope: [architecture, built-environment, china]
+  status: active
+
+- id: STD-GB-50763
+  org: MOHURD
+  code: GB 50763-2012
+  title: "无障碍设计规范"
+  edition: "2012"
+  url: "https://openstd.samr.gov.cn/"
+  scope: [architecture, built-environment, china]
+  status: active  # 强制性条文已由 GB 55019-2021 承接，正文仍为现行推荐性标准
+
+- id: STD-GB-T-45122
+  org: SAC
+  code: GB/T 45122-2024
+  title: "消费品适老无障碍设计指南"
+  edition: "2024（2025-07-01 实施）"
+  url: "https://ndls.cnis.ac.cn/standard/detail/034e137eb3a6a88265c4f3267c70bec2"
+  scope: [industrial, aging, china]
+  status: active
+
+- id: STD-GDPR
+  org: EU
+  code: GDPR
+  title: "General Data Protection Regulation (EU 2016/679)"
+  edition: "2016"
+  url: "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  scope: [privacy, data-protection, eu]
+  status: active
+
+- id: STD-PIPL
+  org: CN
+  code: PIPL
+  title: "中华人民共和国个人信息保护法"
+  edition: "2021"
+  url: "http://www.npc.gov.cn/"
+  scope: [privacy, data-protection, china]
+  status: active
+
+- id: STD-ANSUR-II
+  org: US-Army
+  code: ANSUR II
+  title: "Anthropometric Survey of US Army Personnel (1988/2012)"
+  edition: "2012"
+  url: "https://www.nature.com/articles/sdata2016115"
+  scope: [anthropometry, military, ergonomics]
+  status: active
+
+- id: STD-GB-T-10000
+  org: SAC
+  code: GB/T 10000-2023
+  title: "中国成年人人体尺寸（替代 GB/T 10000-1988，整合 GB/T 13547-1992 功能尺寸）"
+  edition: "2023（2024-03-01 实施）"
+  url: "https://openstd.samr.gov.cn/"
+  scope: [anthropometry, ergonomics, china]
+  status: active
+
+- id: STD-NASA-TLX
+  org: NASA
+  code: NASA-TLX
+  title: "NASA Task Load Index"
+  edition: "1988 (Hart & Staveland)"
+  url: "https://humansystems.arc.nasa.gov/groups/tlx/"
+  scope: [cognitive-load, measurement, aerospace]
+  status: active
+
+- id: STD-ANSI-HFES-100
+  org: ANSI/HFES
+  code: ANSI/HFES 100-2007
+  title: "Human Factors Engineering of Computer Workstations"
+  edition: "2007"
+  url: "https://www.hfes.org/"
+  scope: [ergonomics, workstation, digital]
+  status: active
+
+- id: STD-WHO-ICF
+  org: WHO
+  code: ICF
+  title: "International Classification of Functioning, Disability and Health"
+  edition: "2001 (updated 2017)"
+  url: "https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health"
+  scope: [health, disability, functioning, universal]
+  status: active
+
+- id: STD-EDC-EXCLUSION
+  org: Cambridge-EDC
+  code: Exclusion-Calculator
+  title: "Inclusive Design Toolkit — Exclusion Calculator"
+  edition: "2023"
+  url: "https://www.edc.eng.cam.ac.uk/research/inclusive-design/kit/exclusion-calculator/"
+  scope: [exclusion, population-coverage, digital, industrial]
+  status: active
+
+- id: STD-SPDX
+  org: Linux-Foundation
+  code: SPDX 3.0.1
+  title: "SPDX Specification (incl. SPDX License List) — Software Package Data Exchange"
+  edition: "3.0.1 (2024-12)"
+  url: "https://spdx.dev/"
+  scope: [licensing, sbom, ip-compliance]
+  status: active
+
+- id: STD-BELMONT
+  org: HHS-OHRP
+  code: Belmont Report
+  title: "Ethical Principles and Guidelines for the Protection of Human Subjects of Research"
+  edition: "1979"
+  url: "https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html"
+  scope: [ethics, research, consent]
+  status: active
+
+- id: STD-IEEE-EAD
+  org: IEEE
+  code: Ethically Aligned Design 1e
+  title: "Ethically Aligned Design: A Vision for Prioritizing Human Well-being with Autonomous and Intelligent Systems"
+  edition: "First Edition (2019)"
+  url: "https://standards.ieee.org/wp-content/uploads/import/documents/other/ead1e.pdf"
+  scope: [ethics, ai, autonomous-systems]
+  status: active
+
+- id: STD-ISO-26262
+  org: ISO
+  code: ISO 26262:2018
+  title: "Road vehicles — Functional safety"
+  edition: "2018 (2nd ed.)"
+  url: "https://www.iso.org/standard/68383.html"
+  scope: [automotive, functional-safety]
+  status: active

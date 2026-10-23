@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inclusive-design-tool.org/schema/guide.schema.json",
+  "title": "Inclusive Design Guide Card",
+  "type": "object",
+  "required": ["id", "factor_id", "name", "name_en", "patterns", "anti_patterns", "cases", "cross_domain_mapping", "status", "version"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^G-(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^G-RUL-\\d{3}$",
+      "description": "指南唯一 ID：G-因素ID"
+    },
+    "factor_id": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "关联的因素 ID"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "中文指南标题"
+    },
+    "name_en": {
+      "type": "string",
+      "minLength": 1,
+      "description": "英文指南标题"
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "domain"],
+        "properties": {
+          "name": { "type": "string", "description": "模式名称" },
+          "description": { "type": "string", "description": "模式详细描述与适用条件" },
+          "domain": { "type": "string", "enum": ["digital", "industrial", "architecture", "fashion", "service", "universal"] },
+          "example": { "type": "string", "description": "具体实例或代码片段" },
+          "refs": { "type": "array", "items": { "type": "string", "pattern": "^STD-[A-Z0-9-]+(:\\d+(\\.\\d+)*)?$" } }
+        }
+      },
+      "description": "推荐设计模式（正向）"
+    },
+    "anti_patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "consequence"],
+        "properties": {
+          "name": { "type": "string", "description": "反模式名称" },
+          "description": { "type": "string", "description": "常见错误做法描述" },
+          "consequence": { "type": "string", "description": "导致的排斥后果" },
+          "domain": { "type": "string", "enum": ["digital", "industrial", "architecture", "fashion", "service", "universal"] }
+        }
+      },
+      "description": "常见错误模式（反向）"
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "domain", "summary"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^CASE-\\d{3}$" },
+          "title": { "type": "string" },
+          "domain": { "type": "string", "enum": ["digital", "industrial", "architecture", "fashion", "service"] },
+          "summary": { "type": "string" },
+          "factor_coverage": { "type": "array", "items": { "type": "string", "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$" } },
+          "outcome": { "type": "string" },
+          "refs": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "description": "跨领域案例引用"
+    },
+    "cross_domain_mapping": {
+      "type": "object",
+      "description": "抽象维度在四大领域的具体映射（仅偏好类因素必填）",
+      "properties": {
+        "digital": { "type": "object" },
+        "industrial": { "type": "object" },
+        "architecture": { "type": "object" },
+        "fashion": { "type": "object" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "deprecated"],
+      "description": "指南状态"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "版本号"
+    }
+  },
+  "additionalProperties": false
+}

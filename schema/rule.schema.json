@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inclusive-design-tool.org/schema/rule.schema.json",
+  "title": "Inclusive Design Rule",
+  "type": "object",
+  "required": ["id", "type", "description", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(ACT|DEP|MOD|CNF|CMP)-\\d{3}$",
+      "description": "规则唯一 ID：类型前缀-三位序号"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["activate", "depend", "moderate", "conflict", "compensate"],
+      "description": "规则类型"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "规则自然语言描述"
+    },
+    "condition": {
+      "type": "string",
+      "description": "激活/依赖条件表达式（ACT/DEP 类型）"
+    },
+    "activates": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$" },
+      "description": "被激活的因素 ID 列表（ACT 类型）"
+    },
+    "dependent": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "依赖方因素 ID（DEP 类型）"
+    },
+    "dependency": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "被依赖方因素 ID（DEP 类型）"
+    },
+    "moderator": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "调节因素 ID（MOD 类型）"
+    },
+    "target": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "被调节因素 ID（MOD 类型）"
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["amplify", "weaken"],
+      "description": "调节方向（MOD 类型）"
+    },
+    "factor_a": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "冲突方 A（CNF 类型）"
+    },
+    "factor_b": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "冲突方 B（CNF 类型）"
+    },
+    "priority_rule": {
+      "type": "string",
+      "description": "优先级裁决规则标识（CNF 类型）"
+    },
+    "unavailable": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "不可用因素（CMP 类型）"
+    },
+    "compensates": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$" },
+      "description": "补偿因素列表（CMP 类型）"
+    },
+    "source": {
+      "type": "string",
+      "description": "来源文档引用"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "deprecated"],
+      "description": "规则状态"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,1442 @@
+# 指标注册表 - WP-D/WP-D2/WP-D3 细化版
+# 版本: v3.3
+# 编号规则: M-<因素ID>-<两位序号> (如 M-WHO-F-001-01)
+# 三层分类: auto(自动可测) / audit(人工审计) / user-test(用户测试)
+# 阈值分级: minimum(最低合规) / good(良好) / excellent(优秀)
+# 证据等级: A=强制标准值 B=文献/标准支撑方法 C=专家共识 D=项目推断
+
+- id: M-HOW-F-001-01
+  factor_id: HOW-F-001
+  name: 网络韧性分级
+  name_en: Network Resilience Tiers
+  category: auto
+  description: 在弱网/断网梯度下自动测试核心功能可用性与降级体验
+  measurement_method: 网络条件限速模拟（3G/2G/50% 丢包/离线）→功能可用性自动探针
+  data_source:
+  - 自动化测试
+  - 真实用户监控（RUM）
+  thresholds:
+    minimum: 断网时只读功能可用且有明确离线提示
+    good: 弱网（3G 级）核心任务可完成（超时 ≤ 10s）
+    excellent: 离线优先架构与后台自动同步
+  unit: 功能保持率 % / 超时秒数
+  applicable_domains:
+  - digital
+  limitations: 3G 参考速率为共识值；RUM 数据须脱敏处理
+  status: draft
+  evidence_grade: C
+- id: M-HOW-F-002-01
+  factor_id: HOW-F-002
+  name: 低端设备性能底线
+  name_en: Low-End Device Performance Floor
+  category: auto
+  description: 在目标市场最低规格设备上自动测量核心任务性能
+  measurement_method: 最低规格设备/模拟器实测：冷启动、首屏、核心交互响应时间（P75/P95）
+  data_source:
+  - 自动化测试
+  - RUM
+  thresholds:
+    minimum: 冷启动 ≤ 5s 且核心交互响应 ≤ 200ms（ISO 9241-112 响应性实践）
+    good: P75 交互响应 ≤ 100ms 且低内存设备无崩溃
+    excellent: 自适应画质与按设备能力分级加载
+  unit: 秒 / 毫秒
+  applicable_domains:
+  - digital
+  limitations: 200ms 响应阈值为 ISO 9241-11 有效性-效率实践与行业共识
+  related_standards:
+  - STD-ISO-9241-110:5.2
+  status: draft
+  evidence_grade: C
+- id: M-HOW-F-003-01
+  factor_id: HOW-F-003
+  name: 续航压力场景覆盖
+  name_en: Battery-Life Stress Coverage
+  category: audit
+  description: 对 Rahmati & Zhong 2009 人-电池交互研究识别的高压场景（低电量焦虑/无充电条件/长时外出）审计应对特性
+  measurement_method: 高压场景清单审计（省电模式/低耗优化/电量预测/多充电方式），对照人-电池交互研究的行为模式
+  data_source:
+  - 特性清单
+  - 实测
+  thresholds:
+    minimum: 提供省电模式且电量状态可查
+    good: 剩余使用时间预测与低功耗策略
+    excellent: 多充电方式冗余（有线/无线/外接）与场景自适应降耗
+  unit: 场景覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: Rahmati & Zhong 2009 为移动手机场景研究，可穿戴/医疗设备场景需按产品类别调整
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-HOW-F-004-01
+  factor_id: HOW-F-004
+  name: 兼容性矩阵通过率
+  name_en: Compatibility Matrix Pass Rate
+  category: auto
+  description: 按支持矩阵（浏览器/OS/AT 版本组合）自动回归核心流程
+  measurement_method: 支持矩阵×冒烟用例自动回归；EN 301 549 clause 11 Web 兼容性核对
+  data_source:
+  - CI 自动化测试
+  - AT 兼容工具
+  thresholds:
+    minimum: 声明的支持矩阵 100% 通过冒烟用例
+    good: AT 组合（屏幕阅读器×浏览器）核心流程通过
+    excellent: 向下兼容 2 个大版本且异常降级友好
+  unit: 矩阵通过率 %
+  applicable_domains:
+  - digital
+  limitations: AT 组合测试资源消耗大，良好档建议至少覆盖主流组合（NVDA×Chrome/VoiceOver×Safari）
+  status: draft
+  evidence_grade: C
+- id: M-HOW-F-005-01
+  factor_id: HOW-F-005
+  name: 技术债环境适配
+  name_en: Legacy Environment Adaptation
+  category: audit
+  description: 审计对目标用户存量技术环境（旧 OS/旧浏览器/企业受限环境）的适配策略与降级方案
+  measurement_method: 存量环境清单→适配/降级策略审计→降级体验实测
+  data_source:
+  - 用户环境数据
+  - 降级测试
+  thresholds:
+    minimum: 目标市场主流存量环境有明确支持/降级声明
+    good: 降级模式核心功能可用（优雅降级非白屏）
+    excellent: 按环境能力自动分发适配版本
+  unit: 环境覆盖率 %
+  applicable_domains:
+  - digital
+  limitations: 存量环境定义依赖目标市场调研数据
+  status: draft
+  evidence_grade: C
+- id: M-HOW-F-006-01
+  factor_id: HOW-F-006
+  name: 辅助技术互操作
+  name_en: Assistive Technology Interoperability
+  category: audit
+  description: 屏幕阅读器/开关控制/语音控制完成核心任务的实测通过率
+  measurement_method: 主流 AT 组合实测（WCAG 4.1.2 Name/Role/Value 核对 + 核心任务全程 AT 操作）
+  data_source:
+  - AT 实测
+  - 自动化扫描
+  thresholds:
+    minimum: WCAG 4.1.2 零失败且屏幕阅读器可完成核心任务（A 级基线）
+    good: 主流 AT 组合核心任务成功率 ≥ 90%
+    excellent: 全 AT 组合 + 罕用 AT（开关/眼控）通过
+  unit: 任务成功率 %
+  applicable_domains:
+  - digital
+  limitations: AT 组合爆炸问题：建议按 WebAIM 调研主流组合优先
+  related_standards:
+  - STD-W3C-WCAG22:4.1.2
+  - STD-W3C-WCAG22:4.1.3
+  status: draft
+  evidence_grade: B
+- id: M-HOW-F-007-01
+  factor_id: HOW-F-007
+  name: 输出通道冗余
+  name_en: Output Channel Redundancy
+  category: audit
+  description: 关键信息输出不依赖单一感官通道（视觉不依赖颜色 WCAG 1.4.1、音频有字幕/文字替代）
+  measurement_method: 输出事件×通道矩阵审计（WCAG 1.4.1 使用颜色、1.2.2 字幕、1.1.1 非文本替代核对）
+  data_source:
+  - 内容审计
+  - AT 测试
+  thresholds:
+    minimum: 颜色非唯一信息载体（WCAG 1.4.1 A 级）且媒体有替代（1.1.1/1.2.2 A 级）
+    good: 双通道输出全覆盖关键信息
+    excellent: 用户可选输出偏好通道且跨通道同步
+  unit: 通道冗余率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: 硬件指示灯类输出可用 ISO 9241-110 5.2 原则替代审计
+  related_standards:
+  - STD-W3C-WCAG22:1.4.1
+  - STD-W3C-WCAG22:1.1.1
+  - STD-W3C-WCAG22:1.2.2
+  status: draft
+  evidence_grade: B
+- id: M-HOW-F-008-01
+  factor_id: HOW-F-008
+  name: 认证路径无障碍冗余
+  name_en: Authentication Path Redundancy
+  category: audit
+  description: 按 WCAG 2.2 SC 3.3.8 审计认证路径：认知功能测试豁免、多路径独立性、密码管理器兼容与恢复流程
+  measurement_method: 认证路径×能力要求矩阵审计（认知/视觉/听觉/运动），3.3.8 逐条核对（认知测试例外/替代路径/粘贴允许）
+  data_source:
+  - 认证流程审计
+  - AT 测试
+  thresholds:
+    minimum: ≥2 条独立认证路径且无强制认知功能测试（WCAG 3.3.8 AA 级）
+    good: 账号恢复不依赖安全问题，密码管理器自动填充无阻断
+    excellent: WebAuthn/魔法链接等无密码路径 + 会话延长 + 各路径能力要求公示
+  unit: 路径数 / 合规项通过率
+  applicable_domains:
+  - digital
+  limitations: 3.3.8 为 WCAG 2.2 AA 级新增条款；本项目按 A 级证据处理因其在采购/法规中常作强制基线
+  related_standards:
+  - STD-W3C-WCAG22:3.3.8
+  status: draft
+  evidence_grade: A
+- id: M-RUL-001-01
+  factor_id: RUL-001
+  name: 无障碍功能使用率
+  name_en: Accessibility Feature Usage Rate
+  category: audit
+  description: 核心无障碍功能（如屏幕阅读器、键盘导航、高对比度）的可用性通过率
+  measurement_method: WCAG 2.1 AA 成功标准逐项检查表通过率
+  data_source:
+  - 自动化扫描
+  - 人工审计
+  - 用户测试
+  thresholds:
+    excellent: AA 100% + AAA 关键条款 + 主流 AT 兼容验证
+    good: AA 100% + 部分 AAA 条款
+    minimum: WCAG 2.1 AA 100% 通过（强制）
+  unit: 通过率 %
+  status: draft
+  evidence_grade: A
+- id: M-RUL-002-01
+  factor_id: RUL-002
+  name: 数据主体权利响应合规
+  name_en: Data Subject Rights Response Compliance
+  category: audit
+  description: 审计数据主体权利流程（撤回同意/查阅复制/更正补充/删除）是否满足目标法域的时限与便捷性要求
+  measurement_method: 数据权利流程走查 × 法域条款矩阵（GDPR：撤回与给予同等方式便捷[Art.7(3)]/响应不迟于一个月[Art.12(3)]/删除权[Art.17]；PIPL：便捷撤回[第15条]/不得拒绝服务[第16条]/告知[第17条]/知情决定/查阅复制/更正/删除[第44-47条]）
+  data_source:
+  - 流程审计
+  - 工单日志
+  - 实测撤回路径
+  thresholds:
+    minimum: 目标法域全部法定权利路径存在且时限达标（GDPR 一个月响应；PIPL 便捷撤回）
+    good: 撤回同意路径与给予同意同页同级可达（非深埋设置），权利请求有状态跟踪
+    excellent: 权利行使全程自助化 + 处理时限内部 SLA 严于法定 + 多法域请求自动路由
+  unit: 条款覆盖率 % / 响应时效
+  applicable_domains:
+  - digital
+  - service
+  limitations: 本指标为流程合规审计而非法律意见；多法域产品需按投放市场叠加 CCPA/CPRA 等法域条款——当前覆盖 GDPR/PIPL 双法域
+  related_standards:
+  - STD-GDPR:7.3
+  - STD-GDPR:12.3
+  - STD-GDPR:17
+  - STD-PIPL:15
+  - STD-PIPL:16
+  - STD-PIPL:17
+  - STD-PIPL:44
+  - STD-PIPL:45
+  - STD-PIPL:47
+  status: draft
+  evidence_grade: A
+- id: M-RUL-003-01
+  factor_id: RUL-003
+  name: 目标市场安全认证就绪度
+  name_en: Target Market Safety Certification Readiness
+  category: audit
+  description: 审计产品对目标市场强制安全认证（CE/UL/FDA/MDR/ISO 26262 等）的条款级就绪状态
+  measurement_method: 目标市场×认证体系矩阵审计：认证清单确认 → 安全要求在设计文档中的可追溯性 → 预合规测试差距分析
+  data_source:
+  - 认证清单
+  - 设计文档审计
+  - 预测试报告
+  thresholds:
+    minimum: 目标市场强制认证清单确认且安全要求可追溯到设计文档
+    good: 危害分析与风险评估文档完备，预合规测试通过
+    excellent: 多认证并行路径（一次设计满足多市场认证）+ 认证维持流程（复审跟踪）
+  unit: 认证就绪率 %
+  applicable_domains:
+  - industrial
+  - digital
+  limitations: 各认证体系条款庞杂，本指标审计就绪流程而非认证本身——认证结果由认证机构给出；医疗/汽车等强监管领域须引入法域专员复核
+  related_standards:
+  - STD-ISO-26262
+  status: draft
+  evidence_grade: B
+- id: M-RUL-004-01
+  factor_id: RUL-004
+  name: 许可证与 SBOM 完备度
+  name_en: License & SBOM Completeness
+  category: auto
+  description: 按 SPDX 标准审计代码/依赖/素材的许可证识别覆盖度与许可证冲突，含许可证清单（License List）短标识符规范
+  measurement_method: SCA 工具扫描（源码+依赖）→ SPDX 标识符规范化 → 传染性许可证（GPL 系）冲突分析；素材授权台账核对
+  data_source:
+  - SBOM 扫描
+  - 素材台账
+  thresholds:
+    minimum: 100% 组件有 SPDX 许可证标识（无 Unknown 许可证进入构建）
+    good: SBOM 机器可读（SPDX 格式）+ 传染性许可证冲突清零
+    excellent: 素材授权链完整（字体/图片/音频逐项有授权证明）+ 许可证变更 CI 监控
+  unit: SPDX 标识覆盖率 % / 冲突数
+  applicable_domains:
+  - digital
+  limitations: SPDX 覆盖软件与数据，硬件 IP 核与标准必要专利（SEP）须另行专利检索——本指标不含专利侵权判断
+  related_standards:
+  - STD-SPDX
+  status: draft
+  evidence_grade: B
+- id: M-RUL-005-01
+  factor_id: RUL-005
+  name: 伦理审查机制完备度
+  name_en: Ethics Review Mechanism Completeness
+  category: audit
+  description: 按 Belmont 三原则与 IEEE EAD 框架审计伦理审查机制：知情同意流程、风险-收益评估、公平性审计、可申诉通道
+  measurement_method: 伦理检查表审计（Belmont：尊重[自主与保护]→知情同意、善行→风险收益评估、正义→公平选择；IEEE EAD：透明度/问责/可解释性）+ 用户研究协议抽查
+  data_source:
+  - 伦理检查表
+  - 研究协议
+  - 投诉记录
+  thresholds:
+    minimum: 涉人研究有知情同意流程且 IRB/伦理委员会审查在案（Belmont 三原则逐项可查）
+    good: 算法决策有公平性审计记录 + 暗黑模式自查清零 + 伦理反馈渠道可用
+    excellent: 伦理评估前置到设计阶段（设计伦理工作坊）+ AI 系统对齐 IEEE EAD 八原则体系
+  unit: 检查项覆盖率 %
+  applicable_domains:
+  - universal
+  limitations: Belmont 面向涉人研究伦理，IEEE EAD 面向 AI 系统——两者为互补框架；伦理审查深度依赖产品类别（医疗/AI/社交需分域细化）
+  related_standards:
+  - STD-BELMONT
+  - STD-IEEE-EAD
+  status: draft
+  evidence_grade: B
+- id: M-RUL-006-01
+  factor_id: RUL-006
+  name: 行业准入规范映射度
+  name_en: Industry Access Standards Mapping
+  category: audit
+  description: 审计产品对目标行业准入规范（HIPAA/PCI DSS/FERPA/DO-178C 等）的条款级映射与合规状态
+  measurement_method: 目标行业×准入规范矩阵审计（医疗 HIPAA/金融 PCI DSS/教育 FERPA/航空 DO-178C）→ 条款要求到设计/流程的证据映射
+  data_source:
+  - 行业规范清单
+  - 证据映射文档
+  thresholds:
+    minimum: 目标行业准入规范清单确认且有指定负责人
+    good: 每条适用条款有证据映射（设计文档/测试报告/流程记录）
+    excellent: 行业规范变更跟踪机制 + 跨行业产品多规范并行的映射复用
+  unit: 条款映射覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - service
+  limitations: 行业规范随法域与行业演变（如 PCI DSS 版本更新），清单须按投放行业与年度复核；HIPAA/PCI DSS 条款本身不在本项目标准注册表——按需注册
+  related_standards:
+  - STD-ISO-26262
+  status: draft
+  evidence_grade: B
+- id: M-WHAT-F-001-01
+  factor_id: WHAT-F-001
+  name: 任务步骤复杂度
+  name_en: Task Step Complexity
+  category: audit
+  description: 核心任务的步骤数、决策点数与分支数评级，判断任务结构复杂度是否匹配用户能力
+  measurement_method: 任务分析→步骤/决策点/分支计数→复杂度分级（低/中/高）
+  data_source:
+  - 任务分析
+  - 专家评级
+  thresholds:
+    minimum: 核心任务 ≤ 7±2 步且决策点 ≤ 3（米勒定律共识值）
+    good: 提供分步引导与进度提示
+    excellent: 提供专家快捷路径（并行高级操作）
+  unit: 步骤数 / 决策点数
+  applicable_domains:
+  - universal
+  limitations: 7±2 为认知心理学共识值而非强制标准；复杂任务应配合认知负荷量表
+  related_standards:
+  - STD-ISO-9241-110:5.1
+  status: draft
+  evidence_grade: C
+- id: M-WHAT-F-002-01
+  factor_id: WHAT-F-002
+  name: 认知负荷测量指标
+  name_en: Cognitive Load Measurement
+  category: user-test
+  description: NASA-TLX 量表测量任务认知负荷
+  measurement_method: NASA-TLX 量表 (6 维度加权)
+  data_source:
+  - 可用性测试
+  - 用户自评
+  thresholds:
+    excellent: NASA-TLX 总分 ≤ 30
+    good: NASA-TLX 总分 ≤ 45
+    minimum: NASA-TLX 总分 ≤ 60
+  unit: NASA-TLX 分数 (0-100)
+  status: draft
+  evidence_grade: B
+- id: M-WHAT-F-002-02
+  factor_id: WHAT-F-002
+  name: 任务完成时间百分位
+  name_en: Task Completion Time Percentiles
+  category: user-test
+  description: 收集足够样本量下的任务完成时间，计算 P5/P50/P95
+  measurement_method: P95 完成时间 / 期望完成时间
+  data_source:
+  - 可用性测试
+  - 生产环境日志（脱敏）
+  thresholds:
+    excellent: P95 ≤ 期望时间 × 1.2
+    good: P95 ≤ 期望时间 × 1.5
+    minimum: P95 ≤ 期望时间 × 2
+  unit: 秒 / 倍率
+  status: draft
+  evidence_grade: B
+- id: M-WHAT-F-003-01
+  factor_id: WHAT-F-003
+  name: 容错恢复完备度
+  name_en: Error Tolerance & Recovery
+  category: user-test
+  description: 注入典型操作错误（误触/误删/误提交），测量可恢复性、撤销可用性与损失防护
+  measurement_method: 错误注入测试→撤销成功率/数据损失率/恢复步骤数记录
+  data_source:
+  - 可用性测试
+  - 错误注入实验
+  thresholds:
+    minimum: 破坏性操作有确认且可撤销（ISO 9241-110:2020 5.6 Use error robustness 对应）
+    good: 错误消息含恢复指引（WCAG 3.3.1/3.3.3）
+    excellent: 草稿自动保存与回滚历史
+  unit: 恢复成功率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: WCAG 3.3.1（A 级）适用于 Web 界面；硬件类用 ISO 9241-110 5.6 原则审计
+  related_standards:
+  - STD-W3C-WCAG22:3.3.1
+  - STD-W3C-WCAG22:3.3.3
+  - STD-ISO-9241-110:5.6
+  status: draft
+  evidence_grade: B
+- id: M-WHAT-F-004-01
+  factor_id: WHAT-F-004
+  name: 持久续接完备度
+  name_en: Persistence & Resumption Completeness
+  category: audit
+  description: 对跨会话/跨设备长任务审计自动保存、续接入口、状态同步与冗余输入消除（WCAG 3.3.7）
+  measurement_method: 会话中断/设备切换实测→数据保存率/续接成功率；同流程重复输入项计数（WCAG 2.2 SC 3.3.7 Redundant Entry A 级核对）
+  data_source:
+  - 任务审计
+  - 跨设备测试
+  thresholds:
+    minimum: 同流程内已知信息不重复输入（WCAG 3.3.7 A 级强制）
+    good: 自动保存 + 续接入口全覆盖长任务
+    excellent: 跨设备实时同步与版本历史
+  unit: 续接成功率 %
+  applicable_domains:
+  - digital
+  - service
+  limitations: WCAG 3.3.7 不要求跨会话保存（Understanding 文档明确），跨会话为良好/优秀档
+  related_standards:
+  - STD-W3C-WCAG22:3.3.7
+  - STD-W3C-WCAG22:3.2.3
+  status: draft
+  evidence_grade: B
+- id: M-WHAT-F-005-01
+  factor_id: WHAT-F-005
+  name: 协作角色覆盖
+  name_en: Collaboration Role Coverage
+  category: audit
+  description: 审计协作任务的分角色视图、权限、并行编辑冲突处理与第三方协作辅助兼容
+  measurement_method: 角色×权限矩阵审计 + 双人并行编辑实测冲突处理
+  data_source:
+  - 功能审计
+  - 协作测试
+  thresholds:
+    minimum: 协作任务支持分角色权限与操作留痕
+    good: 并行编辑冲突有合并/锁定策略
+    excellent: 协助者/代理者可无缝加入（对应 WHERE-F-009 受辅助使用）
+  unit: 角色覆盖率 %
+  applicable_domains:
+  - digital
+  - service
+  status: draft
+  evidence_grade: C
+- id: M-WHAT-F-006-01
+  factor_id: WHAT-F-006
+  name: 中断容忍实测
+  name_en: Interruption Tolerance Test
+  category: user-test
+  description: 在任务关键节点注入中断（来电/通知/人为打断），测量任务恢复率与认知重启成本
+  measurement_method: 中断注入实验→恢复成功率/重启时间/重复操作次数统计
+  data_source:
+  - 可用性测试
+  - 中断实验
+  thresholds:
+    minimum: 中断后状态保持，恢复无需从头开始
+    good: 恢复点提示（'继续刚才的操作'）
+    excellent: 中断内容自动暂存与情境提示恢复
+  unit: 恢复成功率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: 中断注入须在受控环境执行，避免生产数据风险
+  status: draft
+  evidence_grade: C
+- id: M-WHEN-F-001-01
+  factor_id: WHEN-F-001
+  name: 全时段可用性
+  name_en: 24-Hour Adaptability
+  category: audit
+  description: 核对核心功能全时段可用与夜间适配（暗色模式/亮度/免打扰）
+  measurement_method: 时段特性清单审计 + 夜间场景实测
+  data_source:
+  - 特性审计
+  - 实测
+  thresholds:
+    minimum: 核心功能 24h 可用且有暗色模式
+    good: 夜间免打扰与延迟处理选项
+    excellent: 光照/时段自适应界面
+  unit: 特性覆盖率 %
+  applicable_domains:
+  - digital
+  - service
+  status: draft
+  evidence_grade: C
+- id: M-WHEN-F-002-01
+  factor_id: WHEN-F-002
+  name: 频率分层适配度
+  name_en: Frequency-Tier Adaptation
+  category: audit
+  description: 按高频/低频用户分层审计差异化设计（高频：效率特性；低频：记忆辅助、最近记录、简化界面）
+  measurement_method: 频率分层定义（DAU/MAU 比或会话间隔分布）→分层特性矩阵审计；习惯养成参照 Lally et al. 2010 渐近线模型
+  data_source:
+  - 使用分析
+  - 特性审计
+  thresholds:
+    minimum: 低频路径有记忆辅助（最近使用/默认值预填）
+    good: 高频路径有批量/快捷操作；低频路径有使用引导
+    excellent: 按个人使用模式自适应难度与界面密度
+  unit: 分层覆盖率 %
+  applicable_domains:
+  - digital
+  - service
+  limitations: DAU/MAU 与会话间隔为运营指标，低频用户定义需按产品类别校准
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHEN-F-003-01
+  factor_id: WHEN-F-003
+  name: 季节性适应审计
+  name_en: Seasonal Adaptation Audit
+  category: audit
+  description: 审计季节/极端天气/节假日模式下的功能保持度，含光照/温度/湿度/假期分布等维度的适应性特性
+  measurement_method: 季节场景清单（极端天气/光照周期/节假日模式）×功能保持审计；光照敏感人群对照 SAD 研究的光照需求
+  data_source:
+  - 场景审计
+  - 季节性使用数据
+  thresholds:
+    minimum: 极端天气/温度下核心功能不失效（防水/耐温规格达标）
+    good: 光照/温度变化有模式适配（冬季深色/夏季高对比/防眩光）
+    excellent: 节假日模式与季节性内容自动切换
+  unit: 场景覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - architecture
+  - fashion
+  limitations: SAD（Rosenthal 1984）支撑光照-情绪关联的合理依据；季节性运营策略属商业实践范畴
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHEN-F-004-01
+  factor_id: WHEN-F-004
+  name: 时限可调性
+  name_en: Time-Limit Adjustability
+  category: audit
+  description: 盘点产品内全部时限，逐项核对可关闭/可调整/可延长；本质例外需论证记录
+  measurement_method: 时限清单→逐项按 WCAG 2.2.1 核对（关闭/调整/延长）→本质例外论证记录
+  data_source:
+  - 时限盘点
+  - 代码/流程审计
+  thresholds:
+    minimum: 非本质时限 100% 可调整（WCAG 2.2.1 A 级）
+    good: 剩余时间可视化与进度提示
+    excellent: 默认无时限（仅本质需要时设置并留论证）
+  unit: 时限达标率 %
+  applicable_domains:
+  - digital
+  - service
+  limitations: WCAG 2.2.1 允许本质时限例外（如竞价）；例外须逐项记录依据
+  related_standards:
+  - STD-W3C-WCAG22:2.2.1
+  - STD-W3C-WCAG22:2.2.2
+  status: draft
+  evidence_grade: B
+- id: M-WHEN-F-005-01
+  factor_id: WHEN-F-005
+  name: 断点续接支持
+  name_en: Resumption Support
+  category: audit
+  description: 对长任务审计自动保存、续接入口、时长预估与分步计划特性
+  measurement_method: 长任务清单→中断注入测试（数据保存率/恢复成功率统计）
+  data_source:
+  - 任务审计
+  - 中断测试
+  thresholds:
+    minimum: 长任务自动保存（间隔 ≤ 30s 或实时）且有续接入口
+    good: 任务时长预估与分步计划展示
+    excellent: 跨设备无缝续接（状态同步）
+  unit: 任务支持率 %
+  applicable_domains:
+  - digital
+  - service
+  limitations: 保存间隔阈值为共识值，可按任务风险等级收紧
+  status: draft
+  evidence_grade: C
+- id: M-WHEN-F-006-01
+  factor_id: WHEN-F-006
+  name: 疲劳响应完备度
+  name_en: Fatigue Response Completeness
+  category: audit
+  description: 审计疲劳检测信号（连续错误/操作放缓/会话时长）与响应机制（休息提示/界面简化/断点保存）
+  measurement_method: 疲劳信号×响应机制矩阵审计；长会话实测错误率增长曲线（对照 NASA-TLX 量表校验）
+  data_source:
+  - 功能审计
+  - 长会话测试
+  thresholds:
+    minimum: 长会话有暂停与断点保存（数据不因疲劳中断丢失）
+    good: 连续错误/操作放缓触发主动休息提示
+    excellent: 疲劳自适应界面（信息量缩减/关键元素放大）
+  unit: 响应机制覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: NASA-TLX 为主观负荷量表，生理疲劳信号需传感器支持；行为代理指标（错误率）为间接测量
+  related_standards:
+  - STD-W3C-WCAG22:2.2.6
+  status: draft
+  evidence_grade: B
+- id: M-WHERE-F-001-01
+  factor_id: WHERE-F-001
+  name: 环境包络适应性
+  name_en: Environmental Envelope Adaptation
+  category: audit
+  description: 定义使用环境包络（照度/噪声/天气/手部条件），逐项测试功能在包络边缘的保持度
+  measurement_method: 环境包络×功能矩阵实测或估算（照明与声学参照 ISO 21542:2021 cl.5.4/5.7）
+  data_source:
+  - 场景定义
+  - 实地/实验室测试
+  thresholds:
+    minimum: 标称环境（如常规室内照明）全功能可用
+    good: 强光/低光与高噪声下核心功能可用
+    excellent: 全场景自动适应（亮度/对比/触觉反馈切换）
+  unit: 环境项通过率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - architecture
+  limitations: 建筑空间类项目须按 ISO 21542 照明/声学条款实测
+  related_standards:
+  - STD-ISO-21542:5.4
+  - STD-ISO-21542:5.7
+  status: draft
+  evidence_grade: C
+- id: M-WHERE-F-002-01
+  factor_id: WHERE-F-002
+  name: 社会情境功能审计
+  name_en: Social Context Function Audit
+  category: audit
+  description: 审计公开/共享场合的隐私遮挡、静音、情境模式与多角色切换特性
+  measurement_method: 社会情境（独自公开/共视/旁观在场）×功能矩阵审计
+  data_source:
+  - 情境走查
+  - 用户测试
+  thresholds:
+    minimum: 公开场合使用无强制隐私暴露（可选静音/遮挡）
+    good: 提供情境/角色快速切换
+    excellent: 情境自适应提示（同行人/位置感知）
+  unit: 情境覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  related_standards:
+  - STD-ISO-21542:10
+  - STD-ISO-9241-110:5.7
+  status: draft
+  evidence_grade: C
+- id: M-WHERE-F-003-01
+  factor_id: WHERE-F-003
+  name: 空间可达性合规率
+  name_en: Spatial Accessibility Compliance Rate
+  category: audit
+  description: 按 GB 55019 强制条款（通行净宽≥900mm、坡道、抓杆等）与 ISO 21542 通行条款逐项实测
+  measurement_method: 实地测量+检查表（GB 55019 ch.2 通行设施 / GB 50763 / ISO 21542:2021 cl.8 内部通行与 cl.9 建筑部件）
+  data_source:
+  - 实地测量
+  - 检查表
+  thresholds:
+    minimum: GB 55019 强制条款 100% 达标（法规红线）
+    good: ISO 21542 推荐条款 ≥ 80% 达标
+    excellent: 轮椅实地走查全动线贯通（含紧急疏散路径）
+  unit: 条款通过率 %
+  applicable_domains:
+  - architecture
+  limitations: GB 55019 为全文强制规范，适用于新建/改建/扩建工程
+  related_standards:
+  - STD-GB-55019:2
+  - STD-GB-50763:3
+  - STD-ISO-21542:8
+  status: draft
+  evidence_grade: A
+- id: M-WHERE-F-004-01
+  factor_id: WHERE-F-004
+  name: 资源缺失韧性
+  name_en: Resource-Loss Resilience
+  category: audit
+  description: 枚举外部资源依赖（电力/网络/人力/耗材），在单点缺失下测试核心功能保持度
+  measurement_method: 资源×功能矩阵 + 断供演练（断电/离线/无协助）
+  data_source:
+  - 依赖清单
+  - 故障演练
+  thresholds:
+    minimum: 任一单点资源缺失时核心功能可用（降级模式）
+    good: 降级状态明确提示且自动恢复
+    excellent: 离线优先/自给架构
+  unit: 韧性项通过率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - service
+  related_standards:
+  - STD-ISO-21542:10.1
+  - STD-ISO-21542:10.5
+  status: draft
+  evidence_grade: C
+- id: M-WHERE-F-005-01
+  factor_id: WHERE-F-005
+  name: 经济可及梯度
+  name_en: Economic Accessibility Tiers
+  category: audit
+  description: 审计免费层/低价层/设备与流量成本优化，对照目标市场收入分布与金融包容数据
+  measurement_method: 定价层级×目标市场收入分布对照（World Bank 收入分类/贫困线参照）；数据流量与旧设备支持审计
+  data_source:
+  - 定价审计
+  - Findex 数据
+  - 用户调研
+  thresholds:
+    minimum: 有免费或低价获取路径（核心功能不设付费墙）
+    good: 支持低端设备与流量节省模式（离线/轻量版）
+    excellent: 按支付能力分层定价（学生/区域定价/公益授权）
+  unit: 梯度覆盖档位
+  applicable_domains:
+  - digital
+  - service
+  - industrial
+  limitations: Findex 2021 为国家层面金融包容数据，个体支付能力需补充调研
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHERE-F-006-01
+  factor_id: WHERE-F-006
+  name: 紧急功能可达性
+  name_en: Emergency Function Accessibility
+  category: audit
+  description: 紧急操作（SOS/疏散/中止）步数与多感官告警审计，对照 GB 55019 信息交流与 ISO 21542 消防疏散条款
+  measurement_method: 界面状态图遍历测最短步数 + 告警通道核对（视/听/触），建筑类按 GB 55019 ch.4 与 ISO 21542:2021 cl.11 检查表实测
+  data_source:
+  - 界面状态图
+  - 实地测试
+  thresholds:
+    minimum: 紧急操作 ≤ 3 步且告警多感官（适用范围内符合强制规范）
+    good: 免登录/免解锁可用紧急功能
+    excellent: 离线紧急信息与演练模式
+  unit: 步数 / 告警通道数
+  applicable_domains:
+  - digital
+  - industrial
+  - architecture
+  limitations: 强制要求仅适用于建筑信息交流设施范围；数字产品为最佳实践
+  related_standards:
+  - STD-ISO-21542:11
+  - STD-GB-55019:4
+  status: draft
+  evidence_grade: B
+- id: M-WHERE-F-007-01
+  factor_id: WHERE-F-007
+  name: 情境覆盖矩阵
+  name_en: Context Coverage Matrix
+  category: audit
+  description: 按 ISO 9241-210 使用情境要素（用户/目标/环境）建立情境×功能矩阵并核对实测覆盖
+  measurement_method: 情境清单分级（P0/P1/P2）→设计覆盖核对→实测记录
+  data_source:
+  - 情境分析
+  - 可用性测试
+  thresholds:
+    minimum: P0 情境 100% 定义并有设计覆盖
+    good: P0 全部实测 + P1 桌面走查
+    excellent: 极端/并行情境（打扰、多任务）实测覆盖
+  unit: 情境覆盖率 %
+  applicable_domains:
+  - universal
+  related_standards:
+  - STD-ISO-9241-210:5.2
+  status: draft
+  evidence_grade: C
+- id: M-WHERE-F-008-01
+  factor_id: WHERE-F-008
+  name: 共享使用隔离度
+  name_en: Shared-Use Isolation
+  category: audit
+  description: 审计多用户场景的会话隔离、数据清除、可清洁性与无人监督耐久性
+  measurement_method: 共享场景清单（公共终端/家庭共用/多人围观）×隔离与卫生特性审计
+  data_source:
+  - 场景审计
+  - 实测
+  thresholds:
+    minimum: 共享场景有会话隔离与用后数据清除
+    good: 快速用户切换与访客模式
+    excellent: 多人围观自适应布局与卫生材质规范
+  unit: 特性通过率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - service
+  limitations: 为 B1 新增因素（WHERE-F-008）配套新建指标
+  status: draft
+  evidence_grade: C
+- id: M-WHERE-F-009-01
+  factor_id: WHERE-F-009
+  name: 协作代理支持度
+  name_en: Assisted-Use Support
+  category: audit
+  description: 审计协助者代理完成、授权、远程协助与操作记录特性（受辅助使用情境）
+  measurement_method: 协助者场景实测（代理完成核心任务的授权机制与成功率）
+  data_source:
+  - 功能审计
+  - 代理测试
+  thresholds:
+    minimum: 核心任务可由协助者代理完成（明确授权机制）
+    good: 协作者视图与操作留痕
+    excellent: 远程实时协助与语音协同引导
+  unit: 特性通过率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - service
+  limitations: 为 B1 新增因素（WHERE-F-009）配套新建指标；ICF e3 支持性环境为分类依据
+  status: draft
+  evidence_grade: C
+- id: M-WHICH-F-001-01
+  factor_id: WHICH-F-001
+  name: 信息密度偏好指标
+  name_en: Information Density Preference Index
+  category: user-test
+  description: 用户在多档信息密度设置下的选择频率与满意度评分
+  measurement_method: 可调节密度档位数 + 用户满意度评分
+  data_source:
+  - 用户调研
+  - A/B 测试
+  - 可用性测试选择行为
+  thresholds:
+    excellent: 自适应推荐 + 完全自定义 + 记忆偏好
+    good: 提供 4+ 档位或自定义滑块
+    minimum: 提供 2-3 个密度档位可选
+  unit: 档位数 / 满意度分 (1-5)
+  status: draft
+  evidence_grade: C
+- id: M-WHICH-F-002-01
+  factor_id: WHICH-F-002
+  name: 探索深度分级支持
+  name_en: Exploration Depth Tiers
+  category: audit
+  description: 审计渐进式披露层级（基础/进阶/专家）与'危险操作保护'的分级设计
+  measurement_method: 功能清单按层级归类审计 + 新手/专家双视角走查
+  data_source:
+  - 信息架构审计
+  - 双视角走查
+  thresholds:
+    minimum: 核心路径无强制探索（最少点击直达）
+    good: 提供'简单/详细'双模式或分层入口
+    excellent: 用户自选探索深度并记忆偏好
+  unit: 层级覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  related_standards:
+  - STD-ISO-9241-110:5.5
+  status: draft
+  evidence_grade: C
+- id: M-WHICH-F-003-01
+  factor_id: WHICH-F-003
+  name: 自动化分级可调
+  name_en: Automation Level Adjustability
+  category: user-test
+  description: 按 Parasuraman 2000 十级自动化模型审计自动化等级可选择性，并测量用户对各级的信任与干预频率
+  measurement_method: 自动化功能×等级矩阵审计 + 用户实测（手动干预率/撤销使用率/接受度量表）
+  data_source:
+  - 功能审计
+  - 用户测试
+  thresholds:
+    minimum: 所有自动化决策可撤销或覆盖（对应 ISO 9241-110 5.5 可控性）
+    good: 自动化等级用户可选（全自动/半自动/手动分档）
+    excellent: 系统能力公示 + 用户自选干预粒度（逐项/批量）
+  unit: 等级档位数 / 干预成功率
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: Parasuraman 2000 为模型框架，用户实测需按自动化功能类型定制任务
+  related_standards:
+  - STD-ISO-9241-110:5.5
+  - STD-W3C-WCAG22:3.2.6
+  status: draft
+  evidence_grade: B
+- id: M-WHICH-F-004-01
+  factor_id: WHICH-F-004
+  name: 可见性粒度控制
+  name_en: Visibility Granularity Control
+  category: audit
+  description: 审计社交场景的可见性选项粒度（全局/分组/单次）与状态暴露默认值
+  measurement_method: 可见性选项矩阵审计 + 默认值隐私倾向检查（默认应为最小暴露）
+  data_source:
+  - 功能审计
+  - 隐私政策核对
+  thresholds:
+    minimum: 提供可见性开关且默认最小暴露
+    good: 分组/单次可见性粒度可选
+    excellent: 发布前可见性预览（'谁可以看到这条'）
+  unit: 粒度档位数
+  applicable_domains:
+  - digital
+  limitations: GDPR 25 条数据保护设计与 PIPL 16 条为法域相关义务，审计项需按目标法域裁剪
+  status: draft
+  evidence_grade: C
+- id: M-WHICH-F-005-01
+  factor_id: WHICH-F-005
+  name: 风格选择度与一致性
+  name_en: Style Choice & Consistency
+  category: audit
+  description: 审计官方主题/自定义能力，以及风格切换时功能位置稳定性（减少再学习成本）
+  measurement_method: 主题与自定义能力清单审计 + 切换前后功能位置一致性走查
+  data_source:
+  - 界面审计
+  - 用户测试
+  thresholds:
+    minimum: 提供 ≥2 官方主题且默认普适（高可读性中性风格）
+    good: 关键自定义能力（字号/对比度/动效开关）+ 切换后功能位置不变
+    excellent: 风格偏好跨平台同步记忆
+  unit: 选择档位 / 一致性通过率
+  applicable_domains:
+  - digital
+  limitations: 美学偏好测量本质主观；Norman 三层次理论支撑情感维度但阈值属设计共识
+  related_standards:
+  - STD-W3C-WCAG22:1.4.4
+  status: draft
+  evidence_grade: C
+- id: M-WHICH-F-006-01
+  factor_id: WHICH-F-006
+  name: 输入模态冗余度
+  name_en: Input Modality Redundancy
+  category: audit
+  description: 核心操作的输入模态计数（触控/键盘/语音/手势/物理按钮），单一模态失效时是否有替代路径
+  measurement_method: 核心操作×模态矩阵审计；按 WCAG 2.5.1 指针手势与 2.1.1 键盘核查替代路径
+  data_source:
+  - 功能审计
+  - AT 兼容测试
+  thresholds:
+    minimum: 核心操作 ≥ 2 种模态（含键盘等效，WCAG 2.1.1 A 级）
+    good: ≥ 3 种模态且含无精细动作模态（语音/大按钮）
+    excellent: 模态自由切换且偏好记忆
+  unit: 模态数 / 操作
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: WCAG 2.1.1 键盘为 Web 强制基线；硬件产品按 ISO 9241-110 5.5 灵活性原则审计
+  related_standards:
+  - STD-W3C-WCAG22:2.1.1
+  - STD-W3C-WCAG22:2.5.1
+  - STD-ISO-9241-110:5.5
+  status: draft
+  evidence_grade: B
+- id: M-WHICH-F-007-01
+  factor_id: WHICH-F-007
+  name: 反馈多通道冗余
+  name_en: Feedback Channel Redundancy
+  category: audit
+  description: 关键反馈（成功/失败/进度/警告）的多感官通道冗余审计（视觉+听觉+触觉至少双通道）
+  measurement_method: 反馈事件×通道矩阵审计；WCAG 4.1.3 状态消息（AA）核对屏幕阅读器播报
+  data_source:
+  - 功能审计
+  - AT 测试
+  thresholds:
+    minimum: 关键反馈不依赖单一感官通道（WCAG 1.4.2 音频控制相关 + ISO 9241-110 5.2 自描述性）
+    good: 双通道反馈且用户可选偏好通道
+    excellent: 三通道冗余与感官替代（闪光→振动）
+  unit: 通道冗余率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: WCAG 4.1.3 适用范围：不改变焦点的状态更新，AA 级
+  related_standards:
+  - STD-W3C-WCAG22:4.1.3
+  - STD-ISO-9241-110:5.2
+  status: draft
+  evidence_grade: B
+- id: M-WHICH-F-008-01
+  factor_id: WHICH-F-008
+  name: 交互模式可选性
+  name_en: Interaction Mode Optionality
+  category: audit
+  description: 审计交互模式清单（直接操作/命令/手势/语音/快捷键）的并存性、默认可选与切换成本
+  measurement_method: 模式×任务矩阵审计 + 模式切换步数与再学习成本评估
+  data_source:
+  - 功能审计
+  - 用户测试
+  thresholds:
+    minimum: 核心任务 ≥2 模式可用且默认模式用户可选
+    good: 切换 ≤1 步且无强制模式（触屏保留快捷键等效）
+    excellent: 模式偏好记忆与情境感知推荐（驾驶→语音）
+  unit: 模式数 / 切换步数
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: ISO 9241-110 5.5.4 个性化推荐为间接支撑；模式清单按产品类别裁剪
+  related_standards:
+  - STD-ISO-9241-110:5.5.4
+  status: draft
+  evidence_grade: B
+- id: M-WHICH-F-009-01
+  factor_id: WHICH-F-009
+  name: 通知可控性
+  name_en: Notification Controllability
+  category: audit
+  description: 通知的粒度控制（逐类开关/免打扰/批量静默）与紧急通知穿透策略审计
+  measurement_method: 通知类型×控制粒度矩阵审计 + 免打扰实测（紧急类是否可穿透）
+  data_source:
+  - 功能审计
+  - 系统设置检查
+  thresholds:
+    minimum: 通知可逐类开关且提供全局静音
+    good: 免打扰时段/场景规则（含紧急例外）
+    excellent: 通知摘要合并与优先级用户自定义
+  unit: 控制粒度档位
+  applicable_domains:
+  - digital
+  limitations: 自主需求-打扰冲突的 SDT 理论支撑见 WHICH-F-009 卡片文献；阈值为设计共识
+  related_standards:
+  - STD-ISO-9241-110:5.5
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-001-01
+  factor_id: WHO-F-001
+  name: 能力需求排除率
+  name_en: Capability Demand Exclusion Rate
+  category: audit
+  description: 基于 Cambridge 排除测算法（Waller/Langdon/Clarkson 2010），将产品使用拆解为任务并对每任务的能力需求评级，对照人群能力分布估算被排除用户比例
+  measurement_method: 任务分析→五类能力需求评级（视觉/听觉/操作/触及/移动）→对照 1996/97 DFS 能力分布计算排除率
+  data_source:
+  - 任务分析
+  - 专家评级
+  - 人群能力分布数据
+  thresholds:
+    minimum: 任一核心任务排除率 ≤ 10%
+    good: 核心任务排除率 ≤ 5%
+    excellent: ≤ 2% 且含多重障碍叠加分析
+  unit: 排除人口百分比
+  applicable_domains:
+  - universal
+  limitations: 阈值为项目建议值需按目标人群校准；DFS 数据为英国 1997 人口，非中国数据
+  status: draft
+  evidence_grade: B
+- id: M-WHO-F-002-01
+  factor_id: WHO-F-002
+  name: 用户画像多样性偏差
+  name_en: Demographic Representation Gap
+  category: audit
+  description: 将调研样本与 persona 分布对照目标市场人口统计（年龄段/性别/地域），计算代表性偏差
+  measurement_method: persona vs 目标人群统计对照表 + 交叉维度覆盖检查
+  data_source:
+  - 用户调研样本
+  - 人口统计数据
+  - persona 文档
+  thresholds:
+    minimum: 年龄/性别/地域三维均有代表且无单点画像
+    good: 各维度与目标人群偏差 ≤ 20%
+    excellent: 偏差 ≤ 10% 且覆盖交叉弱势组合（如老年×低技术素养）
+  unit: 偏差百分比
+  applicable_domains:
+  - universal
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-003-01
+  factor_id: WHO-F-003
+  name: 健康状况适配覆盖
+  name_en: Health Condition Accommodation Coverage
+  category: audit
+  description: 审计设计对常见健康影响类别（感官/运动/慢性疼痛/疲劳/用药期波动）的适配完成度
+  measurement_method: 健康影响类别×适配措施矩阵审计（含 WCAG AA 基线核对）
+  data_source:
+  - 适配清单
+  - 专家审计
+  thresholds:
+    minimum: 感官与运动类别适配 100%（WCAG AA 基线）
+    good: 慢性病常见影响（疲劳/疼痛/认知波动）有显式设计
+    excellent: 低频高风险状况（如光敏癫痫）有专项防护
+  unit: 类别覆盖率 %
+  applicable_domains:
+  - universal
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-004-01
+  factor_id: WHO-F-004
+  name: 多模态呈现完备度
+  name_en: Multimodal Presentation Completeness
+  category: audit
+  description: 审计关键内容的双通道以上呈现（图文+视频+交互演练），按 Pashler 2008 结论将设计响应定位为多模态呈现而非风格适配
+  measurement_method: 关键内容×呈现模态矩阵审计（内容是否可经 ≥2 通道获取）
+  data_source:
+  - 内容审计
+  - 用户测试
+  thresholds:
+    minimum: 关键操作指引有 ≥2 模态（如图文+视频）
+    good: 用户可选默认学习/帮助模态
+    excellent: 全内容 ≥2 模态且节奏可控（重复/快进/慢放）
+  unit: 内容双模态覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - service
+  limitations: Pashler et al. 2008 否定“学习风格适配”的证据基础——本指标测“多模态呈现”（有共识支撑）而非“风格匹配”
+  related_standards: []
+  status: draft
+  evidence_grade: D
+- id: M-WHO-F-005-01
+  factor_id: WHO-F-005
+  name: 情感体验三层次审计
+  name_en: Emotional Experience Three-Level Audit
+  category: user-test
+  description: 按 Norman 三层次（本能/行为/反思）审计情感触点并测量用户情感反应
+  measurement_method: 情感触点地图 × 三层次分类审计 + PANAS/SAM 量表测量 + SDT 三需求满足度评估
+  data_source:
+  - 用户测试
+  - 量表
+  - 访谈
+  thresholds:
+    minimum: 关键流程无致挫败点（PANAS 负面分数不高于基准）
+    good: 关键触点有正向设计（成就感/信任感）且 SDT 三需求有显式支持
+    excellent: 赋权时刻设计（可感知的进步/掌控）+ 峰终定律优化
+  unit: 量表分 / 触点覆盖率 %
+  applicable_domains:
+  - universal
+  limitations: PANAS/SAM/SDT 均为已核验量表；阈值基准需按产品域建立常模
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHO-F-006-01
+  factor_id: WHO-F-006
+  name: 感官强度可调性
+  name_en: Sensory Intensity Adjustability
+  category: audit
+  description: 审计各感官通道（视觉/听觉/触觉）的强度调节能力，参照 HSP 量表的敏感度分布设计调节范围
+  measurement_method: 感官通道×可调特性矩阵审计（亮度/色温/音量/振动/动效强度），对照 HSP 敏感度分布设定调节范围
+  data_source:
+  - 特性审计
+  - 用户测试
+  thresholds:
+    minimum: 主要感官通道强度可调（亮度/音量/振动）
+    good: 动效可关（prefers-reduced-motion 响应）+ 无刺激模式（低感官模式）
+    excellent: 全通道连续可调 + 情境感官配置记忆
+  unit: 通道可调率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: Aron & Aron 1997 HSP 量表支撑敏感度分布存在性；调节范围的量化阈值仍需用户校准研究
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHO-F-007-01
+  factor_id: WHO-F-007
+  name: 零经验首次成功率
+  name_en: First-Time Novice Success Rate
+  category: user-test
+  description: 招募低技术素养用户（如首次使用智能设备的老年人）在无协助下完成核心任务
+  measurement_method: 无协助可用性测试，记录首次任务成功率、求助次数与完成时间
+  data_source:
+  - 可用性测试
+  - 参与者观察
+  thresholds:
+    minimum: 核心任务无协助成功率 ≥ 80%
+    good: ≥ 90% 且平均求助 ≤ 1 次
+    excellent: ≥ 95% 且完成时间 ≤ 熟练用户 P95
+  unit: 成功率 %
+  applicable_domains:
+  - digital
+  - industrial
+  limitations: SUS 量表可作辅助测量（行业均值 68 为参照，Sauro 元分析）
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-008-01
+  factor_id: WHO-F-008
+  name: 文化本地化审计
+  name_en: Cultural Localization Audit
+  category: audit
+  description: 对图标隐喻、色彩象征、姓名/日期/地址格式、阅读方向进行跨文化审计
+  measurement_method: 目标文化清单逐项审计 + ≥2 文化背景用户验证
+  data_source:
+  - 本地化清单
+  - 文化背景用户访谈
+  thresholds:
+    minimum: 无冒犯性符号且支持本地化格式（姓名/日期/地址）
+    good: 图标与隐喻经 ≥2 文化背景用户验证
+    excellent: 支持 RTL 布局与全部目标市场语言
+  unit: 审计项通过率 %
+  applicable_domains:
+  - universal
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-009-01
+  factor_id: WHO-F-009
+  name: 神经多样性特性覆盖
+  name_en: Neurodiversity Feature Coverage
+  category: audit
+  description: 检查减少动效、可预测布局、直白语言、内容分块、无时间压力默认值等神经多样性友好特性
+  measurement_method: 神经多样性设计清单审计（动效开关/布局一致性/语言直白度/内容分块/时限默认值），含 prefers-reduced-motion 响应核对
+  data_source:
+  - 特性清单
+  - 代码/界面审计
+  thresholds:
+    minimum: 提供减少动效选项且布局保持可预测
+    good: 直白语言与内容分块达标
+    excellent: 感官强度全面可调与专注模式提供
+  unit: 特性覆盖率 %
+  applicable_domains:
+  - digital
+  - service
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-010-01
+  factor_id: WHO-F-010
+  name: 认知需求排除率
+  name_en: Cognitive Demand Exclusion Rate
+  category: audit
+  description: 采用 Cambridge 排除测算的认知维度（记忆/注意/理解），对任务认知需求评级并估算认知排除率
+  measurement_method: 任务认知需求评级（同时记忆项数/步骤数/决策点计数）→对照能力分布排除估算
+  data_source:
+  - 任务分析
+  - 专家评级
+  thresholds:
+    minimum: 核心任务同时记忆项 ≤ 4 且步骤可分块
+    good: 认知排除估算 ≤ 5%
+    excellent: ≤ 2% 且提供预填/进度提示等减负辅助
+  unit: 排除百分比 / 记忆项数
+  applicable_domains:
+  - digital
+  - service
+  limitations: 记忆项阈值为共识值；量化锚点需后续用 NASA-TLX 类量表校准
+  status: draft
+  evidence_grade: B
+- id: M-WHO-F-011-01
+  factor_id: WHO-F-011
+  name: 语言可及性审计
+  name_en: Language Accessibility Audit
+  category: audit
+  description: 核对页面语言声明（lang）、内容阅读等级与平实语言替代的可及性
+  measurement_method: lang 属性检查（WCAG 3.1.1/3.1.2）+ 内容阅读等级测算 + 目标语言覆盖清单
+  data_source:
+  - 代码审计
+  - 内容分析
+  thresholds:
+    minimum: lang 声明正确且目标市场语言 100% 覆盖
+    good: 核心内容阅读等级 ≤ 初中水平
+    excellent: 提供平实语言版本与术语表
+  unit: 覆盖率 / 阅读等级
+  applicable_domains:
+  - digital
+  - service
+  limitations: 阅读等级测算工具需按语言选择（中文与英文量表不同）
+  related_standards:
+  - STD-W3C-WCAG22:3.1.1
+  - STD-W3C-WCAG22:3.1.2
+  status: draft
+  evidence_grade: B
+- id: M-WHO-F-012-01
+  factor_id: WHO-F-012
+  name: 非文字替代覆盖
+  name_en: Non-Text Alternative Coverage
+  category: audit
+  description: 检查核心任务是否有图示/视频/语音等非文字替代指引，关键文案是否采用受控词汇
+  measurement_method: 任务×替代通道矩阵审计 + 词汇复杂度抽检
+  data_source:
+  - 内容审计
+  - 用户测试
+  thresholds:
+    minimum: 核心任务有 ≥1 非文字指引（图示或视频）
+    good: 关键操作词受控（常用词汇表内）
+    excellent: 全任务可仅凭语音引导完成
+  unit: 任务覆盖率 %
+  applicable_domains:
+  - digital
+  - industrial
+  - service
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-013-01
+  factor_id: WHO-F-013
+  name: 人体尺寸适配百分位
+  name_en: Anthropometric Fit Percentile
+  category: audit
+  description: 以 ANSUR II 与 GB/T 10000-2023 人体数据核对关键尺寸（触及/净空/握持/视距）的人群百分位覆盖
+  measurement_method: 关键尺寸×人群百分位对照（先按目标人群选数据集：中国用 GB/T 10000-2023，北美参照 ANSUR II）
+  data_source:
+  - 人体测量数据集
+  - 实物/图纸测量
+  thresholds:
+    minimum: 关键尺寸覆盖目标人群 P5–P95
+    good: 覆盖 P1–P99
+    excellent: 关键尺寸连续可调（座椅/支架/绑带等）
+  unit: 百分位
+  applicable_domains:
+  - industrial
+  - architecture
+  - fashion
+  limitations: GB/T 10000-2023 为最新中国成年人数据（替代 1988 版）；两数据集不可混用直接对比
+  related_standards:
+  - STD-ANSUR-II
+  - STD-GB-T-10000
+  status: draft
+  evidence_grade: B
+- id: M-WHO-F-014-01
+  factor_id: WHO-F-014
+  name: 隐私控制完备度
+  name_en: Privacy Control Completeness
+  category: audit
+  description: 审计权限粒度、数据删除/导出入口、访客模式与保留政策，核对用户权利请求响应时效
+  measurement_method: 隐私控制清单审计 + 权利请求流程演练（GDPR/PIPL 适用范围内）
+  data_source:
+  - 隐私政策
+  - 产品审计
+  - 工单数据
+  thresholds:
+    minimum: 权限可逐项开关且账号删除入口可达（法定响应期内）
+    good: 提供数据导出与分场景授权
+    excellent: 提供访客/匿名模式与本地处理选项
+  unit: 清单通过率 %
+  applicable_domains:
+  - digital
+  limitations: 法定义务依目标法域而定，阈值需按适用法规调整
+  status: draft
+  evidence_grade: C
+- id: M-WHO-F-015-01
+  factor_id: WHO-F-015
+  name: 性别包容完备度
+  name_en: Gender Inclusivity Completeness
+  category: user-test
+  description: 审计性别字段中立性、称谓/代词可配置性、尺码体系中立性；邀请跨性别/非二元用户验证
+  measurement_method: 性别相关触点清单审计（表单/称谓/空间/尺码）+ 跨性别与非二元用户实测（Haimson 2016/2023 方法论：身份变更场景与社区参与设计）
+  data_source:
+  - 界面审计
+  - 社群用户测试
+  thresholds:
+    minimum: 性别字段可选且含非二元/不愿透露选项；代词可配置
+    good: 历史数据变更路径存在（身份转变后记录可更新）
+    excellent: 全性别空间选项 + 尺码按身体测量而非性别二元
+  unit: 触点覆盖率 %
+  applicable_domains:
+  - digital
+  - architecture
+  - fashion
+  limitations: 部分辖区的性别字段选项为合规要求（如阿根廷性别认同法）——法域差异大，审计前需确认目标市场
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHY-F-001-01
+  factor_id: WHY-F-001
+  name: 包容性投入产出框架
+  name_en: Inclusive ROI Framework
+  category: audit
+  description: 审计包容性投入的量化记录（合规成本/开发投入）与收益框架（市场规模/改造规避/品牌价值），对照 ROD 2024 市场数据
+  measurement_method: 包容性投入台账 × 收益维度对照（ROD 2024：全球残障市场 $18.3T/美国 PWD 可支配收入 $1.3T/63% 人口关联）
+  data_source:
+  - 成本台账
+  - 市场数据
+  - SROI 分析
+  thresholds:
+    minimum: 包容性投入有专项记录（非混入通用开发成本）
+    good: 有生命周期成本对比（前期包容设计 vs 后期改造成本）
+    excellent: 包容性收益纳入商业论证（市场定位/差异化/采购优势）
+  unit: 台账完备率 %
+  applicable_domains:
+  - universal
+  limitations: ROD 2024 为企业报告（N=11,000+ 调研）而非同行评议研究；作为商业论证数据源使用
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHY-F-002-01
+  factor_id: WHY-F-002
+  name: 包容性市场定位审计
+  name_en: Inclusive Market Positioning Audit
+  category: audit
+  description: 审计产品定位中包容性价值主张的显式性（目标人群覆盖声明/差异化说明/无障碍能力公示）
+  measurement_method: 定位文档 × 包容性价值主张核对表；对照 ROD 2024 的 63% 人口关联数据评估目标人群定义完备性
+  data_source:
+  - 市场文档审计
+  - 竞品对照
+  thresholds:
+    minimum: 目标人群定义不排除合理可达人群（无“仅限”式排除声明）
+    good: 包容性能力在价值主张中显式（如无障碍资质/适老认证）
+    excellent: 包容性作为核心差异化卖点并有采购资质支撑
+  unit: 核对项通过率 %
+  applicable_domains:
+  - universal
+  limitations: 市场定位审计对象是策略文档而非用户结果；与 M-WHY-F-001-01 配套使用
+  related_standards: []
+  status: draft
+  evidence_grade: B
+- id: M-WHY-F-003-01
+  factor_id: WHY-F-003
+  name: 暗黑模式审计
+  name_en: Dark Pattern Audit
+  category: audit
+  description: 按 Mathur et al. 2019 分类学审计诱导性设计（倒计时压迫/假库存/隐藏取消/强制捆绑）
+  measurement_method: 关键流程逐屏审计对照暗黑模式清单（7 大类 15 型）；取消流程步数与注册流程步数对称性实测
+  data_source:
+  - 界面审计
+  - 流程实测
+  thresholds:
+    minimum: 取消订阅步数 ≤ 注册步数且无隐藏取消（欧盟消保指令实践）
+    good: 全流程无 Mathur 分类学中的欺骗型模式
+    excellent: 关键决策有冷静期/反悔机制
+  unit: 暗黑模式计数（目标 0）
+  applicable_domains:
+  - digital
+  limitations: Mathur et al. 2019 分类学为审计框架来源（11K 站点实证）；法规阈值按目标市场消保法规调整
+  status: draft
+  evidence_grade: B
+- id: M-WHY-F-004-01
+  factor_id: WHY-F-004
+  name: 可持续性指标覆盖
+  name_en: Sustainability Metrics Coverage
+  category: audit
+  description: 对照三重底线（Elkington 1997）审计环境维度的量化目标与数据披露
+  measurement_method: 能效/寿命/可维修性/可回收性四项核查；有源产品核对能效标识与碳足迹披露
+  data_source:
+  - 产品规格审计
+  - 供应链数据
+  thresholds:
+    minimum: 符合适用环保法规（RoHS/能效标准的强制项）
+    good: 披露能效与维修性数据（维修权指令实践）
+    excellent: 全生命周期碳足迹披露与回收渠道
+  unit: 覆盖项通过率 %
+  applicable_domains:
+  - industrial
+  - digital
+  - fashion
+  limitations: Elkington 1997 三重底线为框架来源；具体阈值依产品类别与适用法规（如欧盟 ESPR）
+  status: draft
+  evidence_grade: C
+- id: M-WHY-F-005-01
+  factor_id: WHY-F-005
+  name: 利益相关者冲突解决
+  name_en: Stakeholder Conflict Resolution
+  category: audit
+  description: 按 Freeman 1984 利益相关者识别框架审计多方需求冲突的显式记录与解决策略
+  measurement_method: 利益相关者地图→需求冲突登记→解决策略记录审计（决策可追溯）
+  data_source:
+  - 设计文档审计
+  - 访谈记录
+  thresholds:
+    minimum: 核心用户与付费方需求冲突有显式记录
+    good: 每项冲突有裁决依据与受影响方说明
+    excellent: 弱势相关者（终端用户中的弱势群体）有代言机制
+  unit: 冲突记录完备率 %
+  applicable_domains:
+  - universal
+  limitations: Freeman 1984 为管理框架而非量化标准；审计对象是流程记录而非结果
+  status: draft
+  evidence_grade: C

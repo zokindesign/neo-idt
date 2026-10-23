@@ -1,0 +1,302 @@
+# 规则注册表 - 全局唯一 ID，合并两处规则定义
+# 版本: v3.0
+# 规则类型: ACT(激活) / DEP(依赖) / MOD(调节) / CNF(冲突) / CMP(补偿)
+# 引用因素一律使用 factors.yaml 中的 ID（如 WHO-F-001），废除“维N”式序号引用
+
+# === ACT 激活规则 (9) ===
+- id: ACT-001
+  type: activate
+  description: 在线通信类任务激活网络条件因素
+  condition: "task.category == 'online-communication'"
+  activates: [HOW-F-001]
+  source: "factor-relation-rules.md (原 ACT-001)"
+  status: draft
+
+- id: ACT-002
+  type: activate
+  description: 语音输入交互激活听觉能力因素
+  condition: "interaction.mode == 'voice-input'"
+  activates: [WHO-F-001]  # 身体能力包含听觉
+  source: "factor-relation-rules.md (原 ACT-002)"
+  status: draft
+
+- id: ACT-003
+  type: activate
+  description: 移动端设备激活运动能力因素
+  condition: "device.type == 'mobile'"
+  activates: [WHO-F-001]  # 身体能力包含运动
+  source: "factor-relation-rules.md (原 ACT-003)"
+  status: draft
+
+- id: ACT-004
+  type: activate
+  description: 公共场合使用场景激活音频环境偏好
+  condition: "environment.context == 'public-space'"
+  activates: [WHICH-F-007]  # 反馈偏好/音频环境偏好
+  source: "factor-relation-rules.md (原 ACT-004)"
+  status: draft
+
+- id: ACT-005
+  type: activate
+  description: 多人协作任务激活社交偏好因素
+  condition: "task.collaboration == true"
+  activates: [WHICH-F-004, WHAT-F-005]  # 社交可见性偏好、任务协作性
+  source: "factor-relation-rules.md (原 ACT-005)"
+  status: draft
+
+- id: ACT-006
+  type: activate
+  description: 数据录入类任务激活容错性需求
+  condition: "task.category == 'data-entry'"
+  activates: [WHAT-F-003]
+  source: "task-dimension.md (原 ACT-006)"
+  status: draft
+
+- id: ACT-007
+  type: activate
+  description: 任务步骤数 > 10 激活认知负荷与复杂度
+  condition: "task.step_count > 10"
+  activates: [WHAT-F-001, WHAT-F-002]
+  source: "task-dimension.md (原 ACT-007)"
+  status: draft
+
+- id: ACT-008
+  type: activate
+  description: 截止时间 < 预估时间 × 1.2 激活时间压力
+  condition: "task.deadline < task.estimated_duration * 1.2"
+  activates: [WHEN-F-004]
+  source: "task-dimension.md (原 ACT-008)"
+  status: draft
+
+- id: ACT-009
+  type: activate
+  description: 包含支付/确认环节激活增强容错性
+  condition: "task.has_payment_confirmation == true"
+  activates: [WHAT-F-003]
+  source: "task-dimension.md (原 ACT-009)"
+  status: draft
+
+# === DEP 依赖规则 (7) ===
+- id: DEP-001
+  type: depend
+  description: 引导程度偏好依赖于认知负荷（高负荷时引导需求上升）
+  dependent: WHICH-F-003  # 控制感偏好/引导程度偏好
+  dependency: WHAT-F-002  # 认知负荷
+  condition: "WHAT-F-002.level == 'high'"
+  source: "factor-relation-rules.md (原 DEP-001)"
+  status: draft
+
+- id: DEP-002
+  type: depend
+  description: 视觉风格偏好依赖于光线条件（强光环境下视觉呈现受限）
+  dependent: WHICH-F-005  # 美学风格偏好
+  dependency: WHERE-F-001  # 物理环境
+  condition: "WHERE-F-001.light_level == 'high'"
+  source: "factor-relation-rules.md (原 DEP-002)"
+  status: draft
+
+- id: DEP-003
+  type: depend
+  description: 信息密度偏好受屏幕尺寸限制
+  dependent: WHICH-F-001  # 信息密度偏好
+  dependency: HOW-F-002   # 设备能力
+  condition: "HOW-F-002.screen_size == 'small'"
+  source: "factor-relation-rules.md (原 DEP-003)"
+  status: draft
+
+- id: DEP-004
+  type: depend
+  description: 控制感偏好受用户专业度影响（新手更接受自动化）
+  dependent: WHICH-F-003  # 控制感偏好
+  dependency: WHO-F-007  # 技术素养
+  condition: "WHO-F-007.level == 'low'"
+  source: "factor-relation-rules.md (原 DEP-004)"
+  status: draft
+
+- id: DEP-005
+  type: depend
+  description: 商业可行性依赖于法规合规（政策合规是商业可行的前提）
+  dependent: WHY-F-001  # 成本约束/商业可行性
+  dependency: RUL-001  # 无障碍法规合规等
+  condition: "always"
+  source: "factor-relation-rules.md (原 DEP-005)"
+  status: draft
+
+- id: DEP-006
+  type: depend
+  description: 自动化程度偏好依赖于重复性（高重复性任务用户更倾向自动化）
+  dependent: WHICH-F-003  # 控制感偏好/自动化程度
+  dependency: WHAT-F-004  # 任务持久性要求/重复性
+  condition: "WHAT-F-004.frequency == 'high'"
+  source: "task-dimension.md (原 DEP-006)"
+  status: draft
+
+- id: DEP-007
+  type: depend
+  description: 反馈密度偏好依赖于时间压力（时间紧时偏好总结反馈）
+  dependent: WHICH-F-007  # 反馈偏好
+  dependency: WHEN-F-004  # 时间压力
+  condition: "WHEN-F-004.level == 'high'"
+  source: "task-dimension.md (原 DEP-007)"
+  status: draft
+
+# === MOD 调节规则 (7) ===
+- id: MOD-001
+  type: moderate
+  description: 时间压力放大简洁度需求
+  moderator: WHEN-F-004  # 时间压力
+  target: WHICH-F-001  # 信息密度偏好（简洁度）
+  direction: amplify
+  source: "factor-relation-rules.md (原 MOD-001)"
+  status: draft
+
+- id: MOD-002
+  type: moderate
+  description: 社交压力放大隐私偏好
+  moderator: WHICH-F-004  # 社交可见性偏好
+  target: WHO-F-014  # 隐私与安全担忧
+  direction: amplify
+  source: "factor-relation-rules.md (原 MOD-002)"
+  status: draft
+
+- id: MOD-003
+  type: moderate
+  description: 感官偏好（学习型）放大信息密度偏好影响
+  moderator: WHO-F-006  # 感官偏好
+  target: WHICH-F-001  # 信息密度偏好
+  direction: amplify
+  source: "factor-relation-rules.md (原 MOD-003)"
+  status: draft
+
+- id: MOD-004
+  type: moderate
+  description: 生理节律减弱响应速度期望
+  moderator: WHO-F-001  # 身体能力/生理节律
+  target: WHICH-F-007  # 反馈偏好/响应速度期望
+  direction: weaken
+  source: "factor-relation-rules.md (原 MOD-004)"
+  status: draft
+
+- id: MOD-005
+  type: moderate
+  description: 创新偏好减弱对控制感的需求
+  moderator: WHICH-F-008  # 交互模式偏好/创新偏好
+  target: WHICH-F-003  # 控制感偏好
+  direction: weaken
+  source: "factor-relation-rules.md (原 MOD-005)"
+  status: draft
+
+- id: MOD-006
+  type: moderate
+  description: 复杂度放大引导需求
+  moderator: WHAT-F-001  # 任务复杂度
+  target: WHICH-F-003  # 控制感偏好/引导程度
+  direction: amplify
+  source: "task-dimension.md (原 MOD-006)"
+  status: draft
+
+- id: MOD-007
+  type: moderate
+  description: 容错性放大确认强度偏好
+  moderator: WHAT-F-003  # 容错性需求
+  target: WHICH-F-007  # 反馈偏好/确认强度
+  direction: amplify
+  source: "task-dimension.md (原 MOD-007)"
+  status: draft
+
+# === CNF 冲突规则 (7) ===
+- id: CNF-001
+  type: conflict
+  description: 隐私偏好 vs 个性化推荐
+  factor_a: WHO-F-014  # 隐私与安全担忧
+  factor_b: WHICH-F-001  # 信息密度偏好/个性化
+  priority_rule: "privacy_first"
+  source: "factor-relation-rules.md (原 CNF-001)"
+  status: draft
+
+- id: CNF-002
+  type: conflict
+  description: 成本约束 vs 感官丰富度
+  factor_a: WHY-F-001  # 成本约束
+  factor_b: WHICH-F-005  # 美学风格偏好/感官丰富度
+  priority_rule: "core_function_first"
+  source: "factor-relation-rules.md (原 CNF-002)"
+  status: draft
+
+- id: CNF-003
+  type: conflict
+  description: 法规合规 vs 视觉风格自由
+  factor_a: RUL-001  # 无障碍法规合规
+  factor_b: WHICH-F-005  # 美学风格偏好
+  priority_rule: "compliance_over_freedom"
+  source: "factor-relation-rules.md (原 CNF-003)"
+  status: draft
+
+- id: CNF-004
+  type: conflict
+  description: 创新偏好 vs 经典一致性
+  factor_a: WHICH-F-008  # 交互模式偏好/创新
+  factor_b: WHICH-F-005  # 美学风格偏好/经典
+  priority_rule: "new_user_priority"
+  source: "factor-relation-rules.md (原 CNF-004)"
+  status: draft
+
+- id: CNF-005
+  type: conflict
+  description: 设备能力 vs 动效密度偏好
+  factor_a: HOW-F-002  # 设备能力
+  factor_b: WHICH-F-005  # 美学风格偏好/动效密度
+  priority_rule: "function_over_experience"
+  source: "factor-relation-rules.md (原 CNF-005)"
+  status: draft
+
+- id: CNF-006
+  type: conflict
+  description: 时间压力 vs 容错性
+  factor_a: WHEN-F-004  # 时间压力
+  factor_b: WHAT-F-003  # 容错性需求
+  priority_rule: "risk_level_priority"
+  source: "task-dimension.md (原 CNF-006)"
+  status: draft
+
+- id: CNF-007
+  type: conflict
+  description: 复杂度 vs 控制感偏好
+  factor_a: WHAT-F-001  # 任务复杂度
+  factor_b: WHICH-F-003  # 控制感偏好
+  priority_rule: "novice_simple_first"
+  source: "task-dimension.md (原 CNF-007)"
+  status: draft
+
+# === CMP 补偿规则 (4) ===
+- id: CMP-001
+  type: compensate
+  description: 视觉能力不足时提供替代文字/语音
+  unavailable: WHO-F-001  # 身体能力/视觉
+  compensates: [WHO-F-006, WHICH-F-006]  # 感官偏好、输入方式偏好
+  source: "factor-relation-rules.md (原 CMP-001)"
+  status: draft
+
+- id: CMP-002
+  type: compensate
+  description: 网络条件差时提供离线功能/低带宽模式
+  unavailable: HOW-F-001  # 网络条件
+  compensates: [HOW-F-003, HOW-F-005]  # 电源与续航、技术环境
+  source: "factor-relation-rules.md (原 CMP-002)"
+  status: draft
+
+- id: CMP-003
+  type: compensate
+  description: 时间不足时提供预设模板/快速路径
+  unavailable: WHEN-F-005  # 时间可用性
+  compensates: [WHAT-F-001, WHICH-F-003]  # 任务复杂度、控制感偏好
+  source: "factor-relation-rules.md (原 CMP-003)"
+  status: draft
+
+- id: CMP-004
+  type: compensate
+  description: 设备能力不足时提供简化界面/减少动效
+  unavailable: HOW-F-002  # 设备能力
+  compensates: [WHICH-F-005, WHICH-F-008]  # 美学风格偏好、交互模式偏好
+  source: "factor-relation-rules.md (原 CMP-004)"
+  status: draft

@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inclusivedesign.example/schemas/case.json",
+  "title": "Case Study Card",
+  "description": "包容性设计案例卡 schema——记录真实世界的设计实践（正/反案例），挂接因素覆盖与来源引用",
+  "type": "object",
+  "required": ["id", "title", "title_en", "domain", "type", "summary", "factor_coverage", "status", "version"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^CASE-\\d{3}$",
+      "description": "案例 ID：CASE-三位序号"
+    },
+    "title": { "type": "string", "description": "案例标题（中文）" },
+    "title_en": { "type": "string", "description": "案例标题（英文）" },
+    "domain": {
+      "type": "string",
+      "enum": ["digital", "industrial", "architecture", "fashion", "service"],
+      "description": "所属领域"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["positive", "negative", "mixed"],
+      "description": "案例类型：positive=好实践 / negative=失败教训 / mixed=有得有失"
+    },
+    "summary": { "type": "string", "description": "案例概要（150 字内）" },
+    "factor_coverage": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$" },
+      "description": "覆盖的因素 ID 列表"
+    },
+    "outcome": { "type": "string", "description": "结果与影响（正案例的收益/反案例的代价）" },
+    "refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "来源引用（URL/报告名）——web_search 核验过的公开来源"
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "事实已通过 web_search 核验（真实性纪律开关）"
+    },
+    "verified_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "来源核验日期（ISO 8601）"
+    },
+    "status": { "type": "string", "enum": ["draft", "review", "approved", "deprecated"] },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+    "source": {
+      "type": "object",
+      "properties": {
+        "publisher": { "type": "string" },
+        "year": { "type": "string" },
+        "url": { "type": "string" }
+      },
+      "description": "原始来源元数据"
+    }
+  },
+  "additionalProperties": false
+}

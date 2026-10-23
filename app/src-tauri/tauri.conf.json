@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "InclusiveDesignTool",
+  "version": "0.1.0",
+  "identifier": "org.inclusivedesign.tool",
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "包容性设计工具 Inclusive Design Tool",
+        "width": 1280,
+        "height": 860,
+        "minWidth": 960,
+        "minHeight": 640,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEE0ODZDMzI2QzhCMUFBNTKUldSU3JySElKc09HcE9FMVJDZkMwUDFjMTFnbGJmTCtwbFFwaDJZVGJNZm9YS0pkcGtRd1BmWTkK",
+      "endpoints": [
+        "https://releases.inclusivedesign.org/desktop/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "createUpdaterArtifacts": true,
+    "fileAssociations": [
+      {
+        "ext": ["inclb"],
+        "name": "Inclusive Boundary Document",
+        "description": "包容性边界文档（JSON 内容，双击在本应用打开）",
+        "role": "Editor"
+      }
+    ],
+    "windows": {
+      "nsis": {
+        "languages": ["SimpChinese", "English"],
+        "installMode": "currentUser"
+      }
+    },
+    "icon": ["icons/icon.ico", "icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png"]
+  }
+}
