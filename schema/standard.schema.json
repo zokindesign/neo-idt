@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inclusive-design-tool.org/schema/standard.schema.json",
+  "title": "Inclusive Design Standard Reference",
+  "type": "object",
+  "required": ["id", "org", "code", "title", "edition", "url", "scope", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^STD-[A-Z0-9-]+$",
+      "description": "标准唯一 ID：STD-组织-代号"
+    },
+    "org": {
+      "type": "string",
+      "description": "发布组织"
+    },
+    "code": {
+      "type": "string",
+      "description": "标准代号"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "标准全称"
+    },
+    "edition": {
+      "type": "string",
+      "description": "版本/年份"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "标准官方链接"
+    },
+    "scope": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["digital", "industrial", "architecture", "fashion", "service", "universal", "privacy", "eu-procurement", "china", "medical", "anthropometry", "ergonomics", "usability", "hcd", "interaction", "built-environment", "symbols", "exclusion", "population-coverage", "aerospace", "workstation", "health", "disability", "functioning", "mobile", "ict", "process", "web", "aging", "eu", "data-protection", "military", "measurement", "cognitive-load", "licensing", "sbom", "ip-compliance", "research", "consent", "ethics", "ai", "autonomous-systems", "functional-safety", "automotive"] },
+      "description": "适用范围标签"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "superseded", "withdrawn"],
+      "description": "标准状态"
+    },
+    "clauses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["clause_id", "title", "summary"],
+        "properties": {
+          "clause_id": { "type": "string", "description": "条款编号（如 1.4.3）" },
+          "title": { "type": "string", "description": "条款标题" },
+          "summary": { "type": "string", "description": "条款内容摘要" },
+          "factor_ids": { "type": "array", "items": { "type": "string", "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$" } }
+        }
+      },
+      "description": "关键条款细目（可选，按需展开）"
+    }
+  },
+  "additionalProperties": false
+}

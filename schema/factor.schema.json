@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inclusive-design-tool.org/schema/factor.schema.json",
+  "title": "Inclusive Design Factor Card",
+  "type": "object",
+  "required": ["id", "name", "name_en", "slug", "dimension", "type", "response", "weights", "evidence", "rules", "metrics", "guides", "refs", "status", "version"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "因素唯一 ID：维度前缀-F-三位序号，或 RUL-三位序号"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "中文名称"
+    },
+    "name_en": {
+      "type": "string",
+      "minLength": 1,
+      "description": "英文名称"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "kebab-case 英文标识，用于文件名与 URL"
+    },
+    "dimension": {
+      "type": "string",
+      "enum": ["WHO", "WHERE", "WHEN", "WHAT", "WHICH", "WHY", "HOW", "RUL"],
+      "description": "所属维度"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["ability", "preference", "constraint", "context", "baseline"],
+      "description": "因素类型：ability(能力) preference(偏好) constraint(约束) context(情境) baseline(合规基线)"
+    },
+    "response": {
+      "type": "string",
+      "enum": ["alternative", "choice-space", "both"],
+      "description": "设计响应类型：alternative(提供替代方案) choice-space(提供选择空间) both(两者兼有)"
+    },
+    "weights": {
+      "type": "object",
+      "required": ["coverage", "frequency", "effort"],
+      "properties": {
+        "coverage": { "type": "string", "enum": ["high", "medium", "low"] },
+        "frequency": { "type": "string", "enum": ["high", "medium", "low"] },
+        "effort": { "type": "string", "enum": ["high", "medium", "low"] }
+      },
+      "description": "三维度权重：coverage(人群覆盖率) frequency(场景出现率) effort(设计响应难度/成本)"
+    },
+    "evidence": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D"],
+      "description": "证据等级：A=标准强制条款 B=研究文献 C=专家共识 D=推理假设"
+    },
+    "evidence_note": {
+      "type": "string",
+      "description": "证据等级判定依据说明（必填，WP-C 逐卡重评时更新）"
+    },
+    "rules": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(ACT|DEP|MOD|CNF|CMP)-\\d{3}$" },
+      "description": "引用的规则 ID 列表（来自 rules.yaml）"
+    },
+    "metrics": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^M-(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}-\\d{2}$|^M-RUL-\\d{3}-\\d{2}$" },
+      "description": "关联的指标 ID 列表（来自 metrics.yaml）"
+    },
+    "guides": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^G-(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^G-RUL-\\d{3}$" },
+      "description": "关联的设计指南 ID 列表"
+    },
+    "refs": {
+      "type": "object",
+      "required": ["standards", "research"],
+      "properties": {
+        "standards": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^STD-[A-Z0-9-]+(:[A-Za-z0-9\\u4e00-\\u9fff]+(\\.[A-Za-z0-9]+)*)?$" },
+          "description": "标准条款引用（如 STD-W3C-WCAG22:1.4.3、STD-WHO-ICF:b3、STD-GDPR:25）"
+        },
+        "research": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "研究文献引用（DOI/URL/标题）"
+        }
+      }
+    },
+    "abstract_dimensions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "偏好维度的抽象维度标签（仅 WHICH 维度必填，如 information-richness, guidance-autonomy 等）"
+    },
+    "split_candidate": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否为拆分候选（WP-B 裁决）"
+    },
+    "merge_candidate": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否为合并候选（WP-B 裁决）"
+    },
+    "ownership_review": {
+      "type": "boolean",
+      "default": false,
+      "description": "归属争议需裁决（WP-B 裁决）"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "deprecated"],
+      "description": "卡片状态"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "版本号（如 3.0）"
+    }
+  },
+  "additionalProperties": false
+}

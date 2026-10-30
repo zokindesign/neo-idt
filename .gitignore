@@ -1,0 +1,44 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+~$*
+.vscode/
+.idea/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# Build artifacts
+dist/
+build/
+app/src-tauri/target/
+app/src-tauri/gen/
+coverage/
+*.lcov
+.vite/
+
+# Obsidian workspace metadata (knowledge/ is a publishing source; keep content, ignore local state)
+.obsidian/workspace*
+.obsidian/plugins/*/data.json
+
+# Local experiments
+sandbox/

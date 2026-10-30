@@ -1,0 +1,676 @@
+# 因素注册表 - 61 项（54 因素 + 7 合规基线）
+# 版本: v3.0
+# 维度顺序: WHO(14) / WHERE(7) / WHEN(6) / WHAT(6) / WHICH(9) / WHY(5) / HOW(7) / RUL(7)
+# 命名规范: id=维度前缀-F-三位序号; slug=kebab-case 英文短语; name/name_en=中英双语
+
+- id: WHO-F-001
+  name: 身体能力
+  name_en: Physical & Cognitive Ability
+  slug: physical-ability
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/能力.md"
+  status: draft
+  split_candidate: true
+  merge_candidate: false
+  ownership_review: false
+
+- id: WHO-F-002
+  name: 人口统计学
+  name_en: Demographics
+  slug: demographics
+  dimension: WHO
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/人口统计学.md"
+  status: draft
+
+- id: WHO-F-003
+  name: 健康状况
+  name_en: Health Status
+  slug: health-status
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/健康状况.md"
+  status: draft
+
+- id: WHO-F-004
+  name: 学习风格
+  name_en: Learning Style
+  slug: learning-style
+  dimension: WHO
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/学习风格.md"
+  status: draft
+
+- id: WHO-F-005
+  name: 情感与动机
+  name_en: Emotion & Motivation
+  slug: emotion-motivation
+  dimension: WHO
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/情感与动机.md"
+  status: draft
+
+- id: WHO-F-006
+  name: 感官偏好
+  name_en: Sensory Preference
+  slug: sensory-preference
+  dimension: WHO
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/感官偏好.md"
+  status: draft
+
+- id: WHO-F-007
+  name: 技术素养
+  name_en: Technical Literacy
+  slug: technical-literacy
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/技术素养.md"
+  status: draft
+
+- id: WHO-F-008
+  name: 文化背景
+  name_en: Cultural Background
+  slug: cultural-background
+  dimension: WHO
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/文化背景.md"
+  status: draft
+
+- id: WHO-F-009
+  name: 神经多样性
+  name_en: Neurodiversity
+  slug: neurodiversity
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/神经多样性.md"
+  status: draft
+
+- id: WHO-F-010
+  name: 认知特征
+  name_en: Cognitive Traits
+  slug: cognitive-traits
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/认知特情.md"
+  status: draft
+  # 注: 原文件名"认知特情"为错别字，已修正为"认知特征"
+
+- id: WHO-F-011
+  name: 语言
+  name_en: Language
+  slug: language
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/语言.md"
+  status: draft
+
+- id: WHO-F-012
+  name: 读写能力
+  name_en: Literacy
+  slug: literacy
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/读写能力.md"
+  status: draft
+
+- id: WHO-F-013
+  name: 身体尺寸与人体工程学
+  name_en: Body Size & Ergonomics
+  slug: body-size-ergonomics
+  dimension: WHO
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/身体尺寸与人体工程学.md"
+  status: draft
+
+- id: WHO-F-014
+  name: 隐私与安全担忧
+  name_en: Privacy & Security Concerns
+  slug: privacy-security-concerns
+  dimension: WHO
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/隐私与安全担忧.md"
+  status: draft
+
+# === WHERE 环境维度 (7) ===
+- id: WHERE-F-001
+  name: 物理环境
+  name_en: Physical Environment
+  slug: physical-environment
+  dimension: WHERE
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/物理环境.md"
+  status: draft
+
+- id: WHERE-F-002
+  name: 社会环境
+  name_en: Social Environment
+  slug: social-environment
+  dimension: WHERE
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/社会环境.md"
+  status: draft
+
+- id: WHERE-F-003
+  name: 空间可达性
+  name_en: Spatial Accessibility
+  slug: spatial-accessibility
+  dimension: WHERE
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/空间可达性.md"
+  status: draft
+
+- id: WHERE-F-004
+  name: 资源可用性
+  name_en: Resource Availability
+  slug: resource-availability
+  dimension: WHERE
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/资源可用性.md"
+  status: draft
+
+- id: WHERE-F-005
+  name: 经济环境
+  name_en: Economic Environment
+  slug: economic-environment
+  dimension: WHERE
+  type: constraint
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/经济环境.md"
+  status: draft
+  ownership_review: true  # 疑似 WHERE/WHY 双重归属，WP-B 裁决
+
+- id: WHERE-F-006
+  name: 紧急情况应对
+  name_en: Emergency Response
+  slug: emergency-response
+  dimension: WHERE
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/紧急情况应对.md"
+  status: draft
+
+- id: WHERE-F-007
+  name: 使用情境
+  name_en: Usage Context
+  slug: usage-context
+  dimension: WHERE
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/使用情境.md"
+  status: draft
+
+# === WHEN 时间维度 (6) ===
+- id: WHEN-F-001
+  name: 使用时段
+  name_en: Usage Time Period
+  slug: usage-time-period
+  dimension: WHEN
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/使用时段.md"
+  status: draft
+
+- id: WHEN-F-002
+  name: 使用频率
+  name_en: Usage Frequency
+  slug: usage-frequency
+  dimension: WHEN
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/使用频率.md"
+  status: draft
+
+- id: WHEN-F-003
+  name: 季节性
+  name_en: Seasonality
+  slug: seasonality
+  dimension: WHEN
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/季节性.md"
+  status: draft
+
+- id: WHEN-F-004
+  name: 时间压力
+  name_en: Time Pressure
+  slug: time-pressure
+  dimension: WHEN
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/时间压力.md"
+  status: draft
+
+- id: WHEN-F-005
+  name: 时间可用性
+  name_en: Time Availability
+  slug: time-availability
+  dimension: WHEN
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/时间可用性.md"
+  status: draft
+
+- id: WHEN-F-006
+  name: 疲劳度
+  name_en: Fatigue Level
+  slug: fatigue-level
+  dimension: WHEN
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/疲劳度.md"
+  status: draft
+
+# === WHAT 任务维度 (6) ===
+- id: WHAT-F-001
+  name: 任务复杂度
+  name_en: Task Complexity
+  slug: task-complexity
+  dimension: WHAT
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务复杂度.md"
+  status: draft
+
+- id: WHAT-F-002
+  name: 认知负荷
+  name_en: Cognitive Load
+  slug: cognitive-load
+  dimension: WHAT
+  type: ability
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/认知负荷.md"
+  status: draft
+
+- id: WHAT-F-003
+  name: 容错性需求
+  name_en: Fault Tolerance Requirement
+  slug: fault-tolerance
+  dimension: WHAT
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/容错性需求.md"
+  status: draft
+
+- id: WHAT-F-004
+  name: 任务持久性要求
+  name_en: Task Persistence Requirement
+  slug: task-persistence
+  dimension: WHAT
+  type: constraint
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务持久性要求.md"
+  status: draft
+
+- id: WHAT-F-005
+  name: 任务协作性
+  name_en: Task Collaboration
+  slug: task-collaboration
+  dimension: WHAT
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务协作性.md"
+  status: draft
+
+- id: WHAT-F-006
+  name: 任务中断容忍度
+  name_en: Task Interruption Tolerance
+  slug: task-interruption-tolerance
+  dimension: WHAT
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务中断容忍度.md"
+  status: draft
+
+# === WHICH 偏好维度 (9) ===
+- id: WHICH-F-001
+  name: 信息密度偏好
+  name_en: Information Density Preference
+  slug: information-density-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/信息密度偏好.md"
+  status: draft
+
+- id: WHICH-F-002
+  name: 探索深度偏好
+  name_en: Exploration Depth Preference
+  slug: exploration-depth-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/探索深度偏好.md"
+  status: draft
+
+- id: WHICH-F-003
+  name: 控制感偏好
+  name_en: Control Preference
+  slug: control-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/控制感偏好.md"
+  status: draft
+
+- id: WHICH-F-004
+  name: 社交可见性偏好
+  name_en: Social Visibility Preference
+  slug: social-visibility-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/社交可见性偏好.md"
+  status: draft
+
+- id: WHICH-F-005
+  name: 美学风格偏好
+  name_en: Aesthetic Style Preference
+  slug: aesthetic-style-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/美学风格偏好.md"
+  status: draft
+
+- id: WHICH-F-006
+  name: 输入方式偏好
+  name_en: Input Method Preference
+  slug: input-method-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/输入方式偏好.md"
+  status: draft
+
+- id: WHICH-F-007
+  name: 反馈偏好
+  name_en: Feedback Preference
+  slug: feedback-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/反馈偏好.md"
+  status: draft
+
+- id: WHICH-F-008
+  name: 交互模式偏好
+  name_en: Interaction Mode Preference
+  slug: interaction-mode-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/交互模式偏好.md"
+  status: draft
+
+- id: WHICH-F-009
+  name: 通知偏好
+  name_en: Notification Preference
+  slug: notification-preference
+  dimension: WHICH
+  type: preference
+  response: choice-space
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/通知偏好.md"
+  status: draft
+
+# === WHY 商业维度 (5) ===
+- id: WHY-F-001
+  name: 成本约束
+  name_en: Cost Constraint
+  slug: cost-constraint
+  dimension: WHY
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/成本约束.md"
+  status: draft
+
+- id: WHY-F-002
+  name: 市场定位
+  name_en: Market Positioning
+  slug: market-positioning
+  dimension: WHY
+  type: constraint
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/市场定位.md"
+  status: draft
+
+- id: WHY-F-003
+  name: 商业模式
+  name_en: Business Model
+  slug: business-model
+  dimension: WHY
+  type: constraint
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/商业模式.md"
+  status: draft
+
+- id: WHY-F-004
+  name: 可持续性与环保目标
+  name_en: Sustainability & Environmental Goals
+  slug: sustainability-goals
+  dimension: WHY
+  type: constraint
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/可持续性与环保目标.md"
+  status: draft
+
+- id: WHY-F-005
+  name: 利益相关者影响
+  name_en: Stakeholder Impact
+  slug: stakeholder-impact
+  dimension: WHY
+  type: context
+  response: both
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/利益相关者影响.md"
+  status: draft
+
+# === HOW 技术维度 (7) ===
+- id: HOW-F-001
+  name: 网络条件
+  name_en: Network Conditions
+  slug: network-conditions
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/网络条件.md"
+  status: draft
+
+- id: HOW-F-002
+  name: 设备能力
+  name_en: Device Capability
+  slug: device-capability
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/设备能力.md"
+  status: draft
+
+- id: HOW-F-003
+  name: 电源与续航
+  name_en: Power & Battery Life
+  slug: power-battery-life
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/电源与续航.md"
+  status: draft
+
+- id: HOW-F-004
+  name: 兼容性要求
+  name_en: Compatibility Requirements
+  slug: compatibility-requirements
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/兼容性要求.md"
+  status: draft
+
+- id: HOW-F-005
+  name: 技术环境
+  name_en: Technical Environment
+  slug: technical-environment
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/技术环境.md"
+  status: draft
+
+- id: HOW-F-006
+  name: 辅助技术兼容性
+  name_en: Assistive Technology Compatibility
+  slug: assistive-tech-compatibility
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/辅助技术兼容性.md"
+  status: draft
+
+- id: HOW-F-007
+  name: 输入输出能力
+  name_en: Input Output Capability
+  slug: input-output-capability
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/输入输出能力.md"
+  status: draft
+
+# === RUL 合规基线层 (7) —— 从 ENVIRONMENT 迁入，type=baseline ===
+- id: RUL-001
+  name: 无障碍法规合规
+  name_en: Accessibility Regulation Compliance
+  slug: accessibility-compliance
+  dimension: RUL
+  type: baseline
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/无障碍法规合规.md"
+  status: draft
+
+- id: RUL-002
+  name: 数据隐私合规
+  name_en: Data Privacy Compliance
+  slug: data-privacy-compliance
+  dimension: RUL
+  type: baseline
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/数据隐私合规.md"
+  status: draft
+
+- id: RUL-003
+  name: 安全认证要求
+  name_en: Safety Certification Requirements
+  slug: safety-certification
+  dimension: RUL
+  type: baseline
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/安全认证要求.md"
+  status: draft
+
+- id: RUL-004
+  name: 知识产权合规
+  name_en: Intellectual Property Compliance
+  slug: ip-compliance
+  dimension: RUL
+  type: baseline
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/知识产权合规.md"
+  status: draft
+
+- id: RUL-005
+  name: 伦理审查
+  name_en: Ethics Review
+  slug: ethics-review
+  dimension: RUL
+  type: baseline
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/伦理审查.md"
+  status: draft
+
+- id: RUL-006
+  name: 行业特定规范
+  name_en: Industry Specific Standards
+  slug: industry-standards
+  dimension: RUL
+  type: baseline
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/行业特定规范.md"
+  status: draft
+
+- id: RUL-007
+  name: 政策与法规
+  name_en: Policies & Regulations
+  slug: policies-regulations
+  dimension: RUL
+  type: baseline
+  response: alternative
+  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/政策与法规.md"
+  status: deprecated  # B1 裁决：与单行合规卡语义重复，墓碑化
+  merged_into: [RUL-001, RUL-002, RUL-003, RUL-004, RUL-005, RUL-006]
+
+# === B1 交叉对照新增因素（4 项，INCL-XREF-001） ===
+- id: WHO-F-015
+  name: 性别与性别表达
+  name_en: Gender & Gender Expression
+  slug: gender-expression
+  dimension: WHO
+  type: context
+  response: both
+  source_file: null  # B1 新增（GAP-1），无旧卡
+  status: draft
+  evidence_base: "UD7 补充原则 P10; ICF 个人因素"
+  gap_ref: GAP-1
+
+- id: WHERE-F-008
+  name: 共享与公共使用情境
+  name_en: Shared & Public Use Context
+  slug: shared-public-use
+  dimension: WHERE
+  type: context
+  response: both
+  source_file: null  # B1 新增（GAP-2），无旧卡
+  status: draft
+  evidence_base: "UD7 补充原则 P8; ICF d7/d9"
+  gap_ref: GAP-2
+
+- id: WHERE-F-009
+  name: 受辅助使用情境
+  name_en: Assisted Use Context
+  slug: assisted-use-context
+  dimension: WHERE
+  type: context
+  response: both
+  source_file: null  # B1 新增（GAP-5），无旧卡
+  status: draft
+  evidence_base: "ICF e3 支持与关系"
+  gap_ref: GAP-5
+
+- id: HOW-F-008
+  name: 认证与身份负担
+  name_en: Authentication & Identity Burden
+  slug: authentication-burden
+  dimension: HOW
+  type: constraint
+  response: alternative
+  source_file: null  # B1 新增（GAP-3），无旧卡
+  status: draft
+  evidence_base: "WCAG 2.2 SC 3.3.8 (A级证据); ICF d1"
+  gap_ref: GAP-3
