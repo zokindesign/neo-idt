@@ -1,0 +1,132 @@
+{
+  "$id": "https://inclusive-design-tool.org/schema/descriptor.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task Descriptor — Data-Driven Form Definition",
+  "type": "object",
+  "required": [
+    "version",
+    "stages"
+  ],
+  "additionalProperties": false,
+  "description": "描述器定义：把「固定 6 字段表单」改为数据驱动的问卷。结构即数据，标签仍由 i18n 提供（应用优先用 i18n 键，回退到本文件的 label），以便 5 语言复用现有翻译。三个能力：applies_when（领域自适应，条件表达式与规则引擎同一求值器）；implies（选项联动，选中即写入 canonical profile 字段，取消选中须回滚）；multi（数组字段）。",
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$"
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "questions"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^S_[A-Z0-9_]+$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "title_en": {
+            "type": "string"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "path",
+                "type",
+                "label"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^Q_[A-Z0-9_]+$"
+                },
+                "path": {
+                  "type": "string",
+                  "description": "canonical profile 路径，如 task.category"
+                },
+                "type": {
+                  "enum": [
+                    "single",
+                    "multi",
+                    "number",
+                    "boolean"
+                  ]
+                },
+                "label": {
+                  "type": "string"
+                },
+                "label_en": {
+                  "type": "string"
+                },
+                "placeholder": {
+                  "type": "string"
+                },
+                "required": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "applies_when": {
+                  "type": "string",
+                  "description": "条件表达式；为空表示恒显示"
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "min": {
+                  "type": "number"
+                },
+                "max": {
+                  "type": "number"
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "value",
+                      "label"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": [
+                          "string",
+                          "boolean",
+                          "number"
+                        ]
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "label_en": {
+                        "type": "string"
+                      },
+                      "implies": {
+                        "type": "object",
+                        "description": "选中时额外写入的 canonical 字段；取消选中须回滚"
+                      },
+                      "help": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

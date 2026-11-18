@@ -1,6 +1,7 @@
 // lib/supabase.ts — 云同步层（可选后端；未配置时应用纯本地可用）
 // 依据：ADR-006（云同步为主、本地为离线备选；开源版无配置即纯本地）
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { i18n } from '@/i18n'
 
 const URL = import.meta.env.VITE_SUPABASE_URL as string | undefined
 const ANON = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
@@ -28,7 +29,7 @@ export async function currentUser() { return sb ? (await sb.auth.getUser()).data
 // ---------- 组织 ----------
 export async function ensureOrg(name?: string): Promise<string | null> {
   if (!sb) return null
-  const { data, error } = await sb.rpc('bootstrap_my_org', { org_name: name || '我的团队' })
+  const { data, error } = await sb.rpc('bootstrap_my_org', { org_name: name || String((i18n.global as any).t('auth.defaultOrg')) })
   if (error) throw error
   return data as string
 }

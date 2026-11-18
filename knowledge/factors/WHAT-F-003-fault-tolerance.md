@@ -6,7 +6,7 @@ evidence_note: "有标准条款（WCAG 2.2 容错相关 SC），间接支撑；�
 guides: [G-WHAT-F-003]
 id: WHAT-F-003
 merge_candidate: false
-metrics: [M-WHAT-F-003-01]
+metrics: [M-WHAT-F-003-01, M-WHAT-F-003-02]
 name: 容错性需求
 name_en: Fault Tolerance Requirement
 ownership_review: false

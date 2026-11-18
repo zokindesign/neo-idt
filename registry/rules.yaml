@@ -31,7 +31,7 @@
 - id: ACT-004
   type: activate
   description: 公共场合使用场景激活音频环境偏好
-  condition: "environment.context == 'public-space'"
+  condition: "environment.contexts contains 'public-space'"
   activates: [WHICH-F-007]  # 反馈偏好/音频环境偏好
   source: "factor-relation-rules.md (原 ACT-004)"
   status: draft
@@ -82,7 +82,7 @@
   description: 引导程度偏好依赖于认知负荷（高负荷时引导需求上升）
   dependent: WHICH-F-003  # 控制感偏好/引导程度偏好
   dependency: WHAT-F-002  # 认知负荷
-  condition: "WHAT-F-002.level == 'high'"
+  condition: "task.step_count > 10"  # 词汇表重写（N+2-②）：原 WHAT-F-002.level == 'high'；认知负荷高的既有序证 = ACT-007 的 step_count 代理
   source: "factor-relation-rules.md (原 DEP-001)"
   status: draft
 
@@ -91,7 +91,7 @@
   description: 视觉风格偏好依赖于光线条件（强光环境下视觉呈现受限）
   dependent: WHICH-F-005  # 美学风格偏好
   dependency: WHERE-F-001  # 物理环境
-  condition: "WHERE-F-001.light_level == 'high'"
+  condition: "environment.contexts contains 'bright-sunlight'"  # 词汇表重写（N+2-②）：原 WHERE-F-001.light_level == 'high'（强光情境）
   source: "factor-relation-rules.md (原 DEP-002)"
   status: draft
 
@@ -100,7 +100,7 @@
   description: 信息密度偏好受屏幕尺寸限制
   dependent: WHICH-F-001  # 信息密度偏好
   dependency: HOW-F-002   # 设备能力
-  condition: "HOW-F-002.screen_size == 'small'"
+  condition: "device.type in ['mobile', 'wearable']"  # 词汇表重写（N+2-②）：原 HOW-F-002.screen_size == 'small'（小屏设备类别近似）
   source: "factor-relation-rules.md (原 DEP-003)"
   status: draft
 
@@ -109,7 +109,7 @@
   description: 控制感偏好受用户专业度影响（新手更接受自动化）
   dependent: WHICH-F-003  # 控制感偏好
   dependency: WHO-F-007  # 技术素养
-  condition: "WHO-F-007.level == 'low'"
+  condition: "always"  # 词汇表重写（N+2-②）：原 WHO-F-007.level == 'low'——契约无技术素养字段，等级粒度待 L3/描述器扩展；闭包退化为「依赖因素在种子集即触发」
   source: "factor-relation-rules.md (原 DEP-004)"
   status: draft
 
@@ -127,7 +127,7 @@
   description: 自动化程度偏好依赖于重复性（高重复性任务用户更倾向自动化）
   dependent: WHICH-F-003  # 控制感偏好/自动化程度
   dependency: WHAT-F-004  # 任务持久性要求/重复性
-  condition: "WHAT-F-004.frequency == 'high'"
+  condition: "always"  # 词汇表重写（N+2-②）：原 WHAT-F-004.frequency == 'high'——契约无任务重复性字段，等级粒度同 DEP-004 待扩展
   source: "task-dimension.md (原 DEP-006)"
   status: draft
 
@@ -136,7 +136,7 @@
   description: 反馈密度偏好依赖于时间压力（时间紧时偏好总结反馈）
   dependent: WHICH-F-007  # 反馈偏好
   dependency: WHEN-F-004  # 时间压力
-  condition: "WHEN-F-004.level == 'high'"
+  condition: "environment.contexts contains 'time-pressure'"  # 词汇表重写（N+2-②）：原 WHEN-F-004.level == 'high'（时间压力情境）
   source: "task-dimension.md (原 DEP-007)"
   status: draft
 

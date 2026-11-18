@@ -16,8 +16,13 @@ import {
 const localeModules = import.meta.glob<{ default: Record<string, any> }>('./locales/*.ts', { eager: true })
 
 const messages: Record<string, Record<string, any>> = {}
+// zh-CN 在根目录（主语言，随主包静态加载）；en/zh-TW/ja/ko 在 locales/
+import zhCN from './zh-CN'
+messages['zh-CN'] = zhCN
 for (const [path, module] of Object.entries(localeModules)) {
-  const locale = path.match(/([a-z-]+)\.ts$/)?.[1]
+  // FIX-i18n-04：必须匹配大写——`zh-TW.ts` 含大写 TW，原正则 `[a-z-]+` 匹配失败，
+  // 导致 zh-TW 语言包从未加载、被下方兜底静默换成 zh-CN（界面一直显示简体）
+  const locale = path.match(/([A-Za-z-]+)\.ts$/)?.[1]
   if (locale && module.default) {
     messages[locale] = module.default
   }

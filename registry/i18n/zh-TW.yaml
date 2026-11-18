@@ -1,0 +1,2629 @@
+# i18n 覆蓋層 — 繁體中文（zh-TW，多語言補譯工程擴充套件）
+#
+# 生成方式：scripts/gen_i18n_zhtw.py 機械轉換（OpenCC s2twp：字形 + 臺灣詞彙）——
+#          **非人工翻譯**，語義與 zh 權威源完全一致；源更新後重跑本指令碼再生成（冪等覆蓋）。
+# 紀律：
+#   1) 譯文只落本層；登錄檔與卡片是字元源，本層永不回寫
+#   2) 標準編號與條款號、單位、數值、URL、工具名不受轉換影響（ASCII 原樣）
+#   3) 條目 id 必須存在於對應登錄檔——構建期 build-data.mjs 會因未知 id 直接報錯
+#
+locale: zh-TW
+
+metrics:
+  M-HOW-F-001-01:
+    name: 網路韌性分級
+    description: 在弱網/斷網梯度下自動測試核心功能可用性與降級體驗
+    measurement_method: 網路條件限速模擬（3G/2G/50% 丟包/離線）→功能可用性自動探針
+    thresholds:
+      minimum: 斷網時只讀功能可用且有明確離線提示
+      good: 弱網（3G 級）核心任務可完成（超時 ≤ 10s）
+      excellent: 離線優先架構與後臺自動同步
+  M-HOW-F-002-01:
+    name: 低端裝置效能底線
+    description: 在目標市場最低規格裝置上自動測量核心任務效能
+    measurement_method: 最低規格裝置/模擬器實測：冷啟動、首屏、核心互動響應時間（P75/P95）
+    thresholds:
+      minimum: 冷啟動 ≤ 5s 且核心互動響應 ≤ 200ms（ISO 9241-112 響應性實踐）
+      good: P75 互動響應 ≤ 100ms 且低記憶體裝置無崩潰
+      excellent: 自適應畫質與按裝置能力分級載入
+  M-HOW-F-002-02:
+    name: 低配裝置任務效率
+    description: 在最低支援規格裝置上完成核心任務的效率，與基準裝置對比——ISO 9241-11 效率測度（達成目標的資源耗費）的應用
+    measurement_method: 定義最低支援規格 → 同一批使用者在最低規格與基準裝置各完成核心任務 → 比較完成時間與操作步數
+    thresholds:
+      minimum: 低配完成時間 ≤ 基準 ×1.5
+      good: ≤ 基準 ×1.3
+      excellent: ≤ 基準 ×1.1 且無功能降級
+  M-HOW-F-003-01:
+    name: 續航壓力場景覆蓋
+    description: 對 Rahmati & Zhong 2009 人-電池互動研究識別的高壓場景（低電量焦慮/無充電條件/長時外出）稽核應對特性
+    measurement_method: 高壓場景清單稽核（省電模式/低耗最佳化/電量預測/多充電方式），對照人-電池互動研究的行為模式
+    thresholds:
+      minimum: 提供省電模式且電量狀態可查
+      good: 剩餘使用時間預測與低功耗策略
+      excellent: 多充電方式冗餘（有線/無線/外接）與場景自適應降耗
+  M-HOW-F-004-01:
+    name: 相容性矩陣透過率
+    description: 按支援矩陣（瀏覽器/OS/AT 版本組合）自動迴歸核心流程
+    measurement_method: 支援矩陣×冒煙用例自動迴歸；EN 301 549 clause 11 Web 相容性核對
+    thresholds:
+      minimum: 宣告的支援矩陣 100% 透過冒煙用例
+      good: AT 組合（螢幕閱讀器×瀏覽器）核心流程透過
+      excellent: 向下相容 2 個大版本且異常降級友好
+  M-HOW-F-005-01:
+    name: 技術債環境適配
+    description: 稽核對目標使用者存量技術環境（舊 OS/舊瀏覽器/企業受限環境）的適配策略與降級方案
+    measurement_method: 存量環境清單→適配/降級策略稽核→降級體驗實測
+    thresholds:
+      minimum: 目標市場主流存量環境有明確支援/降級宣告
+      good: 降級模式核心功能可用（優雅降級非白屏）
+      excellent: 按環境能力自動分發適配版本
+  M-HOW-F-006-01:
+    name: 輔助科技互操作
+    description: 螢幕閱讀器/開關控制/語音控制完成核心任務的實測透過率
+    measurement_method: 主流 AT 組合實測（WCAG 4.1.2 Name/Role/Value 核對 + 核心任務全程 AT 操作）
+    thresholds:
+      minimum: WCAG 4.1.2 零失敗且螢幕閱讀器可完成核心任務（A 級基線）
+      good: 主流 AT 組合核心任務成功率 ≥ 90%
+      excellent: 全 AT 組合 + 罕用 AT（開關/眼控）透過
+  M-HOW-F-007-01:
+    name: 輸出通道冗餘
+    description: 關鍵資訊輸出不依賴單一感官通道（視覺不依賴顏色 WCAG 1.4.1、音訊有字幕/文字替代）
+    measurement_method: 輸出事件×通道矩陣稽核（WCAG 1.4.1 使用顏色、1.2.2 字幕、1.1.1 非文字替代核對）
+    thresholds:
+      minimum: 顏色非唯一資訊載體（WCAG 1.4.1 A 級）且媒體有替代（1.1.1/1.2.2 A 級）
+      good: 雙通道輸出全覆蓋關鍵資訊
+      excellent: 使用者可選輸出偏好通道且跨通道同步
+  M-HOW-F-008-01:
+    name: 認證路徑無障礙冗餘
+    description: 按 WCAG 2.2 SC 3.3.8 稽核認證路徑：認知功能測試豁免、多路徑獨立性、密碼管理器相容與恢復流程
+    measurement_method: 認證路徑×能力要求矩陣稽核（認知/視覺/聽覺/運動），3.3.8 逐條核對（認知測試例外/替代路徑/貼上允許）
+    thresholds:
+      minimum: ≥2 條獨立認證路徑且無強制認知功能測試（WCAG 3.3.8 AA 級）
+      good: 賬號恢復不依賴安全問題，密碼管理器自動填充無阻斷
+      excellent: WebAuthn/魔法連結等無密碼路徑 + 會話延長 + 各路徑能力要求公示
+  M-RUL-001-01:
+    name: 無障礙功能使用率
+    description: 核心無障礙功能（如螢幕閱讀器、鍵盤導航、高對比度）的可用性透過率
+    measurement_method: WCAG 2.1 AA 成功標準逐項檢查表透過率
+    thresholds:
+      excellent: AA 100% + AAA 關鍵條款 + 主流 AT 相容驗證
+      good: AA 100% + 部分 AAA 條款
+      minimum: WCAG 2.1 AA 100% 透過（強制）
+  M-RUL-002-01:
+    name: 資料主體權利響應遵循
+    description: 稽核資料主體權利流程（撤回同意/查閱複製/更正補充/刪除）是否滿足目標法域的時限與便捷性要求
+    measurement_method: 資料權利流程走查 × 法域條款矩陣（GDPR：撤回與給予同等方式便捷[Art.7(3)]/響應不遲於一個月[Art.12(3)]/刪除權[Art.17]；PIPL：便捷撤回[第15條]/不得拒絕服務[第16條]/告知[第17條]/知情決定/查閱複製/更正/刪除[第44-47條]）
+    thresholds:
+      minimum: 目標法域全部法定權利路徑存在且時限達標（GDPR 一個月響應；PIPL 便捷撤回）
+      good: 撤回同意路徑與給予同意同頁同級可達（非深埋設定），權利請求有狀態跟蹤
+      excellent: 權利行使全程自助化 + 處理時限內部 SLA 嚴於法定 + 多法域請求自動路由
+  M-RUL-003-01:
+    name: 目標市場安全認證就緒度
+    description: 稽核產品對目標市場強制安全認證（CE/UL/FDA/MDR/ISO 26262 等）的條款級就緒狀態
+    measurement_method: 目標市場×認證體系矩陣稽核：認證清單確認 → 安全要求在設計文件中的可追溯性 → 預遵循測試差距分析
+    thresholds:
+      minimum: 目標市場強制認證清單確認且安全要求可追溯到設計文件
+      good: 危害分析與風險評估文件完備，預遵循測試透過
+      excellent: 多認證並行路徑（一次設計滿足多市場認證）+ 認證維持流程（複審跟蹤）
+  M-RUL-004-01:
+    name: 許可證與 SBOM 完備度
+    description: 按 SPDX 標準稽核程式碼/依賴/素材的許可證識別覆蓋度與許可證衝突，含許可證清單（License List）短識別符號規範
+    measurement_method: SCA 工具掃描（原始碼+依賴）→ SPDX 識別符號規範化 → 傳染性許可證（GPL 系）衝突分析；素材授權臺賬核對
+    thresholds:
+      minimum: 100% 元件有 SPDX 許可證標識（無 Unknown 許可證進入構建）
+      good: SBOM 機器可讀（SPDX 格式）+ 傳染性許可證衝突清零
+      excellent: 素材授權鏈完整（字型/圖片/音訊逐項有授權證明）+ 許可證變更 CI 監控
+  M-RUL-005-01:
+    name: 倫理審查機制完備度
+    description: 按 Belmont 三原則與 IEEE EAD 框架稽核倫理審查機制：知情同意流程、風險-收益評估、公平性稽核、可申訴通道
+    measurement_method: 倫理檢查表稽核（Belmont：尊重[自主與保護]→知情同意、善行→風險收益評估、正義→公平選擇；IEEE EAD：透明度/問責/可解釋性）+ 使用者研究協議抽查
+    thresholds:
+      minimum: 涉人研究有知情同意流程且 IRB/倫理委員會審查在案（Belmont 三原則逐項可查）
+      good: 演算法決策有公平性稽核記錄 + 暗黑模式自查清零 + 倫理反饋通路可用
+      excellent: 倫理評估前置到設計階段（設計倫理工作坊）+ AI 系統對齊 IEEE EAD 八原則體系
+  M-RUL-006-01:
+    name: 行業准入規範對映度
+    description: 稽核產品對目標行業准入規範（HIPAA/PCI DSS/FERPA/DO-178C 等）的條款級對映與遵循狀態
+    measurement_method: 目標行業×准入規範矩陣稽核（醫療 HIPAA/金融 PCI DSS/教育 FERPA/航空 DO-178C）→ 條款要求到設計/流程的證據對映
+    thresholds:
+      minimum: 目標行業准入規範清單確認且有指定負責人
+      good: 每條適用條款有證據對映（設計文件/測試報告/流程記錄）
+      excellent: 行業規範變更跟蹤機制 + 跨行業產品多規範並行的對映覆用
+  M-WHAT-F-001-01:
+    name: 任務步驟複雜度
+    description: 核心任務的步驟數、決策點數與分支數評級，判斷任務結構複雜度是否匹配使用者能力
+    measurement_method: 任務分析→步驟/決策點/分支計數→複雜度分級（低/中/高）
+    thresholds:
+      minimum: 核心任務 ≤ 7±2 步且決策點 ≤ 3（米勒定律共識值）
+      good: 提供分步引導與進度提示
+      excellent: 提供專家快捷路徑（並行高階操作）
+  M-WHAT-F-001-02:
+    name: 核心任務操作步數
+    description: 核心任務主流程的操作步數與決策點計數——ISO 9241-11 效率測度的結構化代理（步數越多，認知與操作負荷越高）
+    measurement_method: 任務分析拆解主流程 → 計數操作步（頁面/表單提交/關鍵決策）→ 識別可合併或省略的步驟
+    thresholds:
+      minimum: 主流程 ≤10 步
+      good: ≤7 步
+      excellent: ≤5 步且無返工迴路
+  M-WHAT-F-002-01:
+    name: 認知負荷測量指標
+    description: NASA-TLX 量表測量任務認知負荷
+    measurement_method: NASA-TLX 量表 (6 維度加權)
+    thresholds:
+      excellent: NASA-TLX 總分 ≤ 30
+      good: NASA-TLX 總分 ≤ 45
+      minimum: NASA-TLX 總分 ≤ 60
+  M-WHAT-F-002-02:
+    name: 任務完成時間百分位
+    description: 收集足夠樣本量下的任務完成時間，計算 P5/P50/P95
+    measurement_method: P95 完成時間 / 期望完成時間
+    thresholds:
+      excellent: P95 ≤ 期望時間 × 1.2
+      good: P95 ≤ 期望時間 × 1.5
+      minimum: P95 ≤ 期望時間 × 2
+  M-WHAT-F-003-01:
+    name: 容錯恢復完備度
+    description: 注入典型操作錯誤（誤觸/誤刪/誤提交），測量可恢復性、撤銷可用性與損失防護
+    measurement_method: 錯誤注入測試→撤銷成功率/資料損失率/恢復步驟數記錄
+    thresholds:
+      minimum: 破壞性操作有確認且可撤銷（ISO 9241-110:2020 5.6 Use error robustness 對應）
+      good: 錯誤訊息含恢復指引（WCAG 3.3.1/3.3.3）
+      excellent: 草稿自動儲存與回滾歷史
+  M-WHAT-F-003-02:
+    name: 錯誤恢復成功率
+    description: 使用者在遇到注入錯誤後不經外部協助恢復任務的比例與耗時——容錯性需求的直接測量（ISO 9241-110 容錯原則、WCAG 3.3.1 錯誤標識）
+    measurement_method: 注入典型錯誤（必填缺失/格式錯誤/網路中斷）→ 觀察並記錄使用者無協助恢複比例與平均恢復耗時
+    thresholds:
+      minimum: ≥70% 錯誤無協助恢復
+      good: ≥85% 且恢復路徑有明確指引（3.3.1 錯誤以文字描述）
+      excellent: ≥95% 且平均恢復耗時 <30 秒
+  M-WHAT-F-004-01:
+    name: 持久續接完備度
+    description: 對跨會話/跨裝置長任務稽核自動儲存、續接入口、狀態同步與冗餘輸入消除（WCAG 3.3.7）
+    measurement_method: 會話中斷/裝置切換實測→資料儲存率/續接成功率；同流程重複輸入項計數（WCAG 2.2 SC 3.3.7 Redundant Entry A 級核對）
+    thresholds:
+      minimum: 同流程內已知資訊不重複輸入（WCAG 3.3.7 A 級強制）
+      good: 自動儲存 + 續接入口全覆蓋長任務
+      excellent: 跨裝置實時同步與版本歷史
+  M-WHAT-F-005-01:
+    name: 協作角色覆蓋
+    description: 稽核協作任務的分角色檢視、許可權、並行編輯衝突處理與第三方協作輔助相容
+    measurement_method: 角色×許可權矩陣稽核 + 雙人並行編輯實測衝突處理
+    thresholds:
+      minimum: 協作任務支援分角色許可權與操作留痕
+      good: 並行編輯衝突有合併/鎖定策略
+      excellent: 協助者/代理者可無縫加入（對應 WHERE-F-009 受輔助使用）
+  M-WHAT-F-006-01:
+    name: 中斷容忍實測
+    description: 在任務關鍵節點注入中斷（來電/通知/人為打斷），測量任務恢復率與認知重啟成本
+    measurement_method: 中斷注入實驗→恢復成功率/重啟時間/重複操作次數統計
+    thresholds:
+      minimum: 中斷後狀態保持，恢復無需從頭開始
+      good: 恢復點提示（'繼續剛才的操作'）
+      excellent: 中斷內容自動暫存與情境提示恢復
+  M-WHEN-F-001-01:
+    name: 全時段可用性
+    description: 核對核心功能全時段可用與夜間適配（暗色模式/亮度/免打擾）
+    measurement_method: 時段特性清單稽核 + 夜間場景實測
+    thresholds:
+      minimum: 核心功能 24h 可用且有暗色模式
+      good: 夜間免打擾與延遲處理選項
+      excellent: 光照/時段自適應介面
+  M-WHEN-F-002-01:
+    name: 頻率分層適配度
+    description: 按高頻/低頻使用者分層稽核差異化設計（高頻：效率特性；低頻：記憶輔助、最近記錄、簡化介面）
+    measurement_method: 頻率分層定義（DAU/MAU 比或會話間隔分佈）→分層特性矩陣稽核；習慣養成參照 Lally et al. 2010 漸近線模型
+    thresholds:
+      minimum: 低頻路徑有記憶輔助（最近使用/預設值預填）
+      good: 高頻路徑有批次/快捷操作；低頻路徑有使用引導
+      excellent: 按個人使用模式自適應難度與介面密度
+  M-WHEN-F-003-01:
+    name: 季節性適應稽核
+    description: 稽核季節/極端天氣/節假日模式下的功能保持度，含光照/溫度/溼度/假期分佈等維度的適應性特性
+    measurement_method: 季節場景清單（極端天氣/光照週期/節假日模式）×功能保持稽核；光照敏感人群對照 SAD 研究的光照需求
+    thresholds:
+      minimum: 極端天氣/溫度下核心功能不失效（防水/耐溫規格達標）
+      good: 光照/溫度變化有模式適配（冬季深色/夏季高對比/防眩光）
+      excellent: 節假日模式與季節性內容自動切換
+  M-WHEN-F-004-01:
+    name: 時限可調性
+    description: 盤點產品內全部時限，逐項核對可關閉/可調整/可延長；本質例外需論證記錄
+    measurement_method: 時限清單→逐項按 WCAG 2.2.1 核對（關閉/調整/延長）→本質例外論證記錄
+    thresholds:
+      minimum: 非本質時限 100% 可調整（WCAG 2.2.1 A 級）
+      good: 剩餘時間視覺化與進度提示
+      excellent: 預設無時限（僅本質需要時設定並留論證）
+  M-WHEN-F-004-02:
+    name: 時間負荷評分
+    description: 以 NASA-TLX 時間需求（Temporal Demand）子維度度量任務時間壓力的主觀負荷——該量表六維度含 Temporal Demand，0-20 分（Hart & Staveland 1988）
+    measurement_method: 改版前後各邀請 ≥8 名代表性使用者完成同一核心任務並填寫 NASA-TLX，取 Temporal Demand 維度均值對比
+    thresholds:
+      minimum: 時間需求均值 ≤15/20
+      good: ≤10/20
+      excellent: ≤6/20 且改版降幅 ≥30%
+  M-WHEN-F-005-01:
+    name: 斷點續接支援
+    description: 對長任務稽核自動儲存、續接入口、時長預估與分步計劃特性
+    measurement_method: 長任務清單→中斷注入測試（資料儲存率/恢復成功率統計）
+    thresholds:
+      minimum: 長任務自動儲存（間隔 ≤ 30s 或實時）且有續接入口
+      good: 任務時長預估與分步計劃展示
+      excellent: 跨裝置無縫續接（狀態同步）
+  M-WHEN-F-006-01:
+    name: 疲勞響應完備度
+    description: 稽核疲勞檢測訊號（連續錯誤/操作放緩/會話時長）與響應機制（休息提示/介面簡化/斷點儲存）
+    measurement_method: 疲勞訊號×響應機制矩陣稽核；長會話實測錯誤率增長曲線（對照 NASA-TLX 量表校驗）
+    thresholds:
+      minimum: 長會話有暫停與斷點儲存（資料不因疲勞中斷丟失）
+      good: 連續錯誤/操作放緩觸發主動休息提示
+      excellent: 疲勞自適應介面（資訊量縮減/關鍵元素放大）
+  M-WHERE-F-001-01:
+    name: 環境包絡適應性
+    description: 定義使用環境包絡（照度/噪聲/天氣/手部條件），逐項測試功能在包絡邊緣的保持度
+    measurement_method: 環境包絡×功能矩陣實測或估算（照明與聲學參照 ISO 21542:2021 cl.5.4/5.7）
+    thresholds:
+      minimum: 標稱環境（如常規室內照明）全功能可用
+      good: 強光/低光與高噪聲下核心功能可用
+      excellent: 全場景自動適應（亮度/對比/觸覺反饋切換）
+  M-WHERE-F-001-02:
+    name: 強光環境對比度維持
+    description: 在強光/高環境照度條件下實測前景與背景對比度是否仍滿足 WCAG 1.4.3（4.5:1）與 1.4.11（3:1）要求
+    measurement_method: 定義目標環境照度範圍 → 實測螢幕峰值亮度下正文與關鍵 UI 元件的實際對比度 → 記錄關鍵資訊可讀性
+    thresholds:
+      minimum: 正文 ≥4.5:1 且 UI 元件 ≥3:1（強光實測）
+      good: 在 minimum 之上，高亮/禁用態均可辨
+      excellent: 提供自動高對比或亮度自適應模式
+  M-WHERE-F-002-01:
+    name: 社會情境功能稽核
+    description: 稽核公開/共享場合的隱私遮擋、靜音、情境模式與多角色切換特性
+    measurement_method: 社會情境（獨自公開/共視/旁觀在場）×功能矩陣稽核
+    thresholds:
+      minimum: 公開場合使用無強制隱私暴露（可選靜音/遮擋）
+      good: 提供情境/角色快速切換
+      excellent: 情境自適應提示（同行人/位置感知）
+  M-WHERE-F-003-01:
+    name: 空間可達性遵循率
+    description: 按 GB 55019 強制條款（通行淨寬≥900mm、坡道、抓杆等）與 ISO 21542 通行條款逐項實測
+    measurement_method: 實地測量+檢查表（GB 55019 ch.2 通行設施 / GB 50763 / ISO 21542:2021 cl.8 內部通行與 cl.9 建築部件）
+    thresholds:
+      minimum: GB 55019 強制條款 100% 達標（法規紅線）
+      good: ISO 21542 推薦條款 ≥ 80% 達標
+      excellent: 輪椅實地走查全動線貫通（含緊急疏散路徑）
+  M-WHERE-F-004-01:
+    name: 資源缺失韌性
+    description: 列舉外部資源依賴（電力/網路/人力/耗材），在單點缺失下測試核心功能保持度
+    measurement_method: 資源×功能矩陣 + 斷供演練（斷電/離線/無協助）
+    thresholds:
+      minimum: 任一單點資源缺失時核心功能可用（降級模式）
+      good: 降級狀態明確提示且自動恢復
+      excellent: 離線優先/自給架構
+  M-WHERE-F-005-01:
+    name: 經濟可及梯度
+    description: 稽核免費層/低價層/裝置與流量成本最佳化，對照目標市場收入分佈與金融包容資料
+    measurement_method: 定價層級×目標市場收入分佈對照（World Bank 收入分類/貧困線參照）；資料流量與舊裝置支援稽核
+    thresholds:
+      minimum: 有免費或低價獲取路徑（核心功能不設付費牆）
+      good: 支援低端裝置與流量節省模式（離線/輕量版）
+      excellent: 按支付能力分層定價（學生/區域定價/公益授權）
+  M-WHERE-F-006-01:
+    name: 緊急功能可達性
+    description: 緊急操作（SOS/疏散/中止）步數與多感官告警稽核，對照 GB 55019 資訊交流與 ISO 21542 消防疏散條款
+    measurement_method: 介面狀態圖遍歷測最短步數 + 告警通道核對（視/聽/觸），建築類按 GB 55019 ch.4 與 ISO 21542:2021 cl.11 檢查表實測
+    thresholds:
+      minimum: 緊急操作 ≤ 3 步且告警多感官（適用範圍內符合強制規範）
+      good: 免登入/免解鎖可用緊急功能
+      excellent: 離線緊急資訊與演練模式
+  M-WHERE-F-007-01:
+    name: 情境覆蓋矩陣
+    description: 按 ISO 9241-210 使用情境要素（使用者/目標/環境）建立情境×功能矩陣並核對實測覆蓋
+    measurement_method: 情境清單分級（P0/P1/P2）→設計覆蓋核對→實測記錄
+    thresholds:
+      minimum: P0 情境 100% 定義並有設計覆蓋
+      good: P0 全部實測 + P1 桌面走查
+      excellent: 極端/並行情境（打擾、多工）實測覆蓋
+  M-WHERE-F-008-01:
+    name: 共享使用隔離度
+    description: 稽核多使用者場景的會話隔離、資料清除、可清潔性與無人監督耐久性
+    measurement_method: 共享場景清單（公共終端/家庭共用/多人圍觀）×隔離與衛生特性稽核
+    thresholds:
+      minimum: 共享場景有會話隔離與用後資料清除
+      good: 快速使用者切換與訪客模式
+      excellent: 多人圍觀自適應佈局與衛生材質規範
+  M-WHERE-F-009-01:
+    name: 協作代理支援度
+    description: 稽核協助者代理完成、授權、遠端協助與操作記錄特性（受輔助使用情境）
+    measurement_method: 協助者場景實測（代理完成核心任務的授權機制與成功率）
+    thresholds:
+      minimum: 核心任務可由協助者代理完成（明確授權機制）
+      good: 協作者檢視與操作留痕
+      excellent: 遠端實時協助與語音協同引導
+  M-WHICH-F-001-01:
+    name: 資訊密度偏好指標
+    description: 使用者在多檔資訊密度設定下的選擇頻率與滿意度評分
+    measurement_method: 可調節密度檔位數 + 使用者滿意度評分
+    thresholds:
+      excellent: 自適應推薦 + 完全自定義 + 記憶偏好
+      good: 提供 4+ 檔位或自定義滑塊
+      minimum: 提供 2-3 個密度檔位可選
+  M-WHICH-F-002-01:
+    name: 探索深度分級支援
+    description: 稽核漸進式披露層級（基礎/進階/專家）與'危險操作保護'的分級設計
+    measurement_method: 功能清單按層級歸類稽核 + 新手/專家雙視角走查
+    thresholds:
+      minimum: 核心路徑無強制探索（最少點選直達）
+      good: 提供'簡單/詳細'雙模式或分層入口
+      excellent: 使用者自選探索深度並記憶偏好
+  M-WHICH-F-003-01:
+    name: 自動化分級可調
+    description: 按 Parasuraman 2000 十級自動化模型稽核自動化等級可選擇性，並測量使用者對各級的信任與干預頻率
+    measurement_method: 自動化功能×等級矩陣稽核 + 使用者實測（手動干預率/撤銷使用率/接受度量表）
+    thresholds:
+      minimum: 所有自動化決策可撤銷或覆蓋（對應 ISO 9241-110 5.5 可控性）
+      good: 自動化等級使用者可選（全自動/半自動/手動分檔）
+      excellent: 系統能力公示 + 使用者自選干預粒度（逐項/批次）
+  M-WHICH-F-003-02:
+    name: 自動化可控覆蓋率
+    description: 盤點系統自動執行的操作，檢查每項是否提供可感知的暫停/撤銷/引數調節——對應 ISO 9241-110 對話原則中的可控性（controllability）
+    measurement_method: 列出全部自動執行行為（自動提交/自動扣款/自動跳轉/自動填充）→ 逐項核對是否具備確認、撤銷或引數調節入口
+    thresholds:
+      minimum: 100% 自動操作可撤銷或有前置確認
+      good: 在 minimum 之上，互動節奏與順序使用者可控
+      excellent: 自動化程度可按使用者偏好個性化設定
+  M-WHICH-F-004-01:
+    name: 可見性粒度控制
+    description: 稽核社交場景的可見性選項粒度（全域性/分組/單次）與狀態暴露預設值
+    measurement_method: 可見性選項矩陣稽核 + 預設值隱私傾向檢查（預設應為最小暴露）
+    thresholds:
+      minimum: 提供可見性開關且預設最小暴露
+      good: 分組/單次可見性粒度可選
+      excellent: 釋出前可見性預覽（'誰可以看到這條'）
+  M-WHICH-F-005-01:
+    name: 風格選擇度與一致性
+    description: 稽核官方主題/自定義能力，以及風格切換時功能位置穩定性（減少再學習成本）
+    measurement_method: 主題與自定義能力清單稽核 + 切換前後功能位置一致性走查
+    thresholds:
+      minimum: 提供 ≥2 官方主題且預設普適（高可讀性中性風格）
+      good: 關鍵自定義能力（字號/對比度/動效開關）+ 切換後功能位置不變
+      excellent: 風格偏好跨平臺同步記憶
+  M-WHICH-F-005-02:
+    name: 美學滿意度評分
+    description: 代表性使用者對視覺風格的主觀滿意度評分——ISO 9241-11 滿意度（satisfaction）測度的應用（偏好無對錯，測的是目標人群的接受度）
+    measurement_method: 邀請 ≥8 名代表性使用者在真實任務後填寫 3 題滿意度問卷（1-5 分），改版前後對比
+    thresholds:
+      minimum: 均值 ≥3.5/5
+      good: ≥4.0/5
+      excellent: ≥4.3/5 且推薦意願非負
+  M-WHICH-F-006-01:
+    name: 輸入模態冗餘度
+    description: 核心操作的輸入模態計數（觸控/鍵盤/語音/手勢/物理按鈕），單一模態失效時是否有替代路徑
+    measurement_method: 核心操作×模態矩陣稽核；按 WCAG 2.5.1 指標手勢與 2.1.1 鍵盤核查替代路徑
+    thresholds:
+      minimum: 核心操作 ≥ 2 種模態（含鍵盤等效，WCAG 2.1.1 A 級）
+      good: ≥ 3 種模態且含無精細動作模態（語音/大按鈕）
+      excellent: 模態自由切換且偏好記憶
+  M-WHICH-F-007-01:
+    name: 反饋多通道冗餘
+    description: 關鍵反饋（成功/失敗/進度/警告）的多感官通道冗餘稽核（視覺+聽覺+觸覺至少雙通道）
+    measurement_method: 反饋事件×通道矩陣稽核；WCAG 4.1.3 狀態訊息（AA）核對螢幕閱讀器播報
+    thresholds:
+      minimum: 關鍵反饋不依賴單一感官通道（WCAG 1.4.2 音訊控制相關 + ISO 9241-110 5.2 自描述性）
+      good: 雙通道反饋且使用者可選偏好通道
+      excellent: 三通道冗餘與感官替代（閃光→振動）
+  M-WHICH-F-008-01:
+    name: 互動模式可選性
+    description: 稽核互動模式清單（直接操作/命令/手勢/語音/快速鍵）的並存性、預設可選與切換成本
+    measurement_method: 模式×任務矩陣稽核 + 模式切換步數與再學習成本評估
+    thresholds:
+      minimum: 核心任務 ≥2 模式可用且預設模式使用者可選
+      good: 切換 ≤1 步且無強制模式（觸屏保留快速鍵等效）
+      excellent: 模式偏好記憶與情境感知推薦（駕駛→語音）
+  M-WHICH-F-009-01:
+    name: 通知可控性
+    description: 通知的粒度控制（逐類開關/免打擾/批次靜默）與緊急通知穿透策略稽核
+    measurement_method: 通知型別×控制粒度矩陣稽核 + 免打擾實測（緊急類是否可穿透）
+    thresholds:
+      minimum: 通知可逐類開關且提供全域性靜音
+      good: 免打擾時段/場景規則（含緊急例外）
+      excellent: 通知摘要合併與優先順序使用者自定義
+  M-WHO-F-001-01:
+    name: 能力需求排除率
+    description: 基於 Cambridge 排除測演算法（Waller/Langdon/Clarkson 2010），將產品使用拆解為任務並對每任務的能力需求評級，對照人群能力分佈估算被排除使用者比例
+    measurement_method: 任務分析→五類能力需求評級（視覺/聽覺/操作/觸及/移動）→對照 1996/97 DFS 能力分佈計算排除率
+    thresholds:
+      minimum: 任一核心任務排除率 ≤ 10%
+      good: 核心任務排除率 ≤ 5%
+      excellent: ≤ 2% 且含多重障礙疊加分析
+  M-WHO-F-001-02:
+    name: 輔助科技相容性
+    description: 檢查互動元件是否以程式設計可訪問方式暴露名稱/角色/值，狀態變化能否被輔助科技（螢幕閱讀器、開關控制）感知——能力替代通道的基礎保障
+    measurement_method: 以 NVDA/VoiceOver + 純鍵盤遍歷核心任務，逐控制元件記錄名稱/角色/狀態可播報性；對動態反饋檢查是否實時播報（WCAG 4.1.2/4.1.3）
+    thresholds:
+      minimum: 核心任務全部控制元件具備可播報的名稱與角色（4.1.2）
+      good: 在 minimum 之上，狀態變化實時播報（4.1.3）
+      excellent: NVDA/JAWS/VoiceOver 三種主流螢幕閱讀器零阻斷級問題
+  M-WHO-F-002-01:
+    name: 使用者畫像多樣性偏差
+    description: 將調研樣本與 persona 分佈對照目標市場人口統計（年齡段/性別/地域），計算代表性偏差
+    measurement_method: persona vs 目標人群統計對照表 + 交叉維度覆蓋檢查
+    thresholds:
+      minimum: 年齡/性別/地域三維均有代表且無單點畫像
+      good: 各維度與目標人群偏差 ≤ 20%
+      excellent: 偏差 ≤ 10% 且覆蓋交叉弱勢組合（如老年×低技術素養）
+  M-WHO-F-003-01:
+    name: 健康狀況適配覆蓋
+    description: 稽核設計對常見健康影響類別（感官/運動/慢性疼痛/疲勞/用藥期波動）的適配完成度
+    measurement_method: 健康影響類別×適配措施矩陣稽核（含 WCAG AA 基線核對）
+    thresholds:
+      minimum: 感官與運動類別適配 100%（WCAG AA 基線）
+      good: 慢性病常見影響（疲勞/疼痛/認知波動）有顯式設計
+      excellent: 低頻高風險狀況（如光敏癲癇）有專項防護
+  M-WHO-F-004-01:
+    name: 多模態呈現完備度
+    description: 稽核關鍵內容的雙通道以上呈現（圖文+影片+互動演練），按 Pashler 2008 結論將設計響應定位為多模態呈現而非風格適配
+    measurement_method: 關鍵內容×呈現模態矩陣稽核（內容是否可經 ≥2 通道獲取）
+    thresholds:
+      minimum: 關鍵操作指引有 ≥2 模態（如圖文+影片）
+      good: 使用者可選預設學習/幫助模態
+      excellent: 全內容 ≥2 模態且節奏可控（重複/快進/慢放）
+  M-WHO-F-005-01:
+    name: 情感體驗三層次稽核
+    description: 按 Norman 三層次（本能/行為/反思）稽核情感觸點並測量使用者情感反應
+    measurement_method: 情感觸點地圖 × 三層次分類稽核 + PANAS/SAM 量表測量 + SDT 三需求滿足度評估
+    thresholds:
+      minimum: 關鍵流程無致挫敗點（PANAS 負面分數不高於基準）
+      good: 關鍵觸點有正向設計（成就感/信任感）且 SDT 三需求有顯式支援
+      excellent: 賦權時刻設計（可感知的進步/掌控）+ 峰終定律最佳化
+  M-WHO-F-006-01:
+    name: 感官強度可調性
+    description: 稽核各感官通道（視覺/聽覺/觸覺）的強度調節能力，參照 HSP 量表的敏感度分佈設計調節範圍
+    measurement_method: 感官通道×可調特性矩陣稽核（亮度/色溫/音量/振動/動效強度），對照 HSP 敏感度分佈設定調節範圍
+    thresholds:
+      minimum: 主要感官通道強度可調（亮度/音量/振動）
+      good: 動效可關（prefers-reduced-motion 響應）+ 無刺激模式（低感官模式）
+      excellent: 全通道連續可調 + 情境感官配置記憶
+  M-WHO-F-006-02:
+    name: 多感官冗餘覆蓋
+    description: 檢查資訊是否僅靠單一感官通道傳達——WCAG 1.4.1（顏色不得為唯一視覺手段）與 1.3.3（說明不得僅依賴形狀/顏色/位置/聲音等感官特徵）
+    measurement_method: 盤點介面與文件中僅靠顏色/形狀/位置/聲音傳達含義的資訊點 → 逐點核對是否提供冗餘編碼（文字/圖示/圖案/語音）
+    thresholds:
+      minimum: 零個僅靠顏色傳達的資訊點
+      good: 零個僅靠任何單一感官通道傳達的資訊點
+      excellent: 關鍵資訊提供多模態替代（視覺+聽覺/觸覺）
+  M-WHO-F-007-01:
+    name: 零經驗首次成功率
+    description: 招募低技術素養使用者（如首次使用智慧裝置的老年人）在無協助下完成核心任務
+    measurement_method: 無協助可用性測試，記錄首次任務成功率、求助次數與完成時間
+    thresholds:
+      minimum: 核心任務無協助成功率 ≥ 80%
+      good: ≥ 90% 且平均求助 ≤ 1 次
+      excellent: ≥ 95% 且完成時間 ≤ 熟練使用者 P95
+  M-WHO-F-008-01:
+    name: 文化本地化稽核
+    description: 對圖示隱喻、色彩象徵、姓名/日期/地址格式、閱讀方向進行跨文化稽核
+    measurement_method: 目標文化清單逐項稽核 + ≥2 文化背景使用者驗證
+    thresholds:
+      minimum: 無冒犯性符號且支援本地化格式（姓名/日期/地址）
+      good: 圖示與隱喻經 ≥2 文化背景使用者驗證
+      excellent: 支援 RTL 佈局與全部目標市場語言
+  M-WHO-F-009-01:
+    name: 神經多樣性特性覆蓋
+    description: 檢查減少動效、可預測佈局、直白語言、內容分塊、無時間壓力預設值等神經多樣性友好特性
+    measurement_method: 神經多樣性設計清單稽核（動效開關/佈局一致性/語言直白度/內容分塊/時限預設值），含 prefers-reduced-motion 響應核對
+    thresholds:
+      minimum: 提供減少動效選項且佈局保持可預測
+      good: 直白語言與內容分塊達標
+      excellent: 感官強度全面可調與專注模式提供
+  M-WHO-F-010-01:
+    name: 認知需求排除率
+    description: 採用 Cambridge 排除測算的認知維度（記憶/注意/理解），對任務認知需求評級並估算認知排除率
+    measurement_method: 任務認知需求評級（同時記憶項數/步驟數/決策點計數）→對照能力分佈排除估算
+    thresholds:
+      minimum: 核心任務同時記憶項 ≤ 4 且步驟可分塊
+      good: 認知排除估算 ≤ 5%
+      excellent: ≤ 2% 且提供預填/進度提示等減負輔助
+  M-WHO-F-011-01:
+    name: 語言可及性稽核
+    description: 核對頁面語言宣告（lang）、內容閱讀等級與平實語言替代的可及性
+    measurement_method: lang 屬性檢查（WCAG 3.1.1/3.1.2）+ 內容閱讀等級測算 + 目標語言覆蓋清單
+    thresholds:
+      minimum: lang 宣告正確且目標市場語言 100% 覆蓋
+      good: 核心內容閱讀等級 ≤ 初中水平
+      excellent: 提供平實語言版本與術語表
+  M-WHO-F-012-01:
+    name: 非文字替代覆蓋
+    description: 檢查核心任務是否有圖示/影片/語音等非文字替代指引，關鍵文案是否採用受控詞彙
+    measurement_method: 任務×替代通道矩陣稽核 + 詞彙複雜度抽檢
+    thresholds:
+      minimum: 核心任務有 ≥1 非文字指引（圖示或影片）
+      good: 關鍵操作詞受控（常用詞彙表內）
+      excellent: 全任務可僅憑語音引導完成
+  M-WHO-F-013-01:
+    name: 人體尺寸適配百分位
+    description: 以 ANSUR II 與 GB/T 10000-2023 人體資料核對關鍵尺寸（觸及/淨空/握持/視距）的人群百分位覆蓋
+    measurement_method: 關鍵尺寸×人群百分位對照（先按目標人群選資料集：中國用 GB/T 10000-2023，北美參照 ANSUR II）
+    thresholds:
+      minimum: 關鍵尺寸覆蓋目標人群 P5–P95
+      good: 覆蓋 P1–P99
+      excellent: 關鍵尺寸連續可調（座椅/支架/綁帶等）
+  M-WHO-F-014-01:
+    name: 隱私控制完備度
+    description: 稽核許可權粒度、資料刪除/匯出入口、訪客模式與保留政策，核對使用者權利請求響應時效
+    measurement_method: 隱私控制清單稽核 + 權利請求流程演練（GDPR/PIPL 適用範圍內）
+    thresholds:
+      minimum: 許可權可逐項開關且賬號刪除入口可達（法定響應期內）
+      good: 提供資料匯出與分場景授權
+      excellent: 提供訪客/匿名模式與本地處理選項
+  M-WHO-F-014-02:
+    name: 資料收集最小化
+    description: 稽核產品收集的個人資訊是否與核心功能必需性對齊——GDPR 第 5(1)(c) 條資料最小化（adequate, relevant and limited to what is necessary）與 PIPL 最小必要原則的應用
+    measurement_method: 逐表單/許可權盤點收集欄位 → 逐欄位標註功能必需性 → 計算非必需收集欄位佔比並核查用途說明
+    thresholds:
+      minimum: 無與核心功能無關的必填個人資訊
+      good: 非必填收集欄位 100% 附用途說明
+      excellent: 零非必需收集且提供匯出與刪除通道
+  M-WHO-F-015-01:
+    name: 性別包容完備度
+    description: 稽核性別欄位中立性、稱謂/代詞可配置性、尺碼體系中立性；邀請跨性別/非二元使用者驗證
+    measurement_method: 性別相關觸點清單稽核（表單/稱謂/空間/尺碼）+ 跨性別與非二元使用者實測（Haimson 2016/2023 方法論：身份變更場景與社群參與設計）
+    thresholds:
+      minimum: 性別欄位可選且含非二元/不願透露選項；代詞可配置
+      good: 歷史資料變更路徑存在（身份轉變後記錄可更新）
+      excellent: 全性別空間選項 + 尺碼按身體測量而非性別二元
+  M-WHY-F-001-01:
+    name: 包容性投入產出框架
+    description: 稽核包容性投入的量化記錄（遵循成本/開發投入）與收益框架（市場規模/改造規避/品牌價值），對照 ROD 2024 市場資料
+    measurement_method: 包容性投入臺賬 × 收益維度對照（ROD 2024：全球殘障市場 $18.3T/美國 PWD 可支配收入 $1.3T/63% 人口關聯）
+    thresholds:
+      minimum: 包容性投入有專項記錄（非混入通用開發成本）
+      good: 有生命週期成本對比（前期包容設計 vs 後期改造成本）
+      excellent: 包容性收益納入商業論證（市場定位/差異化/採購優勢）
+  M-WHY-F-002-01:
+    name: 包容性市場定位稽核
+    description: 稽核產品定位中包容性價值主張的顯式性（目標人群覆蓋宣告/差異化說明/無障礙能力公示）
+    measurement_method: 定位文件 × 包容性價值主張核對表；對照 ROD 2024 的 63% 人口關聯資料評估目標人群定義完備性
+    thresholds:
+      minimum: 目標人群定義不排除合理可達人群（無“僅限”式排除宣告）
+      good: 包容效能力在價值主張中顯式（如無障礙資質/適老認證）
+      excellent: 包容性作為核心差異化賣點並有採購資質支撐
+  M-WHY-F-003-01:
+    name: 暗黑模式稽核
+    description: 按 Mathur et al. 2019 分類學稽核誘導性設計（倒計時壓迫/假庫存/隱藏取消/強制捆綁）
+    measurement_method: 關鍵流程逐屏稽核對照暗黑模式清單（7 大類 15 型）；取消流程步數與註冊流程步數對稱性實測
+    thresholds:
+      minimum: 取消訂閱步數 ≤ 註冊步數且無隱藏取消（歐盟消保指令實踐）
+      good: 全流程無 Mathur 分類學中的欺騙型模式
+      excellent: 關鍵決策有冷靜期/反悔機制
+  M-WHY-F-004-01:
+    name: 可持續性指標覆蓋
+    description: 對照三重底線（Elkington 1997）稽核環境維度的量化目標與資料披露
+    measurement_method: 能效/壽命/可維修性/可回收性四項核查；有源產品核對能效標識與碳足跡披露
+    thresholds:
+      minimum: 符合適用環保法規（RoHS/能效標準的強制項）
+      good: 披露能效與維修性資料（維修權指令實踐）
+      excellent: 全生命週期碳足跡披露與回收通路
+  M-WHY-F-005-01:
+    name: 利益相關者衝突解決
+    description: 按 Freeman 1984 利益相關者識別框架稽核多方需求衝突的顯式記錄與解決策略
+    measurement_method: 利益相關者地圖→需求衝突登記→解決策略記錄稽核（決策可追溯）
+    thresholds:
+      minimum: 核心使用者與付費方需求衝突有顯式記錄
+      good: 每項衝突有裁決依據與受影響方說明
+      excellent: 弱勢相關者（終端使用者中的弱勢群體）有代言機制
+factors:
+  HOW-F-001:
+    name: 網路條件
+    evidence_note: 有標準條款（WCAG 2.2/EN 301 549 網路相關），維度特異性研究缺乏；間接支撐，維持 C 級
+  HOW-F-002:
+    name: 裝置能力
+    evidence_note: 有標準條款（WCAG 2.2 目標尺寸等），裝置能力的間接標準支撐；維持 C 級
+  HOW-F-003:
+    name: 電源與續航
+    evidence_note: C4a 核驗文獻掛接（2026-10-08）：Rahmati & Zhong 2009 人-電池互動實證研究（MobileHCI'07+PMC 擴充套件），直接研究支撐
+  HOW-F-004:
+    name: 相容性要求
+    evidence_note: 有標準條款（EN 301 549 相容性要求），獨立研究缺乏；維持 C 級
+  HOW-F-005:
+    name: 技術環境
+    evidence_note: 有標準條款（EN 301 549 開放性條款），間接支撐；維持 C 級
+  HOW-F-006:
+    name: 輔助科技相容性
+    evidence_note: 有標準條款（WCAG 2.2 SC 4.1 相容、EN 301 549 clause 11 AT 相容），間接支撐；維持 C 級
+  HOW-F-007:
+    name: 輸入輸出能力
+    evidence_note: 有標準條款（WCAG 2.2 輸入相關 SC），間接支撐；維持 C 級
+  HOW-F-008:
+    name: 認證與身份負擔
+    evidence_note: WCAG 2.2 SC 3.3.8（無障礙認證，A級）、ICF d1（學習與應用知識）；交叉對照報告 INCL-XREF-001 GAP-3 判定
+  RUL-001:
+    name: 無障礙法規遵循
+    evidence_note: 遵循基線卡：直接條款支撐為各國法規原文（ADA/EN 301 549/GB/T 37668-2019 等），屬法規義務而非研究證據，維持 C 級
+  RUL-002:
+    name: 資料隱私遵循
+    evidence_note: 遵循基線卡：直接條款支撐為 GDPR/PIPL 法規原文，屬法規義務而非研究證據，維持 C 級
+  RUL-003:
+    name: 安全認證要求
+    evidence_note: 遵循基線卡：直接條款支撐為各行業強制安全標準原文（CE/UL/FDA/ISO 26262 等），屬法規義務而非研究證據，維持 C 級
+  RUL-004:
+    name: 智慧財產權遵循
+    evidence_note: 遵循基線卡：直接條款支撐為各國智慧財產權法與開源許可證條款，屬法規義務而非研究證據，維持 C 級
+  RUL-005:
+    name: 倫理審查
+    evidence_note: 遵循基線卡：直接條款支撐為 Belmont Report、IRB 指南、IEEE EAD 等倫理框架原文，屬制度義務而非研究證據，維持 C 級
+  RUL-006:
+    name: 行業特定規範
+    evidence_note: 遵循基線卡：直接條款支撐為各行業規範原文（HIPAA/PCI DSS/DO-178C 等），屬法規義務而非研究證據，維持 C 級
+  RUL-007:
+    name: 政策與法規
+    evidence_note: 墓碑卡（B1 裁決）：與 RUL-001~006 單行遵循卡語義重複，已併入上述 6 卡；本卡僅作歷史參考，不再掛接條款與文獻
+  WHAT-F-001:
+    name: 任務複雜度
+    evidence_note: 有標準條款（ISO 9241-110 任務適宜性），間接支撐；維持 C 級
+  WHAT-F-002:
+    name: 認知負荷
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Sweller 1988 認知負荷理論奠基文獻（Cognitive Science, 8600+ 引用）
+  WHAT-F-003:
+    name: 容錯性需求
+    evidence_note: 有標準條款（WCAG 2.2 容錯相關 SC），間接支撐；維持 C 級
+  WHAT-F-004:
+    name: 任務永續性要求
+    evidence_note: 有標準條款（WCAG 2.2 SC 3.3.7 Redundant Entry 冗餘輸入 + SC 3.2.3 一致導航，間接支撐；維持 C 級
+  WHAT-F-005:
+    name: 任務協作性
+    evidence_note: 有標準條款（WCAG 2.2 協作相關 SC），間接支撐；維持 C 級
+  WHAT-F-006:
+    name: 任務中斷容忍度
+    evidence_note: 有標準條款（WCAG 2.2 SC 3.2.6 一致幫助、2.2.1 計時可調），間接支撐；維持 C 級
+  WHEN-F-001:
+    name: 使用時段
+    evidence_note: 有標準條款（WCAG 2.2 時間相關 SC），間接支撐；維持 C 級
+  WHEN-F-002:
+    name: 使用頻率
+    evidence_note: C4a 核驗文獻掛接（2026-10-08）：Lally et al. 2010 習慣養成曲線（18-254 天漸近線，非'21 天'迷思），直接研究支撐
+  WHEN-F-003:
+    name: 季節性
+    evidence_note: C4a 核驗文獻掛接（2026-10-08）：Rosenthal et al. 1984 SAD 奠基文獻（季節性情緒與光照實證），直接研究支撐
+  WHEN-F-004:
+    name: 時間壓力
+    evidence_note: 有標準條款（WCAG 2.2 SC 2.2.1/2.2.2 + ISO 9241-110:5.5.2），間接支撐；維持 C 級
+  WHEN-F-005:
+    name: 時間可用性
+    evidence_note: 有標準條款（WCAG 2.2 時間調整 SC），間接支撐；維持 C 級
+  WHEN-F-006:
+    name: 疲勞度
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Hart & Staveland 1988 NASA-TLX 原始文獻 + WCAG 2.2 SC 2.2.6 標準條款
+  WHERE-F-001:
+    name: 物理環境
+    evidence_note: 有標準條款（ISO 21542 照明/聲學、WCAG 2.2），間接支撐；維持 C 級
+  WHERE-F-002:
+    name: 社會環境
+    evidence_note: C2 掛接 Zallio & Clarkson 2021（B&E）空間社會性研究；間接支撐，維持 C 級
+  WHERE-F-003:
+    name: 空間可達性
+    evidence_note: C2 掛接 Zallio & Clarkson 2021 + ISO 21542 空間可達性條款；間接支撐，維持 C 級
+  WHERE-F-004:
+    name: 資源可用性
+    evidence_note: 有標準條款（ISO 21542 資源條款），間接支撐；維持 C 級
+  WHERE-F-005:
+    name: 經濟環境
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Van Dijk 2020 數字鴻溝（Polity）+ World Bank Global Findex 2021 資料
+  WHERE-F-006:
+    name: 緊急情況應對
+    evidence_note: 有標準條款（WCAG 2.2 SC 2.4.1 + ISO 21542 緊急條款），間接支撐；維持 C 級
+  WHERE-F-007:
+    name: 使用情境
+    evidence_note: 有標準條款（WCAG 2.2 SC 2.4.11、ISO 9241-110 情境適宜），間接支撐；維持 C 級
+  WHERE-F-008:
+    name: 共享與公共使用情境
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Zallio & Clarkson 2021（B&E）支撐空間層；產品層仍為專家共識
+  WHERE-F-009:
+    name: 受輔助使用情境
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Cambridge EDC 方法論著作支撐；量化資料缺乏，保持 C 級
+  WHICH-F-001:
+    name: 資訊密度偏好
+    evidence_note: 有標準條款（WCAG 2.2 SC 1.4.4 文字縮放、1.4.10 自適應），偏好與標準不完全對應，間接支撐；維持 C 級
+  WHICH-F-002:
+    name: 探索深度偏好
+    evidence_note: 有標準條款（ISO 9241-110 5.5 可控性），間接支撐；維持 C 級
+  WHICH-F-003:
+    name: 控制感偏好
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Parasuraman/Sheridan/Wickens 2000 自動化分級模型（IEEE SMC-A）+ ISO 9241-110 5.5 可控性 + WCAG 3.2.6
+  WHICH-F-004:
+    name: 社交可見性偏好
+    evidence_note: 有標準條款（GDPR 第 25 條資料保護設計、PIPL 第 16 條），間接支撐；維持 C 級
+  WHICH-F-005:
+    name: 美學風格偏好
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Norman 2004 三層次理論
+  WHICH-F-006:
+    name: 輸入方式偏好
+    evidence_note: 有標準條款（WCAG 2.2 輸入模態 SC），間接支撐；維持 C 級
+  WHICH-F-007:
+    name: 反饋偏好
+    evidence_note: 有標準條款（WCAG 2.2 SC 4.1.3 狀態訊息 + ISO 9241-110:2020 5.2 反饋原則），間接支撐；維持 C 級
+  WHICH-F-008:
+    name: 互動模式偏好
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Parasuraman et al. 2000 自動化分級模型
+  WHICH-F-009:
+    name: 通知偏好
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：SDT 理論間接支撐（自主需求），直接針對通知設計的研究仍缺
+  WHO-F-001:
+    name: 身體和認知能力
+    evidence_note: C2 掛接 Microsoft Inclusive Toolkit + Clarkson et al. 2003；間接支撐，維持 C 級
+  WHO-F-002:
+    name: 人口統計學
+    evidence_note: 有標準條款（ISO 9241-110 人本原則），間接支撐；維持 C 級
+  WHO-F-003:
+    name: 健康狀況
+    evidence_note: C2 掛接 Waller, Langdon & Clarkson 2010 DFS 排除測算；間接支撐，維持 C 級
+  WHO-F-004:
+    name: 學習風格
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Pashler et al. 2008 結論：學習風格理論缺乏證據基礎——因素保留但標註理論爭議，設計響應降級為'多模態呈現'而非'風格適配'
+  WHO-F-005:
+    name: 情感與動機
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Norman 2004 情感化設計（本能/行為/反思三層次）+ Ryan & Deci 2000 SDT 理論
+  WHO-F-006:
+    name: 感官偏好
+    evidence_note: C4a 核驗文獻掛接（2026-10-08）：Aron & Aron 1997 感官處理敏感度（HSP 量表，7 項研究）實證，直接研究支撐
+  WHO-F-007:
+    name: 技術素養
+    evidence_note: 有標準條款（WCAG 2.2/EN 301 549），間接支撐；維持 C 級
+  WHO-F-008:
+    name: 文化背景
+    evidence_note: 有標準條款（WCAG 2.2 文化相關 SC），間接支撐；維持 C 級
+  WHO-F-009:
+    name: 神經多樣性
+    evidence_note: 有標準條款（WCAG 2.2 認知相關 SC），間接支撐；維持 C 級
+  WHO-F-010:
+    name: 認知特徵
+    evidence_note: C2 掛接 Waller et al. 2010；間接支撐，維持 C 級
+  WHO-F-011:
+    name: 語言
+    evidence_note: 有標準條款（WCAG 2.2 SC 3.1.1/3.1.2 語言），間接支撐；維持 C 級
+  WHO-F-012:
+    name: 讀寫能力
+    evidence_note: 有標準條款（WCAG 2.2 SC 3.1.5 閱讀級），間接支撐；維持 C 級
+  WHO-F-013:
+    name: 身體尺寸與人體工程學
+    evidence_note: C2 掛接 Waller et al. 2010；間接支撐，維持 C 級
+  WHO-F-014:
+    name: 隱私與安全擔憂
+    evidence_note: 有標準條款（GDPR/PIPL 條款），間接支撐；維持 C 級
+  WHO-F-015:
+    name: 性別與性別表達
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Haimson et al. 2016/2023（CHI）跨性別數字身份研究；空間層部分仍為 C
+  WHY-F-001:
+    name: 成本約束
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Return on Disability 2024 報告（$18.3T 市場規模資料，企業調研 N=11,000+）
+  WHY-F-002:
+    name: 市場定位
+    evidence_note: C2 核驗文獻掛接（2026-10-07）：Return on Disability 2024 報告（63% 全球人口關聯資料）
+  WHY-F-003:
+    name: 商業模式
+    evidence_note: C4a 核驗文獻掛接（2026-10-08）：Mathur et al. 2019 暗黑模式大規模實證支撐'商業模式約束設計倫理'方向；商業模式本身為商業共識
+  WHY-F-004:
+    name: 可持續性與環保目標
+    evidence_note: C4a 核驗文獻掛接（2026-10-08）：Elkington 1997 三重底線理論著作；可持續性為管理學共識
+  WHY-F-005:
+    name: 利益相關者影響
+    evidence_note: C4a 核驗文獻掛接（2026-10-08）：Freeman 1984 利益相關者理論奠基著作；管理學共識
+facets:
+  FAC-WHO-F-001-01:
+    name: 視覺能力
+    definition: 感知視覺資訊所需的視力、視野、色覺與光適應能力（不含聽覺、肢體操作與認知加工）
+  FAC-WHO-F-001-02:
+    name: 聽覺能力
+    definition: 感知聽覺資訊所需的聽力與聲音分辨能力（不含視覺、肢體操作與認知加工）
+  FAC-WHO-F-001-03:
+    name: 運動能力
+    definition: 完成操作所需的肢體力量、精細動作、觸及範圍與移動能力，對應排除測演算法的操作/觸及/移動三類（不含感知通道與認知加工）
+  FAC-WHO-F-001-04:
+    name: 言語與認知能力
+    definition: 理解與表達資訊所需的言語接收/產生能力及注意、記憶、執行等認知加工能力（不含感知通道與肢體操作）
+guides:
+  G-HOW-F-001:
+    name: 網路韌性設計指南
+    patterns:
+    - name: 離線優先架構
+      description: 核心功能按離線可完成設計（本地快取/Service Worker/衝突合併），網路是增強而非前提
+      domain: digital
+      example: 筆記應用離線可寫可查，聯網後靜默同步
+      refs:
+      - STD-W3C-WCAG22:1.4.10
+    - name: 自適應媒體
+      description: 媒體質量按實時頻寬自適應（位元速率/解析度/載入量），弱網先保內容可達
+      domain: digital
+      example: 影片在 2G 環境自動降至音訊+字幕模式
+    - name: 優雅降級路徑
+      description: 網路不可用時功能降級而非癱瘓：只讀可用、佇列待發、本地替代
+      domain: digital
+      example: 弱網時表單暫存本地並提示『網路恢復後自動提交』
+    - name: 狀態誠實呈現
+      description: 網路狀態與預期等待顯式告知（當前網速/預計耗時/失敗原因），不假裝一切正常
+      domain: digital
+      example: 『當前網路較慢，圖片將以低質量載入』
+    anti_patterns:
+    - name: 雲端單點依賴
+      description: 一切功能實時請求雲端
+      consequence: 地鐵、電梯、地下室、欠費——現代生活的斷網點比想象多；斷網即變磚的產品在網路波動面前全線崩潰
+    - name: 白屏載入
+      description: 弱網下無限轉圈無任何降級
+      consequence: 3 秒無反饋的流失率過半——降級內容勝過完美空白
+  G-HOW-F-002:
+    name: 低端裝置友好指南
+    patterns:
+    - name: 效能預算制
+      description: 為核心裝置檔位設效能預算（記憶體/首屏時間/包體積），CI 超預算即失敗——效能是功能不是最佳化
+      domain: digital
+      example: 目標 2GB 記憶體機型：冷啟動 ≤3s、包 ≤80MB
+      refs:
+      - STD-EN-301549:8
+    - name: 能力檢測自適應
+      description: 執行時檢測裝置能力動態調整功能（特效/解析度/後臺併發），舊裝置得到完整核心功能
+      domain: digital
+      example: 低端機關閉背景模糊等裝飾性渲染，功能不減
+    - name: 外設能力擴充套件
+      description: 裝置自身能力不足時支援外接擴充套件（外接鍵盤/隨身碟/顯示器），而非封死路徑
+      domain: digital
+      example: 平板支援外接鍵盤後切換桌面級操作
+    - name: 省電模式內建
+      description: 省電模式作為一等公民選項：降低輪詢/亮度/渲染，功能保持完整
+      domain: digital
+      example: 低電量時關閉非必要動畫與後臺重新整理
+      refs:
+      - STD-GB-T-45122:6.4
+    anti_patterns:
+    - name: 旗艦機假設
+      description: 按團隊手裡的高階裝置驗收
+      consequence: 目標市場的中位機型才是真實基準——旗艦機上流暢在千元機上即卡死
+    - name: 功能歧視鏈
+      description: 舊裝置直接不支援而非降級支援
+      consequence: 裝置壽命5-10年，強制淘汰把低收入使用者逐出——漸進降級是數字環保
+  G-HOW-F-003:
+    name: 續航與電源指南
+    patterns:
+    - name: 電量透明化
+      description: 電量狀態與剩餘使用時間預測常顯可查；低電量預警分級提前
+      domain: digital
+      example: 顯示『預計剩餘 4 小時』而非僅百分比
+      refs:
+      - STD-GB-T-45122:6.4
+    - name: 省電模式分級
+      description: 省電分檔（輕度/重度/極限保命），極限檔保核心功能（通話/求救）
+      domain: digital
+      example: 5% 電量進入極限模式：僅保留通話與定位
+    - name: 多充電方式冗餘
+      description: 支援通用充電標準（USB-C PD/無線），專用介面需有轉接方案
+      domain: industrial
+      example: 裝置用 USB-C 而非私有介面；附贈轉接頭
+    - name: 關鍵功能低功耗保障
+      description: 安全類功能（跌倒檢測/緊急呼叫）有獨立低功耗保障路徑
+      domain: digital
+      example: 緊急功能獨立電源島或超低功耗晶片
+    anti_patterns:
+    - name: 電量焦慮設計
+      description: 高頻喚醒、後臺常駐悄悄耗電
+      consequence: 使用者為省電而解除安裝——續航是最真實的使用者痛點之一（Rahmati & Zhong 2009 人-電池互動研究）
+    - name: 私有充電生態
+      description: 專用充電器/私有協議
+      consequence: 充電器丟失即裝置癱瘓——通用標準是電源包容的底線
+  G-HOW-F-004:
+    name: 相容性矩陣指南
+    patterns:
+    - name: 支援矩陣顯式化
+      description: 平臺×瀏覽器×系統版本×AT 的支援矩陣文件化並持續測試；支援邊界顯式告知使用者
+      domain: digital
+      example: 產品頁公開支援矩陣：Chrome/Firefox/Safari 最近兩個大版本
+      refs:
+      - STD-EN-301549:6
+    - name: 漸進增強
+      description: 基礎功能人人可用，增強能力按裝置漸進疊加——核心不依賴最新特性
+      domain: digital
+      example: 佈局用穩定 CSS 實現，新特性只做錦上添花
+    - name: 標準 API 優先
+      description: 用標準化 Web/系統 API，避免私有特性與過時外掛（Flash 式死路）
+      domain: digital
+      example: 原生 HTML5 控制元件 + ARIA 補充，不造私有控制元件
+    - name: AT 測試常態化
+      description: 主流 AT 組合（NVDA+Firefox、JAWS+Chrome、VoiceOver、TalkBack）進 CI 迴歸
+      domain: digital
+      example: 每次釋出跑 AT 冒煙測試用例集
+    anti_patterns:
+    - name: 最新版主義
+      description: 只支援最新平臺版本
+      consequence: 企業環境、發展中市場、謹慎使用者大量停留在舊版本——支援矩陣向下延伸比向上追新更重要
+    - name: 單生態繫結
+      description: 深度依賴單一平臺/生態
+      consequence: 生態政策變動（下架/介面變更）即全軍覆沒；標準介面是逃生門
+  G-HOW-F-005:
+    name: 技術環境適配指南
+    patterns:
+    - name: 本地優先選項
+      description: 智慧裝置提供本地控制路徑（物理開關/本地網路控制），雲端不可達時仍可操作
+      domain: architecture
+      example: 智慧窗簾：App + 牆面開關 + 本地遙控三通道
+      refs:
+      - STD-EN-301549:11.7
+    - name: 降級體驗設計
+      description: 每個雲端依賴都有斷鏈降級預案：本地快取、只讀模式、物理替代
+      domain: universal
+      example: 門禁系統斷網時本地白名單仍可通行
+    - name: 運維工具普適
+      description: 維修所需工具與技能按當地可得性設計（普通螺絲/標準介面/圖解手冊）
+      domain: industrial
+      example: 產品設計成一把十字螺絲刀可完成全部拆解
+    anti_patterns:
+    - name: 雲端綁架
+      description: 裝置必須聯網才能執行基本功能
+      consequence: 斷網/停服後產品變電子垃圾——本地兜底是產品的尊嚴底線
+    - name: 專用工具依賴
+      description: 維修需要專用工具/官方上門
+      consequence: 維修成本高企→使用者放棄維修→提前報廢（與可持續目標直接衝突）
+  G-HOW-F-006:
+    name: 輔助科技互操作指南
+    patterns:
+    - name: 標準無障礙 API
+      description: 介面元件用平臺原生無障礙 API（ARIA/UIAutomation/AT-SPI），自繪控制元件補齊語義角色
+      domain: digital
+      example: 自定義下拉選單帶完整 ARIA role/state/鍵盤行為
+      refs:
+      - STD-EN-301549:9.4
+    - name: 焦點秩序正確
+      description: 焦點順序與視覺/邏輯順序一致；焦點可見不消失；模態焦點圈閉
+      domain: digital
+      example: Tab 順序按閱讀順序；彈窗開啟焦點進入、關閉焦點歸還
+      refs:
+      - STD-W3C-WCAG22:4.1
+    - name: 文字替代全覆蓋
+      description: 全部非文字內容有等價文字替代（alt/label/說明）；圖片式按鈕有可讀名稱
+      domain: digital
+      example: 圖示按鈕帶 aria-label；裝飾圖 alt 為空
+    - name: 真實使用者驗證
+      description: AT 相容不能只靠模擬器——招募真實 AT 使用者進入測試環節
+      domain: digital
+      example: 釋出前 5 名螢幕閱讀器使用者完成核心任務走查
+    anti_patterns:
+    - name: AT 事後補丁
+      description: 開發完成後『加無障礙』
+      consequence: 語義殘缺的介面打 ARIA 補丁不如原生元件一行標籤——無障礙是架構決策不是撒鹽
+    - name: 焦點黑洞
+      description: 焦點消失/鍵盤陷阱/順序混亂
+      consequence: 螢幕閱讀器使用者直接失聯——焦點管理是 AT 互操作的第一張多米諾
+  G-HOW-F-007:
+    name: 輸入輸出通道指南
+    patterns:
+    - name: 多通道並存
+      description: 輸入 ≥2 通道（觸控+鍵盤/語音）、輸出 ≥2 通道（視覺+聲音/觸覺）——任何單通道不構成唯一路徑
+      domain: digital
+      example: 全部操作：觸控 + 鍵盤快速鍵雙通道
+      refs:
+      - STD-EN-301549:11.5.2
+    - name: IO 對映可自定義
+      description: 鍵位重對映/靈敏度調節/通道開關——使用者的身體條件決定最舒適的對映，不由硬體預設包辦
+      domain: universal
+      example: 單手使用者交換左右鍵位；振動強度按需調
+    - name: 外接裝置開放
+      description: 提供標準輸入輸出 API/介面（HID/藍芽/USB），第三方輔助裝置即插即用
+      domain: industrial
+      example: 裝置預留標準 HID 介面供開關/搖桿/眼動儀接入
+    - name: 反饋同步多模
+      description: 關鍵狀態反饋多模同步（視覺+聲音+觸覺），且各模態語義一致
+      domain: digital
+      example: 支付成功：對勾動畫 + 短音 + 輕震同語義
+    anti_patterns:
+    - name: 通道獨裁
+      description: 某功能只經一種輸入/輸出通道
+      consequence: 該通道能力受限使用者即被鎖死——通道冗餘是資訊可達的保險
+    - name: 對映霸權
+      description: 不允許任何自定義調整
+      consequence: 左利手、單手、震顫使用者的微調需求被無視——自定義不是極客特權是適配剛需
+  G-HOW-F-008:
+    name: 認證無障礙指南
+    patterns:
+    - name: 雙路徑認證底線
+      description: 至少兩條能力要求不同的獨立認證路徑（如密碼+生物識別），使用者按自身能力選擇
+      domain: digital
+      example: 密碼（認知負荷）與指紋（運動要求）二選一
+      refs:
+      - STD-W3C-WCAG22:3.3.8
+    - name: 認知測試豁免
+      description: 認證不強制認知功能測試（記憶密碼/拼圖/算術）；恢復流程同樣豁免——改用受信任聯絡人/裝置/硬體金鑰
+      domain: digital
+      example: 忘記密碼 → 向受信任裝置推送確認，而非安全問題
+    - name: 管理器友好
+      description: 密碼管理器自動填充零阻斷（不設 autocomplete=off）、表單語義正確（type=password + id）
+      domain: digital
+      example: 登入表單允許貼上與自動填充——這是功能不是漏洞
+    - name: 會話人性化
+      description: 會話時長按任務需求設定並可延長；不因認知/運動緩慢導致中途掉線重認證
+      domain: digital
+      example: 閱讀長文時靜默續期，絕不彈『重新登入』打斷
+    anti_patterns:
+    - name: 單一認證強推
+      description: 只提供一種認證方式並強制所有人使用
+      consequence: WCAG 3.3.8 直接違反——認知障礙者記不住複雜密碼、運動障礙者按不了指紋，認證即成了過濾器
+    - name: 恢復死亡谷
+      description: 賬號恢復依賴安全問題/上傳證件等高門檻
+      consequence: 被鎖在門外的使用者最脆弱時刻遇到最高牆——恢復路徑的可用性要求高於日常登入
+  G-RUL-001:
+    name: 無障礙遵循落地指南
+    patterns:
+    - name: AA 基線先行
+      description: 以 WCAG 2.2 AA 為強制基線（對齊 EN 301 549 採購要求）；AAA 按場景選擇性達標——先守住基線再談卓越
+      domain: digital
+      example: 新專案驗收清單直接內建 WCAG 2.2 AA 全部適用條款
+      refs:
+      - STD-W3C-WCAG22:1
+      - STD-EN-301549:9
+    - name: 無障礙宣告公示
+      description: 釋出無障礙宣告（覆蓋範圍/已知障礙/反饋通路/改進計劃），給使用者可核對的承諾
+      domain: digital
+      example: 產品頁無障礙宣告 + 障礙反饋專用入口
+      refs:
+      - STD-GB-T-37668:1
+    - name: 自動化掃描+人工稽核雙軌
+      description: CI 內建自動掃描（axe/Lighthouse）攔截迴歸 + 週期性人工稽核（螢幕閱讀器走查/專家評審）——機器抓技術項，人抓體驗項
+      domain: digital
+      example: 合併請求掛自動掃描門禁；季度專家稽核
+    anti_patterns:
+    - name: 遵循即終點
+      description: 拿到遵循報告即停止投入
+      consequence: 迭代中無障礙持續迴歸——遵循是過程不是證書；無障礙債務和程式碼一樣會積累
+    - name: ' overlay 補丁迷思'
+      description: 買一鍵無障礙覆蓋層工具應付遵循
+      consequence: 業界共識與使用者報告均顯示 overlay 無法替代真實修復，反而干擾輔助科技——花錢買假遵循
+  G-RUL-002:
+    name: 資料隱私遵循指南
+    patterns:
+    - name: 最小化預設
+      description: 預設收集最少資料；每項收集有明確目的並按目的限定使用——最小化是隱私遵循的第一性原則
+      domain: universal
+      example: 註冊僅收郵箱；生日/手機號選填且說明用途
+      refs:
+      - STD-GDPR:25
+    - name: 撤回便捷對等
+      description: 撤回同意的路徑與給予同意同樣便捷；撤回即生效並有資料狀態告知
+      domain: digital
+      example: 隱私面板一鍵撤回單項授權 + 撤回後處理狀態反饋
+      refs:
+      - STD-GDPR:7.3
+      - STD-PIPL:15
+    - name: 權利響應 SLA
+      description: 資料主體權利（查閱/複製/更正/刪除）建立響應流程與 SLA：GDPR 一個月時限、PIPL 及時響應——流程而非口號
+      domain: universal
+      example: 權利請求工單化，超時自動升級
+      refs:
+      - STD-GDPR:12.3
+      - STD-PIPL:45
+    - name: 拒絕零懲罰
+      description: 拒絕授權/撤回同意後基本服務不受影響（法定必需處理除外且說明）
+      domain: digital
+      example: 拒絕營銷授權後全部核心功能照常可用
+      refs:
+      - STD-PIPL:16
+    anti_patterns:
+    - name: 同意工廠
+      description: 冗長條款牆 + 預設勾選 + 拒絕按鈕灰色化
+      consequence: GDPR/PIPL 下均不構成有效同意（自由給予原則）；『被同意』的使用者從未真正授權——法律與信任雙輸
+    - name: 跨境盲區
+      description: 資料出境未評估遵循路徑
+      consequence: PIPL 第38-40條要求出境安全評估/認證/標準合同三選一——跨境處理的遵循路徑必須前置設計
+  G-RUL-003:
+    name: 安全認證規劃指南
+    patterns:
+    - name: 目標市場清單前置
+      description: 立項即鎖定目標市場及其強制認證（CE/UL/MDR/CCC 等）——認證要求是需求的一部分不是後補材料
+      domain: industrial
+      example: 產品需求文件含『目標市場認證矩陣』章節
+    - name: 要求追溯矩陣
+      description: 每條認證條款追溯到設計文件與測試證據（條款→需求→設計→測試四向可追溯）
+      domain: industrial
+      example: ISO 26262 條款-需求-測試三向追溯表
+      refs:
+      - STD-ISO-26262
+    - name: 危害分析先行
+      description: 危害分析與風險評估（HARA/FMEA）在設計早期完成，驅動安全需求而非事後補救
+      domain: industrial
+      example: 概念階段輸出 HARA 並評審後才進入詳細設計
+    - name: 預遵循測試
+      description: 正式認證前進行預測試差距分析——把問題消滅在提交前
+      domain: industrial
+      example: 送檢前內部按標準全項自測 + 差距清單
+    anti_patterns:
+    - name: 認證後置
+      description: 產品完成後再對照認證標準
+      consequence: 結構性的不遵循（材料/冗餘設計）無法靠整改解決——推倒重來是認證後置的常見結局
+    - name: 最低限通關
+      description: 按檢測樣例定製而非按標準設計
+      consequence: 抽查/複檢/真實事故中的暴露——為通關設計的產品在真實世界是裸奔
+  G-RUL-004:
+    name: 智慧財產權遵循指南
+    patterns:
+    - name: SBOM 全量管理
+      description: 軟體物料清單（SBOM）按 SPDX 標準維護：全部依賴的許可證、版本、來源機器可讀
+      domain: digital
+      example: CI 自動生成 SBOM，新依賴許可證掃描門禁
+      refs:
+      - STD-SPDX
+    - name: 素材授權臺賬
+      description: 圖片/字型/音訊逐項登記授權來源與許可範圍；『網上找的』不是授權
+      domain: universal
+      example: 素材庫每項附授權憑證（購買記錄/授權書/許可證連結）
+    - name: 傳染性隔離
+      description: GPL 等傳染性許可證元件的引入有獨立評審流程：連結方式、分發邊界、義務清單
+      domain: digital
+      example: 新依賴含 GPL 系許可證觸發法務評審工單
+    - name: 許可證宣告規範
+      description: 全部開源元件按許可證要求保留版權宣告與 LICENSE 檔案；釋出物附許可清單
+      domain: digital
+      example: 發行包內完整第三方許可宣告檔案
+    anti_patterns:
+    - name: 無照依賴
+      description: 複製貼上未標註許可的程式碼/使用無授權素材
+      consequence: 下架、索賠、企業盡調不過——一次侵權清零全部成本優勢
+    - name: 許可即同意
+      description: 以為開源=隨便用
+      consequence: 開源許可證是授權不是無條款——GPL 傳染性、署名要求、商用限制各不相同，違反即侵權
+  G-RUL-005:
+    name: 倫理審查實踐指南
+    patterns:
+    - name: 涉人研究必過審
+      description: 使用者研究/資料收集涉人即走倫理審查（IRB/倫理委員會），知情同意流程完整——Respect for Persons 的制度化
+      domain: universal
+      example: 使用者測試前簽署知情同意書含目的/風險/退出權
+      refs:
+      - STD-BELMONT
+    - name: 知情同意降門檻
+      description: 同意文字用參與者能懂的語言（圖解/分層摘要），確保『知情』而非『簽字』
+      domain: universal
+      example: 一頁圖解版同意書 + 術語白話對照
+    - name: 演算法公平稽核
+      description: 演算法決策系統按受影響群體分層資料稽核（不同群體錯誤率/透過率差異）——Justice 原則在 AI 場景的落地
+      domain: digital
+      example: 招聘系統按性別/年齡分組稽核透過率差異
+      refs:
+      - STD-IEEE-EAD
+    - name: 倫理反饋通道
+      description: 產品內建倫理問題舉報/反饋通道並納入處置流程——倫理監督不是一次性審查而是持續機制
+      domain: digital
+      example: 『報告問題』入口含倫理類別且有響應時限
+    anti_patterns:
+    - name: 倫理表演
+      description: 走過場的倫理審查/掛在牆上的價值觀
+      consequence: 真正的倫理問題（成癮設計/偏見演算法/操縱）恰恰發生在沒人真的看的地方——審查不是儀式是治理
+    - name: 同意即豁免
+      description: 拿到使用者同意就認為一切皆可
+      consequence: Belmont 原則中 Beneficence（風險收益評估）獨立於同意——同意書覆蓋不了傷害本身的不正當性
+  G-RUL-006:
+    name: 行業規範對齊指南
+    patterns:
+    - name: 行業清單維護
+      description: 目標行業准入規範清單化維護（醫療 HIPAA/金融 PCI DSS/教育 FERPA/航空 DO-178C），年度複核更新
+      domain: universal
+      example: 遵循臺賬含適用規範列表+版本+負責人+複審日期
+    - name: 條款對映到證據
+      description: 每條適用規範條款對映到具體證據（設計文件/測試報告/流程記錄）——對映不是讀過，是可查證
+      domain: universal
+      example: HIPAA 技術保障條款 → 加密配置文件 + 稽核日誌樣例
+    - name: 變更跟蹤機制
+      description: 訂閱行業規範更新通路（標準組織/監管公告），版本變更觸發差距評估
+      domain: universal
+      example: PCI DSS 新版釋出 → 30 天內出差距評估報告
+    - name: 分域遵循負責人
+      description: 跨行業產品為每個行業域設遵循負責人——規範的專業性不允許『一個人全管』
+      domain: universal
+      example: 醫療線與金融線各有 DPO/遵循專員
+    anti_patterns:
+    - name: 規範快照
+      description: 遵循檢查做一次歸檔即認為永久有效
+      consequence: 行業規範持續演進（PCI DSS 3→4 變動巨大）——快照式遵循在第二次稽核時變成違規證據
+    - name: 通用遵循幻想
+      description: 一套遵循措施通吃所有行業
+      consequence: 醫療/金融/教育各有專業條款，通用方案對每個行業都是半吊子——分域是行業遵循的鐵律
+  G-WHAT-F-001:
+    name: 任務複雜度管理指南
+    patterns:
+    - name: 分而治之
+      description: 複雜任務拆分為線性簡單子任務；每步一個焦點決策，步驟間狀態自動傳遞
+      domain: digital
+      example: 開戶流程從『一頁 30 項』改為『五步每步 6 項』
+      refs:
+      - STD-ISO-9241-110:5.1
+    - name: 預設值減負
+      description: 可預測的選擇用預設值+智慧推薦承接，使用者只在偏離預設時操作
+      domain: digital
+      example: 安裝嚮導預設推薦配置，高階選項摺疊
+    - name: 嚮導式引導
+      description: 首次複雜任務提供嚮導模板；熟悉後可跳過直達專家路徑
+      domain: digital
+      example: 報表工具：首次用嚮導，之後直接模板庫
+    - name: 決策點預算
+      description: 核心流程的決策點數量設上限（≤3/步）；超預算即重新拆分任務
+      domain: universal
+      example: 結賬流程砍掉可選加購彈窗——留在結賬後
+    anti_patterns:
+    - name: 步驟堆砌
+      description: 把所有配置塞進一個流程『以防使用者需要』
+      consequence: 決策疲勞下使用者亂選或放棄——沒人想要 30 個選項的『自由』
+    - name: 一次性巨表單
+      description: 長表單一頁到底
+      consequence: 完成率隨欄位數線性下降；分步+進度條的完成率顯著更高——拆分是轉化最佳化也是包容
+  G-WHAT-F-002:
+    name: 認知負荷控制指南
+    patterns:
+    - name: 工作記憶減負
+      description: 資訊分步呈現而非一屏全塞；使用者不該需要記住上一步才能做這一步
+      domain: universal
+      example: 分步表單頂部常顯已填摘要
+      refs:
+      - STD-ISO-9241-110:5.1.3
+    - name: 負荷可測量
+      description: 核心任務用 NASA-TLX 等量表建立負荷基線；超過中等負荷（TLX>60）即觸發重設計
+      domain: digital
+      example: 新功能上線前 5 人 TLX 快測，均值>60 打回
+      refs:
+      - STD-NASA-TLX
+    - name: 即時幫助嵌入
+      description: 幫助資訊在使用點就近出現（行內提示/懸浮說明），不強迫跳轉幫助中心
+      domain: digital
+      example: 日期格式錯誤時行內示例而非跳轉文件
+      refs:
+      - STD-W3C-WCAG22:3.3.7
+    anti_patterns:
+    - name: 彈窗轟炸
+      description: 疊加彈窗、橫幅、浮層同時爭奪注意力
+      consequence: 認知過載下所有資訊都等於沒有資訊——注意力是零和資源
+    - name: 幫助中心孤島
+      description: 幫助內容集中放在獨立頁面
+      consequence: 跳轉幫助=丟上下文+多一次往返；在使用點給答案才是有效幫助
+  G-WHAT-F-003:
+    name: 容錯設計指南
+    patterns:
+    - name: 撤銷優先
+      description: 錯誤處理的第一梯隊是可撤銷（undo/歷史/回收站），確認彈窗是最後手段——撤銷不打斷心流
+      domain: digital
+      example: 刪除檔案 → 回收站 + Ctrl+Z，無確認彈窗
+      refs:
+      - STD-ISO-9241-110:5.6
+    - name: 危險操作隔離
+      description: 不可逆操作物理/視覺隔離（獨立紅色區域、長按或雙擊觸發）+ 必要確認
+      domain: digital
+      example: 『清空全部資料』在設定深處紅色獨立區，需輸入確認詞
+      refs:
+      - STD-W3C-WCAG22:3.3.4
+    - name: 錯誤資訊三要素
+      description: 每條錯誤資訊包含：發生了什麼（人話）+ 為什麼 + 怎麼修——錯誤資訊是設計的一部分不是程式設計師的除錯輸出
+      domain: universal
+      example: 『上傳失敗：檔案超過 10MB 上限——試試壓縮圖片後重新上傳』
+    - name: 自動儲存快照
+      description: 版本快照+自動儲存預設開啟；使用者任意時刻可回到任一歷史狀態
+      domain: digital
+      example: 文件 30 秒自動儲存 + 24 小時版本歷史
+    anti_patterns:
+    - name: 確認彈窗濫用
+      description: 一切操作都要確認
+      consequence: 確認疲勞後使用者無腦點『是』——確認彈窗失去保護作用恰在其被需要時
+    - name: 錯誤碼甩鍋
+      description: 報錯只給『Error 5003』
+      consequence: 使用者無法自救也無法求助——錯誤碼是給開發者的，使用者需要的是修復路徑
+    - name: 不可逆即危險
+      description: 預設操作可逆，例外才需防護——反過來說：不可逆+無防護=設計缺陷
+      consequence: 誤刪、誤發、誤付——一次不可逆錯誤摧毀的信任需要十次成功才能重建
+  G-WHAT-F-004:
+    name: 任務永續性指南
+    patterns:
+    - name: 不重複輸入底線
+      description: 同流程內系統已知的使用者資訊自動填充，絕不要求二次輸入
+      domain: digital
+      example: 結賬頁自動帶出收貨地址，僅確認修改
+      refs:
+      - STD-W3C-WCAG22:3.3.7
+    - name: 自動草稿
+      description: 長任務全程靜默自動儲存；中斷（誤觸/來電/斷電）零損失恢復
+      domain: digital
+      example: 表單每欄位失焦即存草稿，重開直達
+    - name: 繼續上次入口
+      description: 『繼續上次』常駐顯眼位置；續接不需要任何重新導航
+      domain: digital
+      example: 學習 App 首屏第一個按鈕就是『繼續第 3 節』
+      refs:
+      - STD-W3C-WCAG22:3.2.3
+    - name: 跨裝置同步
+      description: 任務狀態雲端同步，換裝置無縫續接（良好/優秀檔，見 M-WHAT-F-004-01）
+      domain: digital
+      example: 手機上寫到一半的文件，平板開啟游標還在原處
+    anti_patterns:
+    - name: 一次坐完要求
+      description: 長任務必須一次完成否則重來
+      consequence: 被中斷 2 次的使用者直接放棄——中斷是常態（來電、孩子、地鐵到站），不是例外
+    - name: 靜默丟失
+      description: 會話超時清空全部輸入
+      consequence: 30 分鐘填寫付諸東流——使用者不只是流失，是帶著憤怒流失
+    - name: 重複盤問
+      description: 同流程反覆索要已提供的資訊
+      consequence: 『我剛才不是填過了嗎』——冗餘輸入是最直白的 disrespect（WCAG 3.3.7 的立法化表達）
+  G-WHAT-F-005:
+    name: 協作任務指南
+    patterns:
+    - name: 角色許可權顯式
+      description: 協作開始前明確角色與許可權（檢視/評論/編輯/管理），職責不清是一切協作摩擦之源
+      domain: digital
+      example: 文件共享預設只讀，按需提升編輯許可權
+      refs:
+      - STD-ISO-9241-110:5.5.4
+    - name: 非同步優先
+      description: 預設支援非同步協作（留言/@/狀態跟蹤）；實時同步只用於確需併發的場景
+      domain: digital
+      example: 評審流程：各自非同步批註 → 彙總會議只處理分歧點
+    - name: 進展自動彙總
+      description: 協作狀態變更自動通知相關人（可訂閱分級）；減少『問進度』的溝通開銷
+      domain: digital
+      example: 任務看板自動通知：僅我負責的+被@的
+    anti_patterns:
+    - name: 會議預設
+      description: 需要協作就開會
+      consequence: 同步會議把所有人的日程鎖死在最慢者——非同步工具讓協作擺脫時間綁架
+    - name: 許可權混沌
+      description: 所有人所有許可權或沒人知道誰管什麼
+      consequence: 誤操作、責任真空、版本混亂——許可權結構是協作的地基不是行政負擔
+  G-WHAT-F-006:
+    name: 中斷容忍設計指南
+    patterns:
+    - name: 未儲存顯性化
+      description: 任何未儲存狀態在介面常顯（圓點/角標/文案），退出前主動確認——把儲存狀態變成可見狀態
+      domain: digital
+      example: 關閉含未儲存修改的分頁時明確提示
+      refs:
+      - STD-W3C-WCAG22:3.2.3
+    - name: 專注模式可設
+      description: 使用者可主動遮蔽非緊急通知（專注模式/狀態設定），緊急例外白名單顯式
+      domain: digital
+      example: 寫作應用一鍵禪模式：全屏+免打擾+計時
+    - name: 稍後處理佇列
+      description: 任何任務可一鍵掛起到待辦佇列並設提醒——中斷不等於遺忘也不等於當場處理
+      domain: digital
+      example: 讀到一半的文章 → 稍後讀 + 晚 8 點提醒
+    - name: 任務自然斷點
+      description: 任務結構按可中斷粒度分塊；斷點處狀態完整可恢復
+      domain: universal
+      example: 影片課每 10 分鐘一個章節測驗即天然斷點
+      refs:
+      - STD-ISO-9241-110:5.5.2
+    anti_patterns:
+    - name: 通知全穿透
+      description: 任何通知隨時打斷任何任務
+      consequence: 深度工作被切碎成 3 分鐘碎片——恢復中斷的專注平均需 20 分鐘；通知必須分層分級
+    - name: 中斷即懲罰
+      description: 被打斷後進度/連擊/會話失效
+      consequence: 使用者為避免中斷懲罰而焦慮防備——產品與使用者的目標錯位成對抗
+  G-WHEN-F-001:
+    name: 使用時段適配指南
+    patterns:
+    - name: 時段感知介面
+      description: 介面隨使用時段自動調節（夜間暗色/早晨明亮），且可手動覆蓋自動判斷
+      domain: digital
+      example: 22:00 後自動暗色主題，白天高對比
+    - name: 勿擾邊界尊重
+      description: 通知與提醒遵守使用者設定的偏好時段與系統勿擾模式；緊急類資訊白名單除外且顯式宣告
+      domain: digital
+      example: 營銷通知遵守勿擾；安全警報穿透但僅限真實緊急
+    - name: 時段任務推薦
+      description: 按時段推薦內容與功能（晨間速覽/午間輕量/晚間深度），不強制改變使用習慣
+      domain: digital
+      example: 學習類應用早晨推薦 15 分鐘微課程
+    anti_patterns:
+    - name: 全天候推送
+      description: 預設任何時刻都可打擾使用者
+      consequence: 深夜營銷推送直接導致解除安裝；時段感知是通知的基本禮貌
+    - name: 硬編碼時段
+      description: 按固定時刻表切換功能
+      consequence: 輪班使用者、跨時區旅行者的真實作息與固定時刻表錯配——跟隨使用者而非時鐘
+  G-WHEN-F-002:
+    name: 頻率分層指南
+    patterns:
+    - name: 高頻效率通道
+      description: 高頻使用者獲得效率特性：快速鍵、批次操作、常用功能置頂——重複是最強的個性化訊號
+      domain: digital
+      example: 第 5 次使用某功能後自動出現在首屏推薦位
+    - name: 低頻記憶輔助
+      description: 低頻使用者獲得記憶支援：最近使用記錄、預設值預填、清晰指引——把『想不起來』當作設計輸入
+      domain: digital
+      example: 月度繳費頁自動帶出上次繳費檔位
+    - name: 回訪機制分層
+      description: 按間隔分層設計回訪（周活躍/月活躍/沉睡使用者），頻率由使用者資料而非假設決定
+      domain: service
+      example: 沉睡使用者收到『你的植物還活著嗎』而非系統推銷
+    anti_patterns:
+    - name: 單屏全人均衡
+      description: 一套介面同時討好高頻與低頻使用者
+      consequence: 高頻使用者嫌慢、低頻使用者嫌亂——分層入口比萬能介面便宜且有效
+    - name: 黏性指標暴政
+      description: 為提升 DAU/MAU 強制製造開啟理由
+      consequence: 為指標設計的功能在消耗使用者時間——上癮式設計短期內資料好看，長期信任崩塌
+  G-WHEN-F-003:
+    name: 季節性適應指南
+    patterns:
+    - name: 氣候引數化設計
+      description: 按目標市場氣候資料（溫度極值/雨季天數/日照變化）設定硬體與功能包絡，不以四季均衡假設
+      domain: industrial
+      example: 南方溼熱市場產品按 40°C×90%RH 設計而非 35°C 標稱
+    - name: 季節性功能開關
+      description: 季節相關功能按時令自動可用（雨季預警、花粉提醒、雪地模式），非當令不佔介面
+      domain: digital
+      example: 天氣 App 6 月自動上線颱風追蹤，1 月換冰雪路面預警
+    - name: 極端天氣冗餘
+      description: 極端天氣（酷暑/嚴寒/暴雨）天數按當地資料納入產品可靠性設計（對應 M-WHEN-F-003-01 場景覆蓋）
+      domain: industrial
+      example: 外賣箱按當地夏季高溫峰值設定保溫效能
+    anti_patterns:
+    - name: 溫帶中心主義
+      description: 預設四季分明、氣候溫和
+      consequence: 熱帶全年夏天、極地漫長冬季的地區拿到錯季產品——氣候適應是本地化的一部分
+    - name: 裝飾性季節化
+      description: 季節適配只做主題皮膚
+      consequence: 換膚不解決真實問題（雨季的路況提醒比夏季皮膚有用得多）；季節性先滿足功能再談氛圍
+  G-WHEN-F-004:
+    name: 時間壓力適配指南
+    patterns:
+    - name: 剩餘時間顯性化
+      description: 限時任務實時顯示剩餘時間與進度；倒計時設計考慮壓力對錶現的影響
+      domain: digital
+      example: 考試系統常顯剩餘時間且最後 10 分鐘視覺提示
+      refs:
+      - STD-W3C-WCAG22:2.2.1
+    - name: 時限可調通道
+      description: 時間壓力非任務本質時可關閉/延長（不限時模式、延長申請）——壓力是手段不是目的
+      domain: universal
+      example: 練習模式無限時，考核模式才計時
+    - name: 快捷路徑預設
+      description: 高頻緊急場景提供預演過的快捷路徑（一鍵下單、常用藥復購直達）
+      domain: digital
+      example: 常用藥一鍵續方，跳過全部瀏覽環節
+    - name: 等待誠實化
+      description: 載入等待給出真實預估與進度；超預期等待提供替代（稍後通知我）
+      domain: digital
+      example: 進度條按真實速度而非虛假勻速
+    anti_patterns:
+    - name: 人為倒計時
+      description: 用假緊迫感（『僅剩 3 分鐘！』）催促決策
+      consequence: 壓力下的決策質量下降、後悔率上升——製造焦慮換取轉化是黑暗模式（Mathur et al. 2019 分類學按壓條目）
+    - name: 等待黑洞
+      description: 無進度提示的載入
+      consequence: 使用者不知該等還是該走——2 秒無反饋的等待感是 10 秒；誠實等待比虛假快速更可容忍
+  G-WHEN-F-005:
+    name: 碎片時間適配指南
+    patterns:
+    - name: 任務分塊續接
+      description: 長任務切分為可獨立完成的時間塊（15 分鐘粒度），每塊有自然斷點與續接入口
+      domain: digital
+      example: 線上課程按 15 分鐘一節，學完一節自動記錄續點
+      refs:
+      - STD-W3C-WCAG22:2.2.1
+    - name: 稍後繼續機制
+      description: 任何長任務可掛起並稍後繼續：『稍後』入口常駐、狀態完整保留
+      domain: digital
+      example: 長文閱讀中途退出，下次開啟直達原位置
+    - name: 分步預估呈現
+      description: 長任務開始前呈現分步計劃與預計總時長，讓使用者基於可用時間決策
+      domain: universal
+      example: 表單首頁顯示『約需 20 分鐘，可分 3 次填寫』
+    anti_patterns:
+    - name: 整塊時間假設
+      description: 預設使用者有連續大塊時間
+      consequence: 通勤族、照料者的真實時間全是碎片——整塊假設讓 80% 使用者永遠開不了頭
+    - name: 斷點即丟失
+      description: 中斷後進度不保留
+      consequence: 一次打斷就重頭來過——使用者學到教訓後乾脆不再開始
+  G-WHEN-F-006:
+    name: 疲勞友好設計指南
+    patterns:
+    - name: 疲勞訊號響應
+      description: 監測行為疲勞訊號（連續錯誤、操作放緩、會話超長）並觸發響應：休息提示或介面簡化
+      domain: digital
+      example: 連續 3 次輸錯密碼後提示『要不要休息一下』而非鎖定
+      refs:
+      - STD-W3C-WCAG22:2.2.6
+    - name: 斷點儲存底線
+      description: 長會話全程自動儲存；疲勞中斷不丟資料——儲存是產品的責任不是使用者的記憶負擔
+      domain: universal
+      example: 文件每 30 秒靜默儲存，退出即恢復
+    - name: 疲勞介面降載
+      description: 檢測到疲勞狀態時資訊量縮減、關鍵元素放大、操作容差放寬
+      domain: digital
+      example: 長時間會話後自動切換大按鈕模式
+    - name: 微休息提醒
+      description: 長會話產品內建休息提醒（可關），提醒節奏可調而非說教
+      domain: digital
+      example: 45 分鐘後溫和提示，使用者可設不再提醒
+    anti_patterns:
+    - name: 無限連擊設計
+      description: 用連續任務流+進度焦慮阻止使用者停下
+      consequence: 疲勞積累下錯誤率飆升（尤其在工業/醫療場景即安全事故）；把使用者留在螢幕前的設計不是敬業是傷害
+    - name: 懲罰休息
+      description: 中斷/休息導致進度/獎勵損失
+      consequence: streak 機制把休息汙名化——健康使用與商業指標的衝突中，使用者健康不該是籌碼
+  G-WHERE-F-001:
+    name: 物理環境適應指南
+    patterns:
+    - name: 環境包絡測試
+      description: 產品設計按真實使用環境包絡測試（溫度/溼度/振動/光照交叉組合），不以實驗室理想條件為驗收標準
+      domain: industrial
+      example: 戶外裝置按 -20~50°C × 30-90% RH 交叉矩陣測試而非單一標稱值
+      refs:
+      - STD-ISO-21542:5.4
+    - name: 強光可讀保障
+      description: 戶外/強光場景下螢幕資訊保持可讀：高亮度模式 + 高對比方案 + 遮光結構
+      domain: digital
+      example: 陽光下自動提升對比度而非僅提亮度
+    - name: 防水防塵分級
+      description: 按目標場景選 IP 防護等級並在規格中顯式標註；日常濺灑場景至少 IP54
+      domain: industrial
+      example: 廚房電器面板 IPX4 起步
+    - name: 環境補償設計
+      description: 為環境導致的感官衰減提供補償通道：噪音大→視覺/觸覺反饋補充，強光→語音輔助
+      domain: universal
+      example: 降噪麥克風 + 語音轉文字雙保險
+    anti_patterns:
+    - name: 實驗室幻覺
+      description: 僅按實驗室理想條件設計驗證
+      consequence: 高溫+高溼交叉、移動震動等真實組合下效能驟降——使用者拿到手第一天就遇到
+    - name: 極端條件偏執
+      description: 只防極端（水下/高溫），忽略日常輕微不利（略微過亮的房間、掌心汗溼）
+      consequence: 極端防護堆成本，日常 90% 場景的可用性沒人管
+    - name: 環境交叉盲區
+      description: 單因素分別達標即認為安全
+      consequence: 高溫+高溼、振動+灰塵等交叉效應疊加後超標——真實環境從不單因素出現
+  G-WHERE-F-002:
+    name: 社會環境包容指南
+    patterns:
+    - name: 偏見稽核前置
+      description: 內容/演算法/呈現中對群體的表徵做偏見稽核（呈現多樣性、刻板印象掃描），上線前完成
+      domain: digital
+      example: 影象素材庫按膚色/年齡/體型分佈審查，不用單一審美標準
+    - name: 社交隔離阻斷
+      description: 物理與數字空間避免按階層/身份隔離設計（單獨入口、專屬區域）；共享設施質量均等
+      domain: architecture
+      example: 住宅專案所有入口同一標準，不設『服務人員專用門』
+    - name: 呈現多樣性
+      description: 面向公眾的影象/文案呈現群體多樣性，避免單一群體壟斷『預設形象』
+      domain: universal
+      example: 插畫角色覆蓋輪椅使用者、不同年齡與文化
+    - name: 地區規範適配
+      description: 社會規範差異（身體接觸、目光、性別互動禮儀）納入本地化檢查表
+      domain: universal
+      example: 客服問候語按地區文化分級正式度
+    anti_patterns:
+    - name: 技術即社會可用
+      description: 以為功能能跑就等於所有群體都可用
+      consequence: 隱性偏見（誰被預設、誰被特殊對待）透過設計傳遞——邊緣群體在『能用』的產品裡持續感到不適
+    - name: 中立性幻覺
+      description: 宣稱設計中立，實際預設主導群體視角
+      consequence: 『中立』設計對主導群體隱形、對邊緣群體顯形——不設計立場本身就是立場
+    - name: 貧民門效應
+      description: 按付費/身份分設不同質量的設施入口
+      consequence: 公開的制度性歧視訊號，破壞所有使用者的信任與尊嚴
+  G-WHERE-F-003:
+    name: 空間可達性指南
+    patterns:
+    - name: 通行淨寬底線
+      description: 主通行路徑淨寬 ≥900mm（輪椅對向交匯 ≥1500mm），全程無突出物收窄
+      domain: architecture
+      example: 走廊設計按 900mm 淨寬驗收，消防管線下緣不計入
+      refs:
+      - STD-GB-55019:2
+    - name: 零臺階入口
+      description: 主入口零高差或有等效坡道/升降替代；坡道坡度 ≤1:12 並設扶手
+      domain: architecture
+      example: 入口 15mm 高差做斜切過渡而非一級臺階
+    - name: 垂直交通冗餘
+      description: 樓梯之外必有電梯/坡道等效替代；關鍵設施佈置在無障礙可達樓層
+      domain: architecture
+      example: 公共服務視窗設於電梯可達樓層，不只在首層
+    - name: 遠端等效替代
+      description: 線下空間不可達時提供遠端等效服務通道（線上辦理/配送/上門）
+      domain: service
+      example: 政務大廳不可達？線上辦理 + 上門服務雙通道
+    anti_patterns:
+    - name: 輪椅專屬思維
+      description: 把無障礙當作只服務輪椅使用者的附加設施
+      consequence: 嬰兒車、行李拖曳、送貨、臨時腿傷——輪椅坡道服務的是所有推輪子的人；附屬位置的輪椅坡道還排除了行動緩慢者
+    - name: 達標即終點
+      description: 按規範最低值建成後不再最佳化
+      consequence: 淨寬卡著 810mm 的門、坡度頂著 1:12 的坡——技術達標但體驗邊緣化，輪椅使用者被『合法地』排除在舒適之外
+    - name: 無障礙後置
+      description: 建築完工後再加裝無障礙設施
+      consequence: 後置加裝成本 10 倍且效果差（結構限制）；可達性是佈局問題，不是裝修問題
+  G-WHERE-F-004:
+    name: 資源韌性設計指南
+    patterns:
+    - name: 核心功能離線化
+      description: 關鍵功能不依賴持續資源供給：離線可用、斷電儲存、斷網降級而非癱瘓
+      domain: digital
+      example: 編輯類應用斷網後本地繼續可用，恢復後同步
+    - name: 資源需求顯式化
+      description: 產品/服務所需資源（電/網/水/耗材）在獲取前顯式告知，避免隱性資源門檻
+      domain: universal
+      example: 下載頁標註『需 XX GB 儲存 + 持續網路』
+    - name: 替代方案並行
+      description: 稀缺資源場景提供替代路徑：乾電池替代充電、紙質替代電子、手工替代自動
+      domain: industrial
+      example: 智慧門鎖電池耗盡時機械鑰匙仍可開門
+    - name: 資源消耗最佳化
+      description: 省電/省流量/省耗材模式內建，預設檔位即為經濟檔
+      domain: digital
+      example: 預設開啟資料節省，高消耗為可選
+    anti_patterns:
+    - name: 資源假設鏈
+      description: 預設電、網、耗材永遠充裕
+      consequence: 停電/欠費/買不到耗材時產品整體癱瘓——最脆弱時刻恰是最需要它的時刻（如胰島素泵斷電）
+    - name: 單一資源依賴
+      description: 只有一種獲取路徑（僅充電、僅聯網）
+      consequence: 該路徑中斷即功能歸零；冗餘是韌性最小單位
+    - name: 降級即消失
+      description: 資源不足時功能整體不可用而非降級
+      consequence: 使用者在資源緊張期完全失聯——漸進降級（低畫質可用）優於全有或全無
+  G-WHERE-F-005:
+    name: 經濟可及設計指南
+    patterns:
+    - name: 總擁有成本透明
+      description: 購買價之外顯式呈現使用成本（耗材/流量/維護/升級），讓使用者基於全成本決策
+      domain: universal
+      example: 產品頁標註『年度耗材成本約 XX 元』
+    - name: 免費核心層
+      description: 核心功能不設付費牆；付費只對應增值層（對比層次資料來源：World Bank 收入分類分層定價）
+      domain: digital
+      example: 學習類 App 基礎課程永久免費，高階內容訂閱
+    - name: 低端裝置相容
+      description: 支援目標市場主流低端機型與舊系統版本；輕量版與完整版並行
+      domain: digital
+      example: Go 版本 App 在 2GB 記憶體裝置流暢執行
+    - name: 維修友好設計
+      description: 可拆解維修（螺絲而非膠水）、備件長期供應、第三方維修不失效保
+      domain: industrial
+      example: 電池可更換 + 官方維修手冊公開
+    anti_patterns:
+    - name: 一次性價格近視
+      description: 只最佳化購買價格，忽略使用期成本
+      consequence: 『買得起用不起』：廉價印表機 + 天價墨盒模式將低收入使用者鎖入持續付費陷阱
+    - name: 廉價等於難用
+      description: 低收入市場直接砍功能降質量
+      consequence: 『廉價但難用』不是經濟可及——是二次排斥；低收入使用者同樣值得好設計（SAST 佐證）
+    - name: 通脹脆弱定價
+      description: 定價與成本結構未考慮經濟波動
+      consequence: 通脹期使用者流失驟增；分層定價與區域定價是抗波動緩衝
+  G-WHERE-F-006:
+    name: 緊急情況設計指南
+    patterns:
+    - name: 一步求助
+      description: 緊急求助功能 ≤1 步可達且始終可用（鎖屏/低電/任何介面狀態）
+      domain: digital
+      example: 鎖屏長按側鍵直接 SOS，無需解鎖
+    - name: 多通道觸發
+      description: 緊急觸發至少兩種通道（按鍵 + 語音/自動監測），任一通道失靈仍有路徑
+      domain: universal
+      example: 跌倒檢測自動呼救 + 物理按鈕雙通道
+    - name: 防呆而非防誤
+      description: 緊急流程不做多層確認（慌亂中無法完成），但提供誤觸撤銷的短視窗
+      domain: universal
+      example: SOS 觸發後 3 秒倒計時內可取消
+    - name: 狀態確認反饋
+      description: 求助發出後明確反饋：已聯絡誰、位置是否共享成功、預計響應——消解慌亂中的資訊真空
+      domain: digital
+      example: 『已呼叫緊急聯絡人，位置已共享，正在等待接聽』
+    anti_patterns:
+    - name: 確認層地獄
+      description: 為防誤觸在緊急流程中設定多層確認
+      consequence: 真實緊急中每層確認都是求生障礙——誤觸的代價是尷尬，確認的代價是生命
+    - name: 緊急功能深埋
+      description: SOS 藏在多層選單內
+      consequence: 緊急時刻沒人記得路徑——緊急功能的可用性標準與日常功能完全不同：必須反射式可達
+    - name: 單向發射
+      description: 求助後無任何狀態反饋
+      consequence: 使用者不知道求助是否成功，重複操作或放棄——反饋缺失把慌亂放大成恐慌
+  G-WHERE-F-007:
+    name: 使用情境適配指南
+    patterns:
+    - name: 單手操作區設計
+      description: 移動場景核心操作集中於拇指可達區（螢幕下 1/3）；雙手操作僅用於可選增強
+      domain: digital
+      example: 底部操作欄 + 拇指熱區放主按鈕
+    - name: 分心場景降載
+      description: 駕駛/烹飪等分心情境自動切換低互動模式：大按鈕、語音優先、步驟最少
+      domain: digital
+      example: 車載模式：超大觸控目標 + 純語音替代路徑
+    - name: 姿勢轉換連續性
+      description: 設計覆蓋坐/站/行走/躺的姿態變化（WHO-F-007 已驗證直覺外接原則——情境同理）
+      domain: universal
+      example: 閱讀應用橫豎屏 + 躺姿翻頁手勢
+    - name: 移動平臺穩定
+      description: 不穩定平臺（步行/車上）加大觸控目標、減少精細操作、提高容錯
+      domain: digital
+      example: 步行檢測時自動暫停精細編輯模式
+    anti_patterns:
+    - name: 專注坐姿假設
+      description: 只按安靜坐著、全神貫注的桌面場景設計
+      consequence: 通勤單手、站立顛簸、抱孩子場景全是主要場景——專注坐姿反而是少數情境
+    - name: 靜態情境固化
+      description: 情境視為靜態而非動態轉換
+      consequence: 從坐到走、從室內到強光的轉換點是體驗斷裂點——適配必須連續
+    - name: 認知資源透支
+      description: 多工場景下仍要求全部注意力
+      consequence: 駕駛中要求精細操作 = 製造事故；注意力是稀缺資源，設計要還債不是收稅
+  G-WHERE-F-008:
+    name: 共享情境隱私指南
+    patterns:
+    - name: 多使用者配置隔離
+      description: 共享裝置支援多使用者配置檔案與快速切換（指紋/人臉 ≤1 步），個人內容與推薦互不汙染
+      domain: digital
+      example: 家庭平板：指紋識別直接進入各自桌面
+    - name: 訪客模式
+      description: 一鍵進入不留痕模式：不儲存歷史、不汙染推薦、退出即清空
+      domain: digital
+      example: 借用他人電腦 → 訪客視窗，關窗即走
+    - name: 公開度分級
+      description: 同一產品內按受眾分級可見性：工作資料僅同事、家庭照片僅家人——隱私不是全有全無
+      domain: universal
+      example: 相簿按人物關係分可見性
+    - name: 環境感知隱私
+      description: 檢測到公共場景（公共 Wi-Fi/信標）自動收緊：防窺提示、通知隱藏敏感內容
+      domain: digital
+      example: 連線公共 Wi-Fi 時通知只顯示『你有 1 條新訊息』
+    anti_patterns:
+    - name: 單賬號假設
+      description: 預設一人一裝置一賬號
+      consequence: 家庭共享裝置上推薦混亂、隱私互窺——共享裝置是全球普遍現實（家庭/網咖/圖書館）
+    - name: 痕跡即暴露
+      description: 共享場景不提供清除/無痕路徑
+      consequence: 使用者為借用而道歉或拒絕使用——社交摩擦把產品變成負擔
+    - name: 窺屏無防
+      description: 公共場景敏感資訊照常全顯
+      consequence: 通知內容、訊息預覽在公共空間向旁觀者廣播——隱私洩露常是被動旁觀而非主動攻擊
+  G-WHERE-F-009:
+    name: 受輔助使用情境指南
+    patterns:
+    - name: 分級代理許可權
+      description: 代理權按最小必要分級（只讀/協助/完全代管/緊急接管），使用者隨時可撤銷——輔助不等於交出主權
+      domain: digital
+      example: 子女協助父母理財：僅『檢視』許可權，動賬需本人確認
+    - name: 雙介面狀態同步
+      description: 主使用者介面與輔助者介面並行存在且狀態同步；輔助者儀表盤獨立於主賬號
+      domain: digital
+      example: 藥盒 App：老人端大字提醒，家屬端看到是否已服藥——無需共享密碼
+    - name: 隱私邊界可配
+      description: 輔助者可見範圍由主使用者配置：僅任務進度 / 完整內容 / 僅異常告警
+      domain: digital
+      example: 糖尿病管理：血糖數值共享，聊天記錄不共享
+    - name: 物理輔助適配
+      description: 實體產品的輔助操作路徑：磁吸扣/魔術貼替代精細扣件、大開口設計、陪護空間預留
+      domain: fashion
+      example: 術後病號服側開磁吸設計，患者自穿與護士協助都容易
+    anti_patterns:
+    - name: 共享密碼即代理
+      description: 輔助者與被輔助者共用一個賬號密碼
+      consequence: 零許可權邊界：全部隱私暴露 + 操作不可區分責任不清；代理必須是系統級功能不是密碼共享
+    - name: 主導權剝奪
+      description: 預設輔助者全權接管
+      consequence: 被輔助者的自主權與尊嚴被剝奪——輔助的目標是擴充套件能力而非替代決策（ICF e3 支援性環境語義）
+    - name: 陪護空間缺位
+      description: 設施設計只考慮使用者本人不考慮輔助者
+      consequence: 輪椅使用者來了卻沒位置給陪同家屬；陪護位是受輔助情境的基礎設施
+  G-WHICH-F-001:
+    name: 資訊密度分級指南
+    patterns:
+    - name: 密度三檔切換
+      description: 提供簡明/標準/詳細三檔密度（或密度滑桿），切換即時生效且偏好記憶
+      domain: digital
+      example: 資料表格預設 10 行/屏，可切緊湊 25 行/屏
+      refs:
+      - STD-W3C-WCAG22:1.4.4
+    - name: 漸進披露結構
+      description: 資訊分層：概要常顯 → 詳情按需展開（摺疊/懸浮/下鑽），而非一屏塞滿
+      domain: universal
+      example: 商品頁：首屏核心引數，詳細引數摺疊
+    - name: 自定義儀表板
+      description: 允許使用者控制面板內容與佈局（增刪卡片/調序）；預設佈局取中庸密度
+      domain: digital
+      example: 工作臺首屏卡片可增刪拖排
+      refs:
+      - STD-ISO-9241-110:5.5.4
+    anti_patterns:
+    - name: 設計師品味強加
+      description: 按團隊審美定死唯一密度
+      consequence: 低密度偏好者嫌吵、高密度偏好者嫌慢——密度是偏好不是對錯，給選擇而非給答案
+    - name: 摺疊迷藏
+      description: 關鍵資訊也摺疊隱藏
+      consequence: 『藏太深等於不存在』——摺疊只用於低頻詳情，核心路徑資訊必須直達
+  G-WHICH-F-002:
+    name: 探索深度分級指南
+    patterns:
+    - name: 雙速路徑
+      description: 同一目標提供快速路徑（直達/預設值）與深度路徑（全部選項/高階設定）並行，互不強迫
+      domain: digital
+      example: 『快速開始』與『自定義安裝』雙入口
+      refs:
+      - STD-ISO-9241-110:5.4.3
+    - name: 瀏覽與搜尋並重
+      description: 深度探索者靠層級瀏覽、快速者靠搜尋直達——兩種心智模式都要服務
+      domain: universal
+      example: 知識庫：目錄樹 + 全文搜尋雙通道
+    - name: 麵包屑回溯
+      description: 多層探索隨時可回退跳轉（麵包屑/歷史），探索不迷路
+      domain: digital
+      example: 分類頁頂部麵包屑可跳回任意層級
+    anti_patterns:
+    - name: 深度單向門
+      description: 進入深層後難以返回
+      consequence: 探索變成冒險——使用者學會『不點開』，資訊架構的深度投入全部浪費
+    - name: 新手即專家
+      description: 只有一條不深不淺的中間路徑
+      consequence: 快速者被拖慢、深度者吃不飽——雙速並行比折中單速便宜
+  G-WHICH-F-003:
+    name: 控制感設計指南
+    patterns:
+    - name: 自動化分檔可調
+      description: 自動化等級使用者可選（全自動/半自動/手動），且隨時可降檔接管
+      domain: universal
+      example: 空調：自動模式 + 手動溫度/風量細節調節
+      refs:
+      - STD-ISO-9241-110:5.5
+    - name: 覆蓋與撤銷雙權
+      description: 系統決策可覆蓋、可撤銷——『最終說了算的永遠是人』
+      domain: digital
+      example: 自動歸類郵件可一鍵撤回並重設規則
+    - name: 狀態透明
+      description: 系統當前在做什麼、為什麼這麼做、接下來會怎樣——透明是控制感的前提
+      domain: universal
+      example: 『已自動調整亮度（檢測到強光）——點此撤銷』
+    - name: 幫助一致性
+      description: 幫助入口位置固定、結構統一、隨叫隨到且不打斷主流程
+      domain: digital
+      example: 右上角常駐幫助圖示 + 行內提示雙軌
+      refs:
+      - STD-W3C-WCAG22:3.2.6
+    anti_patterns:
+    - name: 黑箱自動化
+      description: 系統做了決定但不告知不解釋
+      consequence: 使用者感到失控與不被尊重——黑箱是信任黑洞（對應 Parasuraman 2000 十級模型中透明度要素）
+    - name: 自動化綁架
+      description: 不提供手動接管路徑
+      consequence: 自動化失靈時使用者束手無策；『為你好』的強制是最差的強制
+  G-WHICH-F-004:
+    name: 社交可見性控制指南
+    patterns:
+    - name: 逐項獨立控制
+      description: 可見性設定按資訊型別逐項獨立（帖子/線上狀態/活動/好友列表），不搞全有全無
+      domain: digital
+      example: 線上狀態可僅好友可見，帖子可公開——兩把鎖分開
+    - name: 預設隱私最嚴
+      description: 預設設為最嚴可見性；公開是主動選擇而非預設狀態
+      domain: digital
+      example: 新賬號預設僅自己可見，發帖時顯式選可見範圍
+      refs:
+      - STD-GDPR:25
+    - name: 可見性狀態顯性
+      description: 釋出/分享時刻顯式標註當前可見範圍（『將公開可見』），不事後才發現
+      domain: digital
+      example: 釋出按鈕旁常顯受眾標籤，點選可改
+    - name: 場景化預設
+      description: 提供場景預設包（僅家人/僅同事/公開）+ 自定義微調——批次設定減負擔
+      domain: digital
+      example: 相簿分享：一鍵『僅家人可見』預設
+    anti_patterns:
+    - name: 公開預設陷阱
+      description: 預設公開以促進『活躍度』
+      consequence: 使用者在不知情下暴露給遠超預期的受眾——隱私事故即信任事故；GDPR/PIPL 預設最小化已是法定要求
+    - name: 可見性迷宮
+      description: 隱私設定深埋多層選單且入口難找
+      consequence: 『改不動』等於『不能改』——不可達的控制是裝飾品不是權利
+  G-WHICH-F-005:
+    name: 風格選擇指南
+    patterns:
+    - name: 官方主題多檔
+      description: 提供 ≥2 官方主題（至少含高對比與柔和）；預設主題取普適可讀性而非個性張揚
+      domain: digital
+      example: 預設淺色中性 + 深色 + 高對比三主題
+      refs:
+      - STD-W3C-WCAG22:1.4.4
+    - name: 風格切換不換位
+      description: 任何風格/主題切換時核心功能位置保持不變——變化限於皮膚層不變動肌肉記憶層
+      domain: digital
+      example: 深色模式切換後導航/按鈕位置紋絲不動
+    - name: 關鍵自定義點
+      description: 聚焦高影響自定義（字號/對比度/動效開關）而非無邊際的自定義系統
+      domain: digital
+      example: 設定三件套：字號、對比度、動效——夠用即好
+    anti_patterns:
+    - name: 預設即態度
+      description: 預設風格強烈個性化（激進配色/重動效）
+      consequence: 審美是偏好分佈而非正態中心——強烈預設讓多數使用者第一眼就想逃
+    - name: 換膚換佈局
+      description: 主題切換連帶功能位置重排
+      consequence: 使用者為換主題重學一遍操作——風格自由不應以肌肉記憶為代價
+  G-WHICH-F-006:
+    name: 輸入方式冗餘指南
+    patterns:
+    - name: 全鍵盤可達
+      description: 所有功能鍵盤可完成（Tab 序合理 + 快速鍵）；滑鼠/觸屏不是唯一通道
+      domain: digital
+      example: 全部操作有快速鍵 + 可視焦點框
+      refs:
+      - STD-W3C-WCAG22:2.1.1
+    - name: 非指標替代
+      description: 拖曳/懸停等指標互動有非指標等效（按鈕/選單）；複雜手勢有簡單替代
+      domain: digital
+      example: 拖曳排序 → 上下移按鈕並存
+      refs:
+      - STD-W3C-WCAG22:2.5.7
+    - name: 輸入優先順序自設
+      description: 預設輸入方式使用者可選（如語音優先/鍵盤優先），裝置切換時偏好跟隨
+      domain: digital
+      example: 外接鍵盤時自動恢復快速鍵提示
+    - name: 情境輸入推薦
+      description: 檢測使用情境推薦輸入方式（移動→語音、嘈雜→鍵盤），推薦不強制
+      domain: digital
+      example: 檢測到步行狀態提示『試試語音輸入』
+    anti_patterns:
+    - name: 滑鼠唯一路徑
+      description: 功能只能靠滑鼠/觸屏完成
+      consequence: 運動障礙、螢幕閱讀器、效率使用者同時被排除——鍵盤可達是數字包容的地基（WCAG 2.1.1 A 級）
+    - name: 手勢暴政
+      description: 自創複雜手勢替代按鈕
+      consequence: 可發現性趨零：沒人記得住隱藏手勢；手勢是加速器不能是獨木橋
+  G-WHICH-F-007:
+    name: 反饋通道控制指南
+    patterns:
+    - name: 通道獨立可調
+      description: 視覺/聲音/觸覺反饋強度獨立調節或關閉；使用者的感官邊界由使用者劃定
+      domain: universal
+      example: 提示音量、振動強度、動畫開關三檔獨立
+    - name: 高風險多通道
+      description: 危險/緊急狀態預設多通道強反饋（聲+光+震動），但允許按能力定製而非硬關
+      domain: industrial
+      example: 裝置過熱：紅燈 + 蜂鳴 + 面板警告三通道併發
+    - name: 狀態訊息可達
+      description: 操作結果反饋以可程式設計訪問的狀態訊息呈現（aria-live 等），螢幕閱讀器同步獲知
+      domain: digital
+      example: 儲存成功 toast 帶 aria-live=polite
+      refs:
+      - STD-W3C-WCAG22:4.1.3
+    - name: 勿擾保留緊急
+      description: 靜音/勿擾模式下緊急類反饋白名單穿透，白名單由使用者審定
+      domain: digital
+      example: 勿擾中安全警報仍震動+橫幅
+    anti_patterns:
+    - name: 反饋綁架
+      description: 不給關閉選項『為了確保你看到』
+      consequence: 強迫反饋是感官騷擾——使用者為躲噪音直接關掉整個產品的通知
+    - name: 單通道獨裁
+      description: 所有反饋只有一種模態
+      consequence: 該通道能力弱的使用者反饋全盲——多通道冗餘是資訊可達的基本保險
+  G-WHICH-F-008:
+    name: 互動模式並存指南
+    patterns:
+    - name: 核心任務雙模式
+      description: 核心任務 ≥2 互動模式可用（觸控+鍵盤/語音），無『唯一正確』的用法
+      domain: digital
+      example: 列表操作：觸控長按 與 右鍵選單 與 快速鍵三通
+      refs:
+      - STD-ISO-9241-110:5.5.4
+    - name: 預設模式自選
+      description: 預設互動模式使用者可設定（觸屏優先/鍵鼠優先/語音優先），裝置能力不決定使用者偏好
+      domain: digital
+      example: 平板使用者仍可外接鍵盤全鍵盤操作
+    - name: 切換零成本
+      description: 模式切換 ≤1 步且不丟狀態；切換入口恆定
+      domain: digital
+      example: 語音與觸控隨時切換，對話上下文保留
+    anti_patterns:
+    - name: 裝置即命運
+      description: 觸屏裝置就只做觸屏互動
+      consequence: 外設使用者、無障礙使用者、偏好使用者被裝置形態綁架——裝置是能力不是性格
+    - name: 模式互斥清洗
+      description: 新版本砍掉舊互動模式『簡化體驗』
+      consequence: 老使用者的肌肉記憶一夜作廢——模式的淘汰要比使用者的學習慢
+  G-WHICH-F-009:
+    name: 通知治理指南
+    patterns:
+    - name: 細粒度分級
+      description: 通知按型別+傳送者+緊急度三維獨立控制；『關掉一切』與『全收』之間有中間地帶
+      domain: digital
+      example: 促銷關、私信開、安全警報強提醒——三檔並存
+      refs:
+      - STD-W3C-WCAG22:2.2.3
+    - name: 預設保守
+      description: 預設僅關鍵通知送達；更多通知是使用者主動開啟的結果
+      domain: digital
+      example: 安裝後首次推送前問『要接收哪些？』並預設全關
+    - name: 時間窗與節流
+      description: 通知遵守使用者時間窗（作息/勿擾）與頻率節流（同類聚合不刷屏）
+      domain: digital
+      example: 未讀同類通知合併：『你有 12 條新互動』而非 12 次響鈴
+    - name: 打擾即補償
+      description: 強打擾（響鈴/全屏）僅限使用者標記的高優先順序；每次強打擾提供快捷調整入口
+      domain: digital
+      example: 強提醒橫幅角落常駐『減少此類通知』
+    anti_patterns:
+    - name: 通知軍備競賽
+      description: 為留存把通知預設全開
+      consequence: 通知疲勞→一鍵關閉→產品失聯——使用者關閉的從來不是某條通知，是整個產品
+    - name: 誘導訂閱
+      description: 預勾選營銷通知、把『不訂閱』做成 10 步迷宮
+      consequence: GDPR/PIPL 明令禁止預勾選同意——誘導訂閱是遵循風險+黑暗模式雙重罪
+  G-WHO-F-001:
+    name: 身體能力包容指南
+    patterns:
+    - name: 多感官冗餘呈現
+      description: 關鍵資訊同時經 ≥2 感官通道傳達（視覺+聽覺/觸覺），任何單一通道能力下降時資訊仍可達
+      domain: universal
+      example: 電梯到達：樓層顯示 + 提示音 + 振動
+      refs:
+      - STD-W3C-WCAG22:1.4.3
+    - name: 可調節操作引數
+      description: 物理互動引數（力/尺寸/高度）至少覆蓋 P5–P95 人群區間，關鍵操作提供省力替代
+      domain: industrial
+      example: 把手操作力 ≤ 門五金標準值；高度可調工作臺
+      refs:
+      - STD-GB-T-10000
+    - name: 觸控目標放大
+      description: 觸控目標 ≥44×44 CSS 畫素（WCAG 2.5.8 目標尺寸下限），間距充足防誤觸
+      domain: digital
+      example: 行動端主操作按鈕 48dp 且間距 ≥8dp
+      refs:
+      - STD-W3C-WCAG22:2.5.8
+    - name: 能力譜系全覆蓋
+      description: 不按『殘疾人 vs 健全人』二分設計，而按能力譜系（含暫時性/情境性限制：抱嬰兒、強光、骨折）設計同一方案
+      domain: universal
+      example: 語音輸入既是視障者通道也是雙手佔用場景的通道
+    anti_patterns:
+    - name: 平均使用者謬誤
+      description: 按統計平均人體尺寸設計固定引數
+      consequence: P5/P95 兩端人群被直接排除——平均人不存在，只存在於統計幻象
+    - name: 殘疾戲劇化
+      description: 只考慮極端殘障（全盲/癱瘓），忽略輕中度能力差異這一更大人群
+      consequence: 覆蓋了 1% 極端案例卻排除了 30% 的輕中度限制使用者
+    - name: 單一視覺反饋
+      description: 所有狀態反饋僅用視覺傳達（顏色/圖形）
+      consequence: 低視力、色覺障礙、強光/眩光情境使用者無法感知關鍵狀態變化
+      domain: digital
+  G-WHO-F-002:
+    name: 人口統計包容指南
+    patterns:
+    - name: 人群畫像細分
+      description: 用多維交叉畫像（年齡×地區×生命週期階段）替代單一『目標使用者』假設；顯式宣告設計覆蓋的人群邊界
+      domain: universal
+      example: 適老介面按能力而非性別定義；兒童模式按認知發展階段分級
+    - name: 刻板印象熔斷
+      description: 設計評審設『刻板印象檢查』環節：每條人群假設須有資料或使用者研究支撐，無支撐的假設（如『老年人不懂技術』）強制移除
+      domain: universal
+      example: 65+ 網際網路使用率資料替代直覺假設
+    - name: 地區發展差異適配
+      description: 全球產品的功能集按地區基礎設施分級（網路/支付/裝置水平），不假設統一體驗基線
+      domain: digital
+      example: 輕量版 App 保留核心功能適配低端裝置
+    anti_patterns:
+    - name: 均質整體假設
+      description: 將目標使用者群視為無內部差異的整體
+      consequence: 內部差異最大的亞群體（新手/邊緣使用者）體驗最差，恰是最需要包容的人群
+    - name: 新興人群盲區
+      description: 按歷史使用者資料外推未來使用者
+      consequence: 數字遊民、Z 世代等新興群體的行為模式與歷史畫像系統性錯配
+  G-WHO-F-003:
+    name: 健康狀況包容指南
+    patterns:
+    - name: 波動性設計
+      description: 健康狀態按波動譜系處理（慢性病穩定期/發作期、疼痛日、疲勞日），核心功能在低能態下仍可用
+      domain: universal
+      example: 疼痛日的介面提供『今天少做點』模式：只保留必做任務
+    - name: 安全敏感內容防護
+      description: 閃爍/高頻視覺內容控制在安全門檻值內（癲癇防護）；醫療提醒不與警告聲混淆
+      domain: digital
+      example: 動效遵守 prefers-reduced-motion 且無 >3 次/秒閃爍
+      refs:
+      - STD-W3C-WCAG22:2.3.1
+    - name: 低操作力替代
+      description: 物理操作提供低力替代路徑（推開替代旋鈕、語音替代按鍵），操作力要求顯式標註
+      domain: industrial
+      example: 防滑低阻力把手 + 語音控制雙路徑
+    anti_patterns:
+    - name: 健康二分法
+      description: 把健康狀況簡化為『健康/殘疾』二態
+      consequence: 波動性健康問題（慢性疲勞、眩暈發作）使用者在『不嚴重到算殘障』的灰區被完全忽略
+    - name: 共病盲區
+      description: 按單一病症最佳化，忽略多病共存的真實複雜性
+      consequence: 為單一病症精心設計的方案在共病組合下不可用（如視覺+手部關節同時受限）
+  G-WHO-F-004:
+    name: 多模態學習指南
+    patterns:
+    - name: 內容雙模態底線
+      description: 關鍵操作指引至少兩種模態呈現（圖文+影片/互動演練）；不按『學習風格』匹配個體（證據已否定），而以多模態覆蓋
+      domain: universal
+      example: 新手引導：圖文步驟 + 可跳過影片 + 互動演練三選一
+    - name: 節奏自控
+      description: 學習內容支援重複/快進/慢放/跳過，不強制線性進度
+      domain: digital
+      example: 教程影片倍速播放 + 章節跳轉
+    - name: 按需選擇學習順序
+      description: 引導流程允許演示→操作或操作→提示兩種路徑，不強制統一順序
+      domain: digital
+      example: 引導首屏提供『直接上手』與『先看演示』雙入口
+    anti_patterns:
+    - name: 學習風格適配陷阱
+      description: 按 VARK 等學習風格分類為個體定製內容模態
+      consequence: Pashler et al. 2008 證據審查顯示匹配假設無實證支援——投入資源卻無學習收益，且製造『我是視覺型』的偽需求標籤
+    - name: 單模態強制
+      description: 所有教學內容僅一種模態（如純影片教程）
+      consequence: 聽障/閱讀障礙/頻寬受限等使用者被排除，多模態是最廉價的全覆蓋方案
+  G-WHO-F-005:
+    name: 情感體驗設計指南
+    patterns:
+    - name: 挫敗點清零
+      description: 關鍵流程逐一走查情感觸點，任何致挫敗點（無反饋的死衚衕、羞辱性錯誤提示）視為 P0 修復
+      domain: universal
+      example: 錯誤提示改為『這裡需要 X 格式的日期』+ 一鍵修復按鈕，替代『輸入無效！』
+    - name: 自主支援三件套
+      description: 按自我決定理論提供：選擇權（可選路徑）、勝任反饋（可感知的進度）、意義連線（說明為何要這樣操作）
+      domain: universal
+      example: 設定項附帶一句『為什麼問這個』的用途說明
+    - name: 積極強化設計
+      description: 關鍵觸點設計正向情感反饋（完成慶祝、進度視覺化），強度與場景匹配——醫療急救介面用平靜確認而非歡呼動畫
+      domain: digital
+      example: 完成健康目標：靜態對勾 + 簡短文案，不用綵帶動畫
+    - name: 峰終最佳化
+      description: 識別流程的峰值時刻與結束時刻，優先在兩處投入情感設計資源
+      domain: service
+      example: 退房流程：結束頁顯式感謝 + 下次入住快捷入口
+    anti_patterns:
+    - name: 功能主義盲區
+      description: 只最佳化功能可用性，把情感體驗視為『錦上添花』
+      consequence: 功能可用但令人焦慮/羞辱的產品（如報錯時暗示使用者愚蠢）被使用者主動迴避，可用性投入付諸東流
+    - name: 愉悅等於娛樂化
+      description: 把積極體驗等同於遊戲化元素（積分/徽章/綵帶）
+      consequence: 嚴肅場景（醫療、金融、政務）中的娛樂化元素破壞信任感；情感設計是場景匹配的適度積極感受
+    - name: 獎懲依賴
+      description: 用外部獎勵驅動行為，忽略內在動機培養
+      consequence: 獎勵撤除後使用行為崩潰；SDT 研究顯示外部獎勵侵蝕內在動機
+  G-WHO-F-006:
+    name: 感官偏好適配指南
+    patterns:
+    - name: 全通道強度可調
+      description: 各感官通道（亮度/音量/振動/動效）強度獨立可調，預設值取中性檔，不假設『標準使用者』偏好
+      domain: universal
+      example: 設定面板：亮度滑桿 + 音量 + 振動 + 動效開關四項獨立
+    - name: 無刺激模式
+      description: 提供一鍵低感官模式（暗色+靜音+減動效+低飽和），HSP（高敏感人群）與感官過載場景（偏頭痛/自閉譜系）受益
+      domain: digital
+      example: prefers-reduced-motion 與 prefers-contrast 環境偏好全響應
+      refs:
+      - STD-W3C-WCAG22:1.4.4
+    - name: 偏好情境記憶
+      description: 感官配置可按情境儲存多套（日間辦公/夜間閱讀/駕駛模式），切換 ≤1 步
+      domain: digital
+      example: 一鍵切換『夜間模式』配置組
+    anti_patterns:
+    - name: 中性設計神話
+      description: 假設存在一種『中性』感官設計適合所有人
+      consequence: 對刺激敏感的群體過載（放棄使用），對刺激需求高的群體無聊（忽略資訊）——兩極同時被排除
+    - name: 靜態偏好假設
+      description: 把感官偏好當作固定個人屬性，忽略隨情境/疲勞/健康波動
+      consequence: 夜間強白光介面、疲勞時的高頻動效——使用者最脆弱的時刻恰是最強刺激的時刻
+  G-WHO-F-007:
+    name: 技術素養分層指南
+    patterns:
+    - name: 漸進式披露
+      description: 功能按使用頻率與複雜度分層暴露：核心操作首屏可見，高階功能漸進發現，不一次性堆砌全部能力
+      domain: digital
+      example: 相機 App：預設自動模式，專業引數在『更多』內逐層展開
+    - name: 直覺外接驗證
+      description: 『直觀』判斷必須經目標使用者測試驗證，設計師直覺不作為驗收標準
+      domain: universal
+      example: 首次使用走查：0 技術背景使用者無引導完成核心任務才算透過
+    - name: 一致模式複用
+      description: 同類操作在產品內遵循同一互動模式；平臺慣例（長按刪除等）優先於自創手勢
+      domain: digital
+      example: 全應用統一『左滑刪除』而非部分頁面左滑部分長按
+    - name: 可逆操作底線
+      description: 破壞性操作前必有撤銷/確認；輕量操作儘量可逆（軟刪除 30 天視窗）
+      domain: digital
+      example: 刪除 → 30 天回收站 + 頂部 Snackbar 撤銷
+    anti_patterns:
+    - name: 設計師直覺謬誤
+      description: 以『我覺得很直觀』作為易用性判斷依據
+      consequence: 設計師的熟悉度≠目標使用者的直覺；低素養使用者在高素養設計師的『直觀』介面上系統性迷失
+    - name: 手冊依賴症
+      description: 用說明書/培訓彌補複雜設計
+      consequence: 低素養使用者恰恰最不會查手冊；ISO 9241-110 明確自描述性要求介面本身傳達用法
+  G-WHO-F-008:
+    name: 文化包容指南
+    patterns:
+    - name: i18n 全棧適配
+      description: 國際化不止翻譯：日期/時間/數字格式、姓名順序、書寫方向（RTL）、斷行規則全適配
+      domain: digital
+      example: 阿語版本佈局映象（RTL），日期格式隨地區
+    - name: 文化符號審查
+      description: 顏色/圖示/手勢/隱喻在目標文化逐一審查含義，不用本國直覺推斷他國語義
+      domain: universal
+      example: 白色在東亞婚慶語境與西方喪禮語境含義相反
+    - name: 宗教與習俗預留
+      description: 飲食接觸材料、圖案、空間朝向（祈禱方向）、節慶日曆按目標文化預留適配位
+      domain: architecture
+      example: 多功能空間預留可移動祈禱毯與朝向標識
+    anti_patterns:
+    - name: 全球化即英語化
+      description: 以為提供英文介面就是國際化
+      consequence: 非英語母語者承擔雙語認知負擔；文化隔閡（格式/禁忌/禮儀）原樣保留
+    - name: 直譯陷阱
+      description: 機器翻譯內容不經本地化審校直接上線
+      consequence: 失禮或荒謬的文案破壞信任；隱喻/笑話/習語直譯災難頻發
+    - name: 刻板符號挪用
+      description: 用簡化刻板的文化符號（圖騰/服飾）做裝飾
+      consequence: 冒犯目標文化群體；被本地使用者識別為敷衍的偽本地化
+  G-WHO-F-009:
+    name: 神經多樣性包容指南
+    patterns:
+    - name: 感官調節面板
+      description: 提供集中式感官調節入口：動效開關、亮度上限、聲音減量、介面密度降低——一處開啟全域性生效
+      domain: digital
+      example: 『減少感官刺激』總開關同時關閉動畫、降低對比度刺激、簡化介面
+      refs:
+      - STD-W3C-WCAG22:2.4.4
+    - name: 可預期互動
+      description: 杜絕突然變化：無預警彈窗、自動播放音影片、頁面跳轉；變化發生前有預告
+      domain: universal
+      example: 倒計時結束前 3 秒出現視覺預告再執行跳轉
+    - name: 節奏完全自控
+      description: 所有限時內容可暫停/重播/跳過；不設倒計時壓力
+      domain: universal
+      example: 教程與測驗均無時間限制
+    - name: 多通道資訊冗餘
+      description: 關鍵資訊以文字+圖示+語音多通道冗餘呈現，任一處理通道弱即可用其他通道
+      domain: digital
+      example: 錯誤提示：文字說明 + 圖示 + 可朗讀
+      refs:
+      - STD-W3C-WCAG22:3.3.7
+    anti_patterns:
+    - name: 突發刺激
+      description: 無預警的聲音/閃爍/彈窗/自動播放
+      consequence: 自閉譜系與感覺敏感使用者的感官過載——直接關閉產品；對所有人都是干擾源
+    - name: 倒計時壓迫
+      description: 限時任務營造緊迫感
+      consequence: 處理速度慢的使用者（閱讀障礙/焦慮）在壓力下表現更差——測的是焦慮而非能力
+    - name: 一屏多工
+      description: 同屏堆砌多個注意力爭奪區（彈窗+捲動橫幅+閃爍角標）
+      consequence: 注意力分配困難的使用者過載逃離；資訊獲取率全面下降
+  G-WHO-F-010:
+    name: 認知友好設計指南
+    patterns:
+    - name: 資訊分塊
+      description: 長內容切分為 3–5 項一組的語義塊，塊間有視覺分隔；一屏一個主任務
+      domain: digital
+      example: 表單按主題分組分步呈現（基本資訊→偏好→確認），每步 ≤5 項
+      refs:
+      - STD-W3C-WCAG22:3.1.5
+    - name: 熟悉模式優先
+      description: 互動沿用使用者已熟悉的平臺慣例與普遍正規化，創新互動需有傳統路徑並行
+      domain: universal
+      example: 新式導航保留漢堡選單入口作為過渡
+    - name: 錯誤資訊三要素
+      description: 錯誤提示包含：出了什麼事（人話）+ 為什麼 + 怎麼修；禁止純錯誤碼或『操作失敗』
+      domain: digital
+      example: 『密碼需 8 位以上，當前 6 位——請補充 2 位後再提交』
+      refs:
+      - STD-ISO-9241-110:5.6
+    - name: 認知疲勞預算
+      description: 長流程顯式標註進度與剩餘步驟，支援中途儲存退出；高頻操作 ≤3 步直達
+      domain: digital
+      example: 多步表單：頂部步驟條 + 自動草稿儲存
+    anti_patterns:
+    - name: 文字依賴
+      description: 一切說明只靠文字傳達
+      consequence: 閱讀障礙與低文化程度使用者被排除；圖形+演示是認知負擔最低的通道
+    - name: 層級迷宮
+      description: 功能埋在 >3 級選單深處
+      consequence: 工作記憶有限的使用者在深層導航中迷失——記住『在哪』本身就是認知稅
+    - name: 認知稅疊加
+      description: 多工並行介面同時要求記憶多個狀態
+      consequence: 壓力/疲勞/多工情境下所有使用者的出錯率上升——認知餘量是所有人都在消耗的資源
+  G-WHO-F-011:
+    name: 語言可及性指南
+    patterns:
+    - name: 多語言基礎設施
+      description: 介面語言可切換且覆蓋目標市場語言；lang 屬性正確標註以啟用螢幕閱讀器語音切換
+      domain: digital
+      example: <html lang='zh-CN'> 切換為 lang='en' 後螢幕閱讀器自動換語音引擎
+      refs:
+      - STD-W3C-WCAG22:3.1.1
+      - STD-W3C-WCAG22:3.1.2
+    - name: 圖形符號減負
+      description: 關鍵標識與警告配圖形符號，降低語言依賴；符號採用國際通用語義
+      domain: universal
+      example: 緊急出口用人形奔跑圖而非文字；洗滌標籤用圖形符號
+    - name: 語音輸入寬容
+      description: 語音識別對非母語口音、構音障礙、方言的識別率納入驗收標準
+      domain: digital
+      example: 測試集包含帶口音的語音樣本，識別率不低於母語樣本的 90%
+    - name: 語言層級控制
+      description: 關鍵資訊提供簡明語言版本（plain language）補充；術語附首次出現時的簡短解釋
+      domain: digital
+      example: 醫學術語旁配白話解釋與圖示
+      refs:
+      - STD-W3C-WCAG22:3.1.5
+    anti_patterns:
+    - name: 單一語言假設
+      description: 預設英語或單一主導語言覆蓋全部使用者
+      consequence: 非該語言使用者被直接排除；對低文化程度使用者再疊一層障礙
+    - name: 機翻直上
+      description: 機器翻譯內容不經母語者審校釋出
+      consequence: 錯譯在關鍵操作（醫療/金融）中造成實際傷害；禮貌用語錯位破壞信任
+    - name: 文字單通道
+      description: 全部資訊只經文字傳達
+      consequence: 不識字/閱讀障礙使用者零通道獲取資訊——圖形+語音是最基本的雙通道冗餘
+  G-WHO-F-012:
+    name: 低讀寫友好指南
+    patterns:
+    - name: 圖形主導傳達
+      description: 核心操作與警告以圖形符號為主通道，文字為輔；圖形語義經目標使用者測試確認可理解
+      domain: universal
+      example: 藥品說明書：服藥時間用太陽/月亮圖形而非『每日兩次』
+    - name: 語音通道並行
+      description: 關鍵資訊提供語音朗讀選項；互動支援語音輸入替代文字輸入
+      domain: digital
+      example: 表單語音填報：說出內容自動填入，使用者確認後提交
+    - name: 資訊密度控制
+      description: 一屏一主題；段落 ≤3 行；用留白與層級替代密集文字牆
+      domain: digital
+      example: 政務表單首頁只放一件事的說明與入口
+      refs:
+      - STD-W3C-WCAG22:1.4.8
+    - name: 術語零門檻
+      description: 面向公眾的內容禁用行話；必需術語配圖示與白話解釋；句子短、主動語態
+      domain: universal
+      example: 『您的申請已提交，3 個工作日內回覆』替代『工單已進入處理佇列』
+    anti_patterns:
+    - name: 識字率假設
+      description: 預設使用者具有中學以上讀寫能力
+      consequence: 全球約 7.6 億成人文盲 + 更多低文化群體被直接排除；功能性文盲在發達社會同樣普遍
+    - name: 文字牆
+      description: 長段落、密集條款式排版
+      consequence: 低讀寫使用者看到文字牆直接放棄；資訊獲取率與頁面文字密度成反比
+  G-WHO-F-013:
+    name: 人體工學適配指南
+    patterns:
+    - name: 百分位設計法
+      description: 物理尺寸引數以 P5（女性第 5 百分位）~P95（男性第 95 百分位）為覆蓋區間；用 GB/T 10000-2023 / ANSUR II 資料而非直覺
+      domain: industrial
+      example: 座位高度調節範圍覆蓋 P5 女~P95 男坐高
+      refs:
+      - STD-GB-T-10000
+      - STD-ANSUR-II
+    - name: 可調節結構
+      description: 關鍵物理介面（桌椅/支架/把手）可調節；固定介面提供多規格選項
+      domain: industrial
+      example: 工作站：桌高電動可調 + 顯示器全方位支架
+    - name: 力矩上限控制
+      description: 常規操作力不超過標準建議值；高力操作提供工具輔助或多人協作方案
+      domain: industrial
+      example: 閥門手輪配力矩延長杆，單人可完成 ≤200N 操作
+    - name: 特殊體型顯式覆蓋
+      description: 孕婦、兒童、輪椅使用者的尺寸與可達性需求顯式納入設計範圍，不靠『平均人體』外推
+      domain: universal
+      example: 前臺服務視窗高度相容輪椅視線；座椅預留孕婦腹距
+    anti_patterns:
+    - name: 預設男性規格
+      description: 以男性平均尺寸為預設設計基準
+      consequence: 女性及體型偏離均值的使用者在工具尺寸、操作力、可達距離上被系統性排除——PPE『均碼』陷阱的經典來源
+    - name: 固定引數迷信
+      description: 為成本固定單一規格
+      consequence: 覆蓋區間外的使用者被迫以不適配姿勢使用——長期累積肌肉骨骼損傷
+  G-WHO-F-014:
+    name: 隱私信任設計指南
+    patterns:
+    - name: 資料最小化先行
+      description: 每個資料欄位問『不收集會怎樣』；能不收集就不收集，收集必附用途說明
+      domain: universal
+      example: 註冊僅要郵箱+密碼，生日/手機號均為可選並說明用途
+      refs:
+      - STD-GDPR:25
+    - name: 分級共享控制
+      description: 個人資訊可見度分級（公開/好友/僅自己），使用者對每類資訊獨立控制
+      domain: digital
+      example: 個人資料頁每項資訊旁有可見度選擇器
+    - name: 同意即流程
+      description: 隱私條款用分層摘要呈現（一頁圖解 + 分節詳情 + 全文）；拒絕選項與同意選項同頁同級同視覺權重
+      domain: digital
+      example: 首次啟動：三頁圖解摘要 + 底部『同意/拒絕』等權重雙按鈕
+    - name: 撤回便捷對等
+      description: 撤回同意的路徑與給予同意的方式同樣便捷；撤回後立即生效並告知資料狀態
+      domain: digital
+      example: 隱私面板一鍵撤回特定授權，撤回即停
+      refs:
+      - STD-GDPR:7.3
+      - STD-PIPL:15
+    anti_patterns:
+    - name: 功能挾持
+      description: 以功能可用要挾使用者交出資料（不同意就不能用）
+      consequence: PIPL 第 16 條明確禁止以不同意為由拒絕提供產品——法律風險+信任崩塌雙輸
+    - name: 條款牆
+      description: 冗長法律術語隱私政策 + 預設勾選
+      consequence: 使用者『同意』而非知情——GDPR/PIPL 下均不構成有效同意；信任感向黑暗模式坍縮
+    - name: 匿名即終點
+      description: 把匿名化當作隱私義務的終點
+      consequence: 匿名資料重識別風險持續存在；透明度與使用者控制是持續義務
+  G-WHO-F-015:
+    name: 性別包容設計指南
+    patterns:
+    - name: 性別欄位可選化
+      description: 性別欄位提供『不願透露/自定義』選項或直接移除；收集前先問用途——無正當用途不設該欄位
+      domain: digital
+      example: 登錄檔單性別為下拉可選且含自定義輸入框
+    - name: 稱謂與代詞可配置
+      description: 稱謂欄位可選；使用者設定的代詞在 UI 與通訊中一致使用；不可由姓名/外觀推斷
+      domain: universal
+      example: 客服系統顯示使用者設定代詞（they/她/他）並自動用於稱呼
+    - name: 尺碼按測量不按性別
+      description: 尺碼體系以身體測量（胸圍/腰圍/臀圍）為軸，不按性別二元分組
+      domain: fashion
+      example: 上裝尺碼錶：按胸圍釐米直接選碼，無男女款區隔
+    - name: 全性別空間
+      description: 衛生間/試衣間等性別關聯空間提供全性別/家庭選項
+      domain: architecture
+      example: 商場每層至少一處全性別衛生間（許多建築規範已要求）
+    - name: 身份變更路徑
+      description: 歷史記錄中的性別資訊可隨身份轉變更新；變更流程不要求暴露舊身份細節
+      domain: digital
+      example: 資料頁性別可改，歷史記錄同步更新且不顯示『曾為 X』
+    anti_patterns:
+    - name: 二元強制單選
+      description: 性別欄位只有男/女互斥單選且必填
+      consequence: 非二元、跨性別、不願透露使用者被直接排除——表單第一步就製造敵意
+    - name: 性別推斷
+      description: 由姓名、外貌、行為習慣自動推斷性別並用於稱謂或內容推送
+      consequence: 推斷錯誤造成冒犯；性別表達≠認同，二者皆不可外部推斷
+    - name: 空間二元劃分
+      description: 衛生間/試衣間/會員權益僅按男女劃分
+      consequence: 跨性別與非二元使用者面臨『進哪邊都不對』的空間排斥，乃至安全風險
+  G-WHY-F-001:
+    name: 包容性成本策略指南
+    patterns:
+    - name: 全生命週期成本視角
+      description: 包容性投入按『前期設計 vs 後期改造』全週期對比呈現——前期包容設計的成本顯著低於上線後遵循改造（對應 M-WHY-F-001-01 臺賬框架）
+      domain: universal
+      example: 新建時坡道成本約為建成後再改造的 1/10
+    - name: 平臺化攤薄
+      description: 包容能力沉澱為平臺元件（無障礙元件庫/通用人體工學模組），多產品複用攤薄單位成本
+      domain: digital
+      example: 設計系統內建無障礙元件，新產品零額外成本繼承
+    - name: 優先順序矩陣
+      description: 按『排斥人群規模 × 改造成本』排投入優先順序；強制遵循項（WCAG AA/GB 55019）為不可砍的第一梯隊
+      domain: universal
+      example: P0=法定遵循；P1=高覆蓋低成本改造；P2=長期路線圖
+    anti_patterns:
+    - name: 成本短視
+      description: 為省前期投入把無障礙推到『二期』
+      consequence: 後期改造成本翻數倍 + 錯失早期使用者；『先上線再補』是包容性最貴的路徑
+    - name: 公益化誤解
+      description: 把包容投入記賬為公益/品牌支出
+      consequence: 無法透過 ROI 審視——包容設計是市場擴充套件（殘障市場+老齡化+情境性需求）而非慈善
+  G-WHY-F-002:
+    name: 包容性市場定位指南
+    patterns:
+    - name: 能力顯性化
+      description: 無障礙/適老能力在價值主張中顯式呈現（認證資質、實測資料），不做『沉默的好設計』
+      domain: universal
+      example: 產品頁直接展示『透過 WCAG 2.2 AA 驗證 + 適老認證』
+      refs:
+      - STD-W3C-WCAG22:1
+    - name: 關聯人群擴充套件
+      description: 目標人群定義納入『關聯人群』——殘障人士的家人、老齡化社會的主流使用者（對照 ROD 2024：63% 人口與殘障群體關聯）
+      domain: universal
+      example: 適老產品同時定位『給父母買的子女』
+    - name: 採購資質預置
+      description: 政府採購/企業採購的遵循門檻（EN 301 549/無障礙宣告）提前內建為產品能力
+      domain: digital
+      example: 面向政企市場預做 EN 301 549 遵循報告
+      refs:
+      - STD-EN-301549:9
+    anti_patterns:
+    - name: 遵循最低價
+      description: 按法定最低線做包容性並視為成本上限
+      consequence: 最低遵循無差異化價值——採購方看的是『誰超出基線』；達標是入場券不是賣點
+    - name: 過度迎合極端
+      description: 為最嚴苛標準犧牲主流體驗
+      consequence: 包容性不是零和——為 1% 做 100% 犧牲 99% 的方案兩頭都不討好；分層滿足是正解
+  G-WHY-F-003:
+    name: 商業模式包容指南
+    patterns:
+    - name: 免費核心層
+      description: 核心功能永久免費層 + 增值付費；付費牆不設在基本可及性上（對應 M-WHERE-F-005-01 與本卡聯動）
+      domain: digital
+      example: 筆記應用：基礎記錄免費，協作與 AI 為付費層
+    - name: 變現不傷體驗
+      description: 廣告/盈利設計不得侵入核心任務流：不遮擋操作區、不偽裝系統提示、跳過路徑誠實可見
+      domain: digital
+      example: 激勵影片廣告可選看，彈窗廣告不出現
+    - name: 支付能力分層
+      description: 支付方式覆蓋低支付能力群體：月付/學生價/區域定價/以任務換權益（對應 ROD 2024 定價分層實踐）
+      domain: service
+      example: 發展中國家區域定價 + 學生半價
+    anti_patterns:
+    - name: 付費牆圍困
+      description: 核心功能逐步挪進付費層倒逼訂閱
+      consequence: 『 boiling frog』式收費摧毀信任；免費層的價值承諾要守得住
+    - name: 廣告寄生
+      description: 廣告遮擋、誘導點選、偽裝關閉按鈕
+      consequence: Mathur et al. 2019 暗黑模式分類學中全部條目——短期轉化上升，長期品牌反噬；且與 WCAG 多條款衝突
+  G-WHY-F-004:
+    name: 可持續包容設計指南
+    patterns:
+    - name: 耐用即包容
+      description: 延長產品壽命的設計（可維修/可升級/模組化）同時服務可持續與經濟可及——買得久比買得便宜更省（與 M-WHERE-F-005-01 聯動）
+      domain: industrial
+      example: 可換電池手機 + 5 年備件承諾
+    - name: 綠色模式預設
+      description: 節能/低功耗模式作為預設檔而非深埋選項；綠色選擇零額外負擔
+      domain: digital
+      example: 預設啟用的深色省電 + 後臺重新整理關閉
+    - name: 回收路徑閉環
+      description: 產品生命週期結束的回收/以舊換新通路作為設計交付物的一部分
+      domain: industrial
+      example: 品牌直營回收 + 材料標註可拆解分類
+    anti_patterns:
+    - name: 綠色即昂貴
+      description: 環保版做成高價特供
+      consequence: 可持續不該是奢侈品——大眾價位的綠色設計才改變世界（與包容性定價同理）
+    - name: 計劃性報廢
+      description: 透過不可換電池/封閉介面強制換機
+      consequence: 對低收入使用者是雙重排斥（買不起頻繁換新）；監管（各國維修權法案）正在圍堵這條老路
+  G-WHY-F-005:
+    name: 利益相關者平衡指南
+    patterns:
+    - name: 付費方與使用者分離識別
+      description: 顯式識別『用的人』與『付錢的人』不一致的場景，分別滿足核心訴求（Freeman 1984 框架實踐）
+      domain: universal
+      example: 企業軟體：員工要效率、管理層要報表——兩套檢視而非一套折中
+    - name: 衝突顯式記錄
+      description: 多方需求衝突建立臺賬：衝突點、裁決依據、受影響方——決策可追溯（對應 M-WHY-F-005-01，C 級證據標註）
+      domain: universal
+      example: 需求評審記錄『為 IT 安全放棄員工便利』及理由
+    - name: 弱勢方代言機制
+      description: 終端使用者中的弱勢群體（被管理的學生/被監護的患者）在決策中有顯式代言通路——付錢的人不該獨佔話語權
+      domain: universal
+      example: 醫療系統設計評審必須含患者代表
+    anti_patterns:
+    - name: 付費方暴政
+      description: 誰出錢聽誰的
+      consequence: B 端產品使用者被迫用『管理者友好但使用者痛苦』的系統——用腳投票的流失最終傷害付費方自己
+    - name: 折中泥潭
+      description: 多方需求平均化處理
+      consequence: 每個群體都拿到 60% 的滿足度=所有人不滿——按核心訴求分檢視分功能，好過一碗大雜燴
+cases:
+  CASE-001:
+    title: Apple Assistive Access：認知無障礙的減法設計
+    summary: iOS 17 引入 Assistive Access：為認知障礙使用者提供大按鈕、少選項、單任務的極簡介面，主屏僅顯示精選 App，訊息可回表情或自拍影片。
+    outcome: 被廣泛視為認知無障礙的標杆實踐；Apple 後續在 iOS/iPadOS 26 開放 Assistive Access scene API 讓第三方 App 接入。
+  CASE-002:
+    title: Xbox Adaptive Controller：從駭客馬拉松到 V&A 收藏
+    summary: 微軟 2018 年推出 99.99 美元的 Xbox Adaptive Controller：19 個傑克埠替代傳統手柄按鍵，與 AbleGamers、腦癱基金會等組織合作設計，含無障礙包裝。
+    outcome: V&A 博物館快速響應收藏收錄；Copilot 雙手柄協作模式擴充套件玩法；證明包容硬體的市場可行性與文化價值。
+  CASE-003:
+    title: OXO Good Grips：為愛人的關節炎設計的通用廚具
+    summary: 1990 年 Sam Farber 因妻子 Betsey 的類風溼關節炎與 Smart Design 合作設計橢圓熱塑橡膠握柄廚具，首批 15 件在舊金山 Gourmet Products Show 釋出。
+    outcome: 成為通用設計教科書案例：為少數人設計卻贏得主流市場，被 MoMA 永久收藏；2004 年 OXO 以 2.732 億美元售予 Helen of Troy。
+  CASE-004:
+    title: Nike GO FlyEase：無障礙設計被營銷反噬
+    summary: 'Nike 首款免手穿脫鞋 GO FlyEase（$120，2021-04-30 發售）限量發售遭黃牛掃貨，二級市場炒至 $500-2000；殘障買家（設計目標使用者）反而買不到。宣傳文案迴避『殘障』一詞（Slate: Jackson & Virdi 批評）。'
+    outcome: 殘障倡導者 Louie Lingard 的批評影片超 110 萬播放；Nike 承諾追加供貨但已造成社群信任損傷——『包容設計不包容發售』的反面教材。
+  CASE-005:
+    title: WebAIM Million 2025：全網無障礙基線現狀
+    summary: 'WebAIM 對 top 100 萬網站主頁的年度掃描：94.8% 主頁存在可檢測的 WCAG 2 失敗項，平均 51.1 個錯誤/頁（2024: 56.8）；低對比文字 79.1%、缺 alt 文字 55.5% 為最普遍問題。'
+    outcome: 六年只改善 3.1 個百分點——自動化可檢測的無障礙債務幾乎橫盤；企業無障礙欠債的直接量化證據。
+  CASE-006:
+    title: Ed Roberts Campus：通用設計作為建築主敘事
+    summary: Berkeley 的 Ed Roberts Campus（Leddy Maytum Stacy Architects，2011）將 56 英尺直徑螺旋坡道設計為建築核心社交空間——7 英尺寬供兩臺輪椅並行對話，坡道內圈兼作展陳空間。
+    outcome: 『通用設計不是規則約束而是好設計本身』的建築宣言；3600 萬美元造價中無障礙成為賣點而非成本。
+  CASE-007:
+    title: Robles v. Domino's：網站無障礙的遵循風險判例
+    summary: 盲人使用者 Robles 因 Domino's 網站與 App 無法被螢幕閱讀器操作而起訴（ADA Title III）。第九巡迴法院 2019-01-15 裁定 ADA 適用於網站/App；Domino's 程式上訴被最高法院拒絕（cert denied 2020）。
+    outcome: 確立網站無障礙的遵循先例：無具體技術法規不豁免法定義務；六年後（2022-06）Domino's 和解結案。企業拖延無障礙的訴訟成本實證。
+  CASE-008:
+    title: NAD v. Netflix：字幕訴訟推動 100% 覆蓋
+    summary: 2011 年 NAD 起訴 Netflix Watch Instantly 無字幕違反 ADA。法院駁回 Netflix 的 CVAA 優先適用抗辯（2012-06-19），同年 10 月達成和解：兩年內 100% 流媒體內容配字幕，Netflix 支付 75.5 萬美元律師費，法院保留四年監管。
+    outcome: 流媒體行業字幕覆蓋從訴訟起點走向法定基線（CVAA+FCC 規則）與市場標準雙重驅動；示範了法律驅動與技術標準並行的行業級變革路徑。

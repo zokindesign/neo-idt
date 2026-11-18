@@ -6,8 +6,8 @@ evidence_note: "C2 挂接 Microsoft Inclusive Toolkit + Clarkson et al. 2003；�
 guides: [G-WHO-F-001]
 id: WHO-F-001
 merge_candidate: false
-metrics: [M-WHO-F-001-01]
-name: 身体能力
+metrics: [M-WHO-F-001-01, M-WHO-F-001-02]
+name: 身体和认知能力
 name_en: Physical & Cognitive Ability
 ownership_review: false
 refs:
@@ -26,7 +26,7 @@ weights:
   frequency: medium
 ---
 
-# 身体能力 (Physical & Cognitive Ability)
+# 身体和认知能力 (Physical & Cognitive Ability)
 
 ## 定义
 

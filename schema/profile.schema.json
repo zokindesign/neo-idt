@@ -1,0 +1,163 @@
+{
+  "$id": "https://inclusive-design-tool.org/schema/profile.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task Descriptor Profile — Canonical Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "domain"
+  ],
+  "additionalProperties": false,
+  "description": "描述器（descriptor.yaml）能产出的字段的唯一权威定义，也是规则条件（rules.yaml 的 condition）唯一允许引用的词汇表。三处消费方：①描述器表单（可写哪些字段）②规则条件（可读哪些字段与取值）③校验门禁（两者不一致即失败）。背景：v0.2.0 实测发现 6/9 条 ACT 规则引用了描述器从不采集的字段——根因是规则词汇表与描述器词汇表从未对齐（INCL-NEXT-001 §3.3），本契约即对齐机制。多选字段以数组为唯一规范形态（如 environment.contexts），不设单数别名，避免双重拼写（R2 病灶）。implies 回滚：descriptor 选项的 implies 写入的字段，在该选项被取消选中时必须由表单引擎回滚。",
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "description": "契约版本；规则条件与描述器都绑定到它"
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "项目名称（描述器 Q_PROJECT）"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "digital",
+        "industrial",
+        "architecture",
+        "fashion",
+        "service",
+        "other"
+      ],
+      "description": "项目领域；驱动 descriptor 各问题的 applies_when"
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "online-communication",
+            "payment",
+            "data-entry",
+            "emergency",
+            "information",
+            "entertainment",
+            "health",
+            "education",
+            "government",
+            "other"
+          ],
+          "description": "任务类别。data-entry 为 v0.2.0 审计发现的缺失取值（ACT-006 因此永不激活），本契约补入"
+        },
+        "collaboration": {
+          "type": "boolean",
+          "description": "是否多人协作（ACT-005 需要）"
+        },
+        "step_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200,
+          "description": "核心任务步骤数（ACT-007: > 10 激活认知负荷/复杂度）"
+        },
+        "has_hard_deadline": {
+          "type": "boolean",
+          "description": "是否存在硬性截止日期；为 true 时 deadline / estimated_duration 才由描述器采集"
+        },
+        "deadline": {
+          "type": "number",
+          "minimum": 0,
+          "description": "距截止日期的天数（单位：天）。仅当 has_hard_deadline == true 时存在"
+        },
+        "estimated_duration": {
+          "type": "number",
+          "minimum": 0,
+          "description": "预估完成所需天数（单位：天）。仅当 has_hard_deadline == true 时存在"
+        },
+        "has_payment_confirmation": {
+          "type": "boolean",
+          "description": "是否含支付/确认环节（ACT-009 需要）。由 task.category == payment 的 implies 自动写入"
+        }
+      }
+    },
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "mobile",
+            "desktop",
+            "kiosk",
+            "wearable",
+            "none"
+          ],
+          "description": "主要设备类型（ACT-003 需要）"
+        }
+      }
+    },
+    "interaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "voice-input",
+            "touch",
+            "keyboard",
+            "gesture",
+            "remote"
+          ],
+          "description": "主要交互方式（ACT-002 需要）"
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contexts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "one-handed",
+              "noisy",
+              "bright-sunlight",
+              "dark-environment",
+              "public-space",
+              "time-pressure",
+              "moving",
+              "emergency-use"
+            ]
+          },
+          "description": "使用场景（多选，数组为规范形态）。ACT-004 需迁移为 environment.contexts contains 'public-space'"
+        }
+      }
+    },
+    "audience": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "children",
+          "teenagers",
+          "elderly",
+          "cognitive-impairment",
+          "visual-impairment",
+          "hearing-impairment",
+          "motor-impairment",
+          "low-literacy",
+          "non-native",
+          "general-public"
+        ]
+      },
+      "description": "目标受众（多选）。当前无 ACT 规则引用——列入 L3 评分的受众重合维度（N+2）"
+    }
+  }
+}

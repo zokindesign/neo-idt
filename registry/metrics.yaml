@@ -11,7 +11,9 @@
   name_en: Network Resilience Tiers
   category: auto
   description: 在弱网/断网梯度下自动测试核心功能可用性与降级体验
+  description_en: 'Automatically test core-function availability and degraded experience across a weak-network/offline gradient'
   measurement_method: 网络条件限速模拟（3G/2G/50% 丢包/离线）→功能可用性自动探针
+  measurement_method_en: 'Network-condition throttling simulation (3G/2G/50% packet loss/offline) → automated functional availability probes'
   data_source:
   - 自动化测试
   - 真实用户监控（RUM）
@@ -19,6 +21,10 @@
     minimum: 断网时只读功能可用且有明确离线提示
     good: 弱网（3G 级）核心任务可完成（超时 ≤ 10s）
     excellent: 离线优先架构与后台自动同步
+  thresholds_en:
+    minimum: 'Read-only functions available when offline, with a clear offline notice'
+    good: 'Core tasks completable on weak network (3G level) (timeout ≤ 10s)'
+    excellent: 'Offline-first architecture with automatic background sync'
   unit: 功能保持率 % / 超时秒数
   applicable_domains:
   - digital
@@ -31,7 +37,9 @@
   name_en: Low-End Device Performance Floor
   category: auto
   description: 在目标市场最低规格设备上自动测量核心任务性能
+  description_en: 'Automatically measure core-task performance on the minimum-spec device in the target market'
   measurement_method: 最低规格设备/模拟器实测：冷启动、首屏、核心交互响应时间（P75/P95）
+  measurement_method_en: 'Measured on minimum-spec device/emulator: cold start, first screen, core interaction response time (P75/P95)'
   data_source:
   - 自动化测试
   - RUM
@@ -39,6 +47,10 @@
     minimum: 冷启动 ≤ 5s 且核心交互响应 ≤ 200ms（ISO 9241-112 响应性实践）
     good: P75 交互响应 ≤ 100ms 且低内存设备无崩溃
     excellent: 自适应画质与按设备能力分级加载
+  thresholds_en:
+    minimum: 'Cold start ≤ 5s and core interaction response ≤ 200ms (ISO 9241-112 responsiveness practice)'
+    good: 'P75 interaction response ≤ 100ms and no crashes on low-memory devices'
+    excellent: 'Adaptive quality and tiered loading based on device capability'
   unit: 秒 / 毫秒
   applicable_domains:
   - digital
@@ -53,7 +65,9 @@
   name_en: Battery-Life Stress Coverage
   category: audit
   description: 对 Rahmati & Zhong 2009 人-电池交互研究识别的高压场景（低电量焦虑/无充电条件/长时外出）审计应对特性
+  description_en: 'Audit coping features for the high-pressure scenarios identified by Rahmati & Zhong''s 2009 human-battery interaction study (low-battery anxiety / no charging access / extended time away from power)'
   measurement_method: 高压场景清单审计（省电模式/低耗优化/电量预测/多充电方式），对照人-电池交互研究的行为模式
+  measurement_method_en: 'High-stress scenario checklist audit (power-saving mode/low-power optimization/battery prediction/multiple charging methods), against behavioral patterns from human-battery interaction research'
   data_source:
   - 特性清单
   - 实测
@@ -61,6 +75,10 @@
     minimum: 提供省电模式且电量状态可查
     good: 剩余使用时间预测与低功耗策略
     excellent: 多充电方式冗余（有线/无线/外接）与场景自适应降耗
+  thresholds_en:
+    minimum: 'Power-saving mode provided and battery status viewable'
+    good: 'Remaining-usage-time prediction and low-power strategy'
+    excellent: 'Redundant multiple charging methods (wired/wireless/external) and scenario-adaptive power reduction'
   unit: 场景覆盖率 %
   applicable_domains:
   - digital
@@ -75,7 +93,9 @@
   name_en: Compatibility Matrix Pass Rate
   category: auto
   description: 按支持矩阵（浏览器/OS/AT 版本组合）自动回归核心流程
+  description_en: 'Automatically regress core flows across the support matrix (browser/OS/AT version combinations)'
   measurement_method: 支持矩阵×冒烟用例自动回归；EN 301 549 clause 11 Web 兼容性核对
+  measurement_method_en: 'Automated regression across support matrix × smoke cases; EN 301 549 clause 11 web compatibility check'
   data_source:
   - CI 自动化测试
   - AT 兼容工具
@@ -83,6 +103,10 @@
     minimum: 声明的支持矩阵 100% 通过冒烟用例
     good: AT 组合（屏幕阅读器×浏览器）核心流程通过
     excellent: 向下兼容 2 个大版本且异常降级友好
+  thresholds_en:
+    minimum: 'Declared support matrix passes smoke cases 100%'
+    good: 'Core flows pass with AT combinations (screen reader × browser)'
+    excellent: 'Backward compatible by 2 major versions with graceful failure degradation'
   unit: 矩阵通过率 %
   applicable_domains:
   - digital
@@ -95,7 +119,9 @@
   name_en: Legacy Environment Adaptation
   category: audit
   description: 审计对目标用户存量技术环境（旧 OS/旧浏览器/企业受限环境）的适配策略与降级方案
+  description_en: 'Audit adaptation strategies and fallback schemes for target users'' existing technology environments (legacy OS / legacy browsers / restricted enterprise environments)'
   measurement_method: 存量环境清单→适配/降级策略审计→降级体验实测
+  measurement_method_en: 'Legacy environment inventory → adaptation/degradation strategy audit → measured degradation experience'
   data_source:
   - 用户环境数据
   - 降级测试
@@ -103,6 +129,10 @@
     minimum: 目标市场主流存量环境有明确支持/降级声明
     good: 降级模式核心功能可用（优雅降级非白屏）
     excellent: 按环境能力自动分发适配版本
+  thresholds_en:
+    minimum: 'Explicit support/degradation statements for mainstream legacy environments in the target market'
+    good: 'Core functions usable in degraded mode (graceful degradation, not a blank screen)'
+    excellent: 'Automatic distribution of adapted versions based on environment capability'
   unit: 环境覆盖率 %
   applicable_domains:
   - digital
@@ -115,7 +145,9 @@
   name_en: Assistive Technology Interoperability
   category: audit
   description: 屏幕阅读器/开关控制/语音控制完成核心任务的实测通过率
+  description_en: 'Measured pass rate for completing core tasks with a screen reader / switch control / voice control'
   measurement_method: 主流 AT 组合实测（WCAG 4.1.2 Name/Role/Value 核对 + 核心任务全程 AT 操作）
+  measurement_method_en: 'Testing with mainstream AT combinations (WCAG 4.1.2 Name/Role/Value check + full core-task operation via AT)'
   data_source:
   - AT 实测
   - 自动化扫描
@@ -123,6 +155,10 @@
     minimum: WCAG 4.1.2 零失败且屏幕阅读器可完成核心任务（A 级基线）
     good: 主流 AT 组合核心任务成功率 ≥ 90%
     excellent: 全 AT 组合 + 罕用 AT（开关/眼控）通过
+  thresholds_en:
+    minimum: 'Zero WCAG 4.1.2 failures and core tasks completable with a screen reader (Level A baseline)'
+    good: 'Core-task success rate ≥ 90% with mainstream AT combinations'
+    excellent: 'Passes across all AT combinations + rare AT (switch/eye control)'
   unit: 任务成功率 %
   applicable_domains:
   - digital
@@ -138,7 +174,9 @@
   name_en: Output Channel Redundancy
   category: audit
   description: 关键信息输出不依赖单一感官通道（视觉不依赖颜色 WCAG 1.4.1、音频有字幕/文字替代）
+  description_en: 'Key information output does not rely on a single sensory channel (vision not reliant on color — WCAG 1.4.1; audio has captions/text alternatives)'
   measurement_method: 输出事件×通道矩阵审计（WCAG 1.4.1 使用颜色、1.2.2 字幕、1.1.1 非文本替代核对）
+  measurement_method_en: 'Output event × channel matrix audit (WCAG 1.4.1 Use of Color, 1.2.2 Captions, 1.1.1 Non-text Content checks)'
   data_source:
   - 内容审计
   - AT 测试
@@ -146,6 +184,10 @@
     minimum: 颜色非唯一信息载体（WCAG 1.4.1 A 级）且媒体有替代（1.1.1/1.2.2 A 级）
     good: 双通道输出全覆盖关键信息
     excellent: 用户可选输出偏好通道且跨通道同步
+  thresholds_en:
+    minimum: 'Color is not the sole information carrier (WCAG 1.4.1 Level A) and media has alternatives (1.1.1/1.2.2 Level A)'
+    good: 'Dual-channel output covers all key information'
+    excellent: 'User-selectable preferred output channel with cross-channel synchronization'
   unit: 通道冗余率 %
   applicable_domains:
   - digital
@@ -163,7 +205,9 @@
   name_en: Authentication Path Redundancy
   category: audit
   description: 按 WCAG 2.2 SC 3.3.8 审计认证路径：认知功能测试豁免、多路径独立性、密码管理器兼容与恢复流程
+  description_en: 'Audit the authentication path per WCAG 2.2 SC 3.3.8: cognitive-function test exemption, multi-path independence, password-manager compatibility, and recovery flow'
   measurement_method: 认证路径×能力要求矩阵审计（认知/视觉/听觉/运动），3.3.8 逐条核对（认知测试例外/替代路径/粘贴允许）
+  measurement_method_en: 'Authentication path × capability-requirement matrix audit (cognitive/visual/auditory/motor), item-by-item 3.3.8 check (cognitive test exception/alternative paths/paste allowed)'
   data_source:
   - 认证流程审计
   - AT 测试
@@ -171,6 +215,10 @@
     minimum: ≥2 条独立认证路径且无强制认知功能测试（WCAG 3.3.8 AA 级）
     good: 账号恢复不依赖安全问题，密码管理器自动填充无阻断
     excellent: WebAuthn/魔法链接等无密码路径 + 会话延长 + 各路径能力要求公示
+  thresholds_en:
+    minimum: '≥2 independent authentication paths and no mandatory cognitive function test (WCAG 3.3.8 Level AA)'
+    good: 'Account recovery does not rely on security questions; password-manager autofill is not blocked'
+    excellent: 'Passwordless paths such as WebAuthn/magic links + session extension + published capability requirements for each path'
   unit: 路径数 / 合规项通过率
   applicable_domains:
   - digital
@@ -185,7 +233,9 @@
   name_en: Accessibility Feature Usage Rate
   category: audit
   description: 核心无障碍功能（如屏幕阅读器、键盘导航、高对比度）的可用性通过率
+  description_en: 'Availability pass rate of core accessibility features (e.g., screen reader, keyboard navigation, high contrast)'
   measurement_method: WCAG 2.1 AA 成功标准逐项检查表通过率
+  measurement_method_en: 'Item-by-item WCAG 2.1 AA success criteria checklist pass rate'
   data_source:
   - 自动化扫描
   - 人工审计
@@ -194,6 +244,10 @@
     excellent: AA 100% + AAA 关键条款 + 主流 AT 兼容验证
     good: AA 100% + 部分 AAA 条款
     minimum: WCAG 2.1 AA 100% 通过（强制）
+  thresholds_en:
+    minimum: 'WCAG 2.1 AA 100% pass (mandatory)'
+    good: 'AA 100% + some AAA criteria'
+    excellent: 'AA 100% + key AAA criteria + mainstream AT compatibility verification'
   unit: 通过率 %
   status: draft
   evidence_grade: A
@@ -203,7 +257,9 @@
   name_en: Data Subject Rights Response Compliance
   category: audit
   description: 审计数据主体权利流程（撤回同意/查阅复制/更正补充/删除）是否满足目标法域的时限与便捷性要求
+  description_en: 'Audit whether data-subject-rights processes (withdraw consent / access and copy / rectify and supplement / delete) meet the time-limit and convenience requirements of the target jurisdiction'
   measurement_method: 数据权利流程走查 × 法域条款矩阵（GDPR：撤回与给予同等方式便捷[Art.7(3)]/响应不迟于一个月[Art.12(3)]/删除权[Art.17]；PIPL：便捷撤回[第15条]/不得拒绝服务[第16条]/告知[第17条]/知情决定/查阅复制/更正/删除[第44-47条]）
+  measurement_method_en: 'Data rights process walkthrough × jurisdiction clause matrix (GDPR: withdrawal as easy as giving consent [Art.7(3)]/response within one month [Art.12(3)]/right to erasure [Art.17]; PIPL: convenient withdrawal [Article 15]/may not refuse service [Article 16]/notification [Article 17]/informed decision/access and copy/correction/erasure [Articles 44-47])'
   data_source:
   - 流程审计
   - 工单日志
@@ -212,6 +268,10 @@
     minimum: 目标法域全部法定权利路径存在且时限达标（GDPR 一个月响应；PIPL 便捷撤回）
     good: 撤回同意路径与给予同意同页同级可达（非深埋设置），权利请求有状态跟踪
     excellent: 权利行使全程自助化 + 处理时限内部 SLA 严于法定 + 多法域请求自动路由
+  thresholds_en:
+    minimum: 'All statutory rights paths exist in the target jurisdictions and time limits are met (GDPR one-month response; PIPL convenient withdrawal)'
+    good: 'Consent withdrawal path reachable on the same page and level as giving consent (not buried in settings), with status tracking for rights requests'
+    excellent: 'Fully self-service exercise of rights + internal processing-time SLA stricter than legally required + automatic routing of multi-jurisdiction requests'
   unit: 条款覆盖率 % / 响应时效
   applicable_domains:
   - digital
@@ -235,7 +295,9 @@
   name_en: Target Market Safety Certification Readiness
   category: audit
   description: 审计产品对目标市场强制安全认证（CE/UL/FDA/MDR/ISO 26262 等）的条款级就绪状态
+  description_en: 'Audit the product''s clause-level readiness for mandatory safety certifications in the target market (CE/UL/FDA/MDR/ISO 26262, etc.)'
   measurement_method: 目标市场×认证体系矩阵审计：认证清单确认 → 安全要求在设计文档中的可追溯性 → 预合规测试差距分析
+  measurement_method_en: 'Target market × certification scheme matrix audit: certification checklist confirmation → traceability of safety requirements in design documents → pre-compliance testing gap analysis'
   data_source:
   - 认证清单
   - 设计文档审计
@@ -244,6 +306,10 @@
     minimum: 目标市场强制认证清单确认且安全要求可追溯到设计文档
     good: 危害分析与风险评估文档完备，预合规测试通过
     excellent: 多认证并行路径（一次设计满足多市场认证）+ 认证维持流程（复审跟踪）
+  thresholds_en:
+    minimum: 'Mandatory certification checklist for the target markets confirmed and safety requirements traceable to design documents'
+    good: 'Hazard analysis and risk assessment documentation complete; pre-compliance testing passed'
+    excellent: 'Parallel multi-certification path (one design satisfies certifications for multiple markets) + certification maintenance process (re-audit tracking)'
   unit: 认证就绪率 %
   applicable_domains:
   - industrial
@@ -259,7 +325,9 @@
   name_en: License & SBOM Completeness
   category: auto
   description: 按 SPDX 标准审计代码/依赖/素材的许可证识别覆盖度与许可证冲突，含许可证清单（License List）短标识符规范
+  description_en: 'Audit license-identification coverage and license conflicts for code/dependencies/assets per the SPDX standard, including the License List short-identifier specification'
   measurement_method: SCA 工具扫描（源码+依赖）→ SPDX 标识符规范化 → 传染性许可证（GPL 系）冲突分析；素材授权台账核对
+  measurement_method_en: 'SCA tool scan (source code + dependencies) → SPDX identifier normalization → copyleft license (GPL family) conflict analysis; asset licensing ledger check'
   data_source:
   - SBOM 扫描
   - 素材台账
@@ -267,6 +335,10 @@
     minimum: 100% 组件有 SPDX 许可证标识（无 Unknown 许可证进入构建）
     good: SBOM 机器可读（SPDX 格式）+ 传染性许可证冲突清零
     excellent: 素材授权链完整（字体/图片/音频逐项有授权证明）+ 许可证变更 CI 监控
+  thresholds_en:
+    minimum: '100% of components have SPDX license identifiers (no Unknown licenses enter the build)'
+    good: 'Machine-readable SBOM (SPDX format) + zero copyleft license conflicts'
+    excellent: 'Complete asset licensing chain (item-by-item licensing proof for fonts/images/audio) + CI monitoring of license changes'
   unit: SPDX 标识覆盖率 % / 冲突数
   applicable_domains:
   - digital
@@ -281,7 +353,9 @@
   name_en: Ethics Review Mechanism Completeness
   category: audit
   description: 按 Belmont 三原则与 IEEE EAD 框架审计伦理审查机制：知情同意流程、风险-收益评估、公平性审计、可申诉通道
+  description_en: 'Audit the ethics-review mechanism per the three Belmont principles and the IEEE EAD framework: informed-consent flow, risk-benefit assessment, fairness audit, and grievance/appeal channel'
   measurement_method: 伦理检查表审计（Belmont：尊重[自主与保护]→知情同意、善行→风险收益评估、正义→公平选择；IEEE EAD：透明度/问责/可解释性）+ 用户研究协议抽查
+  measurement_method_en: 'Ethics checklist audit (Belmont: respect [autonomy and protection] → informed consent, beneficence → risk-benefit assessment, justice → fair selection; IEEE EAD: transparency/accountability/explainability) + spot checks of user research protocols'
   data_source:
   - 伦理检查表
   - 研究协议
@@ -290,6 +364,10 @@
     minimum: 涉人研究有知情同意流程且 IRB/伦理委员会审查在案（Belmont 三原则逐项可查）
     good: 算法决策有公平性审计记录 + 暗黑模式自查清零 + 伦理反馈渠道可用
     excellent: 伦理评估前置到设计阶段（设计伦理工作坊）+ AI 系统对齐 IEEE EAD 八原则体系
+  thresholds_en:
+    minimum: 'Human-subject research has an informed consent process and IRB/ethics committee review on record (each of the three Belmont principles verifiable)'
+    good: 'Algorithmic decisions have fairness audit records + self-check cleared of dark patterns + ethics feedback channel available'
+    excellent: 'Ethics assessment front-loaded into the design phase (design ethics workshops) + AI systems aligned with the IEEE EAD eight-principle framework'
   unit: 检查项覆盖率 %
   applicable_domains:
   - universal
@@ -305,7 +383,9 @@
   name_en: Industry Access Standards Mapping
   category: audit
   description: 审计产品对目标行业准入规范（HIPAA/PCI DSS/FERPA/DO-178C 等）的条款级映射与合规状态
+  description_en: 'Audit the product''s clause-level mapping to and compliance status with target-industry admission standards (HIPAA/PCI DSS/FERPA/DO-178C, etc.)'
   measurement_method: 目标行业×准入规范矩阵审计（医疗 HIPAA/金融 PCI DSS/教育 FERPA/航空 DO-178C）→ 条款要求到设计/流程的证据映射
+  measurement_method_en: 'Target industry × access regulation matrix audit (healthcare HIPAA/finance PCI DSS/education FERPA/aviation DO-178C) → evidence mapping of clause requirements to design/process'
   data_source:
   - 行业规范清单
   - 证据映射文档
@@ -313,6 +393,10 @@
     minimum: 目标行业准入规范清单确认且有指定负责人
     good: 每条适用条款有证据映射（设计文档/测试报告/流程记录）
     excellent: 行业规范变更跟踪机制 + 跨行业产品多规范并行的映射复用
+  thresholds_en:
+    minimum: 'Target-industry access regulation checklist confirmed with a designated owner'
+    good: 'Each applicable clause has evidence mapping (design documents/test reports/process records)'
+    excellent: 'Industry regulation change-tracking mechanism + mapping reuse across multiple parallel regulations for cross-industry products'
   unit: 条款映射覆盖率 %
   applicable_domains:
   - digital
@@ -329,7 +413,9 @@
   name_en: Task Step Complexity
   category: audit
   description: 核心任务的步骤数、决策点数与分支数评级，判断任务结构复杂度是否匹配用户能力
+  description_en: 'Rate core tasks by number of steps, decision points, and branches to determine whether task-structure complexity matches user capability'
   measurement_method: 任务分析→步骤/决策点/分支计数→复杂度分级（低/中/高）
+  measurement_method_en: 'Task analysis → step/decision-point/branch count → complexity grading (low/medium/high)'
   data_source:
   - 任务分析
   - 专家评级
@@ -337,6 +423,10 @@
     minimum: 核心任务 ≤ 7±2 步且决策点 ≤ 3（米勒定律共识值）
     good: 提供分步引导与进度提示
     excellent: 提供专家快捷路径（并行高级操作）
+  thresholds_en:
+    minimum: 'Core task ≤ 7±2 steps and ≤ 3 decision points (Miller''s law consensus value)'
+    good: 'Step-by-step guidance and progress prompts provided'
+    excellent: 'Expert shortcut paths provided (parallel advanced operations)'
   unit: 步骤数 / 决策点数
   applicable_domains:
   - universal
@@ -351,7 +441,9 @@
   name_en: Cognitive Load Measurement
   category: user-test
   description: NASA-TLX 量表测量任务认知负荷
+  description_en: 'Measure task cognitive load with the NASA-TLX scale'
   measurement_method: NASA-TLX 量表 (6 维度加权)
+  measurement_method_en: 'NASA-TLX scale (6 dimensions weighted)'
   data_source:
   - 可用性测试
   - 用户自评
@@ -359,6 +451,10 @@
     excellent: NASA-TLX 总分 ≤ 30
     good: NASA-TLX 总分 ≤ 45
     minimum: NASA-TLX 总分 ≤ 60
+  thresholds_en:
+    minimum: 'NASA-TLX total score ≤ 60'
+    good: 'NASA-TLX total score ≤ 45'
+    excellent: 'NASA-TLX total score ≤ 30'
   unit: NASA-TLX 分数 (0-100)
   status: draft
   evidence_grade: B
@@ -368,7 +464,9 @@
   name_en: Task Completion Time Percentiles
   category: user-test
   description: 收集足够样本量下的任务完成时间，计算 P5/P50/P95
+  description_en: 'Collect task completion times at a sufficient sample size and compute P5/P50/P95'
   measurement_method: P95 完成时间 / 期望完成时间
+  measurement_method_en: 'P95 completion time / expected completion time'
   data_source:
   - 可用性测试
   - 生产环境日志（脱敏）
@@ -376,6 +474,10 @@
     excellent: P95 ≤ 期望时间 × 1.2
     good: P95 ≤ 期望时间 × 1.5
     minimum: P95 ≤ 期望时间 × 2
+  thresholds_en:
+    minimum: 'P95 ≤ expected time × 2'
+    good: 'P95 ≤ expected time × 1.5'
+    excellent: 'P95 ≤ expected time × 1.2'
   unit: 秒 / 倍率
   status: draft
   evidence_grade: B
@@ -385,7 +487,9 @@
   name_en: Error Tolerance & Recovery
   category: user-test
   description: 注入典型操作错误（误触/误删/误提交），测量可恢复性、撤销可用性与损失防护
+  description_en: 'Inject typical operation errors (mis-taps / accidental deletion / accidental submission) and measure recoverability, undo availability, and loss prevention'
   measurement_method: 错误注入测试→撤销成功率/数据损失率/恢复步骤数记录
+  measurement_method_en: 'Error injection testing → undo success rate/data loss rate/recovery step count recorded'
   data_source:
   - 可用性测试
   - 错误注入实验
@@ -393,6 +497,10 @@
     minimum: 破坏性操作有确认且可撤销（ISO 9241-110:2020 5.6 Use error robustness 对应）
     good: 错误消息含恢复指引（WCAG 3.3.1/3.3.3）
     excellent: 草稿自动保存与回滚历史
+  thresholds_en:
+    minimum: 'Destructive actions have confirmation and are undoable (corresponds to ISO 9241-110:2020 5.6 Use error robustness)'
+    good: 'Error messages include recovery guidance (WCAG 3.3.1/3.3.3)'
+    excellent: 'Automatic draft saving and rollback history'
   unit: 恢复成功率 %
   applicable_domains:
   - digital
@@ -410,7 +518,9 @@
   name_en: Persistence & Resumption Completeness
   category: audit
   description: 对跨会话/跨设备长任务审计自动保存、续接入口、状态同步与冗余输入消除（WCAG 3.3.7）
+  description_en: 'For long tasks spanning sessions/devices, audit auto-save, resume entry points, state synchronization, and elimination of redundant input (WCAG 3.3.7)'
   measurement_method: 会话中断/设备切换实测→数据保存率/续接成功率；同流程重复输入项计数（WCAG 2.2 SC 3.3.7 Redundant Entry A 级核对）
+  measurement_method_en: 'Session interruption/device-switch testing → data save rate/resumption success rate; count of repeated input fields within the same flow (WCAG 2.2 SC 3.3.7 Redundant Entry Level A check)'
   data_source:
   - 任务审计
   - 跨设备测试
@@ -418,6 +528,10 @@
     minimum: 同流程内已知信息不重复输入（WCAG 3.3.7 A 级强制）
     good: 自动保存 + 续接入口全覆盖长任务
     excellent: 跨设备实时同步与版本历史
+  thresholds_en:
+    minimum: 'Known information not re-entered within the same flow (WCAG 3.3.7 Level A mandatory)'
+    good: 'Autosave + resumption entry points covering all long tasks'
+    excellent: 'Real-time cross-device sync and version history'
   unit: 续接成功率 %
   applicable_domains:
   - digital
@@ -434,7 +548,9 @@
   name_en: Collaboration Role Coverage
   category: audit
   description: 审计协作任务的分角色视图、权限、并行编辑冲突处理与第三方协作辅助兼容
+  description_en: 'Audit collaborative tasks for role-based views, permissions, concurrent-edit conflict handling, and compatibility with third-party collaboration aids'
   measurement_method: 角色×权限矩阵审计 + 双人并行编辑实测冲突处理
+  measurement_method_en: 'Role × permission matrix audit + two-person parallel editing test of conflict handling'
   data_source:
   - 功能审计
   - 协作测试
@@ -442,6 +558,10 @@
     minimum: 协作任务支持分角色权限与操作留痕
     good: 并行编辑冲突有合并/锁定策略
     excellent: 协助者/代理者可无缝加入（对应 WHERE-F-009 受辅助使用）
+  thresholds_en:
+    minimum: 'Collaborative tasks support role-based permissions and operation audit trails'
+    good: 'Parallel editing conflicts have merge/lock strategies'
+    excellent: 'Assistants/proxies can join seamlessly (corresponds to WHERE-F-009 assisted use)'
   unit: 角色覆盖率 %
   applicable_domains:
   - digital
@@ -454,7 +574,9 @@
   name_en: Interruption Tolerance Test
   category: user-test
   description: 在任务关键节点注入中断（来电/通知/人为打断），测量任务恢复率与认知重启成本
+  description_en: 'Inject interruptions at critical task points (incoming call / notification / human interruption) and measure task-resumption rate and cognitive restart cost'
   measurement_method: 中断注入实验→恢复成功率/重启时间/重复操作次数统计
+  measurement_method_en: 'Interruption injection experiment → recovery success rate/restart time/repeated-operation count statistics'
   data_source:
   - 可用性测试
   - 中断实验
@@ -462,6 +584,10 @@
     minimum: 中断后状态保持，恢复无需从头开始
     good: 恢复点提示（'继续刚才的操作'）
     excellent: 中断内容自动暂存与情境提示恢复
+  thresholds_en:
+    minimum: 'State preserved after interruption; recovery requires no restart from scratch'
+    good: 'Resume-point prompt (''continue what you were doing'')'
+    excellent: 'Interrupted content auto-cached with contextual prompt recovery'
   unit: 恢复成功率 %
   applicable_domains:
   - digital
@@ -475,7 +601,9 @@
   name_en: 24-Hour Adaptability
   category: audit
   description: 核对核心功能全时段可用与夜间适配（暗色模式/亮度/免打扰）
+  description_en: 'Verify all-hours availability of core functions and nighttime adaptation (dark mode / brightness / do-not-disturb)'
   measurement_method: 时段特性清单审计 + 夜间场景实测
+  measurement_method_en: 'Time-period feature checklist audit + night-scenario testing'
   data_source:
   - 特性审计
   - 实测
@@ -483,6 +611,10 @@
     minimum: 核心功能 24h 可用且有暗色模式
     good: 夜间免打扰与延迟处理选项
     excellent: 光照/时段自适应界面
+  thresholds_en:
+    minimum: 'Core functions available 24h and dark mode provided'
+    good: 'Night-time do-not-disturb and deferred-processing options'
+    excellent: 'Light/time-of-day adaptive interface'
   unit: 特性覆盖率 %
   applicable_domains:
   - digital
@@ -495,7 +627,9 @@
   name_en: Frequency-Tier Adaptation
   category: audit
   description: 按高频/低频用户分层审计差异化设计（高频：效率特性；低频：记忆辅助、最近记录、简化界面）
+  description_en: 'Audit differentiated design by high-frequency/low-frequency user segments (high-frequency: efficiency features; low-frequency: memory aids, recent records, simplified interface)'
   measurement_method: 频率分层定义（DAU/MAU 比或会话间隔分布）→分层特性矩阵审计；习惯养成参照 Lally et al. 2010 渐近线模型
+  measurement_method_en: 'Frequency tier definition (DAU/MAU ratio or session interval distribution) → tiered feature matrix audit; habit formation referencing the Lally et al. 2010 asymptotic model'
   data_source:
   - 使用分析
   - 特性审计
@@ -503,6 +637,10 @@
     minimum: 低频路径有记忆辅助（最近使用/默认值预填）
     good: 高频路径有批量/快捷操作；低频路径有使用引导
     excellent: 按个人使用模式自适应难度与界面密度
+  thresholds_en:
+    minimum: 'Low-frequency paths have memory aids (recently used/default prefill)'
+    good: 'High-frequency paths have batch/shortcut actions; low-frequency paths have usage guidance'
+    excellent: 'Difficulty and interface density adaptive to individual usage patterns'
   unit: 分层覆盖率 %
   applicable_domains:
   - digital
@@ -517,7 +655,9 @@
   name_en: Seasonal Adaptation Audit
   category: audit
   description: 审计季节/极端天气/节假日模式下的功能保持度，含光照/温度/湿度/假期分布等维度的适应性特性
+  description_en: 'Audit functional retention under seasonal/extreme-weather/holiday patterns, including adaptive features across dimensions such as light, temperature, humidity, and holiday distribution'
   measurement_method: 季节场景清单（极端天气/光照周期/节假日模式）×功能保持审计；光照敏感人群对照 SAD 研究的光照需求
+  measurement_method_en: 'Seasonal scenario checklist (extreme weather/light cycles/holiday patterns) × function-retention audit; light-sensitive populations referenced against light requirements from SAD research'
   data_source:
   - 场景审计
   - 季节性使用数据
@@ -525,6 +665,10 @@
     minimum: 极端天气/温度下核心功能不失效（防水/耐温规格达标）
     good: 光照/温度变化有模式适配（冬季深色/夏季高对比/防眩光）
     excellent: 节假日模式与季节性内容自动切换
+  thresholds_en:
+    minimum: 'Core functions do not fail under extreme weather/temperature (waterproofing/temperature-tolerance specs met)'
+    good: 'Mode adaptation to light/temperature changes (dark in winter/high contrast in summer/anti-glare)'
+    excellent: 'Automatic switching between holiday modes and seasonal content'
   unit: 场景覆盖率 %
   applicable_domains:
   - digital
@@ -541,7 +685,9 @@
   name_en: Time-Limit Adjustability
   category: audit
   description: 盘点产品内全部时限，逐项核对可关闭/可调整/可延长；本质例外需论证记录
+  description_en: 'Inventory all time limits in the product and verify item by item whether they can be turned off/adjusted/extended; essential exceptions must be justified and documented'
   measurement_method: 时限清单→逐项按 WCAG 2.2.1 核对（关闭/调整/延长）→本质例外论证记录
+  measurement_method_en: 'Time-limit inventory → item-by-item WCAG 2.2.1 check (turn off/adjust/extend) → documented justification for essential exceptions'
   data_source:
   - 时限盘点
   - 代码/流程审计
@@ -549,6 +695,10 @@
     minimum: 非本质时限 100% 可调整（WCAG 2.2.1 A 级）
     good: 剩余时间可视化与进度提示
     excellent: 默认无时限（仅本质需要时设置并留论证）
+  thresholds_en:
+    minimum: '100% of non-essential time limits adjustable (WCAG 2.2.1 Level A)'
+    good: 'Remaining-time visualization and progress prompts'
+    excellent: 'No time limits by default (set only when essentially required, with documented justification)'
   unit: 时限达标率 %
   applicable_domains:
   - digital
@@ -565,7 +715,9 @@
   name_en: Resumption Support
   category: audit
   description: 对长任务审计自动保存、续接入口、时长预估与分步计划特性
+  description_en: 'Audit long tasks for autosave, resumption entry points, duration estimation and step-by-step planning features'
   measurement_method: 长任务清单→中断注入测试（数据保存率/恢复成功率统计）
+  measurement_method_en: 'Long-task inventory → interruption injection test (statistics on data save rate and recovery success rate)'
   data_source:
   - 任务审计
   - 中断测试
@@ -573,6 +725,10 @@
     minimum: 长任务自动保存（间隔 ≤ 30s 或实时）且有续接入口
     good: 任务时长预估与分步计划展示
     excellent: 跨设备无缝续接（状态同步）
+  thresholds_en:
+    minimum: 'Long tasks auto-save (interval ≤ 30s or real-time) with a resumption entry point'
+    good: 'Task duration estimate and step-by-step plan display'
+    excellent: 'Seamless cross-device resumption (state sync)'
   unit: 任务支持率 %
   applicable_domains:
   - digital
@@ -586,7 +742,9 @@
   name_en: Fatigue Response Completeness
   category: audit
   description: 审计疲劳检测信号（连续错误/操作放缓/会话时长）与响应机制（休息提示/界面简化/断点保存）
+  description_en: 'Audit fatigue-detection signals (consecutive errors/slowed operation/session duration) and response mechanisms (rest prompts/interface simplification/checkpoint saving)'
   measurement_method: 疲劳信号×响应机制矩阵审计；长会话实测错误率增长曲线（对照 NASA-TLX 量表校验）
+  measurement_method_en: 'Fatigue-signal × response-mechanism matrix audit; long-session testing of error-rate growth curves (cross-checked against the NASA-TLX scale)'
   data_source:
   - 功能审计
   - 长会话测试
@@ -594,6 +752,10 @@
     minimum: 长会话有暂停与断点保存（数据不因疲劳中断丢失）
     good: 连续错误/操作放缓触发主动休息提示
     excellent: 疲劳自适应界面（信息量缩减/关键元素放大）
+  thresholds_en:
+    minimum: 'Long sessions offer pause and checkpoint saving (no data loss from fatigue-related interruption)'
+    good: 'Continuous errors or slowed operation trigger proactive rest prompts'
+    excellent: 'Fatigue-adaptive interface (reduced information density / enlarged key elements)'
   unit: 响应机制覆盖率 %
   applicable_domains:
   - digital
@@ -609,7 +771,9 @@
   name_en: Environmental Envelope Adaptation
   category: audit
   description: 定义使用环境包络（照度/噪声/天气/手部条件），逐项测试功能在包络边缘的保持度
+  description_en: 'Define the usage environmental envelope (illuminance/noise/weather/hand conditions) and test item by item how well functions are maintained at the envelope edges'
   measurement_method: 环境包络×功能矩阵实测或估算（照明与声学参照 ISO 21542:2021 cl.5.4/5.7）
+  measurement_method_en: 'Environmental envelope × function matrix tested on site or estimated (lighting and acoustics referenced to ISO 21542:2021 cl.5.4/5.7)'
   data_source:
   - 场景定义
   - 实地/实验室测试
@@ -617,6 +781,10 @@
     minimum: 标称环境（如常规室内照明）全功能可用
     good: 强光/低光与高噪声下核心功能可用
     excellent: 全场景自动适应（亮度/对比/触觉反馈切换）
+  thresholds_en:
+    minimum: 'Full functionality available under nominal environments (e.g., ordinary indoor lighting)'
+    good: 'Core functions usable under strong/low light and high noise'
+    excellent: 'Automatic adaptation across all scenarios (brightness/contrast/haptic feedback switching)'
   unit: 环境项通过率 %
   applicable_domains:
   - digital
@@ -634,7 +802,9 @@
   name_en: Social Context Function Audit
   category: audit
   description: 审计公开/共享场合的隐私遮挡、静音、情境模式与多角色切换特性
+  description_en: 'Audit privacy shielding, muting, context modes and multi-role switching features for public/shared settings'
   measurement_method: 社会情境（独自公开/共视/旁观在场）×功能矩阵审计
+  measurement_method_en: 'Social context (alone in public / co-viewing / bystanders present) × function matrix audit'
   data_source:
   - 情境走查
   - 用户测试
@@ -642,6 +812,10 @@
     minimum: 公开场合使用无强制隐私暴露（可选静音/遮挡）
     good: 提供情境/角色快速切换
     excellent: 情境自适应提示（同行人/位置感知）
+  thresholds_en:
+    minimum: 'No forced privacy exposure when used in public (optional mute/privacy shield)'
+    good: 'Quick context/role switching provided'
+    excellent: 'Context-adaptive prompts (companion-aware/location-aware)'
   unit: 情境覆盖率 %
   applicable_domains:
   - digital
@@ -657,7 +831,9 @@
   name_en: Spatial Accessibility Compliance Rate
   category: audit
   description: 按 GB 55019 强制条款（通行净宽≥900mm、坡道、抓杆等）与 ISO 21542 通行条款逐项实测
+  description_en: 'Measure item by item against GB 55019 mandatory clauses (clear passage width ≥900mm, ramps, grab bars, etc.) and ISO 21542 circulation clauses'
   measurement_method: 实地测量+检查表（GB 55019 ch.2 通行设施 / GB 50763 / ISO 21542:2021 cl.8 内部通行与 cl.9 建筑部件）
+  measurement_method_en: 'On-site measurement + checklist (GB 55019 ch.2 circulation facilities / GB 50763 / ISO 21542:2021 cl.8 internal circulation and cl.9 building elements)'
   data_source:
   - 实地测量
   - 检查表
@@ -665,6 +841,10 @@
     minimum: GB 55019 强制条款 100% 达标（法规红线）
     good: ISO 21542 推荐条款 ≥ 80% 达标
     excellent: 轮椅实地走查全动线贯通（含紧急疏散路径）
+  thresholds_en:
+    minimum: '100% compliance with GB 55019 mandatory clauses (regulatory red line)'
+    good: '≥ 80% compliance with ISO 21542 recommended clauses'
+    excellent: 'Full route traversal in an on-site wheelchair walkthrough (including emergency evacuation paths)'
   unit: 条款通过率 %
   applicable_domains:
   - architecture
@@ -681,7 +861,9 @@
   name_en: Resource-Loss Resilience
   category: audit
   description: 枚举外部资源依赖（电力/网络/人力/耗材），在单点缺失下测试核心功能保持度
+  description_en: 'Enumerate external resource dependencies (power/network/labor/consumables) and test how well core functions are maintained under single-point failure'
   measurement_method: 资源×功能矩阵 + 断供演练（断电/离线/无协助）
+  measurement_method_en: 'Resource × function matrix + supply-outage drills (power loss/offline/no assistance)'
   data_source:
   - 依赖清单
   - 故障演练
@@ -689,6 +871,10 @@
     minimum: 任一单点资源缺失时核心功能可用（降级模式）
     good: 降级状态明确提示且自动恢复
     excellent: 离线优先/自给架构
+  thresholds_en:
+    minimum: 'Core functions usable when any single-point resource is lost (degraded mode)'
+    good: 'Degraded state clearly indicated with automatic recovery'
+    excellent: 'Offline-first / self-sufficient architecture'
   unit: 韧性项通过率 %
   applicable_domains:
   - digital
@@ -705,7 +891,9 @@
   name_en: Economic Accessibility Tiers
   category: audit
   description: 审计免费层/低价层/设备与流量成本优化，对照目标市场收入分布与金融包容数据
+  description_en: 'Audit free tiers/low-cost tiers and device and data cost optimization against the target market''s income distribution and financial inclusion data'
   measurement_method: 定价层级×目标市场收入分布对照（World Bank 收入分类/贫困线参照）；数据流量与旧设备支持审计
+  measurement_method_en: 'Pricing tiers × target-market income distribution comparison (World Bank income classification/poverty lines as reference); audit of data usage and legacy-device support'
   data_source:
   - 定价审计
   - Findex 数据
@@ -714,6 +902,10 @@
     minimum: 有免费或低价获取路径（核心功能不设付费墙）
     good: 支持低端设备与流量节省模式（离线/轻量版）
     excellent: 按支付能力分层定价（学生/区域定价/公益授权）
+  thresholds_en:
+    minimum: 'A free or low-cost access path exists (no paywall on core functions)'
+    good: 'Support for low-end devices and data-saving modes (offline/lite version)'
+    excellent: 'Tiered pricing by ability to pay (student/regional pricing/charitable licensing)'
   unit: 梯度覆盖档位
   applicable_domains:
   - digital
@@ -729,7 +921,9 @@
   name_en: Emergency Function Accessibility
   category: audit
   description: 紧急操作（SOS/疏散/中止）步数与多感官告警审计，对照 GB 55019 信息交流与 ISO 21542 消防疏散条款
+  description_en: 'Audit emergency operation (SOS/evacuation/abort) step counts and multisensory alarms against GB 55019 information and communication clauses and ISO 21542 fire evacuation clauses'
   measurement_method: 界面状态图遍历测最短步数 + 告警通道核对（视/听/触），建筑类按 GB 55019 ch.4 与 ISO 21542:2021 cl.11 检查表实测
+  measurement_method_en: 'Interface state-graph traversal to measure the shortest step count + alarm channel verification (visual/auditory/tactile); for architecture, on-site testing against the GB 55019 ch.4 and ISO 21542:2021 cl.11 checklists'
   data_source:
   - 界面状态图
   - 实地测试
@@ -737,6 +931,10 @@
     minimum: 紧急操作 ≤ 3 步且告警多感官（适用范围内符合强制规范）
     good: 免登录/免解锁可用紧急功能
     excellent: 离线紧急信息与演练模式
+  thresholds_en:
+    minimum: 'Emergency operations ≤ 3 steps with multi-sensory alarms (compliant with mandatory codes within applicable scope)'
+    good: 'Emergency functions usable without login/unlock'
+    excellent: 'Offline emergency information and drill mode'
   unit: 步数 / 告警通道数
   applicable_domains:
   - digital
@@ -754,7 +952,9 @@
   name_en: Context Coverage Matrix
   category: audit
   description: 按 ISO 9241-210 使用情境要素（用户/目标/环境）建立情境×功能矩阵并核对实测覆盖
+  description_en: 'Build a context × function matrix based on the ISO 9241-210 context-of-use elements (user/task/environment) and verify measured coverage'
   measurement_method: 情境清单分级（P0/P1/P2）→设计覆盖核对→实测记录
+  measurement_method_en: 'Context inventory tiering (P0/P1/P2) → design coverage verification → on-site test records'
   data_source:
   - 情境分析
   - 可用性测试
@@ -762,6 +962,10 @@
     minimum: P0 情境 100% 定义并有设计覆盖
     good: P0 全部实测 + P1 桌面走查
     excellent: 极端/并行情境（打扰、多任务）实测覆盖
+  thresholds_en:
+    minimum: 'P0 contexts 100% defined with design coverage'
+    good: 'All P0 contexts field-tested + P1 desk walkthrough'
+    excellent: 'Field-test coverage of extreme/parallel contexts (interruptions, multitasking)'
   unit: 情境覆盖率 %
   applicable_domains:
   - universal
@@ -775,7 +979,9 @@
   name_en: Shared-Use Isolation
   category: audit
   description: 审计多用户场景的会话隔离、数据清除、可清洁性与无人监督耐久性
+  description_en: 'Audit session isolation, data clearing, cleanability and unsupervised durability in multi-user scenarios'
   measurement_method: 共享场景清单（公共终端/家庭共用/多人围观）×隔离与卫生特性审计
+  measurement_method_en: 'Shared-use scenario inventory (public terminals/household sharing/multi-person viewing) × isolation and hygiene feature audit'
   data_source:
   - 场景审计
   - 实测
@@ -783,6 +989,10 @@
     minimum: 共享场景有会话隔离与用后数据清除
     good: 快速用户切换与访客模式
     excellent: 多人围观自适应布局与卫生材质规范
+  thresholds_en:
+    minimum: 'Shared scenarios provide session isolation and post-use data clearing'
+    good: 'Fast user switching and guest mode'
+    excellent: 'Adaptive layout for multi-person viewing and hygienic material specification'
   unit: 特性通过率 %
   applicable_domains:
   - digital
@@ -797,7 +1007,9 @@
   name_en: Assisted-Use Support
   category: audit
   description: 审计协助者代理完成、授权、远程协助与操作记录特性（受辅助使用情境）
+  description_en: 'Audit assistant proxy completion, authorization, remote assistance and operation-recording features (assisted-use contexts)'
   measurement_method: 协助者场景实测（代理完成核心任务的授权机制与成功率）
+  measurement_method_en: 'Assisted-use scenario testing (authorization mechanism and success rate for proxy completion of core tasks)'
   data_source:
   - 功能审计
   - 代理测试
@@ -805,6 +1017,10 @@
     minimum: 核心任务可由协助者代理完成（明确授权机制）
     good: 协作者视图与操作留痕
     excellent: 远程实时协助与语音协同引导
+  thresholds_en:
+    minimum: 'Core tasks can be completed by proxy with an assistant (explicit authorization mechanism)'
+    good: 'Collaborator view and operation trail'
+    excellent: 'Remote real-time assistance and voice-guided collaboration'
   unit: 特性通过率 %
   applicable_domains:
   - digital
@@ -819,7 +1035,9 @@
   name_en: Information Density Preference Index
   category: user-test
   description: 用户在多档信息密度设置下的选择频率与满意度评分
+  description_en: 'Users'' selection frequency and satisfaction ratings across multiple information-density settings'
   measurement_method: 可调节密度档位数 + 用户满意度评分
+  measurement_method_en: 'Number of adjustable density tiers + user satisfaction rating'
   data_source:
   - 用户调研
   - A/B 测试
@@ -828,6 +1046,10 @@
     excellent: 自适应推荐 + 完全自定义 + 记忆偏好
     good: 提供 4+ 档位或自定义滑块
     minimum: 提供 2-3 个密度档位可选
+  thresholds_en:
+    minimum: '2–3 selectable density tiers provided'
+    good: '4+ tiers or a custom slider provided'
+    excellent: 'Adaptive recommendation + full customization + preference memory'
   unit: 档位数 / 满意度分 (1-5)
   status: draft
   evidence_grade: C
@@ -837,7 +1059,9 @@
   name_en: Exploration Depth Tiers
   category: audit
   description: 审计渐进式披露层级（基础/进阶/专家）与'危险操作保护'的分级设计
+  description_en: 'Audit the tiered design of progressive disclosure levels (basic/advanced/expert) and ''dangerous operation protection'''
   measurement_method: 功能清单按层级归类审计 + 新手/专家双视角走查
+  measurement_method_en: 'Feature inventory audit classified by tier + novice/expert dual-perspective walkthrough'
   data_source:
   - 信息架构审计
   - 双视角走查
@@ -845,6 +1069,10 @@
     minimum: 核心路径无强制探索（最少点击直达）
     good: 提供'简单/详细'双模式或分层入口
     excellent: 用户自选探索深度并记忆偏好
+  thresholds_en:
+    minimum: 'Core paths require no forced exploration (fewest clicks, direct access)'
+    good: '''Simple/Detailed'' dual mode or tiered entry points provided'
+    excellent: 'User-selected exploration depth with preference memory'
   unit: 层级覆盖率 %
   applicable_domains:
   - digital
@@ -859,7 +1087,9 @@
   name_en: Automation Level Adjustability
   category: user-test
   description: 按 Parasuraman 2000 十级自动化模型审计自动化等级可选择性，并测量用户对各级的信任与干预频率
+  description_en: 'Audit the selectability of automation levels based on the Parasuraman 2000 ten-level automation model, and measure users'' trust and intervention frequency at each level'
   measurement_method: 自动化功能×等级矩阵审计 + 用户实测（手动干预率/撤销使用率/接受度量表）
+  measurement_method_en: 'Automation feature × level matrix audit + user testing (manual intervention rate/undo usage rate/acceptance scale)'
   data_source:
   - 功能审计
   - 用户测试
@@ -867,6 +1097,10 @@
     minimum: 所有自动化决策可撤销或覆盖（对应 ISO 9241-110 5.5 可控性）
     good: 自动化等级用户可选（全自动/半自动/手动分档）
     excellent: 系统能力公示 + 用户自选干预粒度（逐项/批量）
+  thresholds_en:
+    minimum: 'All automated decisions can be undone or overridden (corresponding to ISO 9241-110 5.5 controllability)'
+    good: 'Automation level user-selectable (fully automatic/semi-automatic/manual tiers)'
+    excellent: 'System capability disclosure + user-chosen intervention granularity (per item/batch)'
   unit: 等级档位数 / 干预成功率
   applicable_domains:
   - digital
@@ -883,7 +1117,9 @@
   name_en: Visibility Granularity Control
   category: audit
   description: 审计社交场景的可见性选项粒度（全局/分组/单次）与状态暴露默认值
+  description_en: 'Audit the granularity of visibility options (global/group/one-time) and status-exposure defaults in social scenarios'
   measurement_method: 可见性选项矩阵审计 + 默认值隐私倾向检查（默认应为最小暴露）
+  measurement_method_en: 'Visibility option matrix audit + default-value privacy-lean check (defaults should be minimal exposure)'
   data_source:
   - 功能审计
   - 隐私政策核对
@@ -891,6 +1127,10 @@
     minimum: 提供可见性开关且默认最小暴露
     good: 分组/单次可见性粒度可选
     excellent: 发布前可见性预览（'谁可以看到这条'）
+  thresholds_en:
+    minimum: 'Visibility switches provided with minimal-exposure defaults'
+    good: 'Group/one-time visibility granularity selectable'
+    excellent: 'Pre-publication visibility preview (''who can see this'')'
   unit: 粒度档位数
   applicable_domains:
   - digital
@@ -903,7 +1143,9 @@
   name_en: Style Choice & Consistency
   category: audit
   description: 审计官方主题/自定义能力，以及风格切换时功能位置稳定性（减少再学习成本）
+  description_en: 'Audit official themes/customization capabilities, and the stability of feature locations when switching styles (reducing relearning cost)'
   measurement_method: 主题与自定义能力清单审计 + 切换前后功能位置一致性走查
+  measurement_method_en: 'Theme and customization capability inventory audit + pre/post-switch feature-location consistency walkthrough'
   data_source:
   - 界面审计
   - 用户测试
@@ -911,6 +1153,10 @@
     minimum: 提供 ≥2 官方主题且默认普适（高可读性中性风格）
     good: 关键自定义能力（字号/对比度/动效开关）+ 切换后功能位置不变
     excellent: 风格偏好跨平台同步记忆
+  thresholds_en:
+    minimum: '≥ 2 official themes provided with a universally usable default (highly readable neutral style)'
+    good: 'Key customization capabilities (font size/contrast/motion toggles) + feature locations unchanged after switching'
+    excellent: 'Style preferences remembered and synced across platforms'
   unit: 选择档位 / 一致性通过率
   applicable_domains:
   - digital
@@ -925,7 +1171,9 @@
   name_en: Input Modality Redundancy
   category: audit
   description: 核心操作的输入模态计数（触控/键盘/语音/手势/物理按钮），单一模态失效时是否有替代路径
+  description_en: 'Count the input modalities for core operations (touch/keyboard/voice/gesture/physical buttons) and check whether alternative paths exist when a single modality fails'
   measurement_method: 核心操作×模态矩阵审计；按 WCAG 2.5.1 指针手势与 2.1.1 键盘核查替代路径
+  measurement_method_en: 'Core operation × modality matrix audit; alternative paths checked per WCAG 2.5.1 pointer gestures and 2.1.1 keyboard'
   data_source:
   - 功能审计
   - AT 兼容测试
@@ -933,6 +1181,10 @@
     minimum: 核心操作 ≥ 2 种模态（含键盘等效，WCAG 2.1.1 A 级）
     good: ≥ 3 种模态且含无精细动作模态（语音/大按钮）
     excellent: 模态自由切换且偏好记忆
+  thresholds_en:
+    minimum: 'Core operations support ≥ 2 modalities (including keyboard equivalence, WCAG 2.1.1 Level A)'
+    good: '≥ 3 modalities including one not requiring fine motor control (voice/large buttons)'
+    excellent: 'Free modality switching with preference memory'
   unit: 模态数 / 操作
   applicable_domains:
   - digital
@@ -950,7 +1202,9 @@
   name_en: Feedback Channel Redundancy
   category: audit
   description: 关键反馈（成功/失败/进度/警告）的多感官通道冗余审计（视觉+听觉+触觉至少双通道）
+  description_en: 'Audit multisensory channel redundancy for critical feedback (success/failure/progress/warning) (at least dual-channel among visual + auditory + tactile)'
   measurement_method: 反馈事件×通道矩阵审计；WCAG 4.1.3 状态消息（AA）核对屏幕阅读器播报
+  measurement_method_en: 'Feedback event × channel matrix audit; WCAG 4.1.3 status messages (AA) verification of screen-reader announcement'
   data_source:
   - 功能审计
   - AT 测试
@@ -958,6 +1212,10 @@
     minimum: 关键反馈不依赖单一感官通道（WCAG 1.4.2 音频控制相关 + ISO 9241-110 5.2 自描述性）
     good: 双通道反馈且用户可选偏好通道
     excellent: 三通道冗余与感官替代（闪光→振动）
+  thresholds_en:
+    minimum: 'Critical feedback does not rely on a single sensory channel (WCAG 1.4.2 audio control relevant + ISO 9241-110 5.2 self-descriptiveness)'
+    good: 'Dual-channel feedback with a user-selectable preferred channel'
+    excellent: 'Three-channel redundancy and sensory substitution (flash → vibration)'
   unit: 通道冗余率 %
   applicable_domains:
   - digital
@@ -974,7 +1232,9 @@
   name_en: Interaction Mode Optionality
   category: audit
   description: 审计交互模式清单（直接操作/命令/手势/语音/快捷键）的并存性、默认可选与切换成本
+  description_en: 'Audit the coexistence, selectable default and switching cost of the interaction-mode inventory (direct manipulation/command/gesture/voice/shortcut)'
   measurement_method: 模式×任务矩阵审计 + 模式切换步数与再学习成本评估
+  measurement_method_en: 'Mode × task matrix audit + assessment of mode-switching steps and relearning cost'
   data_source:
   - 功能审计
   - 用户测试
@@ -982,6 +1242,10 @@
     minimum: 核心任务 ≥2 模式可用且默认模式用户可选
     good: 切换 ≤1 步且无强制模式（触屏保留快捷键等效）
     excellent: 模式偏好记忆与情境感知推荐（驾驶→语音）
+  thresholds_en:
+    minimum: 'Core tasks usable in ≥ 2 modes with a user-selectable default mode'
+    good: 'Switching in ≤ 1 step with no forced mode (keyboard shortcuts retained as touchscreen equivalents)'
+    excellent: 'Mode preference memory and context-aware recommendation (driving → voice)'
   unit: 模式数 / 切换步数
   applicable_domains:
   - digital
@@ -997,7 +1261,9 @@
   name_en: Notification Controllability
   category: audit
   description: 通知的粒度控制（逐类开关/免打扰/批量静默）与紧急通知穿透策略审计
+  description_en: 'Audit the granularity of notification control (per-category toggles/do-not-disturb/batch silencing) and the urgent-notification breakthrough strategy'
   measurement_method: 通知类型×控制粒度矩阵审计 + 免打扰实测（紧急类是否可穿透）
+  measurement_method_en: 'Notification type × control granularity matrix audit + do-not-disturb field testing (whether urgent categories can break through)'
   data_source:
   - 功能审计
   - 系统设置检查
@@ -1005,6 +1271,10 @@
     minimum: 通知可逐类开关且提供全局静音
     good: 免打扰时段/场景规则（含紧急例外）
     excellent: 通知摘要合并与优先级用户自定义
+  thresholds_en:
+    minimum: 'Notifications toggleable per category with a global mute'
+    good: 'Do-not-disturb schedules/scenario rules (with urgent exceptions)'
+    excellent: 'Notification digest consolidation and user-defined priorities'
   unit: 控制粒度档位
   applicable_domains:
   - digital
@@ -1019,7 +1289,9 @@
   name_en: Capability Demand Exclusion Rate
   category: audit
   description: 基于 Cambridge 排除测算法（Waller/Langdon/Clarkson 2010），将产品使用拆解为任务并对每任务的能力需求评级，对照人群能力分布估算被排除用户比例
+  description_en: 'Based on the Cambridge exclusion calculation method (Waller/Langdon/Clarkson 2010), decompose product use into tasks and rate the capability demand of each task, estimating the proportion of excluded users against the population capability distribution'
   measurement_method: 任务分析→五类能力需求评级（视觉/听觉/操作/触及/移动）→对照 1996/97 DFS 能力分布计算排除率
+  measurement_method_en: 'Task analysis → capability demand rating across five categories (vision/hearing/dexterity/reach/mobility) → exclusion rate computed against the 1996/97 DFS capability distribution'
   data_source:
   - 任务分析
   - 专家评级
@@ -1028,6 +1300,10 @@
     minimum: 任一核心任务排除率 ≤ 10%
     good: 核心任务排除率 ≤ 5%
     excellent: ≤ 2% 且含多重障碍叠加分析
+  thresholds_en:
+    minimum: 'Exclusion rate ≤ 10% for any core task'
+    good: 'Exclusion rate ≤ 5% for core tasks'
+    excellent: '≤ 2% with multiple-disability interaction analysis included'
   unit: 排除人口百分比
   applicable_domains:
   - universal
@@ -1040,7 +1316,9 @@
   name_en: Demographic Representation Gap
   category: audit
   description: 将调研样本与 persona 分布对照目标市场人口统计（年龄段/性别/地域），计算代表性偏差
+  description_en: 'Compare the research sample and persona distribution against the target market''s demographics (age group/gender/region) and calculate the representativeness deviation'
   measurement_method: persona vs 目标人群统计对照表 + 交叉维度覆盖检查
+  measurement_method_en: 'Persona vs. target-population statistics comparison table + cross-dimension coverage check'
   data_source:
   - 用户调研样本
   - 人口统计数据
@@ -1049,6 +1327,10 @@
     minimum: 年龄/性别/地域三维均有代表且无单点画像
     good: 各维度与目标人群偏差 ≤ 20%
     excellent: 偏差 ≤ 10% 且覆盖交叉弱势组合（如老年×低技术素养）
+  thresholds_en:
+    minimum: 'Representation across all three dimensions of age/gender/region with no single-point persona'
+    good: 'Deviation from the target population ≤ 20% per dimension'
+    excellent: 'Deviation ≤ 10% with coverage of intersectional disadvantaged combinations (e.g., older adults × low tech literacy)'
   unit: 偏差百分比
   applicable_domains:
   - universal
@@ -1060,7 +1342,9 @@
   name_en: Health Condition Accommodation Coverage
   category: audit
   description: 审计设计对常见健康影响类别（感官/运动/慢性疼痛/疲劳/用药期波动）的适配完成度
+  description_en: 'Audit design completeness of accommodation for common health-impact categories (sensory/motor/chronic pain/fatigue/fluctuation during medication)'
   measurement_method: 健康影响类别×适配措施矩阵审计（含 WCAG AA 基线核对）
+  measurement_method_en: 'Health-impact category × accommodation measure matrix audit (including WCAG AA baseline check)'
   data_source:
   - 适配清单
   - 专家审计
@@ -1068,6 +1352,10 @@
     minimum: 感官与运动类别适配 100%（WCAG AA 基线）
     good: 慢性病常见影响（疲劳/疼痛/认知波动）有显式设计
     excellent: 低频高风险状况（如光敏癫痫）有专项防护
+  thresholds_en:
+    minimum: '100% accommodation for sensory and motor categories (WCAG AA baseline)'
+    good: 'Explicit design for common chronic-condition impacts (fatigue/pain/cognitive fluctuation)'
+    excellent: 'Dedicated safeguards for low-frequency high-risk conditions (e.g., photosensitive epilepsy)'
   unit: 类别覆盖率 %
   applicable_domains:
   - universal
@@ -1079,7 +1367,9 @@
   name_en: Multimodal Presentation Completeness
   category: audit
   description: 审计关键内容的双通道以上呈现（图文+视频+交互演练），按 Pashler 2008 结论将设计响应定位为多模态呈现而非风格适配
+  description_en: 'Audit the presentation of key content through more than two channels (text and graphics + video + interactive walkthrough), positioning the design response as multimodal presentation rather than style adaptation per the conclusions of Pashler 2008'
   measurement_method: 关键内容×呈现模态矩阵审计（内容是否可经 ≥2 通道获取）
+  measurement_method_en: 'Key content × presentation modality matrix audit (whether content can be accessed via ≥ 2 channels)'
   data_source:
   - 内容审计
   - 用户测试
@@ -1087,6 +1377,10 @@
     minimum: 关键操作指引有 ≥2 模态（如图文+视频）
     good: 用户可选默认学习/帮助模态
     excellent: 全内容 ≥2 模态且节奏可控（重复/快进/慢放）
+  thresholds_en:
+    minimum: 'Key operation guidance available in ≥ 2 modalities (e.g., text + graphics and video)'
+    good: 'User-selectable default learning/help modality'
+    excellent: 'All content in ≥ 2 modalities with user-controlled pacing (repeat/fast-forward/slow playback)'
   unit: 内容双模态覆盖率 %
   applicable_domains:
   - digital
@@ -1102,7 +1396,9 @@
   name_en: Emotional Experience Three-Level Audit
   category: user-test
   description: 按 Norman 三层次（本能/行为/反思）审计情感触点并测量用户情感反应
+  description_en: 'Audit emotional touchpoints based on Norman''s three levels (visceral/behavioral/reflective) and measure users'' emotional responses'
   measurement_method: 情感触点地图 × 三层次分类审计 + PANAS/SAM 量表测量 + SDT 三需求满足度评估
+  measurement_method_en: 'Emotional touchpoint map × three-level classification audit + PANAS/SAM scale measurement + SDT three-needs satisfaction assessment'
   data_source:
   - 用户测试
   - 量表
@@ -1111,6 +1407,10 @@
     minimum: 关键流程无致挫败点（PANAS 负面分数不高于基准）
     good: 关键触点有正向设计（成就感/信任感）且 SDT 三需求有显式支持
     excellent: 赋权时刻设计（可感知的进步/掌控）+ 峰终定律优化
+  thresholds_en:
+    minimum: 'No frustration-inducing points in key flows (PANAS negative score no higher than the baseline)'
+    good: 'Positive design at key touchpoints (sense of achievement/trust) with explicit support for the three SDT needs'
+    excellent: 'Empowerment moment design (perceptible progress/mastery) + peak-end rule optimization'
   unit: 量表分 / 触点覆盖率 %
   applicable_domains:
   - universal
@@ -1124,7 +1424,9 @@
   name_en: Sensory Intensity Adjustability
   category: audit
   description: 审计各感官通道（视觉/听觉/触觉）的强度调节能力，参照 HSP 量表的敏感度分布设计调节范围
+  description_en: 'Audit the intensity-adjustment capability of each sensory channel (visual/auditory/tactile), setting adjustment ranges with reference to the sensitivity distribution of the HSP scale'
   measurement_method: 感官通道×可调特性矩阵审计（亮度/色温/音量/振动/动效强度），对照 HSP 敏感度分布设定调节范围
+  measurement_method_en: 'Audit of the sensory-channel × adjustable-property matrix (brightness/color temperature/volume/vibration/motion intensity), setting adjustment ranges against the HSP sensitivity distribution'
   data_source:
   - 特性审计
   - 用户测试
@@ -1132,6 +1434,10 @@
     minimum: 主要感官通道强度可调（亮度/音量/振动）
     good: 动效可关（prefers-reduced-motion 响应）+ 无刺激模式（低感官模式）
     excellent: 全通道连续可调 + 情境感官配置记忆
+  thresholds_en:
+    minimum: 'Intensity of primary sensory channels adjustable (brightness/volume/vibration)'
+    good: 'Motion can be disabled (responds to prefers-reduced-motion) + non-stimulating mode (low-sensory mode)'
+    excellent: 'Continuously adjustable across all channels + contextual sensory-profile memory'
   unit: 通道可调率 %
   applicable_domains:
   - digital
@@ -1146,7 +1452,9 @@
   name_en: First-Time Novice Success Rate
   category: user-test
   description: 招募低技术素养用户（如首次使用智能设备的老年人）在无协助下完成核心任务
+  description_en: 'Recruit low-tech-literacy users (e.g., older adults using a smart device for the first time) to complete core tasks without assistance'
   measurement_method: 无协助可用性测试，记录首次任务成功率、求助次数与完成时间
+  measurement_method_en: 'Unassisted usability test, recording first-attempt task success rate, number of help requests and completion time'
   data_source:
   - 可用性测试
   - 参与者观察
@@ -1154,6 +1462,10 @@
     minimum: 核心任务无协助成功率 ≥ 80%
     good: ≥ 90% 且平均求助 ≤ 1 次
     excellent: ≥ 95% 且完成时间 ≤ 熟练用户 P95
+  thresholds_en:
+    minimum: 'Core-task unassisted success rate ≥ 80%'
+    good: '≥ 90% and average help requests ≤ 1'
+    excellent: '≥ 95% and completion time ≤ expert-user P95'
   unit: 成功率 %
   applicable_domains:
   - digital
@@ -1167,7 +1479,9 @@
   name_en: Cultural Localization Audit
   category: audit
   description: 对图标隐喻、色彩象征、姓名/日期/地址格式、阅读方向进行跨文化审计
+  description_en: 'Conduct a cross-cultural audit of icon metaphors, color symbolism, name/date/address formats, and reading direction'
   measurement_method: 目标文化清单逐项审计 + ≥2 文化背景用户验证
+  measurement_method_en: 'Item-by-item audit against the target-culture checklist + validation with users from ≥2 cultural backgrounds'
   data_source:
   - 本地化清单
   - 文化背景用户访谈
@@ -1175,6 +1489,10 @@
     minimum: 无冒犯性符号且支持本地化格式（姓名/日期/地址）
     good: 图标与隐喻经 ≥2 文化背景用户验证
     excellent: 支持 RTL 布局与全部目标市场语言
+  thresholds_en:
+    minimum: 'No offensive symbols and support for localized formats (name/date/address)'
+    good: 'Icons and metaphors validated with users from ≥2 cultural backgrounds'
+    excellent: 'Support for RTL layout and all target-market languages'
   unit: 审计项通过率 %
   applicable_domains:
   - universal
@@ -1186,7 +1504,9 @@
   name_en: Neurodiversity Feature Coverage
   category: audit
   description: 检查减少动效、可预测布局、直白语言、内容分块、无时间压力默认值等神经多样性友好特性
+  description_en: 'Check neurodiversity-friendly features such as reduced motion, predictable layout, plain language, content chunking, and no-time-pressure defaults'
   measurement_method: 神经多样性设计清单审计（动效开关/布局一致性/语言直白度/内容分块/时限默认值），含 prefers-reduced-motion 响应核对
+  measurement_method_en: 'Audit against a neurodiversity design checklist (motion toggle/layout consistency/language plainness/content chunking/default time limits), including verification of prefers-reduced-motion response'
   data_source:
   - 特性清单
   - 代码/界面审计
@@ -1194,6 +1514,10 @@
     minimum: 提供减少动效选项且布局保持可预测
     good: 直白语言与内容分块达标
     excellent: 感官强度全面可调与专注模式提供
+  thresholds_en:
+    minimum: 'A reduce-motion option is provided and layout stays predictable'
+    good: 'Plain language and content chunking meet the bar'
+    excellent: 'Sensory intensity fully adjustable and a focus mode is provided'
   unit: 特性覆盖率 %
   applicable_domains:
   - digital
@@ -1206,7 +1530,9 @@
   name_en: Cognitive Demand Exclusion Rate
   category: audit
   description: 采用 Cambridge 排除测算的认知维度（记忆/注意/理解），对任务认知需求评级并估算认知排除率
+  description_en: 'Using the cognitive dimensions of the Cambridge exclusion calculation (memory/attention/comprehension), rate task cognitive demands and estimate the cognitive exclusion rate'
   measurement_method: 任务认知需求评级（同时记忆项数/步骤数/决策点计数）→对照能力分布排除估算
+  measurement_method_en: 'Rate task cognitive demands (count of simultaneously held items/number of steps/decision points) → compare against the capability distribution to estimate exclusion'
   data_source:
   - 任务分析
   - 专家评级
@@ -1214,6 +1540,10 @@
     minimum: 核心任务同时记忆项 ≤ 4 且步骤可分块
     good: 认知排除估算 ≤ 5%
     excellent: ≤ 2% 且提供预填/进度提示等减负辅助
+  thresholds_en:
+    minimum: 'Core tasks require holding ≤ 4 items simultaneously and steps can be chunked'
+    good: 'Estimated cognitive exclusion ≤ 5%'
+    excellent: '≤ 2% and burden-reducing aids such as pre-fill/progress hints are provided'
   unit: 排除百分比 / 记忆项数
   applicable_domains:
   - digital
@@ -1227,7 +1557,9 @@
   name_en: Language Accessibility Audit
   category: audit
   description: 核对页面语言声明（lang）、内容阅读等级与平实语言替代的可及性
+  description_en: 'Verify the page language declaration (lang), content reading level, and the accessibility of plain-language alternatives'
   measurement_method: lang 属性检查（WCAG 3.1.1/3.1.2）+ 内容阅读等级测算 + 目标语言覆盖清单
+  measurement_method_en: 'lang attribute check (WCAG 3.1.1/3.1.2) + content reading-level measurement + target-language coverage checklist'
   data_source:
   - 代码审计
   - 内容分析
@@ -1235,6 +1567,10 @@
     minimum: lang 声明正确且目标市场语言 100% 覆盖
     good: 核心内容阅读等级 ≤ 初中水平
     excellent: 提供平实语言版本与术语表
+  thresholds_en:
+    minimum: 'lang declaration is correct and target-market language coverage is 100%'
+    good: 'Core content reading level ≤ junior-high level'
+    excellent: 'A plain-language version and a glossary are provided'
   unit: 覆盖率 / 阅读等级
   applicable_domains:
   - digital
@@ -1251,7 +1587,9 @@
   name_en: Non-Text Alternative Coverage
   category: audit
   description: 检查核心任务是否有图示/视频/语音等非文字替代指引，关键文案是否采用受控词汇
+  description_en: 'Check whether core tasks have non-text alternative guidance such as diagrams/video/voice, and whether key copy uses controlled vocabulary'
   measurement_method: 任务×替代通道矩阵审计 + 词汇复杂度抽检
+  measurement_method_en: 'Audit of the task × alternative-channel matrix + spot checks on vocabulary complexity'
   data_source:
   - 内容审计
   - 用户测试
@@ -1259,6 +1597,10 @@
     minimum: 核心任务有 ≥1 非文字指引（图示或视频）
     good: 关键操作词受控（常用词汇表内）
     excellent: 全任务可仅凭语音引导完成
+  thresholds_en:
+    minimum: 'Core tasks have ≥1 non-text guidance (pictorial or video)'
+    good: 'Key action words are controlled (within a common-vocabulary list)'
+    excellent: 'All tasks can be completed by voice guidance alone'
   unit: 任务覆盖率 %
   applicable_domains:
   - digital
@@ -1272,7 +1614,9 @@
   name_en: Anthropometric Fit Percentile
   category: audit
   description: 以 ANSUR II 与 GB/T 10000-2023 人体数据核对关键尺寸（触及/净空/握持/视距）的人群百分位覆盖
+  description_en: 'Using ANSUR II and GB/T 10000-2023 anthropometric data, verify the population-percentile coverage of key dimensions (reach/clearance/grip/viewing distance)'
   measurement_method: 关键尺寸×人群百分位对照（先按目标人群选数据集：中国用 GB/T 10000-2023，北美参照 ANSUR II）
+  measurement_method_en: 'Cross-reference key dimensions against population percentiles (first select the dataset by target population: GB/T 10000-2023 for China, ANSUR II as reference for North America)'
   data_source:
   - 人体测量数据集
   - 实物/图纸测量
@@ -1280,6 +1624,10 @@
     minimum: 关键尺寸覆盖目标人群 P5–P95
     good: 覆盖 P1–P99
     excellent: 关键尺寸连续可调（座椅/支架/绑带等）
+  thresholds_en:
+    minimum: 'Key dimensions cover the target population P5–P95'
+    good: 'Coverage P1–P99'
+    excellent: 'Key dimensions are continuously adjustable (seat/stand/straps etc.)'
   unit: 百分位
   applicable_domains:
   - industrial
@@ -1297,7 +1645,9 @@
   name_en: Privacy Control Completeness
   category: audit
   description: 审计权限粒度、数据删除/导出入口、访客模式与保留政策，核对用户权利请求响应时效
+  description_en: 'Audit permission granularity, data deletion/export entry points, guest mode and retention policy, and verify the response time for user rights requests'
   measurement_method: 隐私控制清单审计 + 权利请求流程演练（GDPR/PIPL 适用范围内）
+  measurement_method_en: 'Privacy-control checklist audit + exercise of the rights-request process (within the scope of GDPR/PIPL application)'
   data_source:
   - 隐私政策
   - 产品审计
@@ -1306,6 +1656,10 @@
     minimum: 权限可逐项开关且账号删除入口可达（法定响应期内）
     good: 提供数据导出与分场景授权
     excellent: 提供访客/匿名模式与本地处理选项
+  thresholds_en:
+    minimum: 'Permissions can be toggled individually and the account-deletion entry point is reachable (within the legally mandated response period)'
+    good: 'Data export and scenario-specific authorization are provided'
+    excellent: 'Guest/anonymous mode and local-processing options are provided'
   unit: 清单通过率 %
   applicable_domains:
   - digital
@@ -1318,7 +1672,9 @@
   name_en: Gender Inclusivity Completeness
   category: user-test
   description: 审计性别字段中立性、称谓/代词可配置性、尺码体系中立性；邀请跨性别/非二元用户验证
+  description_en: 'Audit the neutrality of gender fields, the configurability of salutations/pronouns, and the neutrality of sizing systems; invite transgender/non-binary users to validate'
   measurement_method: 性别相关触点清单审计（表单/称谓/空间/尺码）+ 跨性别与非二元用户实测（Haimson 2016/2023 方法论：身份变更场景与社区参与设计）
+  measurement_method_en: 'Audit of gender-related touchpoint checklist (forms/salutations/spaces/sizing) + live testing with transgender and non-binary users (Haimson 2016/2023 methodology: identity-change scenarios and community-participatory design)'
   data_source:
   - 界面审计
   - 社群用户测试
@@ -1326,6 +1682,10 @@
     minimum: 性别字段可选且含非二元/不愿透露选项；代词可配置
     good: 历史数据变更路径存在（身份转变后记录可更新）
     excellent: 全性别空间选项 + 尺码按身体测量而非性别二元
+  thresholds_en:
+    minimum: 'Gender field is optional and includes non-binary/prefer-not-to-say options; pronouns are configurable'
+    good: 'A path exists to change historical data (records can be updated after identity transition)'
+    excellent: 'All-gender space options + sizing based on body measurements rather than gender binary'
   unit: 触点覆盖率 %
   applicable_domains:
   - digital
@@ -1341,7 +1701,9 @@
   name_en: Inclusive ROI Framework
   category: audit
   description: 审计包容性投入的量化记录（合规成本/开发投入）与收益框架（市场规模/改造规避/品牌价值），对照 ROD 2024 市场数据
+  description_en: 'Audit the quantified record of inclusion investment (compliance cost/development investment) and the benefit framework (market size/retrofit avoidance/brand value), against ROD 2024 market data'
   measurement_method: 包容性投入台账 × 收益维度对照（ROD 2024：全球残障市场 $18.3T/美国 PWD 可支配收入 $1.3T/63% 人口关联）
+  measurement_method_en: 'Inclusion investment ledger × benefit-dimension cross-reference (ROD 2024: global disability market $18.3T / US PWD disposable income $1.3T / 63% of population connected)'
   data_source:
   - 成本台账
   - 市场数据
@@ -1350,6 +1712,10 @@
     minimum: 包容性投入有专项记录（非混入通用开发成本）
     good: 有生命周期成本对比（前期包容设计 vs 后期改造成本）
     excellent: 包容性收益纳入商业论证（市场定位/差异化/采购优势）
+  thresholds_en:
+    minimum: 'Inclusion investment has a dedicated record (not mixed into general development cost)'
+    good: 'A life-cycle cost comparison exists (upfront inclusive design vs later retrofit cost)'
+    excellent: 'Inclusion benefits are incorporated into the business case (market positioning/differentiation/procurement advantage)'
   unit: 台账完备率 %
   applicable_domains:
   - universal
@@ -1363,7 +1729,9 @@
   name_en: Inclusive Market Positioning Audit
   category: audit
   description: 审计产品定位中包容性价值主张的显式性（目标人群覆盖声明/差异化说明/无障碍能力公示）
+  description_en: 'Audit the explicitness of the inclusive value proposition in product positioning (target-population coverage statement/differentiation statement/accessibility capability disclosure)'
   measurement_method: 定位文档 × 包容性价值主张核对表；对照 ROD 2024 的 63% 人口关联数据评估目标人群定义完备性
+  measurement_method_en: 'Positioning document × inclusive value-proposition checklist; assess the completeness of the target-population definition against ROD 2024''s 63% population-connection data'
   data_source:
   - 市场文档审计
   - 竞品对照
@@ -1371,6 +1739,10 @@
     minimum: 目标人群定义不排除合理可达人群（无“仅限”式排除声明）
     good: 包容性能力在价值主张中显式（如无障碍资质/适老认证）
     excellent: 包容性作为核心差异化卖点并有采购资质支撑
+  thresholds_en:
+    minimum: 'Target-population definition does not exclude reasonably reachable groups (no "limited to"-style exclusion statements)'
+    good: 'Inclusive capability is explicit in the value proposition (e.g. accessibility qualification/age-friendly certification)'
+    excellent: 'Inclusion serves as a core differentiating selling point and is backed by procurement qualifications'
   unit: 核对项通过率 %
   applicable_domains:
   - universal
@@ -1384,7 +1756,9 @@
   name_en: Dark Pattern Audit
   category: audit
   description: 按 Mathur et al. 2019 分类学审计诱导性设计（倒计时压迫/假库存/隐藏取消/强制捆绑）
+  description_en: 'Audit manipulative design according to the Mathur et al. 2019 taxonomy (countdown pressure/fake inventory/hidden cancellation/forced bundling)'
   measurement_method: 关键流程逐屏审计对照暗黑模式清单（7 大类 15 型）；取消流程步数与注册流程步数对称性实测
+  measurement_method_en: 'Screen-by-screen audit of key flows against the dark-pattern checklist (7 major categories, 15 types); measure the symmetry between cancellation-flow steps and registration-flow steps'
   data_source:
   - 界面审计
   - 流程实测
@@ -1392,6 +1766,10 @@
     minimum: 取消订阅步数 ≤ 注册步数且无隐藏取消（欧盟消保指令实践）
     good: 全流程无 Mathur 分类学中的欺骗型模式
     excellent: 关键决策有冷静期/反悔机制
+  thresholds_en:
+    minimum: 'Cancellation steps ≤ registration steps and no hidden cancellation (EU consumer-protection directive practice)'
+    good: 'No deceptive patterns from the Mathur taxonomy across the entire flow'
+    excellent: 'Key decisions have a cooling-off period/undo mechanism'
   unit: 暗黑模式计数（目标 0）
   applicable_domains:
   - digital
@@ -1404,7 +1782,9 @@
   name_en: Sustainability Metrics Coverage
   category: audit
   description: 对照三重底线（Elkington 1997）审计环境维度的量化目标与数据披露
+  description_en: 'Against the triple bottom line (Elkington 1997), audit the quantified targets and data disclosure of the environmental dimension'
   measurement_method: 能效/寿命/可维修性/可回收性四项核查；有源产品核对能效标识与碳足迹披露
+  measurement_method_en: 'Four-part check of energy efficiency/lifespan/repairability/recyclability; for powered products, verify energy labels and carbon-footprint disclosure'
   data_source:
   - 产品规格审计
   - 供应链数据
@@ -1412,6 +1792,10 @@
     minimum: 符合适用环保法规（RoHS/能效标准的强制项）
     good: 披露能效与维修性数据（维修权指令实践）
     excellent: 全生命周期碳足迹披露与回收渠道
+  thresholds_en:
+    minimum: 'Complies with applicable environmental regulations (mandatory items of RoHS/energy-efficiency standards)'
+    good: 'Discloses energy-efficiency and repairability data (right-to-repair directive practice)'
+    excellent: 'Full life-cycle carbon-footprint disclosure and recycling channels'
   unit: 覆盖项通过率 %
   applicable_domains:
   - industrial
@@ -1426,7 +1810,9 @@
   name_en: Stakeholder Conflict Resolution
   category: audit
   description: 按 Freeman 1984 利益相关者识别框架审计多方需求冲突的显式记录与解决策略
+  description_en: 'According to the Freeman 1984 stakeholder identification framework, audit the explicit records and resolution strategies for conflicts among multiple parties'' needs'
   measurement_method: 利益相关者地图→需求冲突登记→解决策略记录审计（决策可追溯）
+  measurement_method_en: 'Audit of stakeholder map → needs-conflict register → resolution-strategy records (decisions traceable)'
   data_source:
   - 设计文档审计
   - 访谈记录
@@ -1434,9 +1820,300 @@
     minimum: 核心用户与付费方需求冲突有显式记录
     good: 每项冲突有裁决依据与受影响方说明
     excellent: 弱势相关者（终端用户中的弱势群体）有代言机制
+  thresholds_en:
+    minimum: 'Conflicts between core users'' and payers'' needs are explicitly recorded'
+    good: 'Each conflict has a basis for the ruling and a statement of affected parties'
+    excellent: 'Vulnerable stakeholders (vulnerable groups among end users) have an advocacy mechanism'
   unit: 冲突记录完备率 %
   applicable_domains:
   - universal
   limitations: Freeman 1984 为管理框架而非量化标准；审计对象是流程记录而非结果
   status: draft
   evidence_grade: C
+
+- id: M-WHO-F-001-02
+  factor_id: WHO-F-001
+  name: 辅助技术兼容性
+  name_en: Assistive Technology Compatibility
+  category: audit
+  description: 检查交互组件是否以编程可访问方式暴露名称/角色/值，状态变化能否被辅助技术（屏幕阅读器、开关控制）感知——能力替代通道的基础保障
+  description_en: 'Check whether interactive components expose name/role/value in a programmatically accessible way and whether state changes are perceivable by assistive technologies (screen readers, switch control) — the foundational safeguard for capability-substitution channels'
+  measurement_method: 以 NVDA/VoiceOver + 纯键盘遍历核心任务，逐控件记录名称/角色/状态可播报性；对动态反馈检查是否实时播报（WCAG 4.1.2/4.1.3）
+  measurement_method_en: 'Traverse core tasks with NVDA/VoiceOver + keyboard-only, recording the announcability of each control''s name/role/state; for dynamic feedback check whether it is announced in real time (WCAG 4.1.2/4.1.3)'
+  data_source:
+  - 读屏实测
+  - 键盘遍历记录
+  - 组件清单核对
+  thresholds:
+    minimum: 核心任务全部控件具备可播报的名称与角色（4.1.2）
+    good: 在 minimum 之上，状态变化实时播报（4.1.3）
+    excellent: NVDA/JAWS/VoiceOver 三种主流读屏零阻断级问题
+  thresholds_en:
+    minimum: 'All controls of core tasks have announcable names and roles (4.1.2)'
+    good: 'Above minimum, state changes are announced in real time (4.1.3)'
+    excellent: 'Zero blocking-level issues across the three mainstream screen readers NVDA/JAWS/VoiceOver'
+  unit: 合规控件百分比
+  applicable_domains:
+  - digital
+  limitations: 读屏组合覆盖有限；复杂动态区域的可播报性判定含人工成分
+  related_standards: ["STD-W3C-WCAG22:4.1.2", "STD-W3C-WCAG22:4.1.3"]
+  status: draft
+  evidence_grade: A
+
+- id: M-WHAT-F-003-02
+  factor_id: WHAT-F-003
+  name: 错误恢复成功率
+  name_en: Error Recovery Success Rate
+  category: user-test
+  description: 用户在遇到注入错误后不经外部协助恢复任务的比例与耗时——容错性需求的直接测量（ISO 9241-110 容错原则、WCAG 3.3.1 错误标识）
+  description_en: 'The proportion of users and the time taken to recover the task without external assistance after encountering an injected error — a direct measure of the error-tolerance requirement (ISO 9241-110 error tolerance principle, WCAG 3.3.1 error identification)'
+  measurement_method: 注入典型错误（必填缺失/格式错误/网络中断）→ 观察并记录用户无协助恢复比例与平均恢复耗时
+  measurement_method_en: 'Inject typical errors (missing required field/format error/network interruption) → observe and record the proportion of users recovering unassisted and the average recovery time'
+  data_source:
+  - 可用性测试观察
+  - 错误注入脚本
+  - 恢复耗时计时
+  thresholds:
+    minimum: ≥70% 错误无协助恢复
+    good: ≥85% 且恢复路径有明确指引（3.3.1 错误以文本描述）
+    excellent: ≥95% 且平均恢复耗时 <30 秒
+  thresholds_en:
+    minimum: '≥70% of errors recovered unassisted'
+    good: '≥85% and the recovery path has clear guidance (3.3.1 errors described in text)'
+    excellent: '≥95% and average recovery time <30 seconds'
+  unit: 恢复成功率百分比
+  applicable_domains:
+  - digital
+  - service
+  limitations: 错误注入集与任务集需按产品校准；样本量影响稳定性
+  related_standards: ["STD-ISO-9241-110", "STD-W3C-WCAG22:3.3.1"]
+  status: draft
+  evidence_grade: B
+
+- id: M-WHEN-F-004-02
+  factor_id: WHEN-F-004
+  name: 时间负荷评分
+  name_en: Temporal Demand Score (NASA-TLX)
+  category: user-test
+  description: 以 NASA-TLX 时间需求（Temporal Demand）子维度度量任务时间压力的主观负荷——该量表六维度含 Temporal Demand，0-20 分（Hart & Staveland 1988）
+  description_en: 'Use the NASA-TLX Temporal Demand subdimension to measure the subjective load of task time pressure — this scale''s six dimensions include Temporal Demand, 0-20 points (Hart & Staveland 1988)'
+  measurement_method: 改版前后各邀请 ≥8 名代表性用户完成同一核心任务并填写 NASA-TLX，取 Temporal Demand 维度均值对比
+  measurement_method_en: 'Invite ≥8 representative users before and after the redesign to complete the same core task and fill in NASA-TLX, comparing the means on the Temporal Demand dimension'
+  data_source:
+  - NASA-TLX 问卷
+  - 任务完成记录
+  thresholds:
+    minimum: 时间需求均值 ≤15/20
+    good: ≤10/20
+    excellent: ≤6/20 且改版降幅 ≥30%
+  thresholds_en:
+    minimum: 'Mean temporal demand ≤15/20'
+    good: '≤10/20'
+    excellent: '≤6/20 and redesign reduction ≥30%'
+  unit: TLX 时间需求分（0-20）
+  applicable_domains:
+  - universal
+  limitations: 主观量表受个体差异影响；小样本须报告离散度而非仅均值
+  related_standards: ["STD-NASA-TLX"]
+  status: draft
+  evidence_grade: B
+
+- id: M-WHICH-F-003-02
+  factor_id: WHICH-F-003
+  name: 自动化可控覆盖率
+  name_en: Automation Controllability Coverage
+  category: audit
+  description: 盘点系统自动执行的操作，检查每项是否提供可感知的暂停/撤销/参数调节——对应 ISO 9241-110 对话原则中的可控性（controllability）
+  description_en: 'Inventory the operations the system performs automatically and check whether each provides a perceivable pause/undo/parameter adjustment — corresponding to controllability in the ISO 9241-110 dialogue principles'
+  measurement_method: 列出全部自动执行行为（自动提交/自动扣款/自动跳转/自动填充）→ 逐项核对是否具备确认、撤销或参数调节入口
+  measurement_method_en: 'List all automatic behaviors (auto-submit/auto-charge/auto-redirect/auto-fill) → check item by item whether confirmation, undo or parameter-adjustment entry points exist'
+  data_source:
+  - 功能盘点
+  - 双人背对背评审
+  thresholds:
+    minimum: 100% 自动操作可撤销或有前置确认
+    good: 在 minimum 之上，交互节奏与顺序用户可控
+    excellent: 自动化程度可按用户偏好个性化设置
+  thresholds_en:
+    minimum: '100% of automatic operations are undoable or have prior confirmation'
+    good: 'Above minimum, interaction pacing and order are user-controllable'
+    excellent: 'The degree of automation can be personalized to user preference'
+  unit: 可控自动操作百分比
+  applicable_domains:
+  - digital
+  - service
+  limitations: 「可控」判定含主观成分，须双人评审并记录分歧
+  related_standards: ["STD-ISO-9241-110"]
+  status: draft
+  evidence_grade: A
+
+- id: M-WHERE-F-001-02
+  factor_id: WHERE-F-001
+  name: 强光环境对比度维持
+  name_en: Contrast Maintenance Under Glare
+  category: audit
+  description: 在强光/高环境照度条件下实测前景与背景对比度是否仍满足 WCAG 1.4.3（4.5:1）与 1.4.11（3:1）要求
+  description_en: 'Measure on site whether the foreground-to-background contrast still meets WCAG 1.4.3 (4.5:1) and 1.4.11 (3:1) requirements under strong light / high ambient illuminance'
+  measurement_method: 定义目标环境照度范围 → 实测屏幕峰值亮度下正文与关键 UI 组件的实际对比度 → 记录关键信息可读性
+  measurement_method_en: 'Define the target-environment illuminance range → measure the actual contrast of body text and key UI components at peak screen brightness → record the readability of key information'
+  data_source:
+  - 照度计实测
+  - 对比度测量工具
+  thresholds:
+    minimum: 正文 ≥4.5:1 且 UI 组件 ≥3:1（强光实测）
+    good: 在 minimum 之上，高亮/禁用态均可辨
+    excellent: 提供自动高对比或亮度自适应模式
+  thresholds_en:
+    minimum: 'Body text ≥4.5:1 and UI components ≥3:1 (measured under strong light)'
+    good: 'Above minimum, both highlighted and disabled states are distinguishable'
+    excellent: 'Automatic high-contrast or brightness-adaptive mode is provided'
+  unit: 对比度比值（实测）
+  applicable_domains:
+  - universal
+  limitations: 环境照度范围需事前定义；不同屏幕峰值亮度差异大，须记录测试设备
+  related_standards: ["STD-W3C-WCAG22:1.4.3", "STD-W3C-WCAG22:1.4.11"]
+  status: draft
+  evidence_grade: A
+
+- id: M-HOW-F-002-02
+  factor_id: HOW-F-002
+  name: 低配设备任务效率
+  name_en: Task Efficiency on Minimum-Spec Devices
+  category: user-test
+  description: 在最低支持规格设备上完成核心任务的效率，与基准设备对比——ISO 9241-11 效率测度（达成目标的资源耗费）的应用
+  description_en: 'The efficiency of completing core tasks on minimum-supported-spec devices compared with a baseline device — an application of the ISO 9241-11 efficiency measure (resources expended in achieving goals)'
+  measurement_method: 定义最低支持规格 → 同一批用户在最低规格与基准设备各完成核心任务 → 比较完成时间与操作步数
+  measurement_method_en: 'Define minimum supported spec → the same group of users completes core tasks on both the minimum-spec and baseline devices → compare completion time and number of operation steps'
+  data_source:
+  - 双设备实测
+  - 任务计时
+  - 操作日志
+  thresholds:
+    minimum: 低配完成时间 ≤ 基准 ×1.5
+    good: ≤ 基准 ×1.3
+    excellent: ≤ 基准 ×1.1 且无功能降级
+  thresholds_en:
+    minimum: 'Low-spec completion time ≤ baseline ×1.5'
+    good: '≤ baseline ×1.3'
+    excellent: '≤ baseline ×1.1 and no feature degradation'
+  unit: 时间比（低配/基准）
+  applicable_domains:
+  - digital
+  limitations: 「最低支持规格」由产品自行定义；测试期间网络条件须固定
+  related_standards: ["STD-ISO-9241-11"]
+  status: draft
+  evidence_grade: B
+
+- id: M-WHO-F-014-02
+  factor_id: WHO-F-014
+  name: 数据收集最小化
+  name_en: Data Collection Minimisation
+  category: audit
+  description: 审计产品收集的个人信息是否与核心功能必需性对齐——GDPR 第 5(1)(c) 条数据最小化（adequate, relevant and limited to what is necessary）与 PIPL 最小必要原则的应用
+  description_en: 'Audit whether the personal information the product collects aligns with core-function necessity — an application of GDPR Article 5(1)(c) data minimisation (adequate, relevant and limited to what is necessary) and the PIPL minimum-necessity principle'
+  measurement_method: 逐表单/权限盘点收集字段 → 逐字段标注功能必需性 → 计算非必需收集字段占比并核查用途说明
+  measurement_method_en: 'Inventory collected fields form by form/permission by permission → annotate each field''s functional necessity → compute the proportion of non-essential collected fields and verify purpose statements'
+  data_source:
+  - 表单与权限清单
+  - 功能需求文档
+  - 隐私政策对照
+  thresholds:
+    minimum: 无与核心功能无关的必填个人信息
+    good: 非必填收集字段 100% 附用途说明
+    excellent: 零非必需收集且提供导出与删除通道
+  thresholds_en:
+    minimum: 'No required personal information unrelated to core functionality'
+    good: '100% of non-required collected fields have a purpose statement'
+    excellent: 'Zero non-essential collection and both export and deletion channels are provided'
+  unit: 非必需收集字段百分比
+  applicable_domains:
+  - digital
+  - service
+  limitations: 「必需」的判定依赖功能边界定义，须产品与法务共同确认
+  related_standards: ["STD-GDPR", "STD-PIPL"]
+  status: draft
+  evidence_grade: A
+
+- id: M-WHAT-F-001-02
+  factor_id: WHAT-F-001
+  name: 核心任务操作步数
+  name_en: Core Task Step Count
+  category: audit
+  description: 核心任务主流程的操作步数与决策点计数——ISO 9241-11 效率测度的结构化代理（步数越多，认知与操作负荷越高）
+  description_en: 'A count of the operation steps and decision points in the main flow of a core task — a structured proxy for the ISO 9241-11 efficiency measure (the more steps, the higher the cognitive and operational load)'
+  measurement_method: 任务分析拆解主流程 → 计数操作步（页面/表单提交/关键决策）→ 识别可合并或省略的步骤
+  measurement_method_en: 'Task analysis decomposes the main flow → count operation steps (pages/form submissions/key decisions) → identify steps that can be merged or omitted'
+  data_source:
+  - 任务分析
+  - 流程走查
+  thresholds:
+    minimum: 主流程 ≤10 步
+    good: ≤7 步
+    excellent: ≤5 步且无返工回路
+  thresholds_en:
+    minimum: 'Main flow ≤10 steps'
+    good: '≤7 steps'
+    excellent: '≤5 steps and no rework loops'
+  unit: 步数
+  applicable_domains:
+  - universal
+  limitations: 步数颗粒度（击键/页面/决策）须统一定义后再比较
+  related_standards: ["STD-ISO-9241-11"]
+  status: draft
+  evidence_grade: B
+
+- id: M-WHO-F-006-02
+  factor_id: WHO-F-006
+  name: 多感官冗余覆盖
+  name_en: Multisensory Redundancy Coverage
+  category: audit
+  description: 检查信息是否仅靠单一感官通道传达——WCAG 1.4.1（颜色不得为唯一视觉手段）与 1.3.3（说明不得仅依赖形状/颜色/位置/声音等感官特征）
+  description_en: 'Check whether information is conveyed through a single sensory channel alone — WCAG 1.4.1 (color must not be the only visual means) and 1.3.3 (instructions must not rely solely on sensory characteristics such as shape/color/position/sound)'
+  measurement_method: 盘点界面与文档中仅靠颜色/形状/位置/声音传达含义的信息点 → 逐点核对是否提供冗余编码（文字/图标/图案/语音）
+  measurement_method_en: 'Inventory information points in the interface and documentation that convey meaning by color/shape/position/sound alone → check each point for redundant encoding (text/icon/pattern/speech)'
+  data_source:
+  - 界面盘点
+  - 信息点清单核对
+  thresholds:
+    minimum: 零个仅靠颜色传达的信息点
+    good: 零个仅靠任何单一感官通道传达的信息点
+    excellent: 关键信息提供多模态替代（视觉+听觉/触觉）
+  thresholds_en:
+    minimum: 'Zero information points conveyed by color alone'
+    good: 'Zero information points conveyed by any single sensory channel alone'
+    excellent: 'Key information has multimodal alternatives (visual + auditory/tactile)'
+  unit: 违规信息点数
+  applicable_domains:
+  - universal
+  limitations: 纯装饰性差异不在检查范围；多模态替代的等效性需人工判定
+  related_standards: ["STD-W3C-WCAG22:1.4.1", "STD-W3C-WCAG22:1.3.3"]
+  status: draft
+  evidence_grade: A
+
+- id: M-WHICH-F-005-02
+  factor_id: WHICH-F-005
+  name: 美学满意度评分
+  name_en: Aesthetic Satisfaction Rating
+  category: user-test
+  description: 代表性用户对视觉风格的主观满意度评分——ISO 9241-11 满意度（satisfaction）测度的应用（偏好无对错，测的是目标人群的接受度）
+  description_en: 'Representative users'' subjective satisfaction rating of the visual style — an application of the ISO 9241-11 satisfaction measure (preferences are neither right nor wrong; what is measured is the target population''s acceptance)'
+  measurement_method: 邀请 ≥8 名代表性用户在真实任务后填写 3 题满意度问卷（1-5 分），改版前后对比
+  measurement_method_en: 'Invite ≥8 representative users to fill in a 3-item satisfaction questionnaire (1-5 scale) after a real task, comparing before and after the redesign'
+  data_source:
+  - 满意度问卷
+  - 任务后访谈
+  thresholds:
+    minimum: 均值 ≥3.5/5
+    good: ≥4.0/5
+    excellent: ≥4.3/5 且推荐意愿非负
+  thresholds_en:
+    minimum: 'Mean ≥3.5/5'
+    good: '≥4.0/5'
+    excellent: '≥4.3/5 and recommendation intent is non-negative'
+  unit: 满意度分（1-5）
+  applicable_domains:
+  - universal
+  limitations: 审美偏好文化差异大；须报告分布与分群差异，不只报均值
+  related_standards: ["STD-ISO-9241-11"]
+  status: draft
+  evidence_grade: B

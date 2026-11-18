@@ -35,10 +35,20 @@
       "minLength": 1,
       "description": "指标定义与测量对象说明（placeholder 可省略）"
     },
+    "description_en": {
+      "type": "string",
+      "minLength": 1,
+      "description": "英文指标定义说明（additive i18n 字段；与 name_en 同构，界面按语言取词，缺省时回退中文）"
+    },
     "measurement_method": {
       "type": "string",
       "minLength": 1,
       "description": "具体测量方法/公式/步骤（placeholder 可省略）"
+    },
+    "measurement_method_en": {
+      "type": "string",
+      "minLength": 1,
+      "description": "英文测量方法（additive i18n 字段；与 name_en 同构，界面按语言取词，缺省时回退中文）"
     },
     "data_source": {
       "type": "array",
@@ -54,6 +64,16 @@
         "excellent": { "type": "string", "description": "优秀阈值" }
       },
       "description": "三档阈值：minimum/good/excellent（placeholder 可省略）"
+    },
+    "thresholds_en": {
+      "type": "object",
+      "required": ["minimum", "good", "excellent"],
+      "properties": {
+        "minimum": { "type": "string", "description": "最低合规阈值（英文）" },
+        "good": { "type": "string", "description": "良好阈值（英文）" },
+        "excellent": { "type": "string", "description": "优秀阈值（英文）" }
+      },
+      "description": "三档阈值的英文版（additive i18n 字段；缺省时界面回退中文 thresholds）"
     },
     "unit": {
       "type": "string",

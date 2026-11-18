@@ -1,0 +1,176 @@
+# 描述器定义 - 数据驱动的任务描述问卷（INCL-NEXT-001 §3.2）
+# 版本: v0.1
+# 结构权威源: 本文件；标签仍由 i18n 提供（应用优先用 i18n 键如 profile.taskCategoryOptions.payment，
+#             回退到本文件 label/label_en），以便 5 语言复用现有翻译
+# 契约绑定: 所有 path 与 option.value 必须符合 schema/profile.schema.json（校验：scripts/validate_profile_contract.py）
+# 三个能力:
+#   applies_when - 领域自适应：条件表达式与规则引擎同一求值器，为空表示恒显示
+#   implies      - 选项联动：选中即写入 canonical profile 字段；取消选中时表单引擎必须回滚
+#   multi        - 多选字段写数组（如 environment.contexts），数组是多选的唯一规范形态
+# 已知豁免: ACT-004/005/007/008/009 的条件引用的字段由本文件补齐；ACT-004 需迁移为
+#           environment.contexts contains 'public-space'（见 registry/coverage-waivers.yaml）
+
+version: "0.1"
+
+stages:
+  - id: S_PROJECT
+    title: 项目与领域
+    title_en: Project & Domain
+    questions:
+      - id: Q_PROJECT
+        path: name
+        type: single
+        label: 项目名称
+        label_en: Project Name
+        placeholder: 如：银行 App 改版
+        required: false
+      - id: Q_DOMAIN
+        path: domain
+        type: single
+        label: 领域
+        label_en: Domain
+        required: true
+        options:
+          - { value: digital,      label: 数位产品, label_en: Digital Product }
+          - { value: industrial,   label: 工业产品, label_en: Industrial Product }
+          - { value: architecture, label: 建筑空间, label_en: Architecture }
+          - { value: fashion,      label: 服装, label_en: Fashion }
+          - { value: service,      label: 服务, label_en: Service }
+          - { value: other,        label: 其他, label_en: Other }
+
+  - id: S_TASK
+    title: 任务
+    title_en: Task
+    questions:
+      - id: Q_TASK_CATEGORY
+        path: task.category
+        type: single
+        label: 任务类别
+        label_en: Task Category
+        required: false
+        options:
+          - { value: online-communication, label: 线上沟通,     label_en: Online Communication }
+          - { value: payment,              label: 支付/交易,   label_en: Payment/Transaction,
+              implies: { task.has_payment_confirmation: true } }
+          - { value: data-entry,           label: 数据录入,    label_en: Data Entry }
+          - { value: emergency,            label: 紧急服务,   label_en: Emergency Services }
+          - { value: information,          label: 资讯获取,   label_en: Information Access }
+          - { value: entertainment,        label: 娱乐,       label_en: Entertainment }
+          - { value: health,               label: 健康医疗,   label_en: Healthcare }
+          - { value: education,            label: 教育学习,   label_en: Education }
+          - { value: government,           label: 政务办理,   label_en: Government Services }
+          - { value: other,                label: 其他,       label_en: Other }
+      - id: Q_COLLAB
+        path: task.collaboration
+        type: boolean
+        label: 是否多人协作
+        label_en: Multi-user Collaboration
+        required: false
+      - id: Q_STEP_COUNT
+        path: task.step_count
+        type: number
+        label: 核心任务步骤数
+        label_en: Core Task Step Count
+        unit: 步
+        min: 1
+        max: 200
+        required: false
+        applies_when: "domain in ['digital', 'service']"
+      - id: Q_HAS_DEADLINE
+        path: task.has_hard_deadline
+        type: boolean
+        label: 是否有硬性截止日期
+        label_en: Hard Deadline
+        required: false
+      - id: Q_DEADLINE
+        path: task.deadline
+        type: number
+        label: 距截止日期
+        label_en: Days Until Deadline
+        unit: 天
+        min: 0
+        required: false
+        applies_when: "task.has_hard_deadline == true"
+      - id: Q_ESTIMATED
+        path: task.estimated_duration
+        type: number
+        label: 预估完成所需
+        label_en: Estimated Duration
+        unit: 天
+        min: 0
+        required: false
+        applies_when: "task.has_hard_deadline == true"
+
+  - id: S_DEVICE
+    title: 设备
+    title_en: Device
+    questions:
+      - id: Q_DEVICE
+        path: device.type
+        type: single
+        label: 装置类型
+        label_en: Device Type
+        required: false
+        applies_when: "domain in ['digital', 'industrial', 'service']"
+        options:
+          - { value: mobile,   label: 行动端,   label_en: Mobile }
+          - { value: desktop,  label: 桌面端,   label_en: Desktop }
+          - { value: kiosk,    label: 自助终端, label_en: Kiosk }
+          - { value: wearable, label: 可穿戴,   label_en: Wearable }
+          - { value: none,     label: 不涉及装置, label_en: No Device }
+
+  - id: S_INTERACTION
+    title: 交互
+    title_en: Interaction
+    questions:
+      - id: Q_INTERACTION
+        path: interaction.mode
+        type: single
+        label: 交互方式
+        label_en: Interaction Mode
+        required: false
+        applies_when: "domain in ['digital', 'service']"
+        options:
+          - { value: voice-input, label: 语音输入, label_en: Voice Input }
+          - { value: touch,       label: 触控,     label_en: Touch }
+          - { value: keyboard,    label: 键盘,     label_en: Keyboard }
+          - { value: gesture,     label: 手势,     label_en: Gesture }
+          - { value: remote,      label: 遥控器,   label_en: Remote }
+
+  - id: S_CONTEXT
+    title: 情境与受众
+    title_en: Context & Audience
+    questions:
+      - id: Q_SCENARIO
+        path: environment.contexts
+        type: multi
+        label: 使用场景
+        label_en: Usage Scenarios
+        required: false
+        options:
+          - { value: one-handed,      label: 单手操作,   label_en: One-Handed Use }
+          - { value: noisy,           label: 嘈杂环境,   label_en: Noisy Environment }
+          - { value: bright-sunlight, label: 强光环境,   label_en: Bright Sunlight }
+          - { value: dark-environment, label: 暗光环境,  label_en: Dark Environment }
+          - { value: public-space,    label: 公共场合,   label_en: Public Space }
+          - { value: time-pressure,   label: 时间压力,   label_en: Time Pressure }
+          - { value: moving,          label: 移动中,     label_en: Moving }
+          - { value: emergency-use,   label: 紧急使用,   label_en: Emergency Use }
+      - id: Q_AUDIENCE
+        path: audience
+        type: multi
+        label: 目标受众
+        label_en: Target Audience
+        required: false
+        options:
+          - { value: children,            label: 儿童,       label_en: Children }
+          - { value: teenagers,           label: 青少年,     label_en: Teenagers }
+          - { value: elderly,             label: 老年人,     label_en: Elderly }
+          - { value: cognitive-impairment, label: 认知障碍者, label_en: Cognitive Impairment }
+          - { value: visual-impairment,   label: 视障者,     label_en: Visual Impairment }
+          - { value: hearing-impairment,  label: 听障者,     label_en: Hearing Impairment }
+          - { value: motor-impairment,    label: 运动障碍者, label_en: Motor Impairment }
+          - { value: low-literacy,        label: 低文字素养, label_en: Low Literacy }
+          - { value: non-native,          label: 非母语用户, label_en: Non-Native Speakers }
+          - { value: general-public,      label: 普通大众,   label_en: General Public }
+

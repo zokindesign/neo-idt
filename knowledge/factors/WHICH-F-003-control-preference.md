@@ -6,7 +6,7 @@ evidence_note: "C2 核验文献挂接（2026-10-07）：Parasuraman/Sheridan/Wic
 guides: [G-WHICH-F-003]
 id: WHICH-F-003
 merge_candidate: false
-metrics: [M-WHICH-F-003-01]
+metrics: [M-WHICH-F-003-01, M-WHICH-F-003-02]
 name: 控制感偏好
 name_en: Control Preference
 ownership_review: false

@@ -6,7 +6,7 @@ evidence_note: "C2 核验文献挂接（2026-10-07）：Norman 2004 三层次理
 guides: [G-WHICH-F-005]
 id: WHICH-F-005
 merge_candidate: false
-metrics: [M-WHICH-F-005-01]
+metrics: [M-WHICH-F-005-01, M-WHICH-F-005-02]
 name: 美学风格偏好
 name_en: Aesthetic Style Preference
 ownership_review: false

@@ -6,7 +6,7 @@ evidence_note: "C4a 核验文献挂接（2026-10-08）：Aron & Aron 1997 感官
 guides: [G-WHO-F-006]
 id: WHO-F-006
 merge_candidate: false
-metrics: [M-WHO-F-006-01]
+metrics: [M-WHO-F-006-01, M-WHO-F-006-02]
 name: 感官偏好
 name_en: Sensory Preference
 ownership_review: false

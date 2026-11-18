@@ -6,7 +6,7 @@ evidence_note: "有标准条款（WCAG 2.2 目标尺寸等），设备能力的�
 guides: [G-HOW-F-002]
 id: HOW-F-002
 merge_candidate: false
-metrics: [M-HOW-F-002-01]
+metrics: [M-HOW-F-002-01, M-HOW-F-002-02]
 name: 设备能力
 name_en: Device Capability
 ownership_review: false

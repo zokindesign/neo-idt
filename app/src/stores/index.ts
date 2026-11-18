@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { i18n } from '@/i18n'
 
 // 数据包 Store：加载/缓存/版本比对
 export const useDataPackStore = defineStore('dataPack', () => {
@@ -88,8 +89,13 @@ export const useProjectStore = defineStore('project', () => {
     const { saveProject } = await import('@/lib/db')
     const proj = {
       id: crypto.randomUUID(),
-      name: profile.name || '未命名项目',
+      // FIX-i18n-01：默认项目名随界面语言（此前硬编码中文）
+      // 非类型化调用：vue-i18n 全键联合类型会触发 TS2589（Type instantiation excessively deep）
+      name: profile.name || String((i18n.global as any).t('project.untitled')),
       profile,
+      // FIX-P0-01：选择集随项目持久化（供「打开」恢复）；仅本地附加字段，
+      // WP/云同步仍只发 name+profile，不改变既有契约
+      selection: { selected: [] as string[], excluded: [] as [string, string][] },
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       synced: false
@@ -136,9 +142,18 @@ export const useProjectStore = defineStore('project', () => {
     if (current.value?.id === id) current.value = null
   }
 
+  // FIX-P0-01：把描述器答案与选择集写回项目记录（「打开」据此恢复工作现场）
+  async function saveSelection(selected: string[], excluded: [string, string][], profile?: any) {
+    const proj = current.value
+    if (!proj) return
+    proj.selection = { selected: [...selected], excluded: [...excluded] }
+    if (profile) proj.profile = profile
+    await update(proj)
+  }
+
   function setCurrent(proj: any) { current.value = proj }
 
-  return { projects, current, syncing, loadAll, create, update, remove, setCurrent }
+  return { projects, current, syncing, loadAll, create, update, remove, setCurrent, saveSelection }
 })
 
 // 边界文档 + 审计 Store

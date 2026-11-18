@@ -6,7 +6,7 @@ evidence_note: "有标准条款（GDPR/PIPL 条款），间接支撑；维持 C 
 guides: [G-WHO-F-014]
 id: WHO-F-014
 merge_candidate: false
-metrics: [M-WHO-F-014-01]
+metrics: [M-WHO-F-014-01, M-WHO-F-014-02]
 name: 隐私与安全担忧
 name_en: Privacy & Security Concerns
 ownership_review: false

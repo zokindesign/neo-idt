@@ -6,7 +6,7 @@ evidence_note: "有标准条款（WCAG 2.2 SC 2.2.1/2.2.2 + ISO 9241-110:5.5.2�
 guides: [G-WHEN-F-004]
 id: WHEN-F-004
 merge_candidate: false
-metrics: [M-WHEN-F-004-01]
+metrics: [M-WHEN-F-004-01, M-WHEN-F-004-02]
 name: 时间压力
 name_en: Time Pressure
 ownership_review: false

@@ -4,17 +4,18 @@
 # 命名规范: id=维度前缀-F-三位序号; slug=kebab-case 英文短语; name/name_en=中英双语
 
 - id: WHO-F-001
-  name: 身体能力
+  name: 身体和认知能力
   name_en: Physical & Cognitive Ability
   slug: physical-ability
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/能力.md"
+  source_file: "knowledge/01_Factors/WHO-F-001-physical-ability.md"
   status: draft
   split_candidate: true
   merge_candidate: false
   ownership_review: false
+  facets: [FAC-WHO-F-001-01, FAC-WHO-F-001-02, FAC-WHO-F-001-03, FAC-WHO-F-001-04]
 
 - id: WHO-F-002
   name: 人口统计学
@@ -23,7 +24,7 @@
   dimension: WHO
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/人口统计学.md"
+  source_file: "knowledge/01_Factors/WHO-F-002-demographics.md"
   status: draft
 
 - id: WHO-F-003
@@ -33,7 +34,7 @@
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/健康状况.md"
+  source_file: "knowledge/01_Factors/WHO-F-003-health-status.md"
   status: draft
 
 - id: WHO-F-004
@@ -43,7 +44,7 @@
   dimension: WHO
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/学习风格.md"
+  source_file: "knowledge/01_Factors/WHO-F-004-learning-style.md"
   status: draft
 
 - id: WHO-F-005
@@ -53,7 +54,7 @@
   dimension: WHO
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/情感与动机.md"
+  source_file: "knowledge/01_Factors/WHO-F-005-emotion-motivation.md"
   status: draft
 
 - id: WHO-F-006
@@ -63,7 +64,7 @@
   dimension: WHO
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/感官偏好.md"
+  source_file: "knowledge/01_Factors/WHO-F-006-sensory-preference.md"
   status: draft
 
 - id: WHO-F-007
@@ -73,7 +74,7 @@
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/技术素养.md"
+  source_file: "knowledge/01_Factors/WHO-F-007-technical-literacy.md"
   status: draft
 
 - id: WHO-F-008
@@ -83,7 +84,7 @@
   dimension: WHO
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/文化背景.md"
+  source_file: "knowledge/01_Factors/WHO-F-008-cultural-background.md"
   status: draft
 
 - id: WHO-F-009
@@ -93,7 +94,7 @@
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/神经多样性.md"
+  source_file: "knowledge/01_Factors/WHO-F-009-neurodiversity.md"
   status: draft
 
 - id: WHO-F-010
@@ -103,7 +104,7 @@
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/认知特情.md"
+  source_file: "knowledge/01_Factors/WHO-F-010-cognitive-traits.md"
   status: draft
   # 注: 原文件名"认知特情"为错别字，已修正为"认知特征"
 
@@ -114,7 +115,7 @@
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/语言.md"
+  source_file: "knowledge/01_Factors/WHO-F-011-language.md"
   status: draft
 
 - id: WHO-F-012
@@ -124,7 +125,7 @@
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/读写能力.md"
+  source_file: "knowledge/01_Factors/WHO-F-012-literacy.md"
   status: draft
 
 - id: WHO-F-013
@@ -134,7 +135,7 @@
   dimension: WHO
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/身体尺寸与人体工程学.md"
+  source_file: "knowledge/01_Factors/WHO-F-013-body-size-ergonomics.md"
   status: draft
 
 - id: WHO-F-014
@@ -144,7 +145,7 @@
   dimension: WHO
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/USER/隐私与安全担忧.md"
+  source_file: "knowledge/01_Factors/WHO-F-014-privacy-security-concerns.md"
   status: draft
 
 # === WHERE 环境维度 (7) ===
@@ -155,7 +156,7 @@
   dimension: WHERE
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/物理环境.md"
+  source_file: "knowledge/01_Factors/WHERE-F-001-physical-environment.md"
   status: draft
 
 - id: WHERE-F-002
@@ -165,7 +166,7 @@
   dimension: WHERE
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/社会环境.md"
+  source_file: "knowledge/01_Factors/WHERE-F-002-social-environment.md"
   status: draft
 
 - id: WHERE-F-003
@@ -175,7 +176,7 @@
   dimension: WHERE
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/空间可达性.md"
+  source_file: "knowledge/01_Factors/WHERE-F-003-spatial-accessibility.md"
   status: draft
 
 - id: WHERE-F-004
@@ -185,7 +186,7 @@
   dimension: WHERE
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/资源可用性.md"
+  source_file: "knowledge/01_Factors/WHERE-F-004-resource-availability.md"
   status: draft
 
 - id: WHERE-F-005
@@ -195,7 +196,7 @@
   dimension: WHERE
   type: constraint
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/经济环境.md"
+  source_file: "knowledge/01_Factors/WHERE-F-005-economic-environment.md"
   status: draft
   ownership_review: true  # 疑似 WHERE/WHY 双重归属，WP-B 裁决
 
@@ -206,7 +207,7 @@
   dimension: WHERE
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/紧急情况应对.md"
+  source_file: "knowledge/01_Factors/WHERE-F-006-emergency-response.md"
   status: draft
 
 - id: WHERE-F-007
@@ -216,7 +217,7 @@
   dimension: WHERE
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/使用情境.md"
+  source_file: "knowledge/01_Factors/WHERE-F-007-usage-context.md"
   status: draft
 
 # === WHEN 时间维度 (6) ===
@@ -227,7 +228,7 @@
   dimension: WHEN
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/使用时段.md"
+  source_file: "knowledge/01_Factors/WHEN-F-001-usage-time-period.md"
   status: draft
 
 - id: WHEN-F-002
@@ -237,7 +238,7 @@
   dimension: WHEN
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/使用频率.md"
+  source_file: "knowledge/01_Factors/WHEN-F-002-usage-frequency.md"
   status: draft
 
 - id: WHEN-F-003
@@ -247,7 +248,7 @@
   dimension: WHEN
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/季节性.md"
+  source_file: "knowledge/01_Factors/WHEN-F-003-seasonality.md"
   status: draft
 
 - id: WHEN-F-004
@@ -257,7 +258,7 @@
   dimension: WHEN
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/时间压力.md"
+  source_file: "knowledge/01_Factors/WHEN-F-004-time-pressure.md"
   status: draft
 
 - id: WHEN-F-005
@@ -267,7 +268,7 @@
   dimension: WHEN
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/时间可用性.md"
+  source_file: "knowledge/01_Factors/WHEN-F-005-time-availability.md"
   status: draft
 
 - id: WHEN-F-006
@@ -277,7 +278,7 @@
   dimension: WHEN
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TIME/疲劳度.md"
+  source_file: "knowledge/01_Factors/WHEN-F-006-fatigue-level.md"
   status: draft
 
 # === WHAT 任务维度 (6) ===
@@ -288,7 +289,7 @@
   dimension: WHAT
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务复杂度.md"
+  source_file: "knowledge/01_Factors/WHAT-F-001-task-complexity.md"
   status: draft
 
 - id: WHAT-F-002
@@ -298,7 +299,7 @@
   dimension: WHAT
   type: ability
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/认知负荷.md"
+  source_file: "knowledge/01_Factors/WHAT-F-002-cognitive-load.md"
   status: draft
 
 - id: WHAT-F-003
@@ -308,7 +309,7 @@
   dimension: WHAT
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/容错性需求.md"
+  source_file: "knowledge/01_Factors/WHAT-F-003-fault-tolerance.md"
   status: draft
 
 - id: WHAT-F-004
@@ -318,7 +319,7 @@
   dimension: WHAT
   type: constraint
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务持久性要求.md"
+  source_file: "knowledge/01_Factors/WHAT-F-004-task-persistence.md"
   status: draft
 
 - id: WHAT-F-005
@@ -328,7 +329,7 @@
   dimension: WHAT
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务协作性.md"
+  source_file: "knowledge/01_Factors/WHAT-F-005-task-collaboration.md"
   status: draft
 
 - id: WHAT-F-006
@@ -338,7 +339,7 @@
   dimension: WHAT
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TASK/任务中断容忍度.md"
+  source_file: "knowledge/01_Factors/WHAT-F-006-task-interruption-tolerance.md"
   status: draft
 
 # === WHICH 偏好维度 (9) ===
@@ -349,7 +350,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/信息密度偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-001-information-density-preference.md"
   status: draft
 
 - id: WHICH-F-002
@@ -359,7 +360,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/探索深度偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-002-exploration-depth-preference.md"
   status: draft
 
 - id: WHICH-F-003
@@ -369,7 +370,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/控制感偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-003-control-preference.md"
   status: draft
 
 - id: WHICH-F-004
@@ -379,7 +380,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/社交可见性偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-004-social-visibility-preference.md"
   status: draft
 
 - id: WHICH-F-005
@@ -389,7 +390,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/美学风格偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-005-aesthetic-style-preference.md"
   status: draft
 
 - id: WHICH-F-006
@@ -399,7 +400,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/输入方式偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-006-input-method-preference.md"
   status: draft
 
 - id: WHICH-F-007
@@ -409,7 +410,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/反馈偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-007-feedback-preference.md"
   status: draft
 
 - id: WHICH-F-008
@@ -419,7 +420,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/交互模式偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-008-interaction-mode-preference.md"
   status: draft
 
 - id: WHICH-F-009
@@ -429,7 +430,7 @@
   dimension: WHICH
   type: preference
   response: choice-space
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/PREFERENCE/通知偏好.md"
+  source_file: "knowledge/01_Factors/WHICH-F-009-notification-preference.md"
   status: draft
 
 # === WHY 商业维度 (5) ===
@@ -440,7 +441,7 @@
   dimension: WHY
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/成本约束.md"
+  source_file: "knowledge/01_Factors/WHY-F-001-cost-constraint.md"
   status: draft
 
 - id: WHY-F-002
@@ -450,7 +451,7 @@
   dimension: WHY
   type: constraint
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/市场定位.md"
+  source_file: "knowledge/01_Factors/WHY-F-002-market-positioning.md"
   status: draft
 
 - id: WHY-F-003
@@ -460,7 +461,7 @@
   dimension: WHY
   type: constraint
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/商业模式.md"
+  source_file: "knowledge/01_Factors/WHY-F-003-business-model.md"
   status: draft
 
 - id: WHY-F-004
@@ -470,7 +471,7 @@
   dimension: WHY
   type: constraint
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/可持续性与环保目标.md"
+  source_file: "knowledge/01_Factors/WHY-F-004-sustainability-goals.md"
   status: draft
 
 - id: WHY-F-005
@@ -480,7 +481,7 @@
   dimension: WHY
   type: context
   response: both
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/BUSINESS/利益相关者影响.md"
+  source_file: "knowledge/01_Factors/WHY-F-005-stakeholder-impact.md"
   status: draft
 
 # === HOW 技术维度 (7) ===
@@ -491,7 +492,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/网络条件.md"
+  source_file: "knowledge/01_Factors/HOW-F-001-network-conditions.md"
   status: draft
 
 - id: HOW-F-002
@@ -501,7 +502,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/设备能力.md"
+  source_file: "knowledge/01_Factors/HOW-F-002-device-capability.md"
   status: draft
 
 - id: HOW-F-003
@@ -511,7 +512,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/电源与续航.md"
+  source_file: "knowledge/01_Factors/HOW-F-003-power-battery-life.md"
   status: draft
 
 - id: HOW-F-004
@@ -521,7 +522,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/兼容性要求.md"
+  source_file: "knowledge/01_Factors/HOW-F-004-compatibility-requirements.md"
   status: draft
 
 - id: HOW-F-005
@@ -531,7 +532,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/技术环境.md"
+  source_file: "knowledge/01_Factors/HOW-F-005-technical-environment.md"
   status: draft
 
 - id: HOW-F-006
@@ -541,7 +542,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/辅助技术兼容性.md"
+  source_file: "knowledge/01_Factors/HOW-F-006-assistive-tech-compatibility.md"
   status: draft
 
 - id: HOW-F-007
@@ -551,7 +552,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/TECH/输入输出能力.md"
+  source_file: "knowledge/01_Factors/HOW-F-007-input-output-capability.md"
   status: draft
 
 # === RUL 合规基线层 (7) —— 从 ENVIRONMENT 迁入，type=baseline ===
@@ -562,7 +563,7 @@
   dimension: RUL
   type: baseline
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/无障碍法规合规.md"
+  source_file: "knowledge/01_Factors/RUL-001-accessibility-compliance.md"
   status: draft
 
 - id: RUL-002
@@ -572,7 +573,7 @@
   dimension: RUL
   type: baseline
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/数据隐私合规.md"
+  source_file: "knowledge/01_Factors/RUL-002-data-privacy-compliance.md"
   status: draft
 
 - id: RUL-003
@@ -582,7 +583,7 @@
   dimension: RUL
   type: baseline
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/安全认证要求.md"
+  source_file: "knowledge/01_Factors/RUL-003-safety-certification.md"
   status: draft
 
 - id: RUL-004
@@ -592,7 +593,7 @@
   dimension: RUL
   type: baseline
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/知识产权合规.md"
+  source_file: "knowledge/01_Factors/RUL-004-ip-compliance.md"
   status: draft
 
 - id: RUL-005
@@ -602,7 +603,7 @@
   dimension: RUL
   type: baseline
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/伦理审查.md"
+  source_file: "knowledge/01_Factors/RUL-005-ethics-review.md"
   status: draft
 
 - id: RUL-006
@@ -612,7 +613,7 @@
   dimension: RUL
   type: baseline
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/行业特定规范.md"
+  source_file: "knowledge/01_Factors/RUL-006-industry-standards.md"
   status: draft
 
 - id: RUL-007
@@ -622,7 +623,7 @@
   dimension: RUL
   type: baseline
   response: alternative
-  source_file: "_archive_2026-10-12_legacy_cards/02_因素分类/ENVIRONMENT/政策与法规.md"
+  source_file: "knowledge/01_Factors/RUL-007-policies-regulations.md"
   status: deprecated  # B1 裁决：与单行合规卡语义重复，墓碑化
   merged_into: [RUL-001, RUL-002, RUL-003, RUL-004, RUL-005, RUL-006]
 
@@ -634,7 +635,7 @@
   dimension: WHO
   type: context
   response: both
-  source_file: null  # B1 新增（GAP-1），无旧卡
+  source_file: "knowledge/01_Factors/WHO-F-015-gender-expression.md"
   status: draft
   evidence_base: "UD7 补充原则 P10; ICF 个人因素"
   gap_ref: GAP-1
@@ -646,7 +647,7 @@
   dimension: WHERE
   type: context
   response: both
-  source_file: null  # B1 新增（GAP-2），无旧卡
+  source_file: "knowledge/01_Factors/WHERE-F-008-shared-public-use.md"
   status: draft
   evidence_base: "UD7 补充原则 P8; ICF d7/d9"
   gap_ref: GAP-2
@@ -658,7 +659,7 @@
   dimension: WHERE
   type: context
   response: both
-  source_file: null  # B1 新增（GAP-5），无旧卡
+  source_file: "knowledge/01_Factors/WHERE-F-009-assisted-use-context.md"
   status: draft
   evidence_base: "ICF e3 支持与关系"
   gap_ref: GAP-5
@@ -670,7 +671,7 @@
   dimension: HOW
   type: constraint
   response: alternative
-  source_file: null  # B1 新增（GAP-3），无旧卡
+  source_file: "knowledge/01_Factors/HOW-F-008-authentication-burden.md"
   status: draft
   evidence_base: "WCAG 2.2 SC 3.3.8 (A级证据); ICF d1"
   gap_ref: GAP-3

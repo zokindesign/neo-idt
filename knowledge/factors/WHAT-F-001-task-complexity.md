@@ -6,7 +6,7 @@ evidence_note: "有标准条款（ISO 9241-110 任务适宜性），间接支撑
 guides: [G-WHAT-F-001]
 id: WHAT-F-001
 merge_candidate: false
-metrics: [M-WHAT-F-001-01]
+metrics: [M-WHAT-F-001-01, M-WHAT-F-001-02]
 name: 任务复杂度
 name_en: Task Complexity
 ownership_review: false

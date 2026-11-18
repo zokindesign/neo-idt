@@ -74,6 +74,11 @@
       "items": { "type": "string", "pattern": "^G-(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^G-RUL-\\d{3}$" },
       "description": "关联的设计指南 ID 列表"
     },
+    "facets": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^FAC-((WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}|RUL-\\d{3})-\\d{2}$" },
+      "description": "细分 facet ID 列表（N+2-①，权威源注册表 facets.yaml；卡片生成视图可不含本字段）"
+    },
     "refs": {
       "type": "object",
       "required": ["standards", "research"],

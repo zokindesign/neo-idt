@@ -6,7 +6,7 @@ evidence_note: "有标准条款（ISO 21542 照明/声学、WCAG 2.2），间接
 guides: [G-WHERE-F-001]
 id: WHERE-F-001
 merge_candidate: false
-metrics: [M-WHERE-F-001-01]
+metrics: [M-WHERE-F-001-01, M-WHERE-F-001-02]
 name: 物理环境
 name_en: Physical Environment
 ownership_review: false

@@ -1,0 +1,83 @@
+# facets.yaml - 因素细分层（N+2-① P1 试点，决议 1）
+# 版本: v0.1
+# 命名空间: FAC-<因素ID>-<nn>；因素 ID 是全库主键，绝不重编号（INCL-NEXT-001 §2.2）
+# 契约绑定: schema/facet.schema.json；factor_id 必须存在于 factors.yaml；
+#           metrics/refs.standards 必须存在于 metrics.yaml / standards.yaml（cross_registry_check 校验）
+# 兄弟互斥: definition 一句话界定，必要时用「不含…」保证与兄弟 facet 互斥
+# 证据纪律: P1 facet 证据继承父因素（evidence_note 显式写「继承自…未单独评级」）；
+#           M-WHO-F-001-01（Cambridge 排除测算法，Waller/Langdon/Clarkson 2010）的
+#           五类能力需求评级（视觉/听觉/操作/触及/移动）是本拆解的分类学锚点
+# 引擎接入: applies_when 与规则条件同一求值器（app/src/lib/ruleEngine.ts），L3 评分时启用
+
+- id: FAC-WHO-F-001-01
+  factor_id: WHO-F-001
+  name: 视觉能力
+  name_en: Visual Ability
+  definition: 感知视觉信息所需的视力、视野、色觉与光适应能力（不含听觉、肢体操作与认知加工）
+  definition_en: 'Visual acuity, visual field, colour vision and light adaptation needed to perceive visual information (excludes hearing, motor operation and cognitive processing)'
+  applies_when: ""
+  metrics: []
+  guide_patterns: []
+  refs:
+    standards:
+      - "STD-W3C-WCAG22:1.4.3"
+      - "STD-W3C-WCAG22:1.4.11"
+    research: []
+  evidence: C
+  evidence_note: 继承自 WHO-F-001（C2，Microsoft Inclusive Toolkit + Clarkson et al. 2003），未单独评级
+  status: draft
+  version: '0.1'
+
+- id: FAC-WHO-F-001-02
+  factor_id: WHO-F-001
+  name: 听觉能力
+  name_en: Hearing Ability
+  definition: 感知听觉信息所需的听力与声音分辨能力（不含视觉、肢体操作与认知加工）
+  definition_en: 'Hearing and sound discrimination needed to perceive auditory information (excludes vision, motor operation and cognitive processing)'
+  applies_when: "interaction.mode == 'voice-input' || environment.contexts contains 'noisy'"
+  metrics: []
+  guide_patterns: []
+  refs:
+    standards: []
+    research: []
+  evidence: C
+  evidence_note: 继承自 WHO-F-001（C2，Microsoft Inclusive Toolkit + Clarkson et al. 2003），未单独评级
+  status: draft
+  version: '0.1'
+
+- id: FAC-WHO-F-001-03
+  factor_id: WHO-F-001
+  name: 运动能力
+  name_en: Motor Ability
+  definition: 完成操作所需的肢体力量、精细动作、触及范围与移动能力，对应排除测算法的操作/触及/移动三类（不含感知通道与认知加工）
+  definition_en: 'Limb strength, fine motor control, reach and mobility needed to complete operations; corresponds to the dexterity/reach/mobility categories of the exclusion calculation (excludes sensory channels and cognitive processing)'
+  applies_when: "device.type in ['mobile', 'wearable', 'kiosk'] || environment.contexts contains 'one-handed' || environment.contexts contains 'moving'"
+  metrics: []
+  guide_patterns: []
+  refs:
+    standards:
+      - "STD-W3C-WCAG22:2.5.8"
+      - "STD-ISO-7250:5"
+      - "STD-ANSUR-II:1"
+    research: []
+  evidence: C
+  evidence_note: 继承自 WHO-F-001（C2，Microsoft Inclusive Toolkit + Clarkson et al. 2003），未单独评级
+  status: draft
+  version: '0.1'
+
+- id: FAC-WHO-F-001-04
+  factor_id: WHO-F-001
+  name: 言语与认知能力
+  name_en: Speech & Cognitive Ability
+  definition: 理解与表达信息所需的言语接收/产生能力及注意、记忆、执行等认知加工能力（不含感知通道与肢体操作）
+  definition_en: 'Speech reception and production plus cognitive processing (attention, memory, executive function) needed to understand and express information (excludes sensory channels and motor operation)'
+  applies_when: "environment.contexts contains 'time-pressure' || environment.contexts contains 'emergency-use' || task.has_payment_confirmation == true"
+  metrics: []
+  guide_patterns: []
+  refs:
+    standards: []
+    research: []
+  evidence: C
+  evidence_note: 继承自 WHO-F-001（C2，Microsoft Inclusive Toolkit + Clarkson et al. 2003），未单独评级
+  status: draft
+  version: '0.1'

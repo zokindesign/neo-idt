@@ -1,0 +1,125 @@
+{
+  "$id": "https://inclusive-design-tool.org/schema/facet.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Inclusive Design Factor Facet",
+  "type": "object",
+  "required": [
+    "id",
+    "factor_id",
+    "name",
+    "name_en",
+    "definition",
+    "evidence",
+    "evidence_note",
+    "status",
+    "version"
+  ],
+  "additionalProperties": false,
+  "description": "facet = 因素之下的稳定细分层（INCL-NEXT-001 §2.2，决议 1）。命名空间 FAC-<因素ID>-<nn>，因素 ID 保持不变（因素 ID 是全库主键，绝不重编号）。兄弟 facet 的 definition 必须互斥；applies_when 让 facet 自带情境激活条件（与规则条件同一求值器词汇，即 schema/profile.schema.json）；metrics/guide_patterns 可选下沉到 facet（P2 起使用，P1 试点允许为空）。",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^FAC-((WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}|RUL-\\d{3})-\\d{2}$",
+      "description": "facet 唯一 ID：FAC-<因素ID>-<nn>，如 FAC-WHO-F-001-02"
+    },
+    "factor_id": {
+      "type": "string",
+      "pattern": "^(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}$|^RUL-\\d{3}$",
+      "description": "归属因素（稳定外键，必须存在于 factors.yaml）"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "中文名称"
+    },
+    "name_en": {
+      "type": "string",
+      "minLength": 1,
+      "description": "英文名称"
+    },
+    "definition_en": {
+      "type": "string",
+      "minLength": 8,
+      "description": "英文界定（additive i18n 字段；界面按语言取词，缺省时回退中文 definition）"
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 8,
+      "description": "一句话界定，必须与兄弟 facet 互斥（可用括号注明「不含什么」保证互斥）"
+    },
+    "applies_when": {
+      "type": "string",
+      "description": "情境激活条件（可选，空 = 恒适用）；词汇与取值受 schema/profile.schema.json 约束，求值器与规则条件同一（app/src/lib/ruleEngine.ts）"
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^M-(WHO|WHERE|WHEN|WHAT|WHICH|WHY|HOW)-F-\\d{3}-\\d{2}$|^M-RUL-\\d{3}-\\d{2}$"
+      },
+      "description": "绑定到本 facet 的指标（可选；必须在 metrics.yaml 中存在）"
+    },
+    "guide_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "指向指南卡内某条 pattern 的引用（可选，形如 G-xxx#pattern-name；P2 起使用）"
+    },
+    "refs": {
+      "type": "object",
+      "required": [
+        "standards",
+        "research"
+      ],
+      "properties": {
+        "standards": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^STD-[A-Z0-9-]+(:[A-Za-z0-9\\u4e00-\\u9fff]+(\\.[A-Za-z0-9]+)*)?$"
+          },
+          "description": "标准条款引用（必须在 standards.yaml 中存在；空数组 = 继承父因素引用）"
+        },
+        "research": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "研究文献引用"
+        }
+      },
+      "description": "facet 级引用（可选；空 = 证据与引用随父因素继承）"
+    },
+    "evidence": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "description": "证据等级：A=标准强制条款 B=研究文献 C=专家共识 D=推理假设；P1 试点 facet 继承父因素等级并在 evidence_note 说明"
+    },
+    "evidence_note": {
+      "type": "string",
+      "minLength": 4,
+      "description": "证据判定依据；若继承父因素必须显式写明「继承自 <因素ID>，未单独评级」"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "deprecated"
+      ],
+      "description": "状态"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "版本号"
+    }
+  }
+}

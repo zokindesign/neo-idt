@@ -115,6 +115,13 @@ def find_files_for_schema(schema_name: str, root: Path) -> List[Path]:
         'guide': ['knowledge/guides/*.md'],
         'standard': ['registry/standards.yaml', 'knowledge/standards/*.md'],
         'case': ['knowledge/cases/*.md'],
+        # N+1-② 描述器：结构校验挂入门禁（与 profile 契约的一致性由
+        # scripts/validate_profile_contract.py 单独把关）
+        'descriptor': ['registry/descriptor.yaml'],
+        # N+2-① facet：因素细分层（P1 试点 WHO-F-001）
+        'facet': ['registry/facets.yaml'],
+        # 多语言补译工程：i18n 覆盖层（每语言一个文件；id 存在性由 build-data.mjs 门禁校验）
+        'i18n': ['registry/i18n/*.yaml'],
     }
     
     files = []
@@ -227,6 +234,36 @@ def cross_registry_check(root: Path, verbose: bool = False) -> Tuple[bool, List[
             elif isinstance(c, str):
                 if c not in case_ids:
                     errors.append(f"{gfile.name}: case ref '{c}' not in 05_Cases/")
+
+    # 6. Facets（N+2-①）：factor_id / metrics / standards 外键 + 因素引用双向一致
+    facets_reg = load_yaml(reg_dir / 'facets.yaml')
+    facet_by_id = {}
+    for fc in facets_reg:
+        if not isinstance(fc, dict) or not fc.get('id'):
+            continue
+        fid = fc['id']
+        if fid in facet_by_id:
+            errors.append(f"facets.yaml: 重复的 facet id '{fid}'")
+        facet_by_id[fid] = fc
+        pid = fc.get('factor_id')
+        if pid not in factor_ids:
+            errors.append(f"facets.yaml: {fid} factor_id '{pid}' not in factors.yaml")
+        for mid in fc.get('metrics') or []:
+            if mid not in metric_ids:
+                errors.append(f"facets.yaml: {fid} metrics ref '{mid}' not in metrics.yaml")
+        for sref in (fc.get('refs') or {}).get('standards') or []:
+            base = str(sref).split(':')[0]
+            if base not in std_ids:
+                errors.append(f"facets.yaml: {fid} standards ref '{sref}' not in standards.yaml")
+    for e in factors_reg:
+        if not isinstance(e, dict):
+            continue
+        for fcid in e.get('facets') or []:
+            row = facet_by_id.get(fcid)
+            if row is None:
+                errors.append(f"factors.yaml: {e.get('id')} facets 引用不存在的 '{fcid}'")
+            elif row.get('factor_id') != e.get('id'):
+                errors.append(f"factors.yaml: {e.get('id')} facets 引用 '{fcid}' 但其 factor_id 是 '{row.get('factor_id')}'")
 
     ok = not errors
     return ok, errors

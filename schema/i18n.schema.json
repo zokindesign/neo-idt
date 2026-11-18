@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inclusive-design-tool.org/schema/i18n.schema.json",
+  "title": "Inclusive Design i18n overlay",
+  "description": "多语言补译工程的覆盖层（注册表目录下 i18n/<lang>.yaml）。译文独立于生成视图（卡片重跑不覆盖），构建期由 app/scripts/build-data.mjs 挂到对应实体的 i18n 节点，前端按 locale 取词（app/src/lib/kbtext.ts）。additive-only：不含 id 的定义，只含译文；id 必须存在于对应注册表（构建期门禁）。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "locale": {
+      "type": "string",
+      "description": "该覆盖层的语言代码（可省；缺省以文件名为准）"
+    },
+    "glossary": {
+      "type": "object",
+      "description": "术语表：中文术语 → 本语言固定译法（仅作翻译与校对参照，不参与渲染）"
+    },
+    "metrics": {
+      "type": "object",
+      "description": "指标译文（id 见 metrics.yaml）",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "measurement_method": { "type": "string", "minLength": 1 },
+          "thresholds": {
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "properties": {
+              "minimum": { "type": "string", "minLength": 1 },
+              "good": { "type": "string", "minLength": 1 },
+              "excellent": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "factors": {
+      "type": "object",
+      "description": "因素译文（id 见 factors.yaml）",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "evidence_note": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "facets": {
+      "type": "object",
+      "description": "因素细分层译文（id 见 facets.yaml）",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "definition": { "type": "string", "minLength": 8 }
+        }
+      }
+    },
+    "guides": {
+      "type": "object",
+      "description": "指南卡译文（id 须存在于知识库指南卡 04_Guides）。注意：patterns/anti_patterns 的元素是**结构化对象**（源即如此），不是字符串——压平会丢 domain/example/refs；domain 与 refs 必须逐字复制",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "patterns": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "description"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "description": { "type": "string", "minLength": 1 },
+                "domain": { "type": "string", "minLength": 1, "description": "枚举值，逐字复制不译" },
+                "example": { "type": "string", "minLength": 1 },
+                "refs": { "type": "array", "items": { "type": "string" }, "description": "标准引用代码，逐字复制不译" }
+              }
+            }
+          },
+          "anti_patterns": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "description"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "description": { "type": "string", "minLength": 1 },
+                "consequence": { "type": "string", "minLength": 1 },
+                "domain": { "type": "string", "minLength": 1 },
+                "refs": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "object",
+      "description": "案例卡译文（id 须存在于知识库案例卡 05_Cases）",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "outcome": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "standards": {
+      "type": "object",
+      "description": "标准条目标题译文（id 见 standards.yaml）。注意：标准编号/条款号永不翻译；如需官方英文标题须逐条 web 核验后另开任务",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "title": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
