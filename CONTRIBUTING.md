@@ -64,8 +64,13 @@ fork → 新分支 → 修改 → python schema/validate.py（本地全绿）
 
 ## 四、翻译贡献（低门槛入口）
 
-- `app/src/i18n/`：`en.ts` 缺失键补齐
-- 卡片 `name_en` 字段校对——最轻量的有效贡献
+当前支持 简体中文（权威源）/ 繁體中文 / English / 日本語 / 한국어 五种语言。可贡献面：
+
+- **界面文案**：`app/src/i18n/locales/{zh-TW,en,ja,ko}.ts` 缺失键补齐（`zh-CN.ts` 为权威源，勿直接改）
+- **数据层译文**：`registry/i18n/<lang>.yaml`（因素名/指标说明/阈值/指南/案例）——条目 id 必须与注册表一致，构建期校验会拒绝未知 id
+- **因素卡译文**：`knowledge/i18n/<lang>/factors/`（整卡翻译；文献题录逐字保留，仅翻译尾注）
+- **卡片 `name_en` 字段校对**——最轻量的有效贡献
+- 提交前请跑 `python schema/validate.py`（含 i18n schema 门禁）
 
 ## 五、行为准则
 

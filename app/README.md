@@ -32,9 +32,17 @@ node scripts/build-data.mjs   # regenerate the data pack from ../registry
 
 > The app reads its knowledge data exclusively from the generated data pack —
 > to update factor/metric/rule content, edit `../registry/*.yaml`, regenerate,
-> and rebuild. Guide/case cards are consumed through the wiki links.
+> and rebuild. Guide and case data is compiled into the pack too; the UI
+> currently surfaces factors, metrics, and standards, with guide/case views
+> on the roadmap.
 
 ## i18n
 
-UI text lives in `src/i18n/` (`zh-CN.ts`, `en.ts`). Translations are a low-friction
-contribution area — see the root [CONTRIBUTING.md](../CONTRIBUTING.md).
+Five locales ship out of the box: `zh-CN`, `zh-TW`, `en`, `ja`, `ko`.
+
+- **UI chrome**: `src/i18n/` (`zh-CN.ts` is the authoritative source; `locales/{zh-TW,en,ja,ko}.ts` are overlay packs), loaded dynamically with zh-CN fallback.
+- **Data layer**: translations live in registry overlays (`../registry/i18n/<lang>.yaml`) and are compiled into the data pack at build time — an entry whose id does not exist in the registries fails the build. The lookup chain is overlay → `*_en` inline fields → zh-CN authoritative source (`src/lib/kbtext.ts`), so the zh-CN content is never polluted.
+- **Knowledge cards**: translated factor cards live in `../knowledge/i18n/<lang>/factors/`.
+- **Exports**: the generated boundary document and acceptance report follow the UI language as well.
+
+Translations are a low-friction contribution area — see the root [CONTRIBUTING.md](../CONTRIBUTING.md).

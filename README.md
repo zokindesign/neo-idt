@@ -24,9 +24,10 @@ NEO-IDT is **coverage-oriented**: a systematic factor taxonomy plus quantified e
 
 - **Seven dimensions + a compliance baseline layer**: WHO (user) · WHERE (environment) · WHEN (time) · WHAT (task) · WHICH (preference) · WHY (business) · HOW (technology), plus **RUL** — a binary compliance baseline (never traded off, never weighted).
 - **65 factors** (58 factors + 7 compliance baselines), each classified as *ability* (→ provide **alternatives**) or *preference* (→ provide **choice space**), with cross-domain mappings (digital / industrial / architecture / fashion / service).
-- **65 metrics** in three measurement layers (automated / audit / user-test) with three-tier thresholds (minimum / good / excellent).
-- **64 design guide cards** (237 patterns / 158 anti-patterns / 256 cross-domain mappings) and **8 verified cases**.
+- **75 metrics** in three measurement layers (automated / audit / user-test) with three-tier thresholds (minimum / good / excellent).
+- **64 design guide cards** (235 patterns / 147 anti-patterns / 256 cross-domain mappings) and **8 verified cases**.
 - **Evidence grades on everything**: `A` mandatory standard clause · `B` verified research · `C` expert consensus · `D` project inference — *unverified content does not get written in*.
+- **Five languages out of the box**: the interface and the data layer fully cover Simplified Chinese / Traditional Chinese / English / Japanese / Korean — factor names, metric descriptions, thresholds, even the exported boundary documents and acceptance reports follow the UI language. The Traditional Chinese layer is localized with OpenCC plus a 12-term Taiwan glossary (稽核 for audit, 遵循 for compliance, 行動裝置 for mobile device, each with a documented rationale).
 - **The inclusiveness boundary is a commitment list, not a score**: one row per factor — `factor × metric × target tier` (e.g. `WHO-F-001 × contrast × good (≥7:1)`). No weighted single total, by design (Goodhart's law: once the score becomes the target, designers optimize the score, not inclusiveness).
 
 ## The four phases
@@ -44,13 +45,13 @@ The web app ships the Explore, Define, and Audit views; the Build phase is power
 
 | Path | What it is | License |
 |------|-----------|---------|
-| `knowledge/` | Human-readable knowledge cards (factors / standards / metrics / guides / cases) | CC BY-SA 4.0 |
-| `registry/` | Machine-readable registries — the single source of truth (`factors/metrics/rules/standards.yaml`) | CC BY 4.0 |
-| `schema/` | 6 JSON Schemas + validator, link auditor, card generator | Data CC BY 4.0 · scripts MIT |
+| `knowledge/` | Human-readable knowledge cards (factors / standards / metrics / guides / cases) + `i18n/` translated factor cards | CC BY-SA 4.0 |
+| `registry/` | Machine-readable registries — the single source of truth (`factors/metrics/facets/descriptor/rules/standards.yaml` + `i18n/` translation overlays) | CC BY 4.0 |
+| `schema/` | 10 JSON Schemas + validator, link auditor, card generator | Data CC BY 4.0 · scripts MIT |
 | `app/` | Web app (Vue 3 + TypeScript + Pinia; IndexedDB local-first, optional Supabase cloud sync) | MIT |
 | `docs/` | Framework docs, ADRs, architecture, deployment, data pipeline | CC BY-SA 4.0 |
 
-**Single-source discipline**: structured data lives in `registry/*.yaml`; cards in `knowledge/standards/` and `knowledge/metrics/` are *generated views* (`python schema/generate_cards.py`) and should not be hand-edited. Guide and case cards are hand-written.
+**Single-source discipline**: structured data lives in `registry/*.yaml`; cards in `knowledge/standards/` and `knowledge/metrics/` are *generated views* (`python schema/generate_cards.py`) and should not be hand-edited. Guide and case cards are hand-written. Translations live only in the `registry/i18n/` overlays and `knowledge/i18n/` translated cards — regenerating views never overwrites translations.
 
 ## Quick start
 
