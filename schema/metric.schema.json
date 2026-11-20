@@ -88,6 +88,19 @@
       "type": "string",
       "description": "适用条件、误差来源、不适用场景说明（placeholder 可省略）"
     },
+    "limitations_en": {
+      "type": "string",
+      "description": "英文适用条件说明（additive i18n 字段；与 name_en 同构，缺省时回退中文 limitations）"
+    },
+    "data_source_en": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "英文数据获取方式（additive i18n 字段；与 data_source 同序同构，缺省时回退中文）"
+    },
+    "unit_en": {
+      "type": "string",
+      "description": "英文单位（additive i18n 字段；缺省时回退中文 unit）"
+    },
     "related_standards": {
       "type": "array",
       "items": { "type": "string", "pattern": "^STD-[A-Z0-9-]+(:\\d+(\\.\\d+)*)?$" },

@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-11-17T05:26:29.620Z",
+  "generatedAt": "2026-11-19T15:47:56.373Z",
   "factors": [
     {
       "abstract_dimensions": [],
@@ -3372,6 +3372,10 @@
           "自动化测试",
           "真实用户监控（RUM）"
         ],
+        "data_source_en": [
+          "Automated testing",
+          "Real-user monitoring (RUM)"
+        ],
         "thresholds": {
           "minimum": "断网时只读功能可用且有明确离线提示",
           "good": "弱网（3G 级）核心任务可完成（超时 ≤ 10s）",
@@ -3383,10 +3387,12 @@
           "excellent": "Offline-first architecture with automatic background sync"
         },
         "unit": "功能保持率 % / 超时秒数",
+        "unit_en": "Feature retention % / timeout seconds",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "3G 参考速率为共识值；RUM 数据须脱敏处理",
+        "limitations_en": "The 3G reference speed is a consensus value; RUM data must be de-identified.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -3436,6 +3442,10 @@
           "自动化测试",
           "RUM"
         ],
+        "data_source_en": [
+          "Automated testing",
+          "RUM"
+        ],
         "thresholds": {
           "minimum": "冷启动 ≤ 5s 且核心交互响应 ≤ 200ms（ISO 9241-112 响应性实践）",
           "good": "P75 交互响应 ≤ 100ms 且低内存设备无崩溃",
@@ -3447,10 +3457,12 @@
           "excellent": "Adaptive quality and tiered loading based on device capability"
         },
         "unit": "秒 / 毫秒",
+        "unit_en": "s / ms",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "200ms 响应阈值为 ISO 9241-11 有效性-效率实践与行业共识",
+        "limitations_en": "The 200 ms response threshold follows ISO 9241-11 effectiveness-efficiency practice and industry consensus.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -3499,6 +3511,11 @@
           "任务计时",
           "操作日志"
         ],
+        "data_source_en": [
+          "Direct dual-device testing",
+          "Task timing",
+          "Operation logs"
+        ],
         "thresholds": {
           "minimum": "低配完成时间 ≤ 基准 ×1.5",
           "good": "≤ 基准 ×1.3",
@@ -3510,10 +3527,12 @@
           "excellent": "≤ baseline ×1.1 and no feature degradation"
         },
         "unit": "时间比（低配/基准）",
+        "unit_en": "Time ratio (low-spec/baseline)",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "「最低支持规格」由产品自行定义；测试期间网络条件须固定",
+        "limitations_en": "The \"minimum supported specification\" is defined by the product itself; network conditions must be held fixed during testing.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -3563,6 +3582,10 @@
           "特性清单",
           "实测"
         ],
+        "data_source_en": [
+          "Feature checklist",
+          "Direct measurement"
+        ],
         "thresholds": {
           "minimum": "提供省电模式且电量状态可查",
           "good": "剩余使用时间预测与低功耗策略",
@@ -3574,11 +3597,13 @@
           "excellent": "Redundant multiple charging methods (wired/wireless/external) and scenario-adaptive power reduction"
         },
         "unit": "场景覆盖率 %",
+        "unit_en": "Scenario coverage %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "Rahmati & Zhong 2009 为移动手机场景研究，可穿戴/医疗设备场景需按产品类别调整",
+        "limitations_en": "Rahmati & Zhong 2009 studied mobile-phone scenarios; wearable/medical-device scenarios need adjustment by product category.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -3628,6 +3653,10 @@
           "CI 自动化测试",
           "AT 兼容工具"
         ],
+        "data_source_en": [
+          "CI automated testing",
+          "AT compatibility tools"
+        ],
         "thresholds": {
           "minimum": "声明的支持矩阵 100% 通过冒烟用例",
           "good": "AT 组合（屏幕阅读器×浏览器）核心流程通过",
@@ -3639,10 +3668,12 @@
           "excellent": "Backward compatible by 2 major versions with graceful failure degradation"
         },
         "unit": "矩阵通过率 %",
+        "unit_en": "Matrix pass rate %",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "AT 组合测试资源消耗大，良好档建议至少覆盖主流组合（NVDA×Chrome/VoiceOver×Safari）",
+        "limitations_en": "AT combination testing is resource-intensive; at the Good tier, cover at least the mainstream combinations (NVDA×Chrome/VoiceOver×Safari).",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -3692,6 +3723,10 @@
           "用户环境数据",
           "降级测试"
         ],
+        "data_source_en": [
+          "User-environment data",
+          "Degradation testing"
+        ],
         "thresholds": {
           "minimum": "目标市场主流存量环境有明确支持/降级声明",
           "good": "降级模式核心功能可用（优雅降级非白屏）",
@@ -3703,10 +3738,12 @@
           "excellent": "Automatic distribution of adapted versions based on environment capability"
         },
         "unit": "环境覆盖率 %",
+        "unit_en": "Environment coverage %",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "存量环境定义依赖目标市场调研数据",
+        "limitations_en": "The definition of legacy environments depends on target-market research data.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -3756,6 +3793,10 @@
           "AT 实测",
           "自动化扫描"
         ],
+        "data_source_en": [
+          "Direct AT testing",
+          "Automated scanning"
+        ],
         "thresholds": {
           "minimum": "WCAG 4.1.2 零失败且屏幕阅读器可完成核心任务（A 级基线）",
           "good": "主流 AT 组合核心任务成功率 ≥ 90%",
@@ -3767,10 +3808,12 @@
           "excellent": "Passes across all AT combinations + rare AT (switch/eye control)"
         },
         "unit": "任务成功率 %",
+        "unit_en": "Task success rate %",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "AT 组合爆炸问题：建议按 WebAIM 调研主流组合优先",
+        "limitations_en": "Combinatorial explosion of AT combinations: prioritize the mainstream combinations per the WebAIM survey.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -3820,6 +3863,10 @@
           "内容审计",
           "AT 测试"
         ],
+        "data_source_en": [
+          "Content audit",
+          "AT testing"
+        ],
         "thresholds": {
           "minimum": "颜色非唯一信息载体（WCAG 1.4.1 A 级）且媒体有替代（1.1.1/1.2.2 A 级）",
           "good": "双通道输出全覆盖关键信息",
@@ -3831,11 +3878,13 @@
           "excellent": "User-selectable preferred output channel with cross-channel synchronization"
         },
         "unit": "通道冗余率 %",
+        "unit_en": "Channel redundancy %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "硬件指示灯类输出可用 ISO 9241-110 5.2 原则替代审计",
+        "limitations_en": "For hardware indicator-light output, an audit against ISO 9241-110 5.2 principles may substitute.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -3885,6 +3934,10 @@
           "认证流程审计",
           "AT 测试"
         ],
+        "data_source_en": [
+          "Certification-process audit",
+          "AT testing"
+        ],
         "thresholds": {
           "minimum": "≥2 条独立认证路径且无强制认知功能测试（WCAG 3.3.8 AA 级）",
           "good": "账号恢复不依赖安全问题，密码管理器自动填充无阻断",
@@ -3896,10 +3949,12 @@
           "excellent": "Passwordless paths such as WebAuthn/magic links + session extension + published capability requirements for each path"
         },
         "unit": "路径数 / 合规项通过率",
+        "unit_en": "Path count / compliant-item pass rate",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "3.3.8 为 WCAG 2.2 AA 级新增条款；本项目按 A 级证据处理因其在采购/法规中常作强制基线",
+        "limitations_en": "3.3.8 is a new WCAG 2.2 AA criterion; this project treats it as Level A evidence because it often serves as a mandatory baseline in procurement/regulation.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -3950,6 +4005,11 @@
           "人工审计",
           "用户测试"
         ],
+        "data_source_en": [
+          "Automated scanning",
+          "Manual audit",
+          "User testing"
+        ],
         "thresholds": {
           "excellent": "AA 100% + AAA 关键条款 + 主流 AT 兼容验证",
           "good": "AA 100% + 部分 AAA 条款",
@@ -3961,6 +4021,7 @@
           "excellent": "AA 100% + key AAA criteria + mainstream AT compatibility verification"
         },
         "unit": "通过率 %",
+        "unit_en": "Pass rate %",
         "applicable_domains": [],
         "evidence_grade": "A",
         "i18n": {
@@ -4012,6 +4073,11 @@
           "工单日志",
           "实测撤回路径"
         ],
+        "data_source_en": [
+          "Process audit",
+          "Support-ticket logs",
+          "Direct withdrawal-path testing"
+        ],
         "thresholds": {
           "minimum": "目标法域全部法定权利路径存在且时限达标（GDPR 一个月响应；PIPL 便捷撤回）",
           "good": "撤回同意路径与给予同意同页同级可达（非深埋设置），权利请求有状态跟踪",
@@ -4023,11 +4089,13 @@
           "excellent": "Fully self-service exercise of rights + internal processing-time SLA stricter than legally required + automatic routing of multi-jurisdiction requests"
         },
         "unit": "条款覆盖率 % / 响应时效",
+        "unit_en": "Clause coverage % / response timeliness",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "本指标为流程合规审计而非法律意见；多法域产品需按投放市场叠加 CCPA/CPRA 等法域条款——当前覆盖 GDPR/PIPL 双法域",
+        "limitations_en": "This metric is a process-compliance audit, not legal advice; multi-jurisdiction products must layer jurisdiction clauses such as CCPA/CPRA per launch market — currently the GDPR/PIPL dual jurisdictions are covered.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -4078,6 +4146,11 @@
           "设计文档审计",
           "预测试报告"
         ],
+        "data_source_en": [
+          "Certification checklist",
+          "Design-document audit",
+          "Pre-test reports"
+        ],
         "thresholds": {
           "minimum": "目标市场强制认证清单确认且安全要求可追溯到设计文档",
           "good": "危害分析与风险评估文档完备，预合规测试通过",
@@ -4089,11 +4162,13 @@
           "excellent": "Parallel multi-certification path (one design satisfies certifications for multiple markets) + certification maintenance process (re-audit tracking)"
         },
         "unit": "认证就绪率 %",
+        "unit_en": "Certification readiness rate %",
         "applicable_domains": [
           "industrial",
           "digital"
         ],
         "limitations": "各认证体系条款庞杂，本指标审计就绪流程而非认证本身——认证结果由认证机构给出；医疗/汽车等强监管领域须引入法域专员复核",
+        "limitations_en": "Certification schemes carry voluminous clauses; this metric audits readiness processes rather than certification itself — certification outcomes are issued by certification bodies; strongly regulated domains (medical/automotive) require review by jurisdiction specialists.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4143,6 +4218,10 @@
           "SBOM 扫描",
           "素材台账"
         ],
+        "data_source_en": [
+          "SBOM scanning",
+          "Asset ledger"
+        ],
         "thresholds": {
           "minimum": "100% 组件有 SPDX 许可证标识（无 Unknown 许可证进入构建）",
           "good": "SBOM 机器可读（SPDX 格式）+ 传染性许可证冲突清零",
@@ -4154,10 +4233,12 @@
           "excellent": "Complete asset licensing chain (item-by-item licensing proof for fonts/images/audio) + CI monitoring of license changes"
         },
         "unit": "SPDX 标识覆盖率 % / 冲突数",
+        "unit_en": "SPDX identification coverage % / conflict count",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "SPDX 覆盖软件与数据，硬件 IP 核与标准必要专利（SEP）须另行专利检索——本指标不含专利侵权判断",
+        "limitations_en": "SPDX covers software and data; hardware IP cores and standard-essential patents (SEP) require separate patent searches — this metric makes no patent-infringement determinations.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4208,6 +4289,11 @@
           "研究协议",
           "投诉记录"
         ],
+        "data_source_en": [
+          "Ethics checklist",
+          "Research protocol",
+          "Complaint records"
+        ],
         "thresholds": {
           "minimum": "涉人研究有知情同意流程且 IRB/伦理委员会审查在案（Belmont 三原则逐项可查）",
           "good": "算法决策有公平性审计记录 + 暗黑模式自查清零 + 伦理反馈渠道可用",
@@ -4219,10 +4305,12 @@
           "excellent": "Ethics assessment front-loaded into the design phase (design ethics workshops) + AI systems aligned with the IEEE EAD eight-principle framework"
         },
         "unit": "检查项覆盖率 %",
+        "unit_en": "Check-item coverage %",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "Belmont 面向涉人研究伦理，IEEE EAD 面向 AI 系统——两者为互补框架；伦理审查深度依赖产品类别（医疗/AI/社交需分域细化）",
+        "limitations_en": "Belmont addresses human-subjects research ethics and IEEE EAD addresses AI systems — the two are complementary frameworks; the depth of ethics review depends on product category (medical/AI/social products need domain-specific refinement).",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4272,6 +4360,10 @@
           "行业规范清单",
           "证据映射文档"
         ],
+        "data_source_en": [
+          "Industry-standards checklist",
+          "Evidence-mapping documents"
+        ],
         "thresholds": {
           "minimum": "目标行业准入规范清单确认且有指定负责人",
           "good": "每条适用条款有证据映射（设计文档/测试报告/流程记录）",
@@ -4283,12 +4375,14 @@
           "excellent": "Industry regulation change-tracking mechanism + mapping reuse across multiple parallel regulations for cross-industry products"
         },
         "unit": "条款映射覆盖率 %",
+        "unit_en": "Clause-mapping coverage %",
         "applicable_domains": [
           "digital",
           "industrial",
           "service"
         ],
         "limitations": "行业规范随法域与行业演变（如 PCI DSS 版本更新），清单须按投放行业与年度复核；HIPAA/PCI DSS 条款本身不在本项目标准注册表——按需注册",
+        "limitations_en": "Industry norms evolve with jurisdictions and sectors (e.g. PCI DSS version updates); the checklist must be reviewed annually and per the industry of deployment; HIPAA/PCI DSS clauses are not in this project's standards registry — register as needed.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4338,6 +4432,10 @@
           "任务分析",
           "专家评级"
         ],
+        "data_source_en": [
+          "Task analysis",
+          "Expert rating"
+        ],
         "thresholds": {
           "minimum": "核心任务 ≤ 7±2 步且决策点 ≤ 3（米勒定律共识值）",
           "good": "提供分步引导与进度提示",
@@ -4349,10 +4447,12 @@
           "excellent": "Expert shortcut paths provided (parallel advanced operations)"
         },
         "unit": "步骤数 / 决策点数",
+        "unit_en": "Step count / decision-point count",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "7±2 为认知心理学共识值而非强制标准；复杂任务应配合认知负荷量表",
+        "limitations_en": "7±2 is a cognitive-psychology consensus value, not a mandatory standard; complex tasks should be paired with a cognitive-load scale.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -4400,6 +4500,10 @@
           "任务分析",
           "流程走查"
         ],
+        "data_source_en": [
+          "Task analysis",
+          "Process walkthrough"
+        ],
         "thresholds": {
           "minimum": "主流程 ≤10 步",
           "good": "≤7 步",
@@ -4411,10 +4515,12 @@
           "excellent": "≤5 steps and no rework loops"
         },
         "unit": "步数",
+        "unit_en": "Step count",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "步数颗粒度（击键/页面/决策）须统一定义后再比较",
+        "limitations_en": "Step-count granularity (keystrokes/pages/decisions) must be defined consistently before comparing.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4464,6 +4570,10 @@
           "可用性测试",
           "用户自评"
         ],
+        "data_source_en": [
+          "Usability testing",
+          "User self-assessment"
+        ],
         "thresholds": {
           "excellent": "NASA-TLX 总分 ≤ 30",
           "good": "NASA-TLX 总分 ≤ 45",
@@ -4475,6 +4585,7 @@
           "excellent": "NASA-TLX total score ≤ 30"
         },
         "unit": "NASA-TLX 分数 (0-100)",
+        "unit_en": "NASA-TLX score (0-100)",
         "applicable_domains": [],
         "evidence_grade": "B",
         "i18n": {
@@ -4523,6 +4634,10 @@
           "可用性测试",
           "生产环境日志（脱敏）"
         ],
+        "data_source_en": [
+          "Usability testing",
+          "Production-environment logs (de-identified)"
+        ],
         "thresholds": {
           "excellent": "P95 ≤ 期望时间 × 1.2",
           "good": "P95 ≤ 期望时间 × 1.5",
@@ -4534,6 +4649,7 @@
           "excellent": "P95 ≤ expected time × 1.2"
         },
         "unit": "秒 / 倍率",
+        "unit_en": "s / ratio",
         "applicable_domains": [],
         "evidence_grade": "B",
         "i18n": {
@@ -4584,6 +4700,10 @@
           "可用性测试",
           "错误注入实验"
         ],
+        "data_source_en": [
+          "Usability testing",
+          "Error-injection experiments"
+        ],
         "thresholds": {
           "minimum": "破坏性操作有确认且可撤销（ISO 9241-110:2020 5.6 Use error robustness 对应）",
           "good": "错误消息含恢复指引（WCAG 3.3.1/3.3.3）",
@@ -4595,11 +4715,13 @@
           "excellent": "Automatic draft saving and rollback history"
         },
         "unit": "恢复成功率 %",
+        "unit_en": "Recovery success rate %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "WCAG 3.3.1（A 级）适用于 Web 界面；硬件类用 ISO 9241-110 5.6 原则审计",
+        "limitations_en": "WCAG 3.3.1 (Level A) applies to web interfaces; hardware categories are audited against ISO 9241-110 5.6 principles.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4648,6 +4770,11 @@
           "错误注入脚本",
           "恢复耗时计时"
         ],
+        "data_source_en": [
+          "Usability-testing observations",
+          "Error-injection scripts",
+          "Recovery-time measurement"
+        ],
         "thresholds": {
           "minimum": "≥70% 错误无协助恢复",
           "good": "≥85% 且恢复路径有明确指引（3.3.1 错误以文本描述）",
@@ -4659,11 +4786,13 @@
           "excellent": "≥95% and average recovery time <30 seconds"
         },
         "unit": "恢复成功率百分比",
+        "unit_en": "Recovery success rate percentage",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "错误注入集与任务集需按产品校准；样本量影响稳定性",
+        "limitations_en": "The error-injection set and task set must be calibrated per product; sample size affects stability.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4713,6 +4842,10 @@
           "任务审计",
           "跨设备测试"
         ],
+        "data_source_en": [
+          "Task audit",
+          "Cross-device testing"
+        ],
         "thresholds": {
           "minimum": "同流程内已知信息不重复输入（WCAG 3.3.7 A 级强制）",
           "good": "自动保存 + 续接入口全覆盖长任务",
@@ -4724,11 +4857,13 @@
           "excellent": "Real-time cross-device sync and version history"
         },
         "unit": "续接成功率 %",
+        "unit_en": "Resume success rate %",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "WCAG 3.3.7 不要求跨会话保存（Understanding 文档明确），跨会话为良好/优秀档",
+        "limitations_en": "WCAG 3.3.7 does not require cross-session persistence (the Understanding document states this explicitly); cross-session persistence is a Good/Excellent-tier item.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -4778,6 +4913,10 @@
           "功能审计",
           "协作测试"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "Collaborative testing"
+        ],
         "thresholds": {
           "minimum": "协作任务支持分角色权限与操作留痕",
           "good": "并行编辑冲突有合并/锁定策略",
@@ -4789,6 +4928,7 @@
           "excellent": "Assistants/proxies can join seamlessly (corresponds to WHERE-F-009 assisted use)"
         },
         "unit": "角色覆盖率 %",
+        "unit_en": "Role coverage %",
         "applicable_domains": [
           "digital",
           "service"
@@ -4842,6 +4982,10 @@
           "可用性测试",
           "中断实验"
         ],
+        "data_source_en": [
+          "Usability testing",
+          "Interruption experiments"
+        ],
         "thresholds": {
           "minimum": "中断后状态保持，恢复无需从头开始",
           "good": "恢复点提示（'继续刚才的操作'）",
@@ -4853,11 +4997,13 @@
           "excellent": "Interrupted content auto-cached with contextual prompt recovery"
         },
         "unit": "恢复成功率 %",
+        "unit_en": "Recovery success rate %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "中断注入须在受控环境执行，避免生产数据风险",
+        "limitations_en": "Interruption injection must be performed in a controlled environment to avoid production-data risk.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -4907,6 +5053,10 @@
           "特性审计",
           "实测"
         ],
+        "data_source_en": [
+          "Feature audit",
+          "Direct measurement"
+        ],
         "thresholds": {
           "minimum": "核心功能 24h 可用且有暗色模式",
           "good": "夜间免打扰与延迟处理选项",
@@ -4918,6 +5068,7 @@
           "excellent": "Light/time-of-day adaptive interface"
         },
         "unit": "特性覆盖率 %",
+        "unit_en": "Feature coverage %",
         "applicable_domains": [
           "digital",
           "service"
@@ -4971,6 +5122,10 @@
           "使用分析",
           "特性审计"
         ],
+        "data_source_en": [
+          "Usage analytics",
+          "Feature audit"
+        ],
         "thresholds": {
           "minimum": "低频路径有记忆辅助（最近使用/默认值预填）",
           "good": "高频路径有批量/快捷操作；低频路径有使用引导",
@@ -4982,11 +5137,13 @@
           "excellent": "Difficulty and interface density adaptive to individual usage patterns"
         },
         "unit": "分层覆盖率 %",
+        "unit_en": "Tiered coverage %",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "DAU/MAU 与会话间隔为运营指标，低频用户定义需按产品类别校准",
+        "limitations_en": "DAU/MAU and session intervals are operational metrics; the low-frequency-user definition must be calibrated by product category.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -5036,6 +5193,10 @@
           "场景审计",
           "季节性使用数据"
         ],
+        "data_source_en": [
+          "Scenario audit",
+          "Seasonal usage data"
+        ],
         "thresholds": {
           "minimum": "极端天气/温度下核心功能不失效（防水/耐温规格达标）",
           "good": "光照/温度变化有模式适配（冬季深色/夏季高对比/防眩光）",
@@ -5047,6 +5208,7 @@
           "excellent": "Automatic switching between holiday modes and seasonal content"
         },
         "unit": "场景覆盖率 %",
+        "unit_en": "Scenario coverage %",
         "applicable_domains": [
           "digital",
           "industrial",
@@ -5054,6 +5216,7 @@
           "fashion"
         ],
         "limitations": "SAD（Rosenthal 1984）支撑光照-情绪关联的合理依据；季节性运营策略属商业实践范畴",
+        "limitations_en": "SAD (Rosenthal 1984) provides a reasonable basis for the lighting-mood association; seasonal operations strategy falls within business practice.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -5103,6 +5266,10 @@
           "时限盘点",
           "代码/流程审计"
         ],
+        "data_source_en": [
+          "Time-limit inventory",
+          "Code/process audit"
+        ],
         "thresholds": {
           "minimum": "非本质时限 100% 可调整（WCAG 2.2.1 A 级）",
           "good": "剩余时间可视化与进度提示",
@@ -5114,11 +5281,13 @@
           "excellent": "No time limits by default (set only when essentially required, with documented justification)"
         },
         "unit": "时限达标率 %",
+        "unit_en": "Time-limit compliance rate %",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "WCAG 2.2.1 允许本质时限例外（如竞价）；例外须逐项记录依据",
+        "limitations_en": "WCAG 2.2.1 allows exceptions for essential time limits (e.g. bidding); each exception's rationale must be recorded item by item.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -5166,6 +5335,10 @@
           "NASA-TLX 问卷",
           "任务完成记录"
         ],
+        "data_source_en": [
+          "NASA-TLX questionnaire",
+          "Task-completion records"
+        ],
         "thresholds": {
           "minimum": "时间需求均值 ≤15/20",
           "good": "≤10/20",
@@ -5177,10 +5350,12 @@
           "excellent": "≤6/20 and redesign reduction ≥30%"
         },
         "unit": "TLX 时间需求分（0-20）",
+        "unit_en": "TLX temporal demand score (0-20)",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "主观量表受个体差异影响；小样本须报告离散度而非仅均值",
+        "limitations_en": "Subjective scales are affected by individual differences; small samples must report dispersion, not just the mean.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -5230,6 +5405,10 @@
           "任务审计",
           "中断测试"
         ],
+        "data_source_en": [
+          "Task audit",
+          "Interruption testing"
+        ],
         "thresholds": {
           "minimum": "长任务自动保存（间隔 ≤ 30s 或实时）且有续接入口",
           "good": "任务时长预估与分步计划展示",
@@ -5241,11 +5420,13 @@
           "excellent": "Seamless cross-device resumption (state sync)"
         },
         "unit": "任务支持率 %",
+        "unit_en": "Task support rate %",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "保存间隔阈值为共识值，可按任务风险等级收紧",
+        "limitations_en": "The save-interval threshold is a consensus value and may be tightened according to task risk level.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -5295,6 +5476,10 @@
           "功能审计",
           "长会话测试"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "Long-session testing"
+        ],
         "thresholds": {
           "minimum": "长会话有暂停与断点保存（数据不因疲劳中断丢失）",
           "good": "连续错误/操作放缓触发主动休息提示",
@@ -5306,11 +5491,13 @@
           "excellent": "Fatigue-adaptive interface (reduced information density / enlarged key elements)"
         },
         "unit": "响应机制覆盖率 %",
+        "unit_en": "Response-mechanism coverage %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "NASA-TLX 为主观负荷量表，生理疲劳信号需传感器支持；行为代理指标（错误率）为间接测量",
+        "limitations_en": "NASA-TLX is a subjective workload scale; physiological fatigue signals require sensor support; behavioral proxy indicators (error rates) are indirect measurements.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -5360,6 +5547,10 @@
           "场景定义",
           "实地/实验室测试"
         ],
+        "data_source_en": [
+          "Scenario definitions",
+          "Field/laboratory testing"
+        ],
         "thresholds": {
           "minimum": "标称环境（如常规室内照明）全功能可用",
           "good": "强光/低光与高噪声下核心功能可用",
@@ -5371,12 +5562,14 @@
           "excellent": "Automatic adaptation across all scenarios (brightness/contrast/haptic feedback switching)"
         },
         "unit": "环境项通过率 %",
+        "unit_en": "Environment-item pass rate %",
         "applicable_domains": [
           "digital",
           "industrial",
           "architecture"
         ],
         "limitations": "建筑空间类项目须按 ISO 21542 照明/声学条款实测",
+        "limitations_en": "Building-space projects must be field-measured against ISO 21542 lighting/acoustics clauses.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -5424,6 +5617,10 @@
           "照度计实测",
           "对比度测量工具"
         ],
+        "data_source_en": [
+          "Illuminance-meter measurement",
+          "Contrast-measurement tools"
+        ],
         "thresholds": {
           "minimum": "正文 ≥4.5:1 且 UI 组件 ≥3:1（强光实测）",
           "good": "在 minimum 之上，高亮/禁用态均可辨",
@@ -5435,10 +5632,12 @@
           "excellent": "Automatic high-contrast or brightness-adaptive mode is provided"
         },
         "unit": "对比度比值（实测）",
+        "unit_en": "Contrast ratio (measured)",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "环境照度范围需事前定义；不同屏幕峰值亮度差异大，须记录测试设备",
+        "limitations_en": "The ambient illuminance range must be defined in advance; peak brightness varies widely across screens, so the test device must be recorded.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -5488,6 +5687,10 @@
           "情境走查",
           "用户测试"
         ],
+        "data_source_en": [
+          "Context walkthrough",
+          "User testing"
+        ],
         "thresholds": {
           "minimum": "公开场合使用无强制隐私暴露（可选静音/遮挡）",
           "good": "提供情境/角色快速切换",
@@ -5499,6 +5702,7 @@
           "excellent": "Context-adaptive prompts (companion-aware/location-aware)"
         },
         "unit": "情境覆盖率 %",
+        "unit_en": "Context coverage %",
         "applicable_domains": [
           "digital",
           "industrial"
@@ -5552,6 +5756,10 @@
           "实地测量",
           "检查表"
         ],
+        "data_source_en": [
+          "Field measurement",
+          "Checklist"
+        ],
         "thresholds": {
           "minimum": "GB 55019 强制条款 100% 达标（法规红线）",
           "good": "ISO 21542 推荐条款 ≥ 80% 达标",
@@ -5563,10 +5771,12 @@
           "excellent": "Full route traversal in an on-site wheelchair walkthrough (including emergency evacuation paths)"
         },
         "unit": "条款通过率 %",
+        "unit_en": "Clause pass rate %",
         "applicable_domains": [
           "architecture"
         ],
         "limitations": "GB 55019 为全文强制规范，适用于新建/改建/扩建工程",
+        "limitations_en": "GB 55019 is a full-text mandatory code, applicable to new-build, renovation, and expansion projects.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -5616,6 +5826,10 @@
           "依赖清单",
           "故障演练"
         ],
+        "data_source_en": [
+          "Dependency list",
+          "Failure drills"
+        ],
         "thresholds": {
           "minimum": "任一单点资源缺失时核心功能可用（降级模式）",
           "good": "降级状态明确提示且自动恢复",
@@ -5627,6 +5841,7 @@
           "excellent": "Offline-first / self-sufficient architecture"
         },
         "unit": "韧性项通过率 %",
+        "unit_en": "Resilience-item pass rate %",
         "applicable_domains": [
           "digital",
           "industrial",
@@ -5682,6 +5897,11 @@
           "Findex 数据",
           "用户调研"
         ],
+        "data_source_en": [
+          "Pricing audit",
+          "Findex data",
+          "User research"
+        ],
         "thresholds": {
           "minimum": "有免费或低价获取路径（核心功能不设付费墙）",
           "good": "支持低端设备与流量节省模式（离线/轻量版）",
@@ -5693,12 +5913,14 @@
           "excellent": "Tiered pricing by ability to pay (student/regional pricing/charitable licensing)"
         },
         "unit": "梯度覆盖档位",
+        "unit_en": "Gradient coverage tiers",
         "applicable_domains": [
           "digital",
           "service",
           "industrial"
         ],
         "limitations": "Findex 2021 为国家层面金融包容数据，个体支付能力需补充调研",
+        "limitations_en": "Findex 2021 is country-level financial-inclusion data; individual payment capacity requires supplementary research.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -5748,6 +5970,10 @@
           "界面状态图",
           "实地测试"
         ],
+        "data_source_en": [
+          "UI state diagrams",
+          "Field testing"
+        ],
         "thresholds": {
           "minimum": "紧急操作 ≤ 3 步且告警多感官（适用范围内符合强制规范）",
           "good": "免登录/免解锁可用紧急功能",
@@ -5759,12 +5985,14 @@
           "excellent": "Offline emergency information and drill mode"
         },
         "unit": "步数 / 告警通道数",
+        "unit_en": "Step count / alert-channel count",
         "applicable_domains": [
           "digital",
           "industrial",
           "architecture"
         ],
         "limitations": "强制要求仅适用于建筑信息交流设施范围；数字产品为最佳实践",
+        "limitations_en": "The mandatory requirement applies only to information and communication facilities in buildings; for digital products it is best practice.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -5814,6 +6042,10 @@
           "情境分析",
           "可用性测试"
         ],
+        "data_source_en": [
+          "Contextual analysis",
+          "Usability testing"
+        ],
         "thresholds": {
           "minimum": "P0 情境 100% 定义并有设计覆盖",
           "good": "P0 全部实测 + P1 桌面走查",
@@ -5825,6 +6057,7 @@
           "excellent": "Field-test coverage of extreme/parallel contexts (interruptions, multitasking)"
         },
         "unit": "情境覆盖率 %",
+        "unit_en": "Context coverage %",
         "applicable_domains": [
           "universal"
         ],
@@ -5877,6 +6110,10 @@
           "场景审计",
           "实测"
         ],
+        "data_source_en": [
+          "Scenario audit",
+          "Direct measurement"
+        ],
         "thresholds": {
           "minimum": "共享场景有会话隔离与用后数据清除",
           "good": "快速用户切换与访客模式",
@@ -5888,12 +6125,14 @@
           "excellent": "Adaptive layout for multi-person viewing and hygienic material specification"
         },
         "unit": "特性通过率 %",
+        "unit_en": "Feature pass rate %",
         "applicable_domains": [
           "digital",
           "industrial",
           "service"
         ],
         "limitations": "为 B1 新增因素（WHERE-F-008）配套新建指标",
+        "limitations_en": "Newly created to accompany the newly added B1 factor (WHERE-F-008).",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -5943,6 +6182,10 @@
           "功能审计",
           "代理测试"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "Proxy testing"
+        ],
         "thresholds": {
           "minimum": "核心任务可由协助者代理完成（明确授权机制）",
           "good": "协作者视图与操作留痕",
@@ -5954,12 +6197,14 @@
           "excellent": "Remote real-time assistance and voice-guided collaboration"
         },
         "unit": "特性通过率 %",
+        "unit_en": "Feature pass rate %",
         "applicable_domains": [
           "digital",
           "industrial",
           "service"
         ],
         "limitations": "为 B1 新增因素（WHERE-F-009）配套新建指标；ICF e3 支持性环境为分类依据",
+        "limitations_en": "Newly created to accompany the newly added B1 factor (WHERE-F-009); ICF e3 supportive environments serves as the classification basis.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -6010,6 +6255,11 @@
           "A/B 测试",
           "可用性测试选择行为"
         ],
+        "data_source_en": [
+          "User research",
+          "A/B testing",
+          "Usability-testing choice behavior"
+        ],
         "thresholds": {
           "excellent": "自适应推荐 + 完全自定义 + 记忆偏好",
           "good": "提供 4+ 档位或自定义滑块",
@@ -6021,6 +6271,7 @@
           "excellent": "Adaptive recommendation + full customization + preference memory"
         },
         "unit": "档位数 / 满意度分 (1-5)",
+        "unit_en": "Tier count / satisfaction score (1-5)",
         "applicable_domains": [],
         "evidence_grade": "C",
         "i18n": {
@@ -6071,6 +6322,10 @@
           "信息架构审计",
           "双视角走查"
         ],
+        "data_source_en": [
+          "Information-architecture audit",
+          "Dual-perspective walkthrough"
+        ],
         "thresholds": {
           "minimum": "核心路径无强制探索（最少点击直达）",
           "good": "提供'简单/详细'双模式或分层入口",
@@ -6082,6 +6337,7 @@
           "excellent": "User-selected exploration depth with preference memory"
         },
         "unit": "层级覆盖率 %",
+        "unit_en": "Level coverage %",
         "applicable_domains": [
           "digital",
           "industrial"
@@ -6135,6 +6391,10 @@
           "功能审计",
           "用户测试"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "User testing"
+        ],
         "thresholds": {
           "minimum": "所有自动化决策可撤销或覆盖（对应 ISO 9241-110 5.5 可控性）",
           "good": "自动化等级用户可选（全自动/半自动/手动分档）",
@@ -6146,11 +6406,13 @@
           "excellent": "System capability disclosure + user-chosen intervention granularity (per item/batch)"
         },
         "unit": "等级档位数 / 干预成功率",
+        "unit_en": "Level-tier count / intervention success rate",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "Parasuraman 2000 为模型框架，用户实测需按自动化功能类型定制任务",
+        "limitations_en": "Parasuraman 2000 is a model framework; user testing requires tasks tailored to the type of automation function.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -6198,6 +6460,10 @@
           "功能盘点",
           "双人背对背评审"
         ],
+        "data_source_en": [
+          "Functionality inventory",
+          "Two-person back-to-back review"
+        ],
         "thresholds": {
           "minimum": "100% 自动操作可撤销或有前置确认",
           "good": "在 minimum 之上，交互节奏与顺序用户可控",
@@ -6209,11 +6475,13 @@
           "excellent": "The degree of automation can be personalized to user preference"
         },
         "unit": "可控自动操作百分比",
+        "unit_en": "Controllable automated-operation percentage",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "「可控」判定含主观成分，须双人评审并记录分歧",
+        "limitations_en": "The judgment of \"controllable\" involves subjectivity; two-person review is required and disagreements must be recorded.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -6263,6 +6531,10 @@
           "功能审计",
           "隐私政策核对"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "Privacy-policy check"
+        ],
         "thresholds": {
           "minimum": "提供可见性开关且默认最小暴露",
           "good": "分组/单次可见性粒度可选",
@@ -6274,10 +6546,12 @@
           "excellent": "Pre-publication visibility preview ('who can see this')"
         },
         "unit": "粒度档位数",
+        "unit_en": "Granularity-tier count",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "GDPR 25 条数据保护设计与 PIPL 16 条为法域相关义务，审计项需按目标法域裁剪",
+        "limitations_en": "GDPR Article 25 (data protection by design) and PIPL Article 16 are jurisdiction-dependent obligations; audit items must be tailored to the target jurisdiction.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -6327,6 +6601,10 @@
           "界面审计",
           "用户测试"
         ],
+        "data_source_en": [
+          "UI audit",
+          "User testing"
+        ],
         "thresholds": {
           "minimum": "提供 ≥2 官方主题且默认普适（高可读性中性风格）",
           "good": "关键自定义能力（字号/对比度/动效开关）+ 切换后功能位置不变",
@@ -6338,10 +6616,12 @@
           "excellent": "Style preferences remembered and synced across platforms"
         },
         "unit": "选择档位 / 一致性通过率",
+        "unit_en": "Selection tier / consistency pass rate",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "美学偏好测量本质主观；Norman 三层次理论支撑情感维度但阈值属设计共识",
+        "limitations_en": "Aesthetic-preference measurement is inherently subjective; Norman's three-level theory supports the affective dimension, but thresholds are design consensus.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -6389,6 +6669,10 @@
           "满意度问卷",
           "任务后访谈"
         ],
+        "data_source_en": [
+          "Satisfaction questionnaire",
+          "Post-task interviews"
+        ],
         "thresholds": {
           "minimum": "均值 ≥3.5/5",
           "good": "≥4.0/5",
@@ -6400,10 +6684,12 @@
           "excellent": "≥4.3/5 and recommendation intent is non-negative"
         },
         "unit": "满意度分（1-5）",
+        "unit_en": "Satisfaction score (1-5)",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "审美偏好文化差异大；须报告分布与分群差异，不只报均值",
+        "limitations_en": "Aesthetic preferences vary widely across cultures; report distributions and between-group differences, not just means.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -6453,6 +6739,10 @@
           "功能审计",
           "AT 兼容测试"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "AT compatibility testing"
+        ],
         "thresholds": {
           "minimum": "核心操作 ≥ 2 种模态（含键盘等效，WCAG 2.1.1 A 级）",
           "good": "≥ 3 种模态且含无精细动作模态（语音/大按钮）",
@@ -6464,11 +6754,13 @@
           "excellent": "Free modality switching with preference memory"
         },
         "unit": "模态数 / 操作",
+        "unit_en": "Modality count / operation",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "WCAG 2.1.1 键盘为 Web 强制基线；硬件产品按 ISO 9241-110 5.5 灵活性原则审计",
+        "limitations_en": "WCAG 2.1.1 Keyboard is a mandatory web baseline; hardware products are audited against ISO 9241-110 5.5 flexibility principles.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -6518,6 +6810,10 @@
           "功能审计",
           "AT 测试"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "AT testing"
+        ],
         "thresholds": {
           "minimum": "关键反馈不依赖单一感官通道（WCAG 1.4.2 音频控制相关 + ISO 9241-110 5.2 自描述性）",
           "good": "双通道反馈且用户可选偏好通道",
@@ -6529,11 +6825,13 @@
           "excellent": "Three-channel redundancy and sensory substitution (flash → vibration)"
         },
         "unit": "通道冗余率 %",
+        "unit_en": "Channel redundancy %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "WCAG 4.1.3 适用范围：不改变焦点的状态更新，AA 级",
+        "limitations_en": "WCAG 4.1.3 scope: status updates that do not change focus; Level AA.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -6583,6 +6881,10 @@
           "功能审计",
           "用户测试"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "User testing"
+        ],
         "thresholds": {
           "minimum": "核心任务 ≥2 模式可用且默认模式用户可选",
           "good": "切换 ≤1 步且无强制模式（触屏保留快捷键等效）",
@@ -6594,11 +6896,13 @@
           "excellent": "Mode preference memory and context-aware recommendation (driving → voice)"
         },
         "unit": "模式数 / 切换步数",
+        "unit_en": "Mode count / switching-step count",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "ISO 9241-110 5.5.4 个性化推荐为间接支撑；模式清单按产品类别裁剪",
+        "limitations_en": "ISO 9241-110 5.5.4 individualization recommendations provide only indirect support; the mode checklist is tailored by product category.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -6648,6 +6952,10 @@
           "功能审计",
           "系统设置检查"
         ],
+        "data_source_en": [
+          "Functionality audit",
+          "System-settings check"
+        ],
         "thresholds": {
           "minimum": "通知可逐类开关且提供全局静音",
           "good": "免打扰时段/场景规则（含紧急例外）",
@@ -6659,10 +6967,12 @@
           "excellent": "Notification digest consolidation and user-defined priorities"
         },
         "unit": "控制粒度档位",
+        "unit_en": "Control-granularity tiers",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "自主需求-打扰冲突的 SDT 理论支撑见 WHICH-F-009 卡片文献；阈值为设计共识",
+        "limitations_en": "For SDT-based support of the autonomy-interruption conflict, see the references on the WHICH-F-009 card; thresholds are design consensus.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -6713,6 +7023,11 @@
           "专家评级",
           "人群能力分布数据"
         ],
+        "data_source_en": [
+          "Task analysis",
+          "Expert rating",
+          "Population ability-distribution data"
+        ],
         "thresholds": {
           "minimum": "任一核心任务排除率 ≤ 10%",
           "good": "核心任务排除率 ≤ 5%",
@@ -6724,10 +7039,12 @@
           "excellent": "≤ 2% with multiple-disability interaction analysis included"
         },
         "unit": "排除人口百分比",
+        "unit_en": "Excluded-population percentage",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "阈值为项目建议值需按目标人群校准；DFS 数据为英国 1997 人口，非中国数据",
+        "limitations_en": "Thresholds are project-recommended values and need calibration to the target population; the DFS data describe the 1997 UK population, not China.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -6776,6 +7093,11 @@
           "键盘遍历记录",
           "组件清单核对"
         ],
+        "data_source_en": [
+          "Direct screen-reader testing",
+          "Keyboard-traversal records",
+          "Component-list check"
+        ],
         "thresholds": {
           "minimum": "核心任务全部控件具备可播报的名称与角色（4.1.2）",
           "good": "在 minimum 之上，状态变化实时播报（4.1.3）",
@@ -6787,10 +7109,12 @@
           "excellent": "Zero blocking-level issues across the three mainstream screen readers NVDA/JAWS/VoiceOver"
         },
         "unit": "合规控件百分比",
+        "unit_en": "Compliant-control percentage",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "读屏组合覆盖有限；复杂动态区域的可播报性判定含人工成分",
+        "limitations_en": "Screen-reader combination coverage is limited; announcability judgments for complex dynamic regions involve a manual component.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -6841,6 +7165,11 @@
           "人口统计数据",
           "persona 文档"
         ],
+        "data_source_en": [
+          "User-research samples",
+          "Demographic data",
+          "Persona documents"
+        ],
         "thresholds": {
           "minimum": "年龄/性别/地域三维均有代表且无单点画像",
           "good": "各维度与目标人群偏差 ≤ 20%",
@@ -6852,6 +7181,7 @@
           "excellent": "Deviation ≤ 10% with coverage of intersectional disadvantaged combinations (e.g., older adults × low tech literacy)"
         },
         "unit": "偏差百分比",
+        "unit_en": "Deviation percentage",
         "applicable_domains": [
           "universal"
         ],
@@ -6904,6 +7234,10 @@
           "适配清单",
           "专家审计"
         ],
+        "data_source_en": [
+          "Accommodation checklist",
+          "Expert audit"
+        ],
         "thresholds": {
           "minimum": "感官与运动类别适配 100%（WCAG AA 基线）",
           "good": "慢性病常见影响（疲劳/疼痛/认知波动）有显式设计",
@@ -6915,6 +7249,7 @@
           "excellent": "Dedicated safeguards for low-frequency high-risk conditions (e.g., photosensitive epilepsy)"
         },
         "unit": "类别覆盖率 %",
+        "unit_en": "Category coverage %",
         "applicable_domains": [
           "universal"
         ],
@@ -6967,6 +7302,10 @@
           "内容审计",
           "用户测试"
         ],
+        "data_source_en": [
+          "Content audit",
+          "User testing"
+        ],
         "thresholds": {
           "minimum": "关键操作指引有 ≥2 模态（如图文+视频）",
           "good": "用户可选默认学习/帮助模态",
@@ -6978,12 +7317,14 @@
           "excellent": "All content in ≥ 2 modalities with user-controlled pacing (repeat/fast-forward/slow playback)"
         },
         "unit": "内容双模态覆盖率 %",
+        "unit_en": "Content dual-modality coverage %",
         "applicable_domains": [
           "digital",
           "industrial",
           "service"
         ],
         "limitations": "Pashler et al. 2008 否定“学习风格适配”的证据基础——本指标测“多模态呈现”（有共识支撑）而非“风格匹配”",
+        "limitations_en": "Pashler et al. 2008 rejects the evidence base for \"learning-style matching\" — this metric measures \"multimodal presentation\" (which has consensus support), not \"style matching\".",
         "evidence_grade": "D",
         "i18n": {
           "ja": {
@@ -7034,6 +7375,11 @@
           "量表",
           "访谈"
         ],
+        "data_source_en": [
+          "User testing",
+          "Rating scales",
+          "Interviews"
+        ],
         "thresholds": {
           "minimum": "关键流程无致挫败点（PANAS 负面分数不高于基准）",
           "good": "关键触点有正向设计（成就感/信任感）且 SDT 三需求有显式支持",
@@ -7045,10 +7391,12 @@
           "excellent": "Empowerment moment design (perceptible progress/mastery) + peak-end rule optimization"
         },
         "unit": "量表分 / 触点覆盖率 %",
+        "unit_en": "Scale score / touchpoint coverage %",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "PANAS/SAM/SDT 均为已核验量表；阈值基准需按产品域建立常模",
+        "limitations_en": "PANAS/SAM/SDT are all validated scales; threshold benchmarks require norms established per product domain.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -7098,6 +7446,10 @@
           "特性审计",
           "用户测试"
         ],
+        "data_source_en": [
+          "Feature audit",
+          "User testing"
+        ],
         "thresholds": {
           "minimum": "主要感官通道强度可调（亮度/音量/振动）",
           "good": "动效可关（prefers-reduced-motion 响应）+ 无刺激模式（低感官模式）",
@@ -7109,11 +7461,13 @@
           "excellent": "Continuously adjustable across all channels + contextual sensory-profile memory"
         },
         "unit": "通道可调率 %",
+        "unit_en": "Channel adjustability %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "Aron & Aron 1997 HSP 量表支撑敏感度分布存在性；调节范围的量化阈值仍需用户校准研究",
+        "limitations_en": "The Aron & Aron 1997 HSP scale supports the existence of a sensitivity distribution; quantitative thresholds for the modulation range still require user-calibration research.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -7161,6 +7515,10 @@
           "界面盘点",
           "信息点清单核对"
         ],
+        "data_source_en": [
+          "UI inventory",
+          "Information-point checklist check"
+        ],
         "thresholds": {
           "minimum": "零个仅靠颜色传达的信息点",
           "good": "零个仅靠任何单一感官通道传达的信息点",
@@ -7172,10 +7530,12 @@
           "excellent": "Key information has multimodal alternatives (visual + auditory/tactile)"
         },
         "unit": "违规信息点数",
+        "unit_en": "Non-compliant information-point count",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "纯装饰性差异不在检查范围；多模态替代的等效性需人工判定",
+        "limitations_en": "Purely decorative differences are out of scope; equivalence of multimodal alternatives requires manual judgment.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -7225,6 +7585,10 @@
           "可用性测试",
           "参与者观察"
         ],
+        "data_source_en": [
+          "Usability testing",
+          "Participant observation"
+        ],
         "thresholds": {
           "minimum": "核心任务无协助成功率 ≥ 80%",
           "good": "≥ 90% 且平均求助 ≤ 1 次",
@@ -7236,11 +7600,13 @@
           "excellent": "≥ 95% and completion time ≤ expert-user P95"
         },
         "unit": "成功率 %",
+        "unit_en": "Success rate %",
         "applicable_domains": [
           "digital",
           "industrial"
         ],
         "limitations": "SUS 量表可作辅助测量（行业均值 68 为参照，Sauro 元分析）",
+        "limitations_en": "The SUS scale can serve as a supplementary measure (industry mean of 68 as reference, per Sauro's meta-analysis).",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -7290,6 +7656,10 @@
           "本地化清单",
           "文化背景用户访谈"
         ],
+        "data_source_en": [
+          "Localization checklist",
+          "Cultural-background user interviews"
+        ],
         "thresholds": {
           "minimum": "无冒犯性符号且支持本地化格式（姓名/日期/地址）",
           "good": "图标与隐喻经 ≥2 文化背景用户验证",
@@ -7301,6 +7671,7 @@
           "excellent": "Support for RTL layout and all target-market languages"
         },
         "unit": "审计项通过率 %",
+        "unit_en": "Audit-item pass rate %",
         "applicable_domains": [
           "universal"
         ],
@@ -7353,6 +7724,10 @@
           "特性清单",
           "代码/界面审计"
         ],
+        "data_source_en": [
+          "Feature checklist",
+          "Code/UI audit"
+        ],
         "thresholds": {
           "minimum": "提供减少动效选项且布局保持可预测",
           "good": "直白语言与内容分块达标",
@@ -7364,6 +7739,7 @@
           "excellent": "Sensory intensity fully adjustable and a focus mode is provided"
         },
         "unit": "特性覆盖率 %",
+        "unit_en": "Feature coverage %",
         "applicable_domains": [
           "digital",
           "service"
@@ -7417,6 +7793,10 @@
           "任务分析",
           "专家评级"
         ],
+        "data_source_en": [
+          "Task analysis",
+          "Expert rating"
+        ],
         "thresholds": {
           "minimum": "核心任务同时记忆项 ≤ 4 且步骤可分块",
           "good": "认知排除估算 ≤ 5%",
@@ -7428,11 +7808,13 @@
           "excellent": "≤ 2% and burden-reducing aids such as pre-fill/progress hints are provided"
         },
         "unit": "排除百分比 / 记忆项数",
+        "unit_en": "Exclusion percentage / memory-item count",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "记忆项阈值为共识值；量化锚点需后续用 NASA-TLX 类量表校准",
+        "limitations_en": "The memory-item threshold is a consensus value; quantitative anchors need subsequent calibration with a NASA-TLX-like scale.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -7482,6 +7864,10 @@
           "代码审计",
           "内容分析"
         ],
+        "data_source_en": [
+          "Code audit",
+          "Content analysis"
+        ],
         "thresholds": {
           "minimum": "lang 声明正确且目标市场语言 100% 覆盖",
           "good": "核心内容阅读等级 ≤ 初中水平",
@@ -7493,11 +7879,13 @@
           "excellent": "A plain-language version and a glossary are provided"
         },
         "unit": "覆盖率 / 阅读等级",
+        "unit_en": "Coverage / reading level",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "阅读等级测算工具需按语言选择（中文与英文量表不同）",
+        "limitations_en": "Readability-level measurement tools must be selected by language (Chinese and English scales differ).",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -7547,6 +7935,10 @@
           "内容审计",
           "用户测试"
         ],
+        "data_source_en": [
+          "Content audit",
+          "User testing"
+        ],
         "thresholds": {
           "minimum": "核心任务有 ≥1 非文字指引（图示或视频）",
           "good": "关键操作词受控（常用词汇表内）",
@@ -7558,6 +7950,7 @@
           "excellent": "All tasks can be completed by voice guidance alone"
         },
         "unit": "任务覆盖率 %",
+        "unit_en": "Task coverage %",
         "applicable_domains": [
           "digital",
           "industrial",
@@ -7612,6 +8005,10 @@
           "人体测量数据集",
           "实物/图纸测量"
         ],
+        "data_source_en": [
+          "Anthropometric datasets",
+          "Physical/drawing measurements"
+        ],
         "thresholds": {
           "minimum": "关键尺寸覆盖目标人群 P5–P95",
           "good": "覆盖 P1–P99",
@@ -7623,12 +8020,14 @@
           "excellent": "Key dimensions are continuously adjustable (seat/stand/straps etc.)"
         },
         "unit": "百分位",
+        "unit_en": "Percentile",
         "applicable_domains": [
           "industrial",
           "architecture",
           "fashion"
         ],
         "limitations": "GB/T 10000-2023 为最新中国成年人数据（替代 1988 版）；两数据集不可混用直接对比",
+        "limitations_en": "GB/T 10000-2023 is the latest Chinese-adult anthropometric dataset (replacing the 1988 edition); the two datasets must not be mixed for direct comparison.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -7679,6 +8078,11 @@
           "产品审计",
           "工单数据"
         ],
+        "data_source_en": [
+          "Privacy policy",
+          "Product audit",
+          "Support-ticket data"
+        ],
         "thresholds": {
           "minimum": "权限可逐项开关且账号删除入口可达（法定响应期内）",
           "good": "提供数据导出与分场景授权",
@@ -7690,10 +8094,12 @@
           "excellent": "Guest/anonymous mode and local-processing options are provided"
         },
         "unit": "清单通过率 %",
+        "unit_en": "Checklist pass rate %",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "法定义务依目标法域而定，阈值需按适用法规调整",
+        "limitations_en": "Legal obligations depend on the target jurisdiction; thresholds must be adjusted per applicable regulations.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -7742,6 +8148,11 @@
           "功能需求文档",
           "隐私政策对照"
         ],
+        "data_source_en": [
+          "Form and permission checklist",
+          "Functional requirements documents",
+          "Privacy-policy cross-check"
+        ],
         "thresholds": {
           "minimum": "无与核心功能无关的必填个人信息",
           "good": "非必填收集字段 100% 附用途说明",
@@ -7753,11 +8164,13 @@
           "excellent": "Zero non-essential collection and both export and deletion channels are provided"
         },
         "unit": "非必需收集字段百分比",
+        "unit_en": "Non-essential collected-field percentage",
         "applicable_domains": [
           "digital",
           "service"
         ],
         "limitations": "「必需」的判定依赖功能边界定义，须产品与法务共同确认",
+        "limitations_en": "The judgment of \"necessary\" depends on how functional boundaries are defined and must be confirmed jointly by product and legal.",
         "evidence_grade": "A",
         "i18n": {
           "ja": {
@@ -7807,6 +8220,10 @@
           "界面审计",
           "社群用户测试"
         ],
+        "data_source_en": [
+          "UI audit",
+          "Community user testing"
+        ],
         "thresholds": {
           "minimum": "性别字段可选且含非二元/不愿透露选项；代词可配置",
           "good": "历史数据变更路径存在（身份转变后记录可更新）",
@@ -7818,12 +8235,14 @@
           "excellent": "All-gender space options + sizing based on body measurements rather than gender binary"
         },
         "unit": "触点覆盖率 %",
+        "unit_en": "Touchpoint coverage %",
         "applicable_domains": [
           "digital",
           "architecture",
           "fashion"
         ],
         "limitations": "部分辖区的性别字段选项为合规要求（如阿根廷性别认同法）——法域差异大，审计前需确认目标市场",
+        "limitations_en": "In some jurisdictions gender-field options are a compliance requirement (e.g. Argentina's Gender Identity Law) — jurisdictions differ widely; confirm the target market before auditing.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -7874,6 +8293,11 @@
           "市场数据",
           "SROI 分析"
         ],
+        "data_source_en": [
+          "Cost ledger",
+          "Market data",
+          "SROI analysis"
+        ],
         "thresholds": {
           "minimum": "包容性投入有专项记录（非混入通用开发成本）",
           "good": "有生命周期成本对比（前期包容设计 vs 后期改造成本）",
@@ -7885,10 +8309,12 @@
           "excellent": "Inclusion benefits are incorporated into the business case (market positioning/differentiation/procurement advantage)"
         },
         "unit": "台账完备率 %",
+        "unit_en": "Ledger completeness %",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "ROD 2024 为企业报告（N=11,000+ 调研）而非同行评议研究；作为商业论证数据源使用",
+        "limitations_en": "ROD 2024 is a corporate report (survey with N=11,000+), not peer-reviewed research; use it as a business-case data source.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -7938,6 +8364,10 @@
           "市场文档审计",
           "竞品对照"
         ],
+        "data_source_en": [
+          "Marketing-document audit",
+          "Competitor comparison"
+        ],
         "thresholds": {
           "minimum": "目标人群定义不排除合理可达人群（无“仅限”式排除声明）",
           "good": "包容性能力在价值主张中显式（如无障碍资质/适老认证）",
@@ -7949,10 +8379,12 @@
           "excellent": "Inclusion serves as a core differentiating selling point and is backed by procurement qualifications"
         },
         "unit": "核对项通过率 %",
+        "unit_en": "Check-item pass rate %",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "市场定位审计对象是策略文档而非用户结果；与 M-WHY-F-001-01 配套使用",
+        "limitations_en": "Market-positioning audits examine strategy documents, not user outcomes; use alongside M-WHY-F-001-01.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -8002,6 +8434,10 @@
           "界面审计",
           "流程实测"
         ],
+        "data_source_en": [
+          "UI audit",
+          "Direct process testing"
+        ],
         "thresholds": {
           "minimum": "取消订阅步数 ≤ 注册步数且无隐藏取消（欧盟消保指令实践）",
           "good": "全流程无 Mathur 分类学中的欺骗型模式",
@@ -8013,10 +8449,12 @@
           "excellent": "Key decisions have a cooling-off period/undo mechanism"
         },
         "unit": "暗黑模式计数（目标 0）",
+        "unit_en": "Dark-pattern count (target 0)",
         "applicable_domains": [
           "digital"
         ],
         "limitations": "Mathur et al. 2019 分类学为审计框架来源（11K 站点实证）；法规阈值按目标市场消保法规调整",
+        "limitations_en": "The Mathur et al. 2019 taxonomy is the source of the audit framework (empirical evidence from 11K sites); regulatory thresholds are adjusted per the target market's consumer-protection law.",
         "evidence_grade": "B",
         "i18n": {
           "ja": {
@@ -8066,6 +8504,10 @@
           "产品规格审计",
           "供应链数据"
         ],
+        "data_source_en": [
+          "Product-specification audit",
+          "Supply-chain data"
+        ],
         "thresholds": {
           "minimum": "符合适用环保法规（RoHS/能效标准的强制项）",
           "good": "披露能效与维修性数据（维修权指令实践）",
@@ -8077,12 +8519,14 @@
           "excellent": "Full life-cycle carbon-footprint disclosure and recycling channels"
         },
         "unit": "覆盖项通过率 %",
+        "unit_en": "Covered-item pass rate %",
         "applicable_domains": [
           "industrial",
           "digital",
           "fashion"
         ],
         "limitations": "Elkington 1997 三重底线为框架来源；具体阈值依产品类别与适用法规（如欧盟 ESPR）",
+        "limitations_en": "Elkington 1997's triple bottom line is the framework source; concrete thresholds follow product category and applicable regulation (e.g. EU ESPR).",
         "evidence_grade": "C",
         "i18n": {
           "ja": {
@@ -8132,6 +8576,10 @@
           "设计文档审计",
           "访谈记录"
         ],
+        "data_source_en": [
+          "Design-document audit",
+          "Interview records"
+        ],
         "thresholds": {
           "minimum": "核心用户与付费方需求冲突有显式记录",
           "good": "每项冲突有裁决依据与受影响方说明",
@@ -8143,10 +8591,12 @@
           "excellent": "Vulnerable stakeholders (vulnerable groups among end users) have an advocacy mechanism"
         },
         "unit": "冲突记录完备率 %",
+        "unit_en": "Conflict-record completeness %",
         "applicable_domains": [
           "universal"
         ],
         "limitations": "Freeman 1984 为管理框架而非量化标准；审计对象是流程记录而非结果",
+        "limitations_en": "Freeman 1984 is a management framework, not a quantitative standard; the audit examines process records, not outcomes.",
         "evidence_grade": "C",
         "i18n": {
           "ja": {

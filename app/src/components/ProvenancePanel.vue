@@ -5,7 +5,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useDataPackStore } from '@/stores'
 import EvidenceChip from '@/components/EvidenceChip.vue'
-import { isZhLocale, kbField, namePair } from '@/lib/kbtext'
+import { isZhLocale, kbField, listField, namePair } from '@/lib/kbtext'
 
 const props = defineProps<{ factorId: string }>()
 const { t, locale } = useI18n()
@@ -96,7 +96,7 @@ function cardLabel(path: string): string {
         </p>
         <dl>
           <dt>{{ t('prov.method') }}</dt><dd>{{ pField(m, 'measurement_method') || '—' }}</dd>
-          <dt>{{ t('prov.dataSource') }}</dt><dd>{{ joinList(m.data_source) || '—' }}</dd>
+          <dt>{{ t('prov.dataSource') }}</dt><dd>{{ joinList(listField(m, 'data_source', locale)) || '—' }}</dd>
           <dt>{{ t('prov.limitations') }}</dt><dd>{{ pField(m, 'limitations') || '—' }}</dd>
         </dl>
       </div>

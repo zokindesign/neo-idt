@@ -131,11 +131,14 @@ for (const m of metrics) {
     // FIX-i18n-01：英文字段随包下发（additive；界面按 locale 取词，缺省回退中文）
     measurement_method_en: m.measurement_method_en,
     data_source: m.data_source || [],
+    data_source_en: m.data_source_en || [],
     thresholds: m.thresholds || {},    // { minimum, good, excellent }
     thresholds_en: m.thresholds_en || {},  // { minimum, good, excellent }（英文版）
     unit: m.unit,
+    unit_en: m.unit_en,
     applicable_domains: m.applicable_domains || [],
     limitations: m.limitations,
+    limitations_en: m.limitations_en,
     evidence_grade: m.evidence_grade
   }));
 }
