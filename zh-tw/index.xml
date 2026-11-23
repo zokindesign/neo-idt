@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>NEO-IDT 知識庫</title>
+      <link>https://zokindesign.github.io/neo-idt/zh-tw</link>
+      <description>最近的 10 條筆記 on NEO-IDT 知識庫</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>標籤索引</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/tags/</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/tags/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sun, 22 Nov 2026 10:05:29 GMT</pubDate>
+  </item><item>
+    <title>指南與案例</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/guides/</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/guides/</guid>
+    <description><![CDATA[ 64 張設計指南卡與 8 個已核驗案例，目前僅於簡體中文站發布（繁體版籌備中）。. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>利益相關者影響</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-005-stakeholder-impact</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-005-stakeholder-impact</guid>
+    <description><![CDATA[ 基本定義 產品/服務影響或受影響的各類群體（使用者、客戶、合作伙伴、監管機構、內部團隊、社群等）的需求、期望與權力動態。 為什麼重要 設計決策不僅要滿足終端使用者，還需考慮客戶、通路夥伴、遵循方等多方訴求 忽略關鍵利益相關者可能導致市場阻力、法律風險或資源受損 平衡多方利益是複雜設計任務的常見挑戰 量化標準 利益相關者地圖: 按權力與關注度二維定位 需求衝突度: 不同群體需求之間的不一致程度（高/中/低） 影響評分: 每個群體受設計變化的正面/負面影響幅度 支援度: 各群體對設計方案的支援或反對強度 設計指南 識別核心使用者與付費客戶（可能不同） 為不同角色設計定製化檢視或功能（如管理員vs普... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>可持續性與環保目標</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-004-sustainability-goals</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-004-sustainability-goals</guid>
+    <description><![CDATA[ 基本定義 產品/服務在整個生命週期中對環境的影響，包括能源消耗、碳排放、廢棄物產生、材料可回收性等，以及企業設定的環保目標。 為什麼重要 環境法規日益嚴格，碳排放成為貿易壁壘 消費者與投資者越來越關注ESG表現 環保設計可以降低長期運營成本（如節能省電） 體現企業社會責任，提升品牌價值 量化標準 碳足跡: 產品生產、運輸、使用、廢棄各階段碳排放 能源效率: 單位功能耗（如每GB資料傳輸能耗） 廢棄物率: 可回收 vs 不可回收部件比例 材料來源: 可再生/回收材料佔比、衝突礦產篩查 設計指南 選擇低碳材料與工藝 提供“綠色模式”（節能、低功耗、減少非必要輸出） 最佳化物流與包裝（減少體積重量、... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>商業模式</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-003-business-model</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-003-business-model</guid>
+    <description><![CDATA[ 基本定義 產品的盈利方式與價值捕獲機制，如一次性購買、訂閱制、免費增值、授權、平臺抽成、廣告變現等，以及由此產生的設計約束。 為什麼重要 商業模式直接決定產品功能取捨、使用者資料收集範圍、體驗設計邊界 不同模式下使用者付費意願和預期不同，影響包容性需求優先順序 需在盈利目標與使用者價值間取得平衡 量化標準 收入來源分佈: 各來源佔比（訂閱、廣告、交易抽成等） 使用者轉化漏斗: 試用→付費的轉化率 ARPU/LTV: 平均使用者收入與生命週期價值 定價敏感度: 使用者對價格變化的反應（彈性） 設計指南 在設計中明確區分免費功能與付費功能 避免因盈利設計過度干擾核心體驗（如廣告遮擋） 提供靈活的支... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>市場定位</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-002-market-positioning</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-002-market-positioning</guid>
+    <description><![CDATA[ 定義 產品或服務在目標市場中的競爭位置，包括目標客戶群體、價值主張、差異化優勢、價格策略以及品牌形象等要素，決定其在特定細分市場中的吸引力和競爭力。 為什麼重要 市場定位直接影響產品的商業成功和可持續性。忽視市場定位可能導致包容性設計雖然可用但無法吸引足夠使用者或盈利，從而難以規模化推廣。考慮市場定位有助於將包容性功能與目標使用者的需求、支付意願和品牌期望相結合，實現社會價值與商業價值的平衡。 相關標準與參考 波特五力模型 STP營銷理論（細分、目標、定位） 商業模式畫布（價值主張、客戶關係、收入通路） Kano模型（基本需求、期望需求、 delight需求） 社會企業與B Corp評估標準 ... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>成本約束</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-001-cost-constraint</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/why-f-001-cost-constraint</guid>
+    <description><![CDATA[ 定義 設計、生產、分銷和維護產品或服務所涉及的財務限制，包括材料成本、製造費用、研發投入、法規遵循成本以及目標售價或預算上限。 為什麼重要 成本是商業可行性的核心因素。忽略成本約束可能導致設計方案在技術上可行但經濟上不可持續，從而無法推向市場或服務於目標使用者。平衡包容性需求與成本控制是實現廣泛採用的關鍵。 相關標準與參考 ISO 9001：質量管理體系（成本效益考慮） 各國政府採購中的生命週期成本分析（LCCA） 設計為了成本（Design for Cost, DFC）方法論 殘疾人就業與無障礙稅收抵免政策（如美國的Disabled Access Credit） 社會投資回報率（SROI）分... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>性別與性別表達</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/who-f-015-gender-expression</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/who-f-015-gender-expression</guid>
+    <description><![CDATA[ 性別與性別表達 (Gender &amp; Gender Expression) 定義 使用者在系統、產品或空間中被識別、稱謂與呈現的性別維度差異，包括： 生理性別（sex）：出生時的生理屬性，影響尺寸、生理需求（如衛生設施） 性別認同（gender identity）：自我認同的性別，可能與出生指派性別不同（跨性別、非二元性別等） 性別表達（gender expression）：外顯的性別呈現（著裝、髮型、舉止），可能與認同不一致 性別中立需求：不認同二元性別分類的使用者 與其他因素的區分：WHO-F-002（人口統計學）僅承載統計屬性（年齡/地區分佈），本因素承載性別在互動與呈現層面的具體... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>隱私與安全擔憂</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/who-f-014-privacy-security-concerns</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/who-f-014-privacy-security-concerns</guid>
+    <description><![CDATA[ 定義 使用者在使用產品或服務時對個人資訊被洩露、被追蹤、被濫用以及人身安全受到威脅的顧慮和擔憂程度，包括資料隱私、匿名性、防騷擾以及物理安全等方面的感受。 為什麼重要 隱私與安全擔憂直接影響使用者是否願意使用、信任以及持續使用產品或服務。即使功能強大，如果使用者感到不安全或隱私被侵犯，也可能導致使用放棄或轉向競品。考慮隱私與安全有助於設計出值得信賴、尊重使用者自主權且減少顧慮的產品或服務。 相關標準與參考 GDPR、CCPA、PIPL等資料隱私法規 ISO/IEC 27001：資訊保安管理 隱私之設（Privacy by Design）原則 安全可用性研究（如釣魚攻擊防範） 各國網路安全法 量... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>身體尺寸與人體工程學</title>
+    <link>https://zokindesign.github.io/neo-idt/zh-tw/factors/who-f-013-body-size-ergonomics</link>
+    <guid>https://zokindesign.github.io/neo-idt/zh-tw/factors/who-f-013-body-size-ergonomics</guid>
+    <description><![CDATA[ 基本定義 使用者的身體尺寸（身高、臂長、指距等）和關節活動範圍、力量、耐力等人體工程學特徵。 為什麼重要 裝置/空間不符合使用者身體尺寸時，易導致疲勞、操作困難或受傷 極端身高或特殊體型使用者可能完全無法使用（如過高導致門框碰撞） 考慮人體尺寸多樣性可提升普適舒適性 量化標準 百分位參考: 採用第5、50、95百分位人體尺寸資料 調節範圍: 座椅高度、桌面高度、螢幕仰角的可調範圍和方式 操作力: 按鈕所需按壓力、把手旋轉力矩 可達範圍: 操作部件是否在使用者可達範圍內 設計指南 提供可調節的物理結構（桌椅、支架、把手） 關鍵操作位置應覆蓋多數人群的可達範圍 避免需要大力或精細控制的操作（除非必... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

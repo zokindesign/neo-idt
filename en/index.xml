@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>NEO-IDT Knowledge Base</title>
+      <link>https://zokindesign.github.io/neo-idt/en</link>
+      <description>Last 10 notes on NEO-IDT Knowledge Base</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>Tag Index</title>
+    <link>https://zokindesign.github.io/neo-idt/en/tags/</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/tags/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sun, 22 Nov 2026 10:03:50 GMT</pubDate>
+  </item><item>
+    <title>Standards</title>
+    <link>https://zokindesign.github.io/neo-idt/en/standards/</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/standards/</guid>
+    <description><![CDATA[ Clause-level references with official links. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Stakeholder Conflict Resolution</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-005-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-005-01</guid>
+    <description><![CDATA[ According to the Freeman 1984 stakeholder identification framework, audit the explicit records and resolution strategies for conflicts among multiple parties' needs ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Sustainability Metrics Coverage</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-004-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-004-01</guid>
+    <description><![CDATA[ Against the triple bottom line (Elkington 1997), audit the quantified targets and data disclosure of the environmental dimension ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Dark Pattern Audit</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-003-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-003-01</guid>
+    <description><![CDATA[ Audit manipulative design according to the Mathur et al. 2019 taxonomy (countdown pressure/fake inventory/hidden cancellation/forced bundling) ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Inclusive Market Positioning Audit</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-002-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-002-01</guid>
+    <description><![CDATA[ Audit the explicitness of the inclusive value proposition in product positioning (target-population coverage statement/differentiation statement/accessibility capability disclosure) ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Inclusive ROI Framework</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-001-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-why-f-001-01</guid>
+    <description><![CDATA[ Audit the quantified record of inclusion investment (compliance cost/development investment) and the benefit framework (market size/retrofit avoidance/brand value), against ROD 2024 market data ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Gender Inclusivity Completeness</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-who-f-015-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-who-f-015-01</guid>
+    <description><![CDATA[ Audit the neutrality of gender fields, the configurability of salutations/pronouns, and the neutrality of sizing systems; invite transgender/non-binary users to validate ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Data Collection Minimisation</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-who-f-014-02</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-who-f-014-02</guid>
+    <description><![CDATA[ Audit whether the personal information the product collects aligns with core-function necessity — an application of GDPR Article 5(1)(c) data minimisation (adequate, relevant and limited to what is necessary) and the PIPL minimum-necessity principle ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>Privacy Control Completeness</title>
+    <link>https://zokindesign.github.io/neo-idt/en/metrics/m-who-f-014-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/en/metrics/m-who-f-014-01</guid>
+    <description><![CDATA[ Audit permission granularity, data deletion/export entry points, guest mode and retention policy, and verify the response time for user rights requests ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

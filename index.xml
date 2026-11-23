@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>NEO-IDT 知识库</title>
+      <link>https://zokindesign.github.io/neo-idt</link>
+      <description>最近的10条笔记 on NEO-IDT 知识库</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>标签索引</title>
+    <link>https://zokindesign.github.io/neo-idt/tags/</link>
+    <guid>https://zokindesign.github.io/neo-idt/tags/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sun, 22 Nov 2026 10:02:41 GMT</pubDate>
+  </item><item>
+    <title>标准</title>
+    <link>https://zokindesign.github.io/neo-idt/standards/</link>
+    <guid>https://zokindesign.github.io/neo-idt/standards/</guid>
+    <description><![CDATA[ 条款级引用，带官方链接。 Human Factors Engineering of Computer Workstations Anthropometric Survey of US Army Personnel (1988/2012) Ethical Principles and Guidelines for the Protection of Human Subjects of Research Inclusive Design Toolkit — Exclusion Calculator Accessibility requirements for ICT products and se... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>利益相关者冲突解决</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-why-f-005-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-why-f-005-01</guid>
+    <description><![CDATA[ 按 Freeman 1984 利益相关者识别框架审计多方需求冲突的显式记录与解决策略 ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>可持续性指标覆盖</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-why-f-004-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-why-f-004-01</guid>
+    <description><![CDATA[ 对照三重底线（Elkington 1997）审计环境维度的量化目标与数据披露 ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>暗黑模式审计</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-why-f-003-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-why-f-003-01</guid>
+    <description><![CDATA[ 按 Mathur et al. 2019 分类学审计诱导性设计（倒计时压迫/假库存/隐藏取消/强制捆绑） ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>包容性市场定位审计</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-why-f-002-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-why-f-002-01</guid>
+    <description><![CDATA[ 审计产品定位中包容性价值主张的显式性（目标人群覆盖声明/差异化说明/无障碍能力公示） ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>包容性投入产出框架</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-why-f-001-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-why-f-001-01</guid>
+    <description><![CDATA[ 审计包容性投入的量化记录（合规成本/开发投入）与收益框架（市场规模/改造规避/品牌价值），对照 ROD 2024 市场数据 ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>性别包容完备度</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-who-f-015-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-who-f-015-01</guid>
+    <description><![CDATA[ 审计性别字段中立性、称谓/代词可配置性、尺码体系中立性；邀请跨性别/非二元用户验证 ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>数据收集最小化</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-who-f-014-02</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-who-f-014-02</guid>
+    <description><![CDATA[ 审计产品收集的个人信息是否与核心功能必需性对齐——GDPR 第 5(1)(c) 条数据最小化（adequate, relevant and limited to what is necessary）与 PIPL 最小必要原则的应用 ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>隐私控制完备度</title>
+    <link>https://zokindesign.github.io/neo-idt/metrics/m-who-f-014-01</link>
+    <guid>https://zokindesign.github.io/neo-idt/metrics/m-who-f-014-01</guid>
+    <description><![CDATA[ 审计权限粒度、数据删除/导出入口、访客模式与保留政策，核对用户权利请求响应时效 ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

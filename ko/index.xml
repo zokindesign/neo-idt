@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>NEO-IDT 지식 베이스</title>
+      <link>https://zokindesign.github.io/neo-idt/ko</link>
+      <description>최근 10 건 on NEO-IDT 지식 베이스</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>태그 목록</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/tags/</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/tags/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sun, 22 Nov 2026 10:05:04 GMT</pubDate>
+  </item><item>
+    <title>가이드 &amp; 사례</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/guides/</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/guides/</guid>
+    <description><![CDATA[ 64장의 디자인 가이드 카드와 8건의 검증된 사례는 현재 중국어판에서만 공개됩니다(한국어 번역 준비 중). ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>이해관계자 영향</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/why-f-005-stakeholder-impact</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/why-f-005-stakeholder-impact</guid>
+    <description><![CDATA[ 기본 정의 제품/서비스가 영향을 미치거나 영향을 받는 여러 집단(사용자, 고객, 파트너, 규제기관, 내부 팀, 지역사회 등)의 요구, 기대, 권력 역학. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>지속가능성과 환경 목표</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/why-f-004-sustainability-goals</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/why-f-004-sustainability-goals</guid>
+    <description><![CDATA[ 기본 정의 제품/서비스가 전체 생애주기에 걸쳐 환경에 미치는 영향으로, 에너지 소비, 탄소 배출, 폐기물 발생, 재료 재활용 가능성 등을 포함하며, 기업이 설정한 환경 목표도 포함한다. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>비즈니스 모델</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/why-f-003-business-model</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/why-f-003-business-model</guid>
+    <description><![CDATA[ 기본 정의 제품의 수익 창출 방식과 가치 포착 메커니즘으로, 일회성 구매, 구독제, 프리미엄(freemium), 라이선스, 플랫폼 수수료, 광고 수익화 등과 그로 인해 생기는 설계 제약을 포함한다. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>시장 포지셔닝</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/why-f-002-market-positioning</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/why-f-002-market-positioning</guid>
+    <description><![CDATA[ 정의 목표 시장에서 제품이나 서비스가 차지하는 경쟁적 위치로, 목표 고객 집단, 가치 제안, 차별화 우위, 가격 전략, 브랜드 이미지 등의 요소를 포함하며, 특정 세분 시장에서의 매력도와 경쟁력을 결정한다. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>비용 제약</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/why-f-001-cost-constraint</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/why-f-001-cost-constraint</guid>
+    <description><![CDATA[ 정의 제품이나 서비스를 설계, 생산, 유통, 유지하는 데 따르는 재무적 제약으로, 재료비, 제조비, 연구개발 투입, 법규 준수 비용, 목표 판매가 또는 예산 상한을 포함한다. 왜 중요한가 비용은 상업적 실행 가능성의 핵심 요인이다. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>성별과 성별 표현</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/who-f-015-gender-expression</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/who-f-015-gender-expression</guid>
+    <description><![CDATA[ 성별과 성별 표현 (Gender &amp; Gender Expression) 정의 시스템, 제품 또는 공간에서 사용자가 식별·호칭·표현되는 성별 차원의 차이로, 다음을 포함한다: 생물학적 성별(sex): 출생 시의 생물학적 속성으로, 치수와 생리적 요구(예: 위생 시설)에 영향을 준다 성별 정체성(gender identity): 자신이 인식하는 성별로, 출생 시 지정된 성별과 다를 수 있다(트랜스젠더, 논바이너리 등) 성별 표현(gender expression): 외현적 성별 표현(의복, 헤어스타일, 행동 거동)으로, 정체성과 일치... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>프라이버시 및 보안 우려</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/who-f-014-privacy-security-concerns</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/who-f-014-privacy-security-concerns</guid>
+    <description><![CDATA[ 정의 사용자가 제품이나 서비스를 사용할 때 개인정보의 유출·추적·오용 및 신체 안전 위협에 대한 우려와 걱정의 정도로, 데이터 프라이버시, 익명성, 괴롭힘 방지, 물리적 안전 등의 측면에 대한 느낌을 포함한다. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>신체 치수와 인체공학</title>
+    <link>https://zokindesign.github.io/neo-idt/ko/factors/who-f-013-body-size-ergonomics</link>
+    <guid>https://zokindesign.github.io/neo-idt/ko/factors/who-f-013-body-size-ergonomics</guid>
+    <description><![CDATA[ 기본 정의 사용자의 신체 치수(신장, 팔 길이, 손끝 거리 등)와 관절 가동 범위, 근력, 지구력 등 인체공학적 특성. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

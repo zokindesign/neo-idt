@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>NEO-IDT ナレッジベース</title>
+      <link>https://zokindesign.github.io/neo-idt/ja</link>
+      <description>最新の10件 on NEO-IDT ナレッジベース</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>タグ一覧</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/tags/</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/tags/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Sun, 22 Nov 2026 10:04:35 GMT</pubDate>
+  </item><item>
+    <title>ガイド &amp; 事例</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/guides/</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/guides/</guid>
+    <description><![CDATA[ 64 枚のデザインガイドカードと 8 件の検証済み事例は、現在中国語版でのみ公開されています（日本語訳は準備中）。. ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:42 GMT</pubDate>
+  </item><item>
+    <title>ステークホルダーへの影響</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/why-f-005-stakeholder-impact</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/why-f-005-stakeholder-impact</guid>
+    <description><![CDATA[ 基本定義 製品/サービスが影響を与える、または影響を受けるさまざまな集団（ユーザー、顧客、パートナー、規制機関、社内チーム、コミュニティなど）のニーズ、期待、パワーダイナミクス。 なぜ重要か 設計上の意思決定は最終ユーザーを満たすだけでなく、顧客、チャネルパートナー、コンプライアンス担当など多方面の要望を考慮する必要がある 重要なステークホルダーを無視すると、市場の抵抗、法的リスク、資源の損耗を招きうる 多様な利害のバランスを取ることは複雑な設計タスクでよくある課題である 定量化基準 ステークホルダーマップ：権力と関心度の二次元で位置づけ ニーズの衝突度：異なる集団のニーズ間の不一致の度合い（... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>持続可能性と環境目標</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/why-f-004-sustainability-goals</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/why-f-004-sustainability-goals</guid>
+    <description><![CDATA[ 基本定義 製品/サービスがライフサイクル全体で環境に与える影響。エネルギー消費、炭素排出、廃棄物の発生、材料のリサイクル性など、および企業が設定する環境目標を含む。 なぜ重要か 環境規制がますます厳しくなり、炭素排出が貿易障壁となっている 消費者と投資家が ESG の実績をますます重視している 環境に配慮した設計は長期的な運用コストを下げられる（省エネ・節電など） 企業の社会的責任を示し、ブランド価値を高める 定量化基準 カーボンフットプリント：製品の生産・輸送・使用・廃棄の各段階の炭素排出 エネルギー効率：単位機能あたりの消費（例：GB あたりのデータ転送エネルギー） 廃棄物率：リサイクル可... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>ビジネスモデル</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/why-f-003-business-model</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/why-f-003-business-model</guid>
+    <description><![CDATA[ 基本定義 製品の収益化の方法と価値捕捉の仕組み。買い切り、サブスクリプション、フリーミアム、ライセンス供与、プラットフォーム手数料、広告による収益化など、およびそれによって生じる設計上の制約。 なぜ重要か ビジネスモデルは製品の機能の取捨選択、ユーザーデータ収集の範囲、体験設計の境界を直接左右する モデルごとにユーザーの支払意思と期待が異なり、包摂性ニーズの優先順位に影響する 収益目標とユーザー価値の間でバランスを取る必要がある 定量化基準 収益源の分布：各収益源の割合（サブスクリプション、広告、取引手数料など） ユーザー転換ファネル：試用→有料の転換率 ARPU/LTV：平均ユーザー収益とラ... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>市場ポジショニング</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/why-f-002-market-positioning</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/why-f-002-market-positioning</guid>
+    <description><![CDATA[ 定義 目標市場における製品やサービスの競争上の位置づけ。ターゲット顧客層、バリュープロポジション、差別化の優位性、価格戦略、ブランドイメージなどの要素を含み、特定のセグメントにおける魅力と競争力を決める。 なぜ重要か 市場ポジショニングは製品の商業的成功と持続可能性に直接影響する。市場ポジショニングを無視すると、インクルーシブデザインは利用可能でも十分なユーザーを惹きつけられず、収益化できず、規模を拡大して普及させにくくなる。市場ポジショニングを考慮することは、包摂的な機能をターゲットユーザーのニーズ、支払意思額、ブランドへの期待と結びつけ、社会的価値と商業的価値のバランスを実現する助けとなる... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>コスト制約</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/why-f-001-cost-constraint</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/why-f-001-cost-constraint</guid>
+    <description><![CDATA[ 定義 製品やサービスの設計・生産・流通・保守に伴う財務上の制約。材料費、製造費、研究開発投資、法規制対応コスト、目標販売価格や予算の上限などを含む。 なぜ重要か コストは事業の実現可能性を左右する中核的な要因である。コスト制約を無視すると、設計案は技術的に実現可能でも経済的に持続できず、市場に投入できなかったり目標ユーザーに届かなかったりしうる。包摂性のニーズとコスト管理のバランスを取ることが、広範な採用を実現する鍵となる。 関連規格と参考資料 ISO 9001：品質マネジメントシステム（費用対効果の考慮） 各国の政府調達におけるライフサイクルコスト分析（LCCA） Design for Co... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>性別と性表現</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/who-f-015-gender-expression</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/who-f-015-gender-expression</guid>
+    <description><![CDATA[ 性別と性表現 (Gender &amp; Gender Expression) 定義 ユーザーがシステム、製品または空間の中で識別・呼称・表現される性別の次元における差異。以下を含む： 生物学的性別（sex）：出生時の生物学的属性。寸法や生理的ニーズ（衛生設備など）に影響する 性自認（gender identity）：自己が認める性別。出生時に割り当てられた性別と異なることがある（トランスジェンダー、ノンバイナリーなど） 性表現（gender expression）：外的に見える性の表れ（服装、髪型、振る舞い）。自認と一致しないことがある 性別中立のニーズ：二元的な性別分類を認めないユーザー ... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>プライバシーとセキュリティへの懸念</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/who-f-014-privacy-security-concerns</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/who-f-014-privacy-security-concerns</guid>
+    <description><![CDATA[ 定義 ユーザーが製品やサービスを使用する際に、個人情報が漏えいし、追跡され、濫用されること、および身体の安全が脅かされることへの懸念や不安の程度。データプライバシー、匿名性、迷惑行為の防止、物理的な安全などに関する感覚を含む。 なぜ重要か プライバシーとセキュリティへの懸念は、ユーザーが製品やサービスを使いたいと思うか、信頼するか、継続して使い続けるかに直接影響する。たとえ機能が強力でも、ユーザーが安全でない、あるいはプライバシーが侵害されていると感じれば、使用の断念や競合製品への移行につながることがある。プライバシーとセキュリティを考慮することは、信頼でき、ユーザーの自律性を尊重し、懸念を減... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item><item>
+    <title>身体寸法と人間工学</title>
+    <link>https://zokindesign.github.io/neo-idt/ja/factors/who-f-013-body-size-ergonomics</link>
+    <guid>https://zokindesign.github.io/neo-idt/ja/factors/who-f-013-body-size-ergonomics</guid>
+    <description><![CDATA[ 基本定義 ユーザーの身体寸法（身長、腕の長さ、指間距離など）と関節可動域、筋力、持久力などの人間工学的特性。 なぜ重要か 機器/空間がユーザーの身体寸法に合わないと、疲労、操作困難、負傷を招きやすい 極端に背が高い・特異な体型のユーザーはまったく使えないこともある（高すぎて扉枠にぶつかるなど） 人体寸法の多様性への配慮は普遍的な快適さを高める 定量化基準 パーセンタイル基準: 第 5、50、95 パーセンタイルの人体寸法データを採用 調整範囲: 座面高さ、天板高さ、画面仰角の調整可能な範囲と方式 操作力: ボタン押下に要する力、取っ手の回転トルク 到達範囲: 操作部がユーザーの可達範囲内にある... ]]></description>
+    <pubDate>Sun, 22 Nov 2026 09:27:41 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
