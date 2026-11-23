@@ -4,6 +4,8 @@ Neo Inclusive Design Toolkit | 包容性设计工具集
 
 **An evidence-graded, cross-domain toolkit for inclusive design** — help designers *explore, define, build, and audit* the inclusiveness of a design with quantifiable criteria, not just principles.
 
+[![Knowledge Base WiKi](https://img.shields.io/badge/%F0%9F%93%9A_Knowledge_Base_WiKi-zokindesign.github.io%2Fneo--idt-2ea44f)](https://zokindesign.github.io/neo-idt/)
+
 ![License: MIT](https://img.shields.io/badge/Code-MIT-blue) ![Content License](https://img.shields.io/badge/Content-CC_BY--SA_4.0-lightgrey) ![Data License](https://img.shields.io/badge/Data-CC_BY_4.0-lightgrey) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
 > 中文说明见 [README.zh-CN.md](./README.zh-CN.md)

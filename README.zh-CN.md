@@ -6,6 +6,8 @@ Neo Inclusive Design Toolkit | 包容性设计工具集
 
 English overview: [README.md](./README.md)
 
+[![知识库 WiKi](https://img.shields.io/badge/%F0%9F%93%9A_知识库_WiKi-zokindesign.github.io%2Fneo--idt-2ea44f)](https://zokindesign.github.io/neo-idt/)
+
 ## 为什么需要 NEO-IDT
 
 设计师在项目开始时，往往**不清楚应当考虑哪些人类多样性因素**，能想到的因素也难以全面。现有工具分三类，各有缺口：
